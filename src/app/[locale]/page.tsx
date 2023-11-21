@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl"
 
 export default function Home() {
   const tCommon = useTranslations("Index")
+  console.log("test")
 
   return (
     <main>
