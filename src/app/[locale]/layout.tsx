@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { notFound } from "next/navigation"
-import { i18n } from "@/i18n.config"
+import { i18n } from "@/config/i18n.config"
 import { NextIntlClientProvider, useMessages } from "next-intl"
 
 const inter = Inter({ subsets: ["latin"] })
