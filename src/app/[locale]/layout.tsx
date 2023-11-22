@@ -6,7 +6,6 @@ import { i18n } from "@/config/i18n.config"
 import { NextIntlClientProvider, useMessages } from "next-intl"
 
 const inter = Inter({ subsets: ["latin"] })
-const locales = i18n.locales
 
 export const metadata: Metadata = {
   title: "BiteCare",

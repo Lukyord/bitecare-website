@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button"
 import { useTranslations } from "next-intl"
 
 export default function Home() {
@@ -5,7 +6,8 @@ export default function Home() {
 
   return (
     <main>
-      <h1 className="text-red bg-black text-6xl">bitecare</h1>
+      <h1>bitecare</h1>
+      <Button variant="destructive">button</Button>
     </main>
   )
 }
