@@ -12,6 +12,7 @@ import BiteCareLogo from "@public/assets/common/bitecare-logo.svg"
 // C
 // D
 // E
+import EnglishFlag from "@public/assets/common/english-flag.svg"
 // F
 // G
 // H
@@ -27,7 +28,7 @@ import BiteCareLogo from "@public/assets/common/bitecare-logo.svg"
 // R
 // S
 // T
-// U
+import ThaiFlag from "@public/assets/common/thai-flag.svg"
 // V
 // W
 // W
@@ -42,6 +43,7 @@ export const Images = {
   // C
   // D
   // E
+  EnglishFlag,
   // F
   // G
   // H
@@ -57,6 +59,7 @@ export const Images = {
   // R
   // S
   // T
+  ThaiFlag,
   // U
   // V
   // W

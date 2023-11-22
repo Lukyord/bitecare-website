@@ -9,6 +9,7 @@ import { NavbarBreadcrumbT, NavbarItemT } from "@/types/common/navbar"
 import NavbarItem from "./NavbarItem"
 import { Images } from "@/constant/Images"
 import Image from "next/image"
+import LocaleSwitcher from "./LocaleSwitcher"
 
 export function Navbar() {
   const tNavbar = useTranslations("navbar")
@@ -117,10 +118,12 @@ export function Navbar() {
             </React.Fragment>
           ))}
         </ul>
-        {/* <LocaleSwitcher
-          hoveredItem={selectedItem}
-          setHoveredItem={setSelectedItem}
-        /> */}
+      </div>
+      <div>
+        <LocaleSwitcher
+          selectedNavItem={selectedNavItem}
+          setSelectedNavItem={setSelectedNavItem}
+        />
       </div>
     </nav>
   )
