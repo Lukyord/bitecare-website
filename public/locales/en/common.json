@@ -2,8 +2,7 @@
   "navbar": {
     "products": "Products",
     "where-to-buy": "Where to buy",
-    "support": "Support",
-    "meet-bite-care": "Meet Bite Care"
+    "support": "Support"
   },
   "navbar-products-breadcrumb": {
     "see-all": "See all",
@@ -28,5 +27,8 @@
     "contact-us-description": "Contact Bite Care",
     "faq": "FAQ",
     "faq-description": "FAQ Bite Care products"
+  },
+  "button": {
+    "meet-bite-care": "Meet Bite Care"
   }
 }

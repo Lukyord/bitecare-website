@@ -4,6 +4,7 @@ import "./globals.css"
 import { notFound } from "next/navigation"
 import { i18n } from "@/config/i18n.config"
 import { NextIntlClientProvider, useMessages } from "next-intl"
+import Header from "@/components/common/Header"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -38,6 +39,7 @@ export default function RootLayout({
     <html lang={locale}>
       <body className={inter.className}>
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <Header />
           {children}
         </NextIntlClientProvider>
       </body>

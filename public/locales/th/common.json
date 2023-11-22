@@ -2,8 +2,7 @@
   "navbar": {
     "products": "สินค้าของเรา",
     "where-to-buy": "ซื้อที่ไหน",
-    "support": "สนับสนุน",
-    "meet-bite-care": "พบกับ BiteCare"
+    "support": "สนับสนุน"
   },
   "navbar-products-breadcrumb": {
     "see-all": "ดูทั้งหมด",
@@ -28,5 +27,8 @@
     "contact-us-description": "ติดต่อ BiteCare",
     "faq": "คำถามที่พบบ่อย",
     "faq-description": "คำถามที่พบบ่อยเกี่ยวกับสินค้า BiteCare"
+  },
+  "button": {
+    "meet-bite-care": "พบกับ BiteCare"
   }
 }
