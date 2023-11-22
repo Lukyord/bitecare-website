@@ -19,36 +19,32 @@ const NavbarItem = ({
   setSelectedNavItem,
 }: NavBarItemProps) => {
   const tNavBar = useTranslations("navbar")
+  const isSelected = selectedNavItem === navbaritem.label
 
   return (
     <li
-      onMouseEnter={() => {
-        if (selectedNavItem !== navbaritem.label)
-          setSelectedNavItem(navbaritem.label)
-      }}
-      className="relative flex items-center gap-1 whitespace-nowrap p-2"
+      onMouseEnter={() => !isSelected && setSelectedNavItem(navbaritem.label)}
+      className={`relative flex items-center gap-2 whitespace-nowrap rounded-full px-5 py-2 ${
+        isSelected ? "bg-bc_inverse_primary text-white" : "text-bc_black"
+      } `}
     >
       <p
-        title={tNavBar(navbaritem.label)}
-        className={`${
-          selectedNavItem === navbaritem.label && "text-primary_blue font-bold"
-        } 
-        before:invisible before:block before:h-0 
-        before:overflow-hidden before:font-bold before:content-[attr(title)]
+        className={`transform transition-transform duration-300 
       `}
       >
         {tNavBar(navbaritem.label)}
       </p>
       {navbaritem.breadcrumb && (
         <FaChevronDown
+          size={12}
           className={`transform transition-transform duration-300 ${
-            selectedNavItem === navbaritem.label ? "rotate-180" : ""
+            isSelected && "rotate-180 text-white"
           }`}
         />
       )}
 
       {/* Render breadcrumb */}
-      {navbaritem.breadcrumb && selectedNavItem === navbaritem.label && (
+      {navbaritem.breadcrumb && isSelected && (
         <motion.div
           initial={{ x: "-50%", y: 20 }}
           animate={{ x: "-50%", y: 0 }}

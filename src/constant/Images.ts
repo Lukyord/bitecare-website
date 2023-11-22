@@ -8,6 +8,7 @@
 // A
 import ArrowCurveUpWhite from "@public/assets/illustrations/arrow-curve-up-white.svg"
 // B
+import BiteCareLogo from "@public/assets/common/bitecare-logo.svg"
 // C
 // D
 // E
@@ -33,10 +34,11 @@ import ArrowCurveUpWhite from "@public/assets/illustrations/arrow-curve-up-white
 // Y
 // Z
 
-export const Illustrations = {
+export const Images = {
   // A
   ArrowCurveUpWhite,
   // B
+  BiteCareLogo,
   // C
   // D
   // E

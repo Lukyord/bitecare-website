@@ -7,6 +7,8 @@ import { NavigationMenuLink } from "@/components/ui/navigation-menu"
 import { useTranslations } from "next-intl"
 import { NavbarBreadcrumbT, NavbarItemT } from "@/types/common/navbar"
 import NavbarItem from "./NavbarItem"
+import { Images } from "@/constant/Images"
+import Image from "next/image"
 
 export function Navbar() {
   const tNavbar = useTranslations("navbar")
@@ -88,34 +90,38 @@ export function Navbar() {
   return (
     <nav
       className="
-              relative z-50
-              flex w-full items-center
-              justify-between gap-8 bg-green-300
-              px-8 sm:justify-center
+              small-shadow relative
+              z-50 flex w-full max-w-5xl
+              items-center justify-between
+              gap-8 rounded-full bg-bc_primary_container
+              p-2
             "
+      onMouseLeave={() => setSelectedNavItem("")}
     >
-      {/* <Image
-        src={Images.AgnosLogo}
-        alt="logo"
-        width={152}
-        height={57}
-        className="h-[40px] w-[100px] sm:h-[57px] sm:w-[152px]"
-      /> */}
-      <ul className="hidden gap-3 sm:flex">
-        {NavbarItems.map((navbaritem, index) => (
-          <React.Fragment key={index}>
-            <NavbarItem
-              navbaritem={navbaritem}
-              selectedNavItem={selectedNavItem}
-              setSelectedNavItem={setSelectedNavItem}
-            />
-          </React.Fragment>
-        ))}
+      <div className="flex gap-7">
+        <Image
+          src={Images.BiteCareLogo}
+          alt="bitecare-logo"
+          width={71}
+          height={54}
+          className="rounded-full bg-white p-2"
+        />
+        <ul className="hidden gap-3 sm:flex">
+          {NavbarItems.map((navbaritem, index) => (
+            <React.Fragment key={index}>
+              <NavbarItem
+                navbaritem={navbaritem}
+                selectedNavItem={selectedNavItem}
+                setSelectedNavItem={setSelectedNavItem}
+              />
+            </React.Fragment>
+          ))}
+        </ul>
         {/* <LocaleSwitcher
           hoveredItem={selectedItem}
           setHoveredItem={setSelectedItem}
         /> */}
-      </ul>
+      </div>
     </nav>
   )
 }
