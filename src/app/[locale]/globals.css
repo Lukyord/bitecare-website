@@ -74,7 +74,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-.small-shadow {
-  @apply [box-shadow:4px_4px_6px_0px_rgba(0,_0,_0,_0.25)];
-}

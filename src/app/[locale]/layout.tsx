@@ -1,12 +1,21 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
 import "./globals.css"
 import { notFound } from "next/navigation"
 import { i18n } from "@/config/i18n.config"
 import { NextIntlClientProvider, useMessages } from "next-intl"
 import Header from "@/components/common/Header"
+import localFont from "next/font/local"
 
-const inter = Inter({ subsets: ["latin"] })
+const psl = localFont({
+  src: "../../../public/fonts/PSL096pro.ttf",
+  display: "swap",
+  variable: "--font-psl",
+})
+const helveltica_rounded = localFont({
+  src: "../../../public/fonts/HelveticaRoundedLTStd-Bd.otf",
+  display: "swap",
+  variable: "--font-helveltica-rounded",
+})
 
 export const metadata: Metadata = {
   title: "BiteCare",
@@ -37,7 +46,9 @@ export default function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={inter.className}>
+      <body
+        className={`${psl.variable} ${helveltica_rounded.variable} font-psl`}
+      >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
           {children}

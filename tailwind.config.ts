@@ -79,6 +79,21 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontFamily: {
+        psl: ["var(--font-psl)"],
+        hel_rounded: ["var(--font-helveltica-rounded)"],
+      },
+      boxShadow: {
+        bc_small: "4px 4px 6px 0px rgba(0, 0, 0, 0.25)",
+      },
+      fontSize: {
+        h0: ["700px", { lineHeight: "normal", letterSpacing: "0" }],
+        h1: ["150px", { lineHeight: "70%", letterSpacing: "0" }],
+        h2: ["96px", { lineHeight: "80%", letterSpacing: "0" }],
+        h3: ["48px", { lineHeight: "80%", letterSpacing: "0" }],
+        paragraph: ["24px", { lineHeight: "100%", letterSpacing: "0.72px" }],
+        subtitle: ["16px", { lineHeight: "90%", letterSpacing: "0.64px" }],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

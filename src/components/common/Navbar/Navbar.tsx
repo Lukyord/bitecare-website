@@ -90,11 +90,11 @@ export function Navbar() {
   return (
     <nav
       className="
-              small-shadow relative
+              relative
               z-50 flex w-full max-w-5xl
               items-center justify-between
               gap-8 rounded-full bg-bc_primary_container
-              p-2
+              p-2 shadow-bc_small
             "
       onMouseLeave={() => setSelectedNavItem("")}
     >

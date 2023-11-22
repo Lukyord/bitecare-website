@@ -29,7 +29,7 @@ const NavbarItem = ({
       } `}
     >
       <p
-        className={`transform transition-transform duration-300 
+        className={`transform text-paragraph transition-transform  duration-300
       `}
       >
         {tNavBar(navbaritem.label)}
