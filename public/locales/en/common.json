@@ -1,5 +1,32 @@
 {
-  "Index": {
-    "title": "Hello world!"
+  "navbar": {
+    "products": "Products",
+    "where-to-buy": "Where to buy",
+    "support": "Support",
+    "meet-bite-care": "Meet Bite Care"
+  },
+  "navbar-products-breadcrumb": {
+    "see-all": "See all",
+    "see-all-description": "See all Bite Care products",
+    "skin-care": "Skin Care",
+    "skin-care-description": "Skin Care Bite Care products",
+    "low-fat": "Low Fat",
+    "low-fat-description": "Low Fat Bite Care products",
+    "senior-care": "Senior Care",
+    "senior-care-description": "Senior Care Bite Care products",
+    "renal-care": "Renal Care",
+    "renal-care-description": "Renal Care Bite Care products"
+  },
+  "navbar-where-to-buy-breadcrumb": {
+    "physical-store": "Physical Store",
+    "physical-store-description": "Physical Store Bite Care products",
+    "online-platform": "Online Platform",
+    "online-platform-description": "Online Platform Bite Care products"
+  },
+  "navbar-support-breadcrumb": {
+    "contact-us": "Contact Us",
+    "contact-us-description": "Contact Bite Care",
+    "faq": "FAQ",
+    "faq-description": "FAQ Bite Care products"
   }
 }

@@ -1,5 +1,32 @@
 {
-  "Index": {
-    "title": "สวัสดีโลก!"
+  "navbar": {
+    "products": "สินค้าของเรา",
+    "where-to-buy": "ซื้อที่ไหน",
+    "support": "สนับสนุน",
+    "meet-bite-care": "พบกับ BiteCare"
+  },
+  "navbar-products-breadcrumb": {
+    "see-all": "ดูทั้งหมด",
+    "see-all-description": "ดูผลิตภัณฑ์ทั้งหมดของ BiteCare",
+    "skin-care": "Skin Care",
+    "skin-care-description": "ผลิตภัณฑ์ดูแลผิวของ BiteCare",
+    "low-fat": "Low Fat",
+    "low-fat-description": "ผลิตภัณฑ์ไขมันต่ำของ BiteCare",
+    "senior-care": "Senior Care",
+    "senior-care-description": "ผลิตภัณฑ์ดูแลสุนัขสูงวัยของ BiteCare",
+    "renal-care": "Renal Care",
+    "renal-care-description": "ผลิตภัณฑ์ดูแลไตของ BiteCare"
+  },
+  "navbar-where-to-buy-breadcrumb": {
+    "physical-store": "ร้านค้า",
+    "physical-store-description": "สินค้า BiteCare ที่จำหน่อยในร้านทางกายภาพ",
+    "online-platform": "แพลตฟอร์มออนไลน์",
+    "online-platform-description": "สินค้า BiteCare ที่จำหน่อยในแพลตฟอร์มออนไลน์"
+  },
+  "navbar-support-breadcrumb": {
+    "contact-us": "ติดต่อเรา",
+    "contact-us-description": "ติดต่อ BiteCare",
+    "faq": "คำถามที่พบบ่อย",
+    "faq-description": "คำถามที่พบบ่อยเกี่ยวกับสินค้า BiteCare"
   }
 }
