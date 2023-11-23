@@ -46,7 +46,7 @@ const NavbarItem = ({
           animate={{ x: "-50%", y: 0 }}
           className="
                   absolute 
-                  left-1/2 top-[120%] translate-x-[-50%]
+                  left-1/2 top-[110%] translate-x-[-50%]
                 "
           onMouseLeave={() => setSelectedNavItem("")}
         >

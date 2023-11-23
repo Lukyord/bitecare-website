@@ -83,6 +83,7 @@ export default function LocaleSwitcher({
                   src={locale === "th" ? Images.ThaiFlag : Images.EnglishFlag}
                   width={24}
                   height={24}
+                  className="h-auto w-auto"
                 />
                 <p>{locale.toUpperCase()}</p>
               </button>

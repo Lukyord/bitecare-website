@@ -92,8 +92,8 @@ export function Navbar() {
       className="
               relative
               z-50 flex w-full max-w-5xl
-              items-center justify-between
-              gap-8 rounded-full bg-bc_primary_container
+              items-center
+              rounded-full bg-bc_primary_container
               p-2 shadow-bc_small
             "
       onMouseLeave={() => setSelectedNavItem("")}
@@ -118,12 +118,21 @@ export function Navbar() {
           ))}
         </ul>
       </div>
+
+      <div
+        className="h-[49px] w-full flex-1"
+        onMouseEnter={() => setSelectedNavItem("")}
+      ></div>
+
       <div className="flex h-[49px] gap-6">
         <LocaleSwitcher
           selectedNavItem={selectedNavItem}
           setSelectedNavItem={setSelectedNavItem}
         />
-        <NavbarCTAButton text="Meet BiteCare" />
+        <NavbarCTAButton
+          text="Meet BiteCare"
+          setSelectedNavItem={setSelectedNavItem}
+        />
       </div>
     </nav>
   )
