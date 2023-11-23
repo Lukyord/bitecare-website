@@ -74,12 +74,12 @@ export function Navbar() {
 
   const NavbarItems: NavbarItemT[] = [
     {
-      label: "products",
-      breadcrumb: ProductsBreadcrumb,
-    },
-    {
       label: "where-to-buy",
       breadcrumb: WhereToBuyBreadcrumb,
+    },
+    {
+      label: "products",
+      breadcrumb: ProductsBreadcrumb,
     },
     {
       label: "support",
