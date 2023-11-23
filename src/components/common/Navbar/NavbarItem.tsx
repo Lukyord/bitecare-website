@@ -7,6 +7,7 @@ import Link from "next/link"
 import { FaChevronDown } from "react-icons/fa"
 
 import { NavbarItemT } from "@/types/common/navbar"
+import BreadcrumbAnimation from "@/components/animations/BreadcrumbAnimation"
 
 type NavBarItemProps = {
   navbaritem: NavbarItemT
@@ -41,15 +42,7 @@ const NavbarItem = ({
 
       {/* Render breadcrumb */}
       {navbaritem.breadcrumb && isSelected && (
-        <motion.div
-          initial={{ x: "-50%", y: 20 }}
-          animate={{ x: "-50%", y: 0 }}
-          className="
-                  absolute 
-                  left-1/2 top-[110%] translate-x-[-50%]
-                "
-          onMouseLeave={() => setSelectedNavItem("")}
-        >
+        <BreadcrumbAnimation setSelectedNavItem={setSelectedNavItem}>
           <div
             className="
                       flex flex-col gap-4 rounded-lg
@@ -59,20 +52,15 @@ const NavbarItem = ({
           >
             {navbaritem.breadcrumb.map((breadcrumbItem, index) => (
               <Link
-                title={breadcrumbItem.title}
                 href={breadcrumbItem.href}
                 key={index}
-                className="
-                    hover:text-primary_blue text-black before:invisible
-                      before:block before:h-0 before:overflow-hidden 
-                      before:font-bold before:content-[attr(title)] hover:font-bold
-                    "
+                className="text-black"
               >
                 <p>{breadcrumbItem.title}</p>
               </Link>
             ))}
           </div>
-        </motion.div>
+        </BreadcrumbAnimation>
       )}
     </li>
   )

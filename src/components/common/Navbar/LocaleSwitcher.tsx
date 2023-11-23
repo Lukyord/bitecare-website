@@ -8,6 +8,7 @@ import { useLocale } from "next-intl"
 import { Images } from "@/constant/Images"
 import { i18n } from "@/config/i18n.config"
 import { FaChevronDown } from "react-icons/fa"
+import BreadcrumbAnimation from "@/components/animations/BreadcrumbAnimation"
 
 type LocaleSwitcherProps = {
   selectedNavItem: string
@@ -55,15 +56,7 @@ export default function LocaleSwitcher({
       />
 
       {selectedNavItem === "locale-switcher" && (
-        <motion.div
-          initial={{ opacity: 0, x: "-50%", y: 20 }}
-          animate={{ opacity: 1, x: "-50%", y: 0 }}
-          className="
-                  absolute left-1/2
-                  top-[110%] w-28 translate-x-[-50%]
-                "
-          onMouseLeave={() => setSelectedNavItem("")}
-        >
+        <BreadcrumbAnimation setSelectedNavItem={setSelectedNavItem}>
           <div
             className="
                       jusify-center flex flex-col items-center
@@ -75,7 +68,7 @@ export default function LocaleSwitcher({
             {i18n.locales.map((locale, index) => (
               <button
                 key={index}
-                className="flex items-center gap-3 rounded-md px-4 py-1 text-bc_black hover:bg-bc_surface_container"
+                className="flex items-center gap-3 rounded-md py-1 pl-4 pr-8 text-bc_black hover:bg-bc_surface_container"
                 onClick={() => changeLanguage(locale)}
               >
                 <Image
@@ -89,7 +82,7 @@ export default function LocaleSwitcher({
               </button>
             ))}
           </div>
-        </motion.div>
+        </BreadcrumbAnimation>
       )}
     </div>
   )
