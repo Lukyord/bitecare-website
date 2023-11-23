@@ -51,10 +51,8 @@ export default function RootLayout({
       <body
         className={`${psl.variable} ${helveltica_rounded.variable} font-psl`}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header />
-          {children}
-        </NextIntlClientProvider>
+        <Header />
+        {children}
       </body>
     </html>
   )

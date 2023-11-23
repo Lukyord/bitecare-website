@@ -60,7 +60,7 @@ export default function LocaleSwitcher({
           animate={{ opacity: 1, x: "-50%", y: 0 }}
           className="
                   absolute left-1/2
-                  top-[120%] w-28 translate-x-[-50%]
+                  top-[110%] w-28 translate-x-[-50%]
                 "
           onMouseLeave={() => setSelectedNavItem("")}
         >
