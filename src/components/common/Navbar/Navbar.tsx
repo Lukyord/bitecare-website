@@ -1,25 +1,24 @@
 "use client"
 
-import * as React from "react"
-
-import { cn } from "@/lib/utils"
-import { NavigationMenuLink } from "@/components/ui/navigation-menu"
+import React, { useState } from "react"
 import { useTranslations } from "next-intl"
-import { NavbarBreadcrumbT, NavbarItemT } from "@/types/common/navbar"
-import NavbarItem from "./NavbarItem"
-import { Images } from "@/constant/Images"
 import Image from "next/image"
+
+import { NavbarBreadcrumbT, NavbarItemT } from "@/types/common/navbar"
+import { Images } from "@/constant/Images"
+
+import NavbarItem from "./NavbarItem"
 import LocaleSwitcher from "./LocaleSwitcher"
+import NavbarCTAButton from "./NavbarCTAButton"
 
 export function Navbar() {
-  const tNavbar = useTranslations("navbar")
   const tProductsBreadcrumb = useTranslations("navbar-products-breadcrumb")
   const tWhereToBuyBreadcrumb = useTranslations(
     "navbar-where-to-buy-breadcrumb"
   )
   const tSupportBreadcrumb = useTranslations("navbar-support-breadcrumb")
 
-  const [selectedNavItem, setSelectedNavItem] = React.useState("")
+  const [selectedNavItem, setSelectedNavItem] = useState("")
 
   const ProductsBreadcrumb: NavbarBreadcrumbT[] = [
     {
@@ -119,11 +118,12 @@ export function Navbar() {
           ))}
         </ul>
       </div>
-      <div>
+      <div className="flex h-[49px] gap-6">
         <LocaleSwitcher
           selectedNavItem={selectedNavItem}
           setSelectedNavItem={setSelectedNavItem}
         />
+        <NavbarCTAButton text="Meet BiteCare" />
       </div>
     </nav>
   )

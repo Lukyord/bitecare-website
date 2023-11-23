@@ -4,6 +4,7 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { usePathname, useRouter } from "next/navigation"
 import { useLocale } from "next-intl"
+
 import { Images } from "@/constant/Images"
 import { i18n } from "@/config/i18n.config"
 import { FaChevronDown } from "react-icons/fa"
@@ -40,7 +41,7 @@ export default function LocaleSwitcher({
 
   return (
     <div
-      className={`relative ml-3 flex items-center gap-3 text-paragraph ${
+      className={`relative flex items-center gap-3 whitespace-nowrap text-paragraph ${
         isSelected ? "bg-bc_inverse_primary text-white" : "text-bc_black"
       } rounded-full px-5 py-2`}
       onMouseEnter={() => !isSelected && setSelectedNavItem("locale-switcher")}

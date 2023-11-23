@@ -1,11 +1,12 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import Link from "next/link"
-import Image from "next/image"
 import { motion } from "framer-motion"
-import { NavbarItemT } from "@/types/common/navbar"
+import Link from "next/link"
+
 import { FaChevronDown } from "react-icons/fa"
+
+import { NavbarItemT } from "@/types/common/navbar"
 
 type NavBarItemProps = {
   navbaritem: NavbarItemT
@@ -24,16 +25,11 @@ const NavbarItem = ({
   return (
     <li
       onMouseEnter={() => !isSelected && setSelectedNavItem(navbaritem.label)}
-      className={`relative flex items-center gap-2 whitespace-nowrap rounded-full px-5 py-2 ${
+      className={`relative flex items-center gap-2 whitespace-nowrap rounded-full px-5 py-3 text-paragraph ${
         isSelected ? "bg-bc_inverse_primary text-white" : "text-bc_black"
       } `}
     >
-      <p
-        className={`transform text-paragraph transition-transform  duration-300
-      `}
-      >
-        {tNavBar(navbaritem.label)}
-      </p>
+      <p>{tNavBar(navbaritem.label)}</p>
       {navbaritem.breadcrumb && (
         <FaChevronDown
           size={12}

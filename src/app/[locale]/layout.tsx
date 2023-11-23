@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
-import "./globals.css"
-import { notFound } from "next/navigation"
-import { i18n } from "@/config/i18n.config"
-import { NextIntlClientProvider, useMessages } from "next-intl"
-import Header from "@/components/common/Header"
 import localFont from "next/font/local"
+import { notFound } from "next/navigation"
+import { NextIntlClientProvider, useMessages } from "next-intl"
+
+import { i18n } from "@/config/i18n.config"
+import "./globals.css"
+
+import Header from "@/components/common/Header"
 
 const psl = localFont({
   src: "../../../public/fonts/PSL096pro.ttf",
