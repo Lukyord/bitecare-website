@@ -3,6 +3,9 @@
 import React, { useState } from "react"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
+import { gsap } from "gsap"
+import { ScrollToPlugin } from "gsap/ScrollToPlugin"
+import Link from "next/link"
 
 import { NavbarBreadcrumbT, NavbarItemT } from "@/types/common/navbar"
 import { Images } from "@/constant/Images"
@@ -10,8 +13,10 @@ import { Images } from "@/constant/Images"
 import NavbarItem from "./NavbarItem"
 import LocaleSwitcher from "./LocaleSwitcher"
 import NavbarCTAButton from "./NavbarCTAButton"
+import { usePathname } from "next/navigation"
 
 export function Navbar() {
+  const pathname = usePathname()
   const tProductsBreadcrumb = useTranslations("navbar-products-breadcrumb")
   const tWhereToBuyBreadcrumb = useTranslations(
     "navbar-where-to-buy-breadcrumb"
@@ -87,6 +92,8 @@ export function Navbar() {
     },
   ]
 
+  gsap.registerPlugin(ScrollToPlugin)
+
   return (
     <nav
       className="
@@ -99,14 +106,38 @@ export function Navbar() {
       onMouseLeave={() => setSelectedNavItem("")}
     >
       <div className="flex gap-7">
-        <Image
-          src={Images.BiteCareLogo}
-          alt="bitecare-logo"
-          width={71}
-          height={54}
-          className="rounded-full bg-white p-2"
+        <div
+          className="h-[54px] w-[91px]"
           onMouseEnter={() => setSelectedNavItem("")}
-        />
+        >
+          {pathname === "/" || pathname === "/en" ? (
+            <div
+              className="
+                        flex h-full w-full
+                        items-center justify-center
+                        rounded-full bg-bc_primary p-2 hover:bg-bc_inverse_primary 
+                      "
+              onClick={() => {
+                gsap.to(window, { duration: 2, scrollTo: 0 })
+              }}
+            >
+              <Image
+                alt="arrow-up"
+                src={Images.ArrowCurveUpWhite}
+                className="h-auto w-auto"
+              />
+            </div>
+          ) : (
+            <Link href="/">
+              <Image
+                src={Images.BiteCareLogo}
+                alt="bitecare-logo"
+                className="h-full w-full rounded-full bg-white"
+              />
+            </Link>
+          )}
+        </div>
+
         <ul className="hidden gap-3 sm:flex">
           {NavbarItems.map((navbaritem, index) => (
             <React.Fragment key={index}>
