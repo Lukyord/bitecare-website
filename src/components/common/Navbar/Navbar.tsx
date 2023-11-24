@@ -105,6 +105,7 @@ export function Navbar() {
           width={71}
           height={54}
           className="rounded-full bg-white p-2"
+          onMouseEnter={() => setSelectedNavItem("")}
         />
         <ul className="hidden gap-3 sm:flex">
           {NavbarItems.map((navbaritem, index) => (
