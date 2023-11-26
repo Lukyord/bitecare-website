@@ -119,7 +119,7 @@ export function Navbar() {
               z-50 mx-auto mt-8
               flex w-[90%] max-w-5xl items-center
               justify-between rounded-full
-              bg-bc_primary_container p-2
+              bg-bc-primary-container p-2
               shadow-bc_small
             "
       onMouseLeave={() => setSelectedNavItem("")}
@@ -134,7 +134,7 @@ export function Navbar() {
               className="
                         flex h-full w-full
                         items-center justify-center
-                        rounded-full bg-bc_primary p-2 hover:bg-bc_inverse_primary 
+                        rounded-full bg-bc-primary p-2 hover:bg-bc-inverse-primary 
                       "
               onClick={() => {
                 gsap.to(window, { duration: 2, scrollTo: 0 })
@@ -193,7 +193,7 @@ export function Navbar() {
         className="
               flex h-[42px] items-center 
               justify-center rounded-full 
-              bg-bc_primary px-4 
+              bg-bc-primary px-4 
               text-paragraph text-white
               lg:hidden
             "

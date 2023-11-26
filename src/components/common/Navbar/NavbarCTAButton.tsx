@@ -60,7 +60,7 @@ export default function NavbarCTAButton({
       className="
         relative h-full w-40 overflow-hidden
         whitespace-nowrap rounded-full
-        bg-bc_primary text-paragraph text-white
+        bg-bc-primary text-paragraph text-white
       "
       ref={containerRef}
       onMouseEnter={handleMouseEnter}

@@ -27,7 +27,7 @@ export default function NavbarItem({
     <li
       onMouseEnter={() => !isSelected && setSelectedNavItem(navbaritem.label)}
       className={`relative flex items-center gap-2 rounded-full px-5 py-3 text-paragraph ${
-        isSelected ? "bg-bc_inverse_primary text-white" : "text-bc_black"
+        isSelected ? "bg-bc-inverse-primary text-white" : "text-bc_black"
       } `}
     >
       <p>{tNavBar(navbaritem.label)}</p>

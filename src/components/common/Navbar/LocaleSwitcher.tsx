@@ -8,7 +8,6 @@ import { Images } from "@/constant/Images"
 import { i18n } from "@/config/i18n.config"
 import { FaChevronDown } from "react-icons/fa"
 import BreadcrumbAnimation from "@/components/animations/BreadcrumbAnimation"
-import { cn } from "@/lib/utils"
 
 type LocaleSwitcherProps = {
   selectedNavItem: string
@@ -43,7 +42,7 @@ export default function LocaleSwitcher({
   return (
     <div
       className={`relative flex items-center gap-3 whitespace-nowrap text-paragraph ${
-        isSelected ? "bg-bc_inverse_primary text-white" : "text-bc_black"
+        isSelected ? "bg-bc-inverse-primary text-white" : "text-bc_black"
       } rounded-full px-5 py-2`}
       onMouseEnter={() => !isSelected && setSelectedNavItem("locale-switcher")}
     >
@@ -68,7 +67,7 @@ export default function LocaleSwitcher({
             {i18n.locales.map((locale, index) => (
               <button
                 key={index}
-                className="flex items-center gap-3 rounded-md py-1 pl-4 pr-8 text-bc_black hover:bg-bc_surface_container"
+                className="flex items-center gap-3 rounded-md py-1 pl-4 pr-8 text-bc-black hover:bg-bc-surface-container"
                 onClick={() => changeLanguage(locale)}
               >
                 <Image

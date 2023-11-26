@@ -10,7 +10,7 @@ export default function BreadcrumbMenuMobile({
   setMobileMenuOpen,
 }: BreadcrumbMenuMobileProps) {
   return (
-    <div className="fixed left-0 top-0 h-screen w-screen bg-bc_primary_container">
+    <div className="fixed left-0 top-0 h-screen w-screen bg-bc-primary-container">
       <div className="mt-4 flex w-[90%] justify-end">
         <RxCross2 size={24} onClick={() => setMobileMenuOpen(false)} />
       </div>

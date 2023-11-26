@@ -23,18 +23,18 @@ export default function BreadcrumbItem({
   return (
     <Link href={breadcrumbItem.href}>
       <motion.div
-        className="flex h-16 w-52 flex-col justify-center rounded-lg px-5 py-4  hover:bg-bc_surface_container"
+        className="flex h-16 w-52 flex-col justify-center rounded-lg px-5 py-4  hover:bg-bc-surface-container"
         initial="rest"
         whileHover="hovered"
         animate="rest"
       >
         <div className="flex items-center gap-2">
-          <p className="text-paragraph text-bc_black">{breadcrumbItem.title}</p>
+          <p className="text-paragraph text-bc-black">{breadcrumbItem.title}</p>
           <motion.span variants={arrowVariants}>
-            <FaArrowRight className="text-bc_black" size={15} />
+            <FaArrowRight className="text-bc-black" size={15} />
           </motion.span>
         </div>
-        <p className="text-subtitle text-bc_grey">
+        <p className="text-subtitle text-bc-grey">
           {breadcrumbItem.description}
         </p>
       </motion.div>

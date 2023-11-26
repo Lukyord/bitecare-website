@@ -18,14 +18,14 @@ module.exports = {
     extend: {
       colors: {
         //BiteCare Colors
-        bc_primary: "#549B51",
-        bc_inverse_primary: "#9DD67D",
-        bc_primary_container: "#CBE4CB",
+        "bc-primary": "#549B51",
+        "bc-inverse-primary": "#9DD67D",
+        "bc-primary-container": "#CBE4CB",
 
-        bc_black: "#072100",
-        bc_grey: "#74796D",
+        "bc-black": "#072100",
+        "bc-grey": "#74796D",
 
-        bc_surface_container: "#D2CFCC",
+        "bc-surface-container": "#D2CFCC",
 
         //Shadcn Colors
         border: "hsl(var(--border))",
