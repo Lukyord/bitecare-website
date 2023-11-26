@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import localFont from "next/font/local"
 import { notFound } from "next/navigation"
-import { NextIntlClientProvider, useMessages } from "next-intl"
 
 import { i18n } from "@/config/i18n.config"
 import "./globals.css"
@@ -44,12 +43,10 @@ export default function RootLayout({
   const isValidLocale = i18n.locales.some((cur) => cur === locale)
   if (!isValidLocale) notFound()
 
-  const messages = useMessages()
-
   return (
     <html lang={locale}>
       <body
-        className={`${psl.variable} ${helveltica_rounded.variable} font-psl`}
+        className={`${psl.variable} ${helveltica_rounded.variable} no-scrollbar font-psl`}
       >
         <Header />
         {children}

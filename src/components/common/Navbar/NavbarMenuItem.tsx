@@ -2,72 +2,65 @@
 
 import React from "react"
 import { useTranslations } from "next-intl"
+import { motion } from "framer-motion"
 
 import { FaChevronDown } from "react-icons/fa"
 
 import { NavbarItem } from "@/types/common/navbar"
-import BreadcrumbAnimation from "@/components/animations/BreadcrumbAnimation"
 import BreadcrumbItem from "./BreadcrumbItem"
 import { cn } from "@/lib/utils"
 
 type NavbarMenuItemProps = {
   navbaritem: NavbarItem
-  selectedNavItem: string
-  setSelectedNavItem: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function NavbarMenuItem({
-  navbaritem,
-  selectedNavItem,
-  setSelectedNavItem,
-}: NavbarMenuItemProps) {
+export default function NavbarMenuItem({ navbaritem }: NavbarMenuItemProps) {
   const tNavBar = useTranslations("navbar")
-  const isSelected = selectedNavItem === navbaritem.label
 
   return (
     <li
-      onMouseEnter={() => !isSelected && setSelectedNavItem(navbaritem.label)}
       className={`
-            relative flex items-center 
-            gap-2 rounded-full 
-            px-5 py-3 text-paragraph 
-      ${cn({
-        "bg-bc-inverse-primary text-white": isSelected,
-        "text-bc_black": !isSelected,
-      })} `}
+            text-bc_black group relative 
+            flex items-center gap-2
+            rounded-full px-5 py-3 text-paragraph
+            hover:bg-bc-inverse-primary hover:text-white
+     `}
     >
       <p>{tNavBar(navbaritem.label)}</p>
       {navbaritem.breadcrumb && (
         <FaChevronDown
           size={12}
-          className={`transform transition-transform duration-300 ${cn({
-            "rotate-180": isSelected,
-          })}`}
+          className={`transform transition-transform duration-300 group-hover:rotate-180`}
         />
       )}
-      {/* Render breadcrumb */}
-      {navbaritem.breadcrumb && isSelected && (
-        <BreadcrumbAnimation setSelectedNavItem={setSelectedNavItem}>
-          <div
-            className={`
-                      ${cn({
-                        "grid w-[450px] grid-cols-2":
-                          navbaritem.breadcrumb.length > 3,
-                        "flex flex-col gap-2":
-                          navbaritem.breadcrumb.length <= 3,
-                      })}
-                      rounded-lg border bg-white bg-opacity-30 p-4
-                      shadow-lg backdrop-blur-lg backdrop-filter
-                  `}
-          >
-            {navbaritem.breadcrumb.map((breadcrumbItem, index) => (
-              <React.Fragment key={index}>
-                <BreadcrumbItem breadcrumbItem={breadcrumbItem} />
-              </React.Fragment>
-            ))}
-          </div>
-        </BreadcrumbAnimation>
-      )}
+      <motion.div
+        initial={{ x: "-50%", y: 20 }}
+        whileInView={{ x: "-50%", y: 0 }}
+        className="
+                absolute left-1/2 top-[100%] 
+                hidden translate-x-[-50%]
+                items-center justify-center 
+                pt-6 group-hover:flex"
+      >
+        <div
+          className={`
+                rounded-lg border
+                bg-white bg-opacity-30 p-4
+                shadow-lg backdrop-blur-lg backdrop-filter 
+                ${cn({
+                  "grid w-[450px] grid-cols-2":
+                    navbaritem.breadcrumb.length > 3,
+                  "flex flex-col gap-2": navbaritem.breadcrumb.length <= 3,
+                })}
+              `}
+        >
+          {navbaritem.breadcrumb.map((breadcrumbItem, index) => (
+            <React.Fragment key={index}>
+              <BreadcrumbItem breadcrumbItem={breadcrumbItem} />
+            </React.Fragment>
+          ))}
+        </div>
+      </motion.div>
     </li>
   )
 }

@@ -1,15 +1,13 @@
+"use client"
+
 import { motion, useAnimation } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 
 type NavbarCTAButtonProps = {
   text: string
-  setSelectedNavItem: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function NavbarCTAButton({
-  text,
-  setSelectedNavItem,
-}: NavbarCTAButtonProps) {
+export default function NavbarCTAButton({ text }: NavbarCTAButtonProps) {
   const controls = useAnimation()
   const containerRef = useRef<HTMLButtonElement>(null)
   const [animationId, setAnimationId] = useState<number | null>(null)
@@ -33,7 +31,6 @@ export default function NavbarCTAButton({
     if (!animationId) {
       setAnimationId(requestAnimationFrame(animate))
     }
-    setSelectedNavItem("cta-button")
   }
 
   const handleMouseLeave = () => {
@@ -43,7 +40,6 @@ export default function NavbarCTAButton({
       cancelAnimationFrame(animationId)
       setAnimationId(null)
     }
-    setSelectedNavItem("")
   }
 
   //cancel the animation frame when the component is unmounted
