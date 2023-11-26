@@ -29,6 +29,10 @@
     "faq-description": "FAQ Bite Care products"
   },
   "button": {
-    "meet-bite-care": "Meet Bite Care"
+    "meet-bite-care": "Meet Bite Care",
+    "tell-a-friend": "Tell a Friend"
+  },
+  "miscellaneous": {
+    "impressed-by-our-products": "Impressed by our products?"
   }
 }

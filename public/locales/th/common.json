@@ -29,6 +29,10 @@
     "faq-description": "คำถามที่พบบ่อยเกี่ยวกับสินค้า BiteCare"
   },
   "button": {
-    "meet-bite-care": "พบกับ BiteCare"
+    "meet-bite-care": "พบกับ BiteCare",
+    "tell-a-friend": "Tell a Friend"
+  },
+  "miscellaneous": {
+    "impressed-by-our-products": "ประทับใจผลิตภัณฑ์ของเรา?"
   }
 }

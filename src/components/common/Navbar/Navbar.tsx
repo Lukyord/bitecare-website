@@ -96,6 +96,8 @@ export async function Navbar() {
         "navbar-products-breadcrumb",
         "navbar-where-to-buy-breadcrumb",
         "navbar-support-breadcrumb",
+        "miscellaneous",
+        "button",
       ])}
     >
       <nav
@@ -141,7 +143,7 @@ export async function Navbar() {
         </Link>
 
         <div className="block lg:hidden">
-          <MobileMenuButton />
+          <MobileMenuButton NavbarItems={NavbarItems} />
         </div>
       </nav>
     </NextIntlClientProvider>

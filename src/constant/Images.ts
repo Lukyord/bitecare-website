@@ -11,6 +11,7 @@ import ArrowCurveUpWhite from "@public/assets/illustrations/arrow-curve-up-white
 import BiteCareLogo from "@public/assets/common/bitecare-logo.svg"
 // C
 // D
+import DashedLineBlack from "@public/assets/illustrations/dashed-line-black.svg"
 // E
 import EnglishFlag from "@public/assets/common/english-flag.svg"
 // F
@@ -42,6 +43,7 @@ export const Images = {
   BiteCareLogo,
   // C
   // D
+  DashedLineBlack,
   // E
   EnglishFlag,
   // F
