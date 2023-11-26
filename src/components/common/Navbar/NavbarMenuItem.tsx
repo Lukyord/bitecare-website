@@ -5,21 +5,21 @@ import { useTranslations } from "next-intl"
 
 import { FaChevronDown } from "react-icons/fa"
 
-import { NavbarItemT } from "@/types/common/navbar"
+import { NavbarItem } from "@/types/common/navbar"
 import BreadcrumbAnimation from "@/components/animations/BreadcrumbAnimation"
 import BreadcrumbItem from "./BreadcrumbItem"
 
-type NavBarItemProps = {
-  navbaritem: NavbarItemT
+type NavbarMenuItemProps = {
+  navbaritem: NavbarItem
   selectedNavItem: string
   setSelectedNavItem: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function NavbarItem({
+export default function NavbarMenuItem({
   navbaritem,
   selectedNavItem,
   setSelectedNavItem,
-}: NavBarItemProps) {
+}: NavbarMenuItemProps) {
   const tNavBar = useTranslations("navbar")
   const isSelected = selectedNavItem === navbaritem.label
 

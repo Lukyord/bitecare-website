@@ -8,10 +8,10 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin"
 import Link from "next/link"
 
 import { TiThMenu } from "react-icons/ti"
-import { NavbarBreadcrumbT, NavbarItemT } from "@/types/common/navbar"
+import { NavbarBreadcrumb, NavbarItem } from "@/types/common/navbar"
 import { Images } from "@/constant/Images"
 
-import NavbarItem from "./NavbarItem"
+import NavbarMenuItem from "./NavbarMenuItem"
 import LocaleSwitcher from "./LocaleSwitcher"
 import NavbarCTAButton from "./NavbarCTAButton"
 import { usePathname } from "next/navigation"
@@ -28,7 +28,7 @@ export function Navbar() {
 
   const [selectedNavItem, setSelectedNavItem] = useState("")
 
-  const ProductsBreadcrumb: NavbarBreadcrumbT[] = [
+  const ProductsBreadcrumb: NavbarBreadcrumb[] = [
     {
       title: tProductsBreadcrumb("see-all"),
       href: "/products",
@@ -55,7 +55,7 @@ export function Navbar() {
       description: tProductsBreadcrumb("renal-care-description"),
     },
   ]
-  const WhereToBuyBreadcrumb: NavbarBreadcrumbT[] = [
+  const WhereToBuyBreadcrumb: NavbarBreadcrumb[] = [
     {
       title: tWhereToBuyBreadcrumb("physical-store"),
       href: "/where-to-buy?type=physical-store",
@@ -67,7 +67,7 @@ export function Navbar() {
       description: tWhereToBuyBreadcrumb("online-platform-description"),
     },
   ]
-  const SupportBreadcrumb: NavbarBreadcrumbT[] = [
+  const SupportBreadcrumb: NavbarBreadcrumb[] = [
     {
       title: tSupportBreadcrumb("faq"),
       href: "/#faq",
@@ -80,7 +80,7 @@ export function Navbar() {
     },
   ]
 
-  const NavbarItems: NavbarItemT[] = [
+  const NavbarItems: NavbarItem[] = [
     {
       label: "where-to-buy",
       breadcrumb: WhereToBuyBreadcrumb,
@@ -130,7 +130,7 @@ export function Navbar() {
           onMouseEnter={() => setSelectedNavItem("")}
         >
           {pathname === "/" || pathname === "/en" ? (
-            <div
+            <button
               className="
                         flex h-full w-full
                         items-center justify-center
@@ -145,7 +145,7 @@ export function Navbar() {
                 src={Images.ArrowCurveUpWhite}
                 className="h-auto w-auto"
               />
-            </div>
+            </button>
           ) : (
             <Link href="/">
               <Image
@@ -161,7 +161,7 @@ export function Navbar() {
         <ul className="hidden gap-3 lg:flex">
           {NavbarItems.map((navbaritem, index) => (
             <React.Fragment key={index}>
-              <NavbarItem
+              <NavbarMenuItem
                 navbaritem={navbaritem}
                 selectedNavItem={selectedNavItem}
                 setSelectedNavItem={setSelectedNavItem}

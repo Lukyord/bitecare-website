@@ -1,10 +1,10 @@
-export type NavbarBreadcrumbT = {
+export type NavbarBreadcrumb = {
   title: string
   href: string
   description: string
 }
 
-export type NavbarItemT = {
+export type NavbarItem = {
   label: keyof IntlMessages["navbar"]
-  breadcrumb: NavbarBreadcrumbT[]
+  breadcrumb: NavbarBreadcrumb[]
 }
