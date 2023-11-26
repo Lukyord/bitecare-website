@@ -13,8 +13,8 @@ export default function BreadcrumbAnimation({
 }: BreadcrumbAnimationProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: "-50%", y: 20 }}
-      animate={{ opacity: 1, x: "-50%", y: 0 }}
+      initial={{ x: "-50%", y: 20 }}
+      animate={{ x: "-50%", y: 0 }}
       className="
                   absolute left-1/2
                   top-[110%] translate-x-[-50%]

@@ -1,12 +1,13 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
 import { gsap } from "gsap"
 import { ScrollToPlugin } from "gsap/ScrollToPlugin"
 import Link from "next/link"
 
+import { TiThMenu } from "react-icons/ti"
 import { NavbarBreadcrumbT, NavbarItemT } from "@/types/common/navbar"
 import { Images } from "@/constant/Images"
 
@@ -14,8 +15,10 @@ import NavbarItem from "./NavbarItem"
 import LocaleSwitcher from "./LocaleSwitcher"
 import NavbarCTAButton from "./NavbarCTAButton"
 import { usePathname } from "next/navigation"
+import BreadcrumbMenuMobile from "./BreadcrumbMenuMobile"
 
 export function Navbar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
   const tProductsBreadcrumb = useTranslations("navbar-products-breadcrumb")
   const tWhereToBuyBreadcrumb = useTranslations(
@@ -94,20 +97,36 @@ export function Navbar() {
 
   gsap.registerPlugin(ScrollToPlugin)
 
+  // Disable scrolling when mobile nav menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflowY = "hidden"
+      document.body.style.position = "fixed"
+    } else {
+      document.body.style.overflowY = "auto"
+      document.body.style.position = "static"
+    }
+
+    return () => {
+      document.body.style.overflowY = "auto"
+      document.body.style.position = "static"
+    }
+  }, [mobileMenuOpen])
+
   return (
     <nav
       className="
-              relative
-              z-50 flex w-full max-w-5xl
-              items-center
-              rounded-full bg-bc_primary_container
-              p-2 shadow-bc_small
+              z-50 mx-auto mt-8
+              flex w-[90%] max-w-5xl items-center
+              justify-between rounded-full
+              bg-bc_primary_container p-2
+              shadow-bc_small
             "
       onMouseLeave={() => setSelectedNavItem("")}
     >
       <div className="flex gap-7">
         <div
-          className="h-[54px] w-[91px]"
+          className="h-[42px] w-[70px] sm:w-[91px] lg:h-[54px]"
           onMouseEnter={() => setSelectedNavItem("")}
         >
           {pathname === "/" || pathname === "/en" ? (
@@ -138,7 +157,8 @@ export function Navbar() {
           )}
         </div>
 
-        <ul className="hidden gap-3 sm:flex">
+        {/*========== Desktop ==========*/}
+        <ul className="hidden gap-3 lg:flex">
           {NavbarItems.map((navbaritem, index) => (
             <React.Fragment key={index}>
               <NavbarItem
@@ -152,11 +172,11 @@ export function Navbar() {
       </div>
 
       <div
-        className="h-[49px] w-full flex-1"
+        className="hidden h-[49px] w-full lg:flex-1"
         onMouseEnter={() => setSelectedNavItem("")}
       ></div>
 
-      <div className="flex h-[49px] gap-6">
+      <div className="hidden h-[49px] gap-6 lg:flex">
         <LocaleSwitcher
           selectedNavItem={selectedNavItem}
           setSelectedNavItem={setSelectedNavItem}
@@ -166,6 +186,36 @@ export function Navbar() {
           setSelectedNavItem={setSelectedNavItem}
         />
       </div>
+
+      {/*========== Mobile ==========*/}
+      <Link
+        href="/about-us"
+        className="
+              flex h-[42px] items-center 
+              justify-center rounded-full 
+              bg-bc_primary px-4 
+              text-paragraph text-white
+              lg:hidden
+            "
+      >
+        Meet BiteCare
+      </Link>
+
+      <div
+        className="
+                  flex h-[42px] w-[70px] 
+                  items-center justify-center 
+                  rounded-full bg-white 
+                  sm:w-[91px] lg:hidden lg:h-[54px]
+                "
+        onClick={() => setMobileMenuOpen(true)}
+      >
+        <TiThMenu size={26} />
+      </div>
+
+      {mobileMenuOpen && (
+        <BreadcrumbMenuMobile setMobileMenuOpen={setMobileMenuOpen} />
+      )}
     </nav>
   )
 }

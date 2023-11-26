@@ -1,7 +1,6 @@
 "use client"
 
 import Image from "next/image"
-import { motion } from "framer-motion"
 import { usePathname, useRouter } from "next/navigation"
 import { useLocale } from "next-intl"
 
@@ -9,6 +8,7 @@ import { Images } from "@/constant/Images"
 import { i18n } from "@/config/i18n.config"
 import { FaChevronDown } from "react-icons/fa"
 import BreadcrumbAnimation from "@/components/animations/BreadcrumbAnimation"
+import { cn } from "@/lib/utils"
 
 type LocaleSwitcherProps = {
   selectedNavItem: string
