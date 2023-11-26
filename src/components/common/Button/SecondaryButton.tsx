@@ -3,14 +3,23 @@
 import React from "react"
 import { motion, useAnimation } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
-import { IconType } from "react-icons"
+
+import { cn } from "@/lib/utils"
+import { size } from "lodash"
 
 type SecondaryButtonProps = {
   text: string
   icon?: React.ReactNode
+  size: "paragraph" | "h3"
+  specificWidth?: string
 }
 
-export default function SecondaryButton({ text, icon }: SecondaryButtonProps) {
+export default function SecondaryButton({
+  text,
+  icon,
+  size,
+  specificWidth,
+}: SecondaryButtonProps) {
   const controls = useAnimation()
   const containerRef = useRef<HTMLButtonElement>(null)
   const [animationId, setAnimationId] = useState<number | null>(null)
@@ -56,12 +65,18 @@ export default function SecondaryButton({ text, icon }: SecondaryButtonProps) {
   return (
     //TODO: display toast copy link successfull
     <motion.button
-      className="
-        text-bc_black relative h-10 w-full
+      className={`
+        text-bc_black relative
         overflow-hidden whitespace-nowrap
         border border-bc-black
         bg-white text-paragraph
-      "
+        ${specificWidth && specificWidth}
+        ${cn({
+          "h-12 text-paragraph": size === "paragraph",
+          "h-20 text-h3": size === "h3",
+          "w-full": !specificWidth,
+        })}
+      `}
       initial={{
         boxShadow: "8px 8px 0px 0px rgba(0, 0, 0, 1)",
         borderRadius: "12px",

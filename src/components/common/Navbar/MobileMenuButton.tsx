@@ -34,6 +34,8 @@ export default function MobileMenuButton({
   const tButton = useTranslations("button")
   const tMiscellaneous = useTranslations("miscellaneous")
 
+  const MotionAccordionItem = motion(AccordionItem)
+
   // // Disable scrolling when mobile nav menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -116,22 +118,35 @@ export default function MobileMenuButton({
               ))}
             </Accordion>
 
-            <div className="mb-4 flex h-fit flex-col gap-2">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                delay: 0.75,
+              }}
+              className="mb-6 flex h-fit flex-col gap-2"
+            >
               <Image
                 alt="dashed line"
                 src={Images.DashedLineBlack}
                 className="w-full"
               />
-              <div className="mx-auto mt-4 w-[90%]">
+              <motion.div
+                className="mx-auto mt-4 w-[90%]"
+                initial={{ x: "-20px", opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 1 }}
+              >
                 <p className="mb-3 text-subtitle">
                   {tMiscellaneous("impressed-by-our-products")}
                 </p>
                 <SecondaryButton
                   text={tButton("tell-a-friend")}
                   icon={<FaShareAlt size={20} />}
+                  size="paragraph"
                 />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
