@@ -8,6 +8,7 @@ import { FaChevronDown } from "react-icons/fa"
 import { NavbarItem } from "@/types/common/navbar"
 import BreadcrumbAnimation from "@/components/animations/BreadcrumbAnimation"
 import BreadcrumbItem from "./BreadcrumbItem"
+import { cn } from "@/lib/utils"
 
 type NavbarMenuItemProps = {
   navbaritem: NavbarItem
@@ -26,17 +27,22 @@ export default function NavbarMenuItem({
   return (
     <li
       onMouseEnter={() => !isSelected && setSelectedNavItem(navbaritem.label)}
-      className={`relative flex items-center gap-2 rounded-full px-5 py-3 text-paragraph ${
-        isSelected ? "bg-bc-inverse-primary text-white" : "text-bc_black"
-      } `}
+      className={`
+            relative flex items-center 
+            gap-2 rounded-full 
+            px-5 py-3 text-paragraph 
+      ${cn({
+        "bg-bc-inverse-primary text-white": isSelected,
+        "text-bc_black": !isSelected,
+      })} `}
     >
       <p>{tNavBar(navbaritem.label)}</p>
       {navbaritem.breadcrumb && (
         <FaChevronDown
           size={12}
-          className={`transform transition-transform duration-300 ${
-            isSelected && "rotate-180 text-white"
-          }`}
+          className={`transform transition-transform duration-300 ${cn({
+            "rotate-180": isSelected,
+          })}`}
         />
       )}
       {/* Render breadcrumb */}
@@ -44,11 +50,12 @@ export default function NavbarMenuItem({
         <BreadcrumbAnimation setSelectedNavItem={setSelectedNavItem}>
           <div
             className={`
-                      ${
-                        navbaritem.breadcrumb.length > 3
-                          ? "grid w-[450px] grid-cols-2"
-                          : "flex flex-col gap-2"
-                      }
+                      ${cn({
+                        "grid w-[450px] grid-cols-2":
+                          navbaritem.breadcrumb.length > 3,
+                        "flex flex-col gap-2":
+                          navbaritem.breadcrumb.length <= 3,
+                      })}
                       rounded-lg border bg-white bg-opacity-30 p-4
                       shadow-lg backdrop-blur-lg backdrop-filter
                   `}

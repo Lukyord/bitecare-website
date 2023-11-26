@@ -6,7 +6,7 @@ const Header = () => {
   const messages = useMessages()
 
   return (
-    <section className="fixed flex w-full flex-col items-center">
+    <header className="fixed flex w-full flex-col items-center">
       <NextIntlClientProvider
         messages={pick(messages, [
           "navbar",
@@ -17,7 +17,7 @@ const Header = () => {
       >
         <Navbar />
       </NextIntlClientProvider>
-    </section>
+    </header>
   )
 }
 

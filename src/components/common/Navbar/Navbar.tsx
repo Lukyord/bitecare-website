@@ -5,17 +5,20 @@ import { useTranslations } from "next-intl"
 import Image from "next/image"
 import { gsap } from "gsap"
 import { ScrollToPlugin } from "gsap/ScrollToPlugin"
-import Link from "next/link"
 
 import { TiThMenu } from "react-icons/ti"
+import { RxCross2 } from "react-icons/rx"
 import { NavbarBreadcrumb, NavbarItem } from "@/types/common/navbar"
 import { Images } from "@/constant/Images"
+import { cn } from "@/lib/utils"
 
 import NavbarMenuItem from "./NavbarMenuItem"
 import LocaleSwitcher from "./LocaleSwitcher"
 import NavbarCTAButton from "./NavbarCTAButton"
 import { usePathname } from "next/navigation"
 import BreadcrumbMenuMobile from "./BreadcrumbMenuMobile"
+import { AnimatePresence } from "framer-motion"
+import { Link } from "@/lib/navigation"
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -116,11 +119,11 @@ export function Navbar() {
   return (
     <nav
       className="
-              z-50 mx-auto mt-8
-              flex w-[90%] max-w-5xl items-center
-              justify-between rounded-full
-              bg-bc-primary-container p-2
-              shadow-bc_small
+              z-50 mx-auto mt-4
+              flex w-[90%] max-w-5xl items-center justify-between
+              rounded-full bg-bc-primary-container
+              p-2 shadow-bc_small
+              sm:mt-8
             "
       onMouseLeave={() => setSelectedNavItem("")}
     >
@@ -134,7 +137,7 @@ export function Navbar() {
               className="
                         flex h-full w-full
                         items-center justify-center
-                        rounded-full bg-bc-primary p-2 hover:bg-bc-inverse-primary 
+                        rounded-full bg-bc-primary hover:bg-bc-inverse-primary
                       "
               onClick={() => {
                 gsap.to(window, { duration: 2, scrollTo: 0 })
@@ -201,21 +204,27 @@ export function Navbar() {
         Meet BiteCare
       </Link>
 
-      <div
-        className="
+      <button
+        className={`
                   flex h-[42px] w-[70px] 
                   items-center justify-center 
-                  rounded-full bg-white 
+                  rounded-full
                   sm:w-[91px] lg:hidden lg:h-[54px]
-                "
-        onClick={() => setMobileMenuOpen(true)}
+                  ${cn({
+                    "bg-bc-inverse-primary": mobileMenuOpen,
+                    "bg-white": !mobileMenuOpen,
+                  })}
+                `}
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
       >
-        <TiThMenu size={26} />
-      </div>
+        {mobileMenuOpen ? <RxCross2 size={24} /> : <TiThMenu size={26} />}
+      </button>
 
-      {mobileMenuOpen && (
-        <BreadcrumbMenuMobile setMobileMenuOpen={setMobileMenuOpen} />
-      )}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <BreadcrumbMenuMobile setMobileMenuOpen={setMobileMenuOpen} />
+        )}
+      </AnimatePresence>
     </nav>
   )
 }
