@@ -5,13 +5,14 @@ import { motion, useAnimation } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 
 import { cn } from "@/lib/utils"
-import { size } from "lodash"
+import { useRouter } from "@/lib/navigation"
 
 type SecondaryButtonProps = {
   text: string
   icon?: React.ReactNode
   size: "paragraph" | "h3"
   specificWidth?: string
+  href?: string
 }
 
 export default function SecondaryButton({
@@ -19,7 +20,9 @@ export default function SecondaryButton({
   icon,
   size,
   specificWidth,
+  href,
 }: SecondaryButtonProps) {
+  const router = useRouter()
   const controls = useAnimation()
   const containerRef = useRef<HTMLButtonElement>(null)
   const [animationId, setAnimationId] = useState<number | null>(null)
@@ -91,6 +94,7 @@ export default function SecondaryButton({
       ref={containerRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={() => href && router.push(href)}
     >
       <motion.div
         className="absolute top-1/2 w-full translate-y-[-50%]"

@@ -26,6 +26,7 @@ module.exports = {
         "bc-grey": "#74796D",
 
         "bc-surface-container": "#D2CFCC",
+        "bc-surface": "#E6EBE8",
 
         //Shadcn Colors
         border: "hsl(var(--border))",

@@ -45,8 +45,7 @@ export default function NavbarMenuItem({ navbaritem }: NavbarMenuItemProps) {
         <div
           className={`
                 rounded-lg border
-                bg-white bg-opacity-30 p-4
-                shadow-lg backdrop-blur-lg backdrop-filter 
+                bg-white p-4 shadow-lg
                 ${cn({
                   "grid w-[450px] grid-cols-2":
                     navbaritem.breadcrumb.length > 3,

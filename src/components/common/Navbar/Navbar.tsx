@@ -125,7 +125,7 @@ export async function Navbar() {
 
         <div className="hidden h-[49px] gap-6 lg:flex">
           <LocaleSwitcher />
-          <NavbarCTAButton text="Meet BiteCare" />
+          <NavbarCTAButton text="Meet BiteCare" href="/about-us" />
         </div>
 
         {/*========== Mobile ==========*/}

@@ -1,2 +1,6 @@
 type CommonMessages = typeof import("./public/locales/en/common.json")
-declare interface IntlMessages extends CommonMessages {}
+type HomePageMessages = typeof import("./public/locales/en/homepage.json")
+
+type MergedMessages = HomePageMessages & CommonMessages
+
+declare interface IntlMessages extends MergedMessages {}
