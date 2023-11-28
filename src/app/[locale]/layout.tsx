@@ -6,6 +6,7 @@ import { i18n } from "@/config/i18n.config"
 import "./globals.css"
 
 import Header from "@/components/common/Header"
+import { Navbar } from "@/components/common/Navbar/Navbar"
 
 const psl = localFont({
   src: "../../../public/fonts/PSL096pro.ttf",
@@ -48,7 +49,9 @@ export default function RootLayout({
       <body
         className={`${psl.variable} ${helveltica_rounded.variable} no-scrollbar font-psl`}
       >
-        <Header />
+        <Header>
+          <Navbar />
+        </Header>
         {children}
       </body>
     </html>

@@ -34,7 +34,11 @@ export default function NavbarCTAButton({ text }: NavbarCTAButtonProps) {
   }
 
   const handleMouseLeave = () => {
-    controls.start({ x: 0, y: "-50%" })
+    controls.start({
+      x: 0,
+      y: "-50%",
+      transition: { duration: 0.3, type: "tween", ease: [0.34, 1.56, 0.64, 1] },
+    })
     xPixels = 0
     if (animationId) {
       cancelAnimationFrame(animationId)

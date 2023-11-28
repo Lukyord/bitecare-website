@@ -34,8 +34,6 @@ export default function MobileMenuButton({
   const tButton = useTranslations("button")
   const tMiscellaneous = useTranslations("miscellaneous")
 
-  const MotionAccordionItem = motion(AccordionItem)
-
   // // Disable scrolling when mobile nav menu is open
   useEffect(() => {
     if (mobileMenuOpen) {

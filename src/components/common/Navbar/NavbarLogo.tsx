@@ -6,10 +6,10 @@ import Image from "next/image"
 import { gsap } from "gsap"
 import { ScrollToPlugin } from "gsap/ScrollToPlugin"
 
+gsap.registerPlugin(ScrollToPlugin)
+
 export default function NavbarLogo() {
   const pathname = usePathname()
-
-  gsap.registerPlugin(ScrollToPlugin)
 
   return (
     <div className="h-[42px] w-[70px] sm:w-[91px] lg:h-[54px]">
