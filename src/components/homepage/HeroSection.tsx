@@ -2,6 +2,7 @@ import Image from "next/image"
 import { Images } from "@/constant/Images"
 import { getTranslations } from "next-intl/server"
 import PrimaryButton from "../common/Button/PrimaryButton"
+import HeroProductShowcase from "./HeroProductShowcase"
 
 type HeroSectionProps = {}
 
@@ -20,8 +21,8 @@ export default async function HeroSection({}: HeroSectionProps) {
       >
         <div
           className="
-                  flex flex-col items-center 
-                  sm:max-w-[80%] md:max-w-[60%] lg:max-w-[40%] 
+                  flex flex-col items-center gap-4
+                  sm:max-w-[80%] md:max-w-[60%] lg:max-w-[45%] 
                 "
         >
           <Image
@@ -31,11 +32,11 @@ export default async function HeroSection({}: HeroSectionProps) {
             height={295}
           />
 
-          <p className="text-center text-paragraph">
+          <p className="mb-4 text-center text-paragraph">
             {tHero("hero-description")}
           </p>
 
-          <PrimaryButton />
+          <PrimaryButton text="Meet BiteCare" href="/about-us" />
           <p className="mt-4 text-subtitle">{tHero("cta-subtitle")}</p>
         </div>
         <div className="relative -z-10">
@@ -49,15 +50,17 @@ export default async function HeroSection({}: HeroSectionProps) {
           <Image
             alt="sparkle 1"
             src={Images.SparkleBlack_1}
-            className="absolute left-[80%] top-[7.5%] hidden lg:block"
+            className="absolute left-[85%] top-[5%] hidden lg:block"
           />
           <Image
             alt="sparkle 1"
             src={Images.SparkleBlack_2}
-            className="absolute left-[5%] top-[40%] hidden lg:block"
+            className="absolute left-[10%] top-[40%] hidden lg:block"
           />
         </div>
       </div>
+
+      <HeroProductShowcase />
     </section>
   )
 }

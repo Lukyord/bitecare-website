@@ -13,6 +13,7 @@ import BiteCareLogoTextTM from "@public/assets/common/bitecare-logo-text-tm.svg"
 // C
 // D
 import DashedLineBlack from "@public/assets/illustrations/dashed-line-black.svg"
+import DogPawBcInversePrimary from "@public/assets/illustrations/dog-paw-bc-inverse-primary.svg"
 // E
 import EnglishFlag from "@public/assets/common/english-flag.svg"
 // F
@@ -39,9 +40,11 @@ import SeniorCareFront from "@public/assets/products/senior-care/senior-care-fro
 import SkinCareFront from "@public/assets/products/skin-care/skin-care-front.png"
 // T
 import ThaiFlag from "@public/assets/common/thai-flag.svg"
+// U
 // V
 // W
-// W
+import WaveBcPrimary_1 from "@public/assets/homepage/wave-bc-primary-1.svg"
+// X
 // Y
 // Z
 
@@ -54,6 +57,7 @@ export const Images = {
   // C
   // D
   DashedLineBlack,
+  DogPawBcInversePrimary,
   // E
   EnglishFlag,
   // F
@@ -83,6 +87,7 @@ export const Images = {
   // U
   // V
   // W
+  WaveBcPrimary_1,
   // W
   // Y
   // Z
