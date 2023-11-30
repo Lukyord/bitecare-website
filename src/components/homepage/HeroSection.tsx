@@ -2,7 +2,7 @@ import Image from "next/image"
 import { Images } from "@/constant/Images"
 import { getTranslations } from "next-intl/server"
 import PrimaryButton from "../common/Button/PrimaryButton"
-import HeroProductShowcase from "./HeroProductShowcase"
+import ProductShowcase from "./ProductShowcase"
 
 type HeroSectionProps = {}
 
@@ -10,12 +10,12 @@ export default async function HeroSection({}: HeroSectionProps) {
   const tHero = await getTranslations("hero")
 
   return (
-    <section className="mt-20 h-full w-screen">
+    <section className="mt-[2.5vh] h-full w-screen">
       <div
         className="
                   mx-auto flex max-w-[80%] 
                   flex-col items-center 
-                  justify-around 
+                  justify-around lg:mb-[2.5vh]
                   lg:flex-row lg:items-start
                 "
       >
@@ -39,8 +39,13 @@ export default async function HeroSection({}: HeroSectionProps) {
           <PrimaryButton text="Meet BiteCare" href="/about-us" />
           <p className="mt-4 text-subtitle">{tHero("cta-subtitle")}</p>
         </div>
-        <div className="relative -z-10">
-          <Image alt="dog home 1" src={Images.HomepageDog_1} priority />
+        <div className="relative -z-10 -mb-[15%] lg:mb-0">
+          <Image
+            alt="dog home 1"
+            src={Images.HomepageDog_1}
+            priority
+            className=""
+          />
 
           <Image
             alt="highlight 1"
@@ -60,7 +65,7 @@ export default async function HeroSection({}: HeroSectionProps) {
         </div>
       </div>
 
-      <HeroProductShowcase />
+      <ProductShowcase />
     </section>
   )
 }

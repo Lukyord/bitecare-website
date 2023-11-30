@@ -26,7 +26,7 @@ export default function NavbarMenuItem({ navbaritem }: NavbarMenuItemProps) {
             hover:bg-bc-inverse-primary hover:text-white
      `}
     >
-      <p>{tNavBar(navbaritem.label)}</p>
+      <p className="whitespace-nowrap">{tNavBar(navbaritem.label)}</p>
       {navbaritem.breadcrumb && (
         <FaChevronDown
           size={12}

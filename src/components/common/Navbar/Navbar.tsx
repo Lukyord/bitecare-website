@@ -103,7 +103,7 @@ export async function Navbar() {
       <nav
         id="navbar"
         className="
-              z-50
+             
               mt-4 flex w-[90%] max-w-5xl items-center
               justify-between rounded-full
               bg-bc-primary-container p-2
