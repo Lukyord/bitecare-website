@@ -28,7 +28,7 @@ export default function ProductShowcase({}: HeroProductShowcaseProps) {
   ]
 
   return (
-    <div className="relative -z-10 w-screen bg-bc-primary">
+    <div className="relative z-0 w-screen bg-bc-primary">
       <Image
         alt="wave bc priamry 1"
         src={Images.WaveBcPrimary_1}
@@ -51,13 +51,13 @@ export default function ProductShowcase({}: HeroProductShowcaseProps) {
         src={Images.DogPawBcInversePrimary}
         className="
               absolute bottom-[-5%] left-[30%] 
-              -z-10 h-auto w-[15vw] rotate-[15deg]
+              z-0 h-auto w-[15vw] rotate-[15deg]
             "
       />
 
       <TranslateXOnScroll translateXStart="-20vw" translateXEnd="0vw">
         {Products.map((item, index) => (
-          <Link href={item.href} className="h-full min-w-[25%]">
+          <Link href={item.href} key={index} className="h-full min-w-[25%]">
             <Image
               alt={item.alt}
               src={item.image}
@@ -65,9 +65,9 @@ export default function ProductShowcase({}: HeroProductShowcaseProps) {
               width={1192}
               height={2128}
               className="
-                    h-full w-full object-cover 
-                    transition-all duration-300 
-                    hover:scale-110 
+                    h-full w-full 
+                    object-cover transition-all 
+                    duration-300 hover:scale-110
                     hover:[box-shadow:10px_10px_10px_0px_rgba(255,_255,_255,_0.25)]                
                   "
               priority

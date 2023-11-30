@@ -5,7 +5,7 @@ export default function Home() {
     <main className="no-scrollbar overflow-x-hidden pt-28">
       <HeroSection />
       <h1
-        className="h-[1500px] scroll-mt-36 font-hel_rounded text-subtitle"
+        className="h-[100px] scroll-mt-36 font-hel_rounded text-subtitle"
         id="faq"
       >
         FAQ
