@@ -1,8 +1,9 @@
 import { Images } from "@/constant/Images"
 import Image from "next/image"
 
-import TranslateXOnScroll from "../animations/TranslateXOnScroll"
 import { Link } from "@/lib/navigation"
+
+import TranslateXOnScroll from "../../animations/TranslateXOnScroll"
 
 type HeroProductShowcaseProps = {}
 
@@ -27,7 +28,7 @@ export default function ProductShowcase({}: HeroProductShowcaseProps) {
   ]
 
   return (
-    <div className="relative w-screen bg-bc-primary">
+    <div className="relative -z-10 w-screen bg-bc-primary">
       <Image
         alt="wave bc priamry 1"
         src={Images.WaveBcPrimary_1}
@@ -49,9 +50,8 @@ export default function ProductShowcase({}: HeroProductShowcaseProps) {
         alt="dog paw"
         src={Images.DogPawBcInversePrimary}
         className="
-              absolute -bottom-[5%] left-[30%] 
-              h-auto w-[15vw] rotate-[15deg] 
-     
+              absolute bottom-[-5%] left-[30%] 
+              -z-10 h-auto w-[15vw] rotate-[15deg]
             "
       />
 

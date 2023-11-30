@@ -17,6 +17,7 @@ import DogPawBcInversePrimary from "@public/assets/illustrations/dog-paw-bc-inve
 // E
 import EnglishFlag from "@public/assets/common/english-flag.svg"
 // F
+import FacebookLogoFullWhite from "@public/assets/common/facebook-logo-full-white.png"
 // G
 // H
 import HomepageDog_1 from "@public/assets/homepage/homepage-dog-1.png"
@@ -25,6 +26,7 @@ import HighlightBlack_1 from "@public/assets/illustrations/highlight-1-black.svg
 // J
 // K
 // L
+import LineOaLogoFullWhite from "@public/assets/common/line-oa-logo-full-white.png"
 import LowFatFront from "@public/assets/products/low-fat/low-fat-front.png"
 // M
 // N
@@ -34,6 +36,7 @@ import LowFatFront from "@public/assets/products/low-fat/low-fat-front.png"
 // R
 import RenalCareFront from "@public/assets/products/renal-care/renal-care-front.png"
 // S
+import ShopeeLogoFullWhite from "@public/assets/common/shopee-logo-full-white.png"
 import SparkleBlack_1 from "@public/assets/illustrations/sparkle-1-black.svg"
 import SparkleBlack_2 from "@public/assets/illustrations/sparkle-2-black.svg"
 import SeniorCareFront from "@public/assets/products/senior-care/senior-care-front.png"
@@ -61,6 +64,7 @@ export const Images = {
   // E
   EnglishFlag,
   // F
+  FacebookLogoFullWhite,
   // G
   // H
   HomepageDog_1,
@@ -69,6 +73,7 @@ export const Images = {
   // J
   // K
   // L
+  LineOaLogoFullWhite,
   LowFatFront,
   // M
   // N
@@ -78,6 +83,7 @@ export const Images = {
   // R
   RenalCareFront,
   // S
+  ShopeeLogoFullWhite,
   SparkleBlack_1,
   SparkleBlack_2,
   SeniorCareFront,

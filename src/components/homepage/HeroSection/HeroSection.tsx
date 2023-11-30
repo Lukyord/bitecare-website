@@ -1,8 +1,9 @@
 import Image from "next/image"
 import { Images } from "@/constant/Images"
 import { getTranslations } from "next-intl/server"
-import PrimaryButton from "../common/Button/PrimaryButton"
+import PrimaryButton from "../../common/Button/PrimaryButton"
 import ProductShowcase from "./ProductShowcase"
+import OnlinePlatforms from "./OnlinePlatforms"
 
 type HeroSectionProps = {}
 
@@ -10,7 +11,8 @@ export default async function HeroSection({}: HeroSectionProps) {
   const tHero = await getTranslations("hero")
 
   return (
-    <section className="mt-[2.5vh] h-full w-screen">
+    <section className="over mt-[2.5vh] h-full w-screen">
+      {/* Main Hero Section and CTA */}
       <div
         className="
                   mx-auto flex max-w-[80%] 
@@ -66,6 +68,8 @@ export default async function HeroSection({}: HeroSectionProps) {
       </div>
 
       <ProductShowcase />
+
+      <OnlinePlatforms />
     </section>
   )
 }

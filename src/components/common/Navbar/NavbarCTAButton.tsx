@@ -58,6 +58,8 @@ export default function NavbarCTAButton({ text, href }: NavbarCTAButtonProps) {
     }
   }, [animationId])
 
+  const style = "absolute top-1/2 w-full translate-y-[-50%]"
+
   return (
     <button
       className="
@@ -70,16 +72,10 @@ export default function NavbarCTAButton({ text, href }: NavbarCTAButtonProps) {
       onMouseLeave={handleMouseLeave}
       onClick={() => href && router.push(href)}
     >
-      <motion.p
-        className="absolute top-1/2 w-full translate-y-[-50%]"
-        animate={controls}
-      >
+      <motion.p className={`${style}`} animate={controls}>
         {text}
       </motion.p>
-      <motion.p
-        className="absolute left-[100%] top-1/2 w-full translate-y-[-50%]"
-        animate={controls}
-      >
+      <motion.p className={`${style} left-[100%]`} animate={controls}>
         {text}
       </motion.p>
     </button>
