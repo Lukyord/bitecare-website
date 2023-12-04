@@ -6,6 +6,7 @@ import PrimaryButton from "@/components/common/Button/PrimaryButton"
 
 export default async function PrinciplesSection() {
   const tPrinciples = await getTranslations("principles")
+  const tButton = await getTranslations("button")
 
   const Principles = [
     {
@@ -23,52 +24,63 @@ export default async function PrinciplesSection() {
   ]
 
   return (
-    <section className="mt-[2.5vh] flex h-full w-screen flex-col items-center text-center">
-      <div className="w-[80%] sm:w-[50%]">
-        <h1 className="text-h3 lg:text-h2">{tPrinciples("header")}</h1>
-        <p className="text-paragraph">{tPrinciples("description")}</p>
-      </div>
+    <section
+      className="
+                  my-28 flex h-full w-screen 
+                  flex-col items-center gap-52
+                  text-center
+                "
+    >
+      {/* Principles */}
+      <div className="flex flex-col items-center gap-12">
+        <div className="w-[80%] sm:w-[50%]">
+          <h1 className="text-h3 lg:text-h2">{tPrinciples("header")}</h1>
+          <p className="text-paragraph">{tPrinciples("description")}</p>
+        </div>
 
-      <div
-        className="
-                  mt-14 flex w-[70%] flex-col gap-8 md:w-[40%] 
-                  lg:mt-20 lg:w-[70%] 
+        <div
+          className="
+                  flex w-[70%] flex-col gap-8 md:w-[40%] 
+                  lg:w-[70%] 
                   lg:flex-row
                   lg:justify-between
                 "
-      >
-        {Principles.map((principle, index) => (
-          <div
-            key={index}
-            className="
+        >
+          {Principles.map((principle, index) => (
+            <div
+              key={index}
+              className="
                   flex flex-col items-center 
                   justify-center gap-6 lg:w-[28%]
                   lg:gap-2
                 "
-          >
-            <Image
-              alt="principle icon"
-              src={principle.icon}
-              width={150}
-              height={150}
-              className="h-auto w-[100px] lg:w-[150px]"
-            />
-            <p className="text-paragraph">{principle.description}</p>
-          </div>
-        ))}
+            >
+              <Image
+                alt="principle icon"
+                src={principle.icon}
+                width={150}
+                height={150}
+                className="h-auto w-[100px] lg:w-[150px]"
+              />
+              <p className="text-paragraph">{principle.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
+      {/* Slogan */}
       <div
         className="
-                  flex w-[70%] 
-                  flex-col bg-bc-primary-container
+                  relative flex flex-col
+                  gap-24 bg-bc-primary-container 
+                  px-24 pb-48 pt-16 
                 "
       >
         <div>
           <h1 className="text-h1">{tPrinciples("slogan")}</h1>
           <h3 className="text-h3">{tPrinciples("slogan-description")}</h3>
         </div>
-        <PrimaryButton />
+        <PrimaryButton text={tButton("see-our-products")} href="/products" />
       </div>
     </section>
   )
