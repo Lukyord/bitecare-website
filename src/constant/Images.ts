@@ -51,6 +51,9 @@ import SeniorCareFront from "@public/assets/products/senior-care/senior-care-fro
 import SkinCareFront from "@public/assets/products/skin-care/skin-care-front.png"
 // T
 import ThaiFlag from "@public/assets/common/thai-flag.svg"
+import TempPrinciple_1 from "../../tmp/temp-principle-1.svg"
+import TempPrinciple_2 from "../../tmp/temp-principle-2.svg"
+import TempPrinciple_3 from "../../tmp/temp-principle-3.svg"
 // U
 // V
 // W
@@ -106,6 +109,9 @@ export const Images = {
   SkinCareFront,
   // T
   ThaiFlag,
+  TempPrinciple_1,
+  TempPrinciple_2,
+  TempPrinciple_3,
   // U
   // V
   // W

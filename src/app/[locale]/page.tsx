@@ -1,4 +1,5 @@
 import ArcGradient from "@/components/homepage/PrinciplesSection/ArcGradient"
+import PrinciplesSection from "@/components/homepage/PrinciplesSection/PrinciplesSection"
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         vwHeight="30vw"
         direction="down"
       />
+      <PrinciplesSection />
     </main>
   )
 }

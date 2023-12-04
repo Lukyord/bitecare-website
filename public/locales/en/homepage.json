@@ -2,5 +2,14 @@
   "hero": {
     "hero-description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "cta-subtitle": "Pet food your 🐶 will ❤️, guaranteed"
+  },
+  "principles": {
+    "header": "BiteCare Principles",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+    "principle-1-description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+    "principle-2-description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+    "principle-3-description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+    "slogan": "Bite care, Bite me",
+    "slogan-description": "Treat your puppy's health—just like the first day you met!"
   }
 }

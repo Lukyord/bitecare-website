@@ -18,7 +18,7 @@ export default function ArcGradient({
   const vwCenterY = centerY + "vw"
 
   return (
-    <div className="relative h-[30vw] w-screen">
+    <div className="relative -z-10 h-[30vw] w-screen">
       <svg
         height={vwHeight}
         width={vwSize}
