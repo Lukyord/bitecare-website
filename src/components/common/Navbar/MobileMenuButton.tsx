@@ -21,6 +21,7 @@ import { Link } from "@/lib/navigation"
 import { Images } from "@/constant/Images"
 
 import SecondaryButton from "../Button/SecondaryButton"
+import MobileLocaleSwitcher from "./MobileLocaleSwitcher"
 
 type MobileMenuButtonProps = {
   NavbarItems: NavbarItem[]
@@ -76,8 +77,8 @@ export default function MobileMenuButton({
             className="
                   fixed left-0 top-0 -z-10 
                   flex h-screen w-screen 
-                  flex-col justify-between 
-                  bg-bc-primary-container pt-28
+                  flex-col 
+                  bg-bc-primary-container pt-28 md:pt-32
                 "
           >
             <Accordion
@@ -121,6 +122,17 @@ export default function MobileMenuButton({
               animate={{ opacity: 1 }}
               transition={{
                 delay: 0.75,
+              }}
+              className="mb-[5vh] mt-auto pt-5"
+            >
+              <MobileLocaleSwitcher />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                delay: 1,
               }}
               className="mb-6 flex h-fit flex-col gap-2"
             >

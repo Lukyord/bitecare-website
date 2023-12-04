@@ -34,10 +34,9 @@ const Header = ({ children }: HeaderProps) => {
     <header
       ref={navbarRef}
       className={`
-              fixed flex w-full 
+              fixed z-50 flex  w-full
               flex-col items-center
               transition-all duration-300
-              
             `}
     >
       {children}

@@ -103,7 +103,7 @@ export async function Navbar() {
       <nav
         id="navbar"
         className="
-              z-50
+             
               mt-4 flex w-[90%] max-w-5xl items-center
               justify-between rounded-full
               bg-bc-primary-container p-2
@@ -125,7 +125,7 @@ export async function Navbar() {
 
         <div className="hidden h-[49px] gap-6 lg:flex">
           <LocaleSwitcher />
-          <NavbarCTAButton text="Meet BiteCare" />
+          <NavbarCTAButton text="Meet BiteCare" href="/about-us" />
         </div>
 
         {/*========== Mobile ==========*/}

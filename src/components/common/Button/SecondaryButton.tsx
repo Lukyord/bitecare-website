@@ -1,17 +1,18 @@
 "use client"
 
 import React from "react"
-import { motion, useAnimation } from "framer-motion"
+import { AnimationControls, motion, useAnimation } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 
 import { cn } from "@/lib/utils"
-import { size } from "lodash"
+import { useRouter } from "@/lib/navigation"
 
 type SecondaryButtonProps = {
   text: string
   icon?: React.ReactNode
   size: "paragraph" | "h3"
   specificWidth?: string
+  href?: string
 }
 
 export default function SecondaryButton({
@@ -19,7 +20,9 @@ export default function SecondaryButton({
   icon,
   size,
   specificWidth,
+  href,
 }: SecondaryButtonProps) {
+  const router = useRouter()
   const controls = useAnimation()
   const containerRef = useRef<HTMLButtonElement>(null)
   const [animationId, setAnimationId] = useState<number | null>(null)
@@ -91,25 +94,37 @@ export default function SecondaryButton({
       ref={containerRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={() => href && router.push(href)}
     >
-      <motion.div
-        className="absolute top-1/2 w-full translate-y-[-50%]"
-        animate={controls}
-      >
-        <div className="flex items-center justify-center gap-2">
-          {icon && icon}
-          <p>{text}</p>
-        </div>
-      </motion.div>
-      <motion.div
-        className="absolute left-[100%] top-1/2 w-full translate-y-[-50%]"
-        animate={controls}
-      >
-        <div className="flex items-center justify-center gap-2">
-          {icon && icon}
-          <p>{text}</p>
-        </div>
-      </motion.div>
+      <MovingText controls={controls} icon={icon} text={text} />
+      <MovingText controls={controls} icon={icon} text={text} isSecond />
     </motion.button>
+  )
+}
+
+type MovingTextProps = {
+  controls: AnimationControls
+  icon?: React.ReactNode
+  text: string
+  isSecond?: boolean
+}
+
+function MovingText({ controls, icon, text, isSecond }: MovingTextProps) {
+  return (
+    <motion.div
+      className={`
+              absolute top-1/2 
+              w-full translate-y-[-50%]
+              ${cn({
+                "left-[100%]": isSecond,
+              })}
+            `}
+      animate={controls}
+    >
+      <div className="flex items-center justify-center gap-2">
+        {icon && icon}
+        <p>{text}</p>
+      </div>
+    </motion.div>
   )
 }

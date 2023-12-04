@@ -48,8 +48,7 @@ export default function LocaleSwitcher() {
           className="
                       jusify-center flex flex-col items-center
                       gap-2 rounded-lg border 
-                      bg-white bg-opacity-30 p-2
-                      backdrop-blur-lg backdrop-filter
+                      bg-white p-2
                     "
         >
           {i18n.locales.map((locale, index) => (

@@ -1,7 +1,25 @@
-import React from "react"
+import { Link } from "@/lib/navigation"
 
-const PrimaryButton = () => {
-  return <div></div>
+type PrimaryButtonProps = {
+  text: string
+  href: string
+}
+
+const PrimaryButton = ({ text, href }: PrimaryButtonProps) => {
+  return (
+    <Link href={href}>
+      <button
+        className="
+              rounded-xl bg-bc-primary px-10 py-5 text-h3
+              text-white transition-all duration-300
+              ease-in-out [box-shadow:6px_6px_0px_0px_#386A1F]
+              hover:-translate-y-2 hover:[box-shadow:12px_12px_0px_0px_#386A1F]
+            "
+      >
+        {text}
+      </button>
+    </Link>
+  )
 }
 
 export default PrimaryButton

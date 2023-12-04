@@ -26,7 +26,7 @@ export default function NavbarMenuItem({ navbaritem }: NavbarMenuItemProps) {
             hover:bg-bc-inverse-primary hover:text-white
      `}
     >
-      <p>{tNavBar(navbaritem.label)}</p>
+      <p className="whitespace-nowrap">{tNavBar(navbaritem.label)}</p>
       {navbaritem.breadcrumb && (
         <FaChevronDown
           size={12}
@@ -45,8 +45,7 @@ export default function NavbarMenuItem({ navbaritem }: NavbarMenuItemProps) {
         <div
           className={`
                 rounded-lg border
-                bg-white bg-opacity-30 p-4
-                shadow-lg backdrop-blur-lg backdrop-filter 
+                bg-white p-4 shadow-lg
                 ${cn({
                   "grid w-[450px] grid-cols-2":
                     navbaritem.breadcrumb.length > 3,

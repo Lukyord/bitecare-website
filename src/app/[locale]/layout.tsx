@@ -47,7 +47,11 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${psl.variable} ${helveltica_rounded.variable} no-scrollbar font-psl`}
+        className={`
+                ${psl.variable} ${helveltica_rounded.variable} 
+                no-scrollbar bg-bc-surface
+                font-psl
+              `}
       >
         <Header>
           <Navbar />
