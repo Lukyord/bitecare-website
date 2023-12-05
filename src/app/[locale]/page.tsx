@@ -7,12 +7,7 @@ export default function Home() {
     <main className="no-scrollbar overflow-x-hidden pt-28">
       <HeroSection />
       <PrinciplesSection />
-      <h1
-        className="my-[200px] scroll-mt-36 font-hel_rounded text-subtitle"
-        id="faq"
-      >
-        FAQ
-      </h1>
+
       <ArcGradient vwSize="200vw" radius={100} vwHeight="30vw" direction="up" />
       <ArcGradient
         vwSize="200vw"
@@ -20,6 +15,12 @@ export default function Home() {
         vwHeight="30vw"
         direction="down"
       />
+      <h1
+        className="my-[200px] scroll-mt-36 font-hel_rounded text-subtitle"
+        id="faq"
+      >
+        FAQ
+      </h1>
     </main>
   )
 }
