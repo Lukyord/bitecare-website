@@ -1,8 +1,10 @@
-import { Images } from "@/constant/Images"
 import { getTranslations } from "next-intl/server"
-import React from "react"
 import Image from "next/image"
+
+import { Images } from "@/constant/Images"
+
 import PrimaryButton from "@/components/common/Button/PrimaryButton"
+import SloganBoxImages from "./SloganBoxImages"
 
 export default async function PrinciplesSection() {
   const tPrinciples = await getTranslations("principles")
@@ -27,7 +29,7 @@ export default async function PrinciplesSection() {
     <section
       className="
                   my-28 flex h-full w-screen 
-                  flex-col items-center gap-52
+                  flex-col items-center gap-28
                   text-center
                 "
     >
@@ -52,15 +54,12 @@ export default async function PrinciplesSection() {
               className="
                   flex flex-col items-center 
                   justify-center gap-6 lg:w-[28%]
-                  lg:gap-2
                 "
             >
               <Image
                 alt="principle icon"
                 src={principle.icon}
-                width={150}
-                height={150}
-                className="h-auto w-[100px] lg:w-[150px]"
+                className="h-auto w-[100px] lg:w-[120px]"
               />
               <p className="text-paragraph">{principle.description}</p>
             </div>
@@ -71,16 +70,23 @@ export default async function PrinciplesSection() {
       {/* Slogan */}
       <div
         className="
-                  relative flex flex-col
-                  gap-24 bg-bc-primary-container 
-                  px-24 pb-48 pt-16 
+                  relative flex w-[90%]
+                  max-w-5xl flex-col 
+                  gap-12 bg-bc-primary-container 
+                  pb-[10%] pt-[5%] sm:gap-16 lg:gap-24 
                 "
       >
         <div>
-          <h1 className="text-h1">{tPrinciples("slogan")}</h1>
-          <h3 className="text-h3">{tPrinciples("slogan-description")}</h3>
+          <h1 className="text-h3 md:text-h2 lg:text-h1">
+            {tPrinciples("slogan")}
+          </h1>
+          <h3 className="text-subtitle md:text-paragraph lg:text-h3">
+            {tPrinciples("slogan-description")}
+          </h3>
         </div>
         <PrimaryButton text={tButton("see-our-products")} href="/products" />
+
+        <SloganBoxImages />
       </div>
     </section>
   )
