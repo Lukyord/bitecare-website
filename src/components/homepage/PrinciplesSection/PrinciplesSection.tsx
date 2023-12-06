@@ -84,6 +84,7 @@ export default async function PrinciplesSection() {
             {tPrinciples("slogan-description")}
           </h3>
         </div>
+
         <PrimaryButton text={tButton("see-our-products")} href="/products" />
 
         <SloganBoxImages />
