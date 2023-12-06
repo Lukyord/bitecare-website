@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        xs: "430px",
+      },
       colors: {
         //BiteCare Colors
         "bc-primary": "#549B51",

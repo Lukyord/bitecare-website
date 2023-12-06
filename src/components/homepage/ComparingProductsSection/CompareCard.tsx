@@ -1,7 +1,8 @@
 "use client"
 
-import { ComparingProductCard } from "@/types/common/product"
 import Image from "next/image"
+
+import { ComparingProductCard } from "@/types/common/product"
 
 type CompareCardProps = {
   selectedProduct: ComparingProductCard
@@ -18,32 +19,40 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
     >
       {/* Product Image */}
       <div
-        className={`relative h-[20vw] w-full ${selectedProduct.bgColor} overflow-hidden`}
+        className={`relative h-[40vw] w-full lg:h-[20vw] ${selectedProduct.bgColor} overflow-hidden`}
       >
         <Image
           alt="product front"
           src={selectedProduct.image2}
-          width={1500}
-          height={2500}
-          className="absolute bottom-[-5%] right-[5%] h-full w-auto"
+          width={1192}
+          height={2128}
+          className="
+                  absolute bottom-[-5%] right-1/2 
+                  h-full w-auto translate-x-[50%] 
+                  lg:right-[2.5%] lg:translate-x-0
+                "
+          priority
         />
         <Image
           alt="product dog"
           src={selectedProduct.image1}
-          className="absolute bottom-0 left-0"
+          className="
+                  absolute bottom-0 left-0 
+                  hidden h-full w-auto lg:block
+                "
         />
       </div>
 
-      <div className="flex flex-col px-6 pb-14 pt-10">
+      <div className="flex flex-col px-3 pb-10 pt-5 md:px-6 md:pb-14 md:pt-10">
         {/* Product header and Tags */}
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-2 md:gap-5">
           <h3 className="text-paragraph lg:text-h3">{selectedProduct.name}</h3>
           <div className={`${selectedProduct.dividerColor} h-1 w-[80px]`} />
           <div className="h-20 w-full">
             <div className="flex flex-wrap gap-1">
               {selectedProduct.tags.map((tag, index) => (
                 <p
-                  className={`${tag.color} w-fit whitespace-nowrap rounded-full px-3 py-1 text-subtitle text-white`}
+                  className={`${tag.color} xs:text-subtitle xs:py-1 w-fit whitespace-nowrap rounded-full px-3 text-sm text-white`}
                   key={index}
                 >
                   {tag.name}
@@ -54,7 +63,7 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
         </div>
 
         {/* Product description */}
-        <article className="mt-2 text-justify text-subtitle lg:text-paragraph">
+        <article className="xs:mt-6 mt-3 text-justify text-subtitle md:mt-0 lg:text-paragraph">
           {selectedProduct.description1}
         </article>
 

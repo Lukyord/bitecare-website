@@ -60,8 +60,8 @@ export default async function ComparingProductsSection() {
       image2: Images.RenalCareFront,
       tags: [
         ProductTags["Low Protein & Phosphorus"],
-        ProductTags["Omega-3 & Amino Acids"],
         ProductTags["Chitosan Extract"],
+        ProductTags["Omega-3 & Amino Acids"],
       ],
       bgColor: "bg-[#F9D7D7]",
       dividerColor: "bg-[#FF0000]",
@@ -71,9 +71,10 @@ export default async function ComparingProductsSection() {
   return (
     <section
       className="
-              relative flex h-full w-screen 
-              flex-col items-center gap-28 bg-bc-inverse-primary
-              py-28 text-center      
+              xs:-my-14 xs:py-7 relative -my-28 flex h-full w-screen
+              flex-col items-center gap-14 bg-bc-inverse-primary py-14 
+              text-center md:my-0 md:py-14
+              lg:gap-28 lg:py-28      
             "
     >
       <div className="absolute bottom-[99%] -z-10">
