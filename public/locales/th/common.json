@@ -35,5 +35,17 @@
   },
   "miscellaneous": {
     "impressed-by-our-products": "ประทับใจผลิตภัณฑ์ของเรา?"
+  },
+  "product-tag": {
+    "low-calorie-and-fat": "Low calorie & fat",
+    "l-carnitine": "L-Carnitine",
+    "collagen-type2": "Collagen Type 2",
+    "low-protein-and-phosphorus": "Low protein & phosphorus",
+    "omega-3-and-amino-acids": "Omega-3 & Amino Acids",
+    "chitosan-extract": "Chitosan Extract",
+    "fish-oil-dha": "Fish Oil DHA",
+    "ginkgo-extract": "Ginkgo Extract",
+    "crocodile-protein": "Crocodile Protein",
+    "gluten-free": "Gluten Free"
   }
 }
