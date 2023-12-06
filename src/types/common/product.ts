@@ -21,4 +21,5 @@ export type ComparingProductCard = {
   tags: BiteCareProductTag[]
   bgColor: string
   dividerColor: string
+  href: string
 }

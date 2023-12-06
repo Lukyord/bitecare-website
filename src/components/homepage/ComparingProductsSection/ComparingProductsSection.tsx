@@ -18,11 +18,12 @@ export default async function ComparingProductsSection() {
       image2: Images.SkinCareFront,
       tags: [
         ProductTags["Crocodile Protein"],
-        ProductTags["Omega-3 & Amino Acids"],
         ProductTags["Gluten Free"],
+        ProductTags["Omega-3 & Amino Acids"],
       ],
       bgColor: "bg-[#CEEFF4]",
       dividerColor: "bg-[#1A9CBC]",
+      href: "/products/skin-care",
     },
     {
       name: "Low Fat",
@@ -37,6 +38,7 @@ export default async function ComparingProductsSection() {
       ],
       bgColor: "bg-[#DCF9DD]",
       dividerColor: "bg-[#009172]",
+      href: "/products/low-fat",
     },
     {
       name: "Senior Care",
@@ -50,7 +52,8 @@ export default async function ComparingProductsSection() {
         ProductTags["Collagen Type2"],
       ],
       bgColor: "bg-[#E6DBF9]",
-      dividerColor: "bg-[#FFC000]",
+      dividerColor: "bg-[#866DAF]",
+      href: "/products/senior-care",
     },
     {
       name: "Renal Care",
@@ -64,16 +67,17 @@ export default async function ComparingProductsSection() {
         ProductTags["Omega-3 & Amino Acids"],
       ],
       bgColor: "bg-[#F9D7D7]",
-      dividerColor: "bg-[#FF0000]",
+      dividerColor: "bg-[#EB7BAD]",
+      href: "/products/renal-care",
     },
   ]
 
   return (
     <section
       className="
-              xs:-my-14 xs:py-7 relative -my-28 flex h-full w-screen
-              flex-col items-center gap-14 bg-bc-inverse-primary py-14 
-              text-center md:my-0 md:py-14
+              relative -my-28 flex h-full w-screen flex-col items-center
+              gap-14 bg-bc-inverse-primary py-14 text-center xs:-my-14 
+              xs:py-7 md:my-0 md:py-14
               lg:gap-28 lg:py-28      
             "
     >

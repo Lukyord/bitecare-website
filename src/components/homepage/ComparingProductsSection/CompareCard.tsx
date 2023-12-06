@@ -1,25 +1,48 @@
 "use client"
 
+import React, { useEffect, useState } from "react"
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 import { ComparingProductCard } from "@/types/common/product"
+import ProductTag from "@/components/common/ProductTag"
+import { useRouter } from "@/lib/navigation"
 
 type CompareCardProps = {
   selectedProduct: ComparingProductCard
 }
 
 export default function CompareCard({ selectedProduct }: CompareCardProps) {
+  const router = useRouter()
+  const [animationKey, setAnimationKey] = useState(0)
+
+  useEffect(() => {
+    setAnimationKey((prevKey) => prevKey + 1)
+  }, [selectedProduct])
+
   return (
     <div
+      onClick={() => router.push(selectedProduct.href)}
       className="
-                flex flex-col
-                overflow-hidden rounded-2xl
-                bg-white text-left
+                group flex cursor-pointer
+                flex-col overflow-hidden
+                rounded-2xl bg-white
+                text-left transition-all
+                duration-300 ease-in-out
+                hover:shadow-2xl
               "
     >
       {/* Product Image */}
-      <div
-        className={`relative h-[40vw] w-full lg:h-[20vw] ${selectedProduct.bgColor} overflow-hidden`}
+      <motion.div
+        key={animationKey}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className={`
+                relative h-[40vw] w-full 
+                lg:h-[20vw] ${selectedProduct.bgColor} 
+                group overflow-hidden
+              `}
       >
         <Image
           alt="product front"
@@ -29,7 +52,9 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
           className="
                   absolute bottom-[-5%] right-1/2 
                   h-full w-auto translate-x-[50%] 
-                  lg:right-[2.5%] lg:translate-x-0
+                  transition-all duration-300
+                  ease-in-out  group-hover:scale-110 lg:right-[2.5%]
+                  lg:translate-x-0
                 "
           priority
         />
@@ -38,38 +63,68 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
           src={selectedProduct.image1}
           className="
                   absolute bottom-0 left-0 
-                  hidden h-full w-auto lg:block
+                  hidden h-full w-auto transition-all
+                  duration-300  ease-in-out group-hover:scale-110
+                  lg:block
                 "
         />
-      </div>
+      </motion.div>
 
-      <div className="flex flex-col px-3 pb-10 pt-5 md:px-6 md:pb-14 md:pt-10">
+      <div className="group flex flex-col px-3 pb-10 pt-5 md:px-6 md:pb-14 md:pt-10">
         {/* Product header and Tags */}
-        <div className="flex flex-col gap-2 md:gap-5">
-          <h3 className="text-paragraph lg:text-h3">{selectedProduct.name}</h3>
-          <div className={`${selectedProduct.dividerColor} h-1 w-[80px]`} />
+        <div className="group flex flex-col gap-2 md:gap-5">
+          <motion.h3
+            key={animationKey + "_product_name"}
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="text-paragraph lg:text-h3"
+          >
+            {selectedProduct.name}
+          </motion.h3>
+          <div
+            className="
+                  w-[60px] transition-all duration-300 ease-in-out 
+                  group-hover:w-[160px] xs:w-[80px]
+                "
+          >
+            <motion.div
+              key={animationKey}
+              initial={{ width: 0 }}
+              animate={{ width: "100%" }}
+              className={`
+                  ${selectedProduct.dividerColor} h-1 
+                `}
+            />
+          </div>
           <div className="h-20 w-full">
             <div className="flex flex-wrap gap-1">
               {selectedProduct.tags.map((tag, index) => (
-                <p
-                  className={`${tag.color} xs:text-subtitle xs:py-1 w-fit whitespace-nowrap rounded-full px-3 text-sm text-white`}
-                  key={index}
-                >
-                  {tag.name}
-                </p>
+                <React.Fragment key={index}>
+                  <ProductTag tag={tag} />
+                </React.Fragment>
               ))}
             </div>
           </div>
         </div>
 
         {/* Product description */}
-        <article className="xs:mt-6 mt-3 text-justify text-subtitle md:mt-0 lg:text-paragraph">
+        <motion.article
+          key={animationKey + "_article_1"}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="mt-3 text-justify text-subtitle xs:mt-6 md:mt-0 lg:text-paragraph"
+        >
           {selectedProduct.description1}
-        </article>
+        </motion.article>
 
-        <article className="mt-6 text-justify text-subtitle lg:text-paragraph">
+        <motion.article
+          key={animationKey + "_article_2"}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="mt-6 text-justify text-subtitle lg:text-paragraph"
+        >
           {selectedProduct.description2}
-        </article>
+        </motion.article>
       </div>
     </div>
   )

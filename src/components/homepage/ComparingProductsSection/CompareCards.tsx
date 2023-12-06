@@ -1,6 +1,6 @@
 "use client"
 
-import { use, useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
 import { ComparingProductCard } from "@/types/common/product"
 
