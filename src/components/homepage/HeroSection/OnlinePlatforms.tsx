@@ -1,12 +1,11 @@
 "use client"
 
-import { useEffect } from "react"
-import { AnimationControls, motion, useAnimation } from "framer-motion"
-import { useRef, useState } from "react"
+import { AnimationControls, motion } from "framer-motion"
 import Image from "next/image"
 import { Images } from "@/constant/Images"
 
 import { cn } from "@/lib/utils"
+import { useInfiniteTranslateX } from "@/hooks/useInfiniteTranslateX"
 
 const OnlinePlatformLogos = [
   {
@@ -24,39 +23,11 @@ const OnlinePlatformLogos = [
 ]
 
 export default function OnlinePlatforms() {
-  const controls = useAnimation()
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [animationId, setAnimationId] = useState<number | null>(null)
-
-  let xPixels = 0
-
-  const animate = () => {
-    const containerWidth = containerRef.current?.getBoundingClientRect().width
-
-    if (containerWidth) {
-      if (xPixels > containerWidth) {
-        xPixels = 0
-      }
-      controls.set({ x: -xPixels, y: "-50%" })
-
-      xPixels += 0.5
-      setAnimationId(requestAnimationFrame(animate))
-    }
-  }
-
-  useEffect(() => {
-    setAnimationId(requestAnimationFrame(animate))
-
-    return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId)
-      }
-    }
-  }, [])
+  const { controls, containerRef } = useInfiniteTranslateX()
 
   return (
     <div
-      ref={containerRef}
+      ref={containerRef as React.RefObject<HTMLDivElement>}
       className="relative z-10 h-[15vw] w-screen overflow-hidden bg-bc-black"
     >
       <MovingLogos controls={controls} Logos={OnlinePlatformLogos} />

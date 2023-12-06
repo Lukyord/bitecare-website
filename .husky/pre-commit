@@ -18,4 +18,6 @@
 # # Scans all files that are about to be committed.
 # git-secrets --pre_commit_hook -- "$@"
 
+# echo "Test building project..."
+# npx test-build
 # npx lint-staged
