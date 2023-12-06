@@ -2,7 +2,10 @@
 
 import React from "react"
 
-import { ComparingProductCard } from "@/types/common/product"
+import {
+  BiteCareProductName,
+  ComparingProductCard,
+} from "@/types/common/product"
 
 import {
   Select,
@@ -16,11 +19,15 @@ import {
 
 type SelectorProps = {
   choices: ComparingProductCard[]
+  defaultValue: BiteCareProductName
 }
 
-export default function Selector({ choices }: SelectorProps) {
+export default function Selector({ choices, defaultValue }: SelectorProps) {
   return (
-    <Select onValueChange={(value) => console.log(value)}>
+    <Select
+      onValueChange={(value) => console.log(value)}
+      defaultValue={defaultValue}
+    >
       <SelectTrigger className="w-full">
         <SelectValue placeholder="Select a fruit" />
       </SelectTrigger>

@@ -34,6 +34,7 @@ import HighlightBlack_1 from "@public/assets/illustrations/highlight-1-black.svg
 import LineOaLogoFullWhite from "@public/assets/common/line-oa-logo-full-white.png"
 import LowFatFront from "@public/assets/products/low-fat/low-fat-front.png"
 import LowFatDog from "@public/assets/products/low-fat/low-fat-dog.png"
+import LowFatDogCropped from "@public/assets/products/low-fat/low-fat-dog-cropped.png"
 // M
 // N
 // O
@@ -42,6 +43,7 @@ import LowFatDog from "@public/assets/products/low-fat/low-fat-dog.png"
 // R
 import RenalCareFront from "@public/assets/products/renal-care/renal-care-front.png"
 import RenalCareDog from "@public/assets/products/renal-care/renal-care-dog.png"
+import RenalCareDogCropped from "@public/assets/products/renal-care/renal-care-dog-cropped.png"
 // S
 import ShopeeLogoFullWhite from "@public/assets/common/shopee-logo-full-white.png"
 import SparkleBlack_1 from "@public/assets/illustrations/sparkle-1-black.svg"
@@ -51,8 +53,10 @@ import SparkleBcInversePrimary_2 from "@public/assets/illustrations/sparkle-bc-i
 import SparkleBcInversePrimary_3 from "@public/assets/illustrations/sparkle-bc-inverse-primary-3.svg"
 import SeniorCareFront from "@public/assets/products/senior-care/senior-care-front.png"
 import SeniorCareDog from "@public/assets/products/senior-care/senior-care-dog.png"
+import SeniorCareDogCropped from "@public/assets/products/senior-care/senior-care-dog-cropped.png"
 import SkinCareFront from "@public/assets/products/skin-care/skin-care-front.png"
 import SkinCareDog from "@public/assets/products/skin-care/skin-care-dog.png"
+import SkinCareDogCropped from "@public/assets/products/skin-care/skin-care-dog-cropped.png"
 // T
 import ThaiFlag from "@public/assets/common/thai-flag.svg"
 import TempPrinciple_1 from "../../tmp/temp-principle-1.svg"
@@ -96,6 +100,7 @@ export const Images = {
   LineOaLogoFullWhite,
   LowFatFront,
   LowFatDog,
+  LowFatDogCropped,
   // M
   // N
   // O
@@ -104,6 +109,7 @@ export const Images = {
   // R
   RenalCareFront,
   RenalCareDog,
+  RenalCareDogCropped,
   // S
   ShopeeLogoFullWhite,
   SparkleBlack_1,
@@ -113,8 +119,10 @@ export const Images = {
   SparkleBcInversePrimary_3,
   SeniorCareFront,
   SeniorCareDog,
+  SeniorCareDogCropped,
   SkinCareFront,
   SkinCareDog,
+  SkinCareDogCropped,
   // T
   ThaiFlag,
   TempPrinciple_1,
