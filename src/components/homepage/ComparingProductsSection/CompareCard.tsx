@@ -22,7 +22,7 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
 
   return (
     <div
-      onClick={() => router.push(selectedProduct.href)}
+      // onClick={() => router.push(selectedProduct.href)}
       className="
                 group flex cursor-pointer
                 flex-col overflow-hidden
