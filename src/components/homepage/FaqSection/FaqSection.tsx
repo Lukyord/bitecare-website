@@ -1,6 +1,8 @@
 import { getTranslations } from "next-intl/server"
 
 import FaqAccordions from "./FaqAccordions"
+import { Images } from "@/constant/Images"
+import Image from "next/image"
 
 export default async function FaqSection() {
   const tFaq = await getTranslations("faq")
@@ -51,14 +53,23 @@ export default async function FaqSection() {
   return (
     <section
       className="
-              relative my-14 flex h-full w-screen 
+              relative my-28 flex h-full w-screen 
               scroll-mt-36 flex-col items-center
-              gap-14 text-center lg:my-28
+              gap-14 text-center xs:my-14 lg:my-28
             "
     >
       <h1 className="text-h3 lg:text-h2" id="faq">
         FAQs
       </h1>
+
+      <Image
+        alt="squiggly line"
+        src={Images.SquigglyLineOrange}
+        className="
+              absolute left-[-1%] top-[-5%] 
+              hidden h-auto w-[12vw] lg:block
+            "
+      />
 
       <FaqAccordions Faqs={Faqs} />
     </section>
