@@ -72,7 +72,7 @@ export default function SecondaryButton({
         text-bc_black relative
         overflow-hidden whitespace-nowrap
         border border-bc-black
-        bg-white text-paragraph
+        bg-white
         ${specificWidth && specificWidth}
         ${cn({
           "h-12 text-paragraph": size === "paragraph",

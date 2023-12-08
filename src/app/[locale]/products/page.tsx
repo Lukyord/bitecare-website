@@ -1,7 +1,10 @@
-import React from 'react'
+import ProductsPageLanding from "@/components/products/ProductsPageLanding"
 
 export default function ProductsPage() {
   return (
-    <div>ProductsPage</div>
+    <div>
+      <ProductsPageLanding />
+      <p className="mt-[200px]">Products showcase</p>
+    </div>
   )
 }
