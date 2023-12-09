@@ -1,4 +1,4 @@
-import ProductsPageLanding from "@/components/products/ProductsPageLanding"
+import ProductsPageLanding from "@/components/products/ProductsPageLanding/ProductsPageLanding"
 
 export default function ProductsPage() {
   return (
