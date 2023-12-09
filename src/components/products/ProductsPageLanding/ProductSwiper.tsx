@@ -24,14 +24,8 @@ export default function ProductSwiper({ productImages }: ProductSwiperProps) {
               border-r-0 border-bc-black
             "
     >
-      <SwiperButtonNext
-        style="
-            absolute top-[10%] left-[62.5%]
-            bg-red-500 z-10
-          "
-      >
-        Click next
-      </SwiperButtonNext>
+      <SwiperButtonNext />
+
       {productImages.map((productImage, index) => (
         <SwiperSlide key={index}>
           <Image
@@ -39,7 +33,11 @@ export default function ProductSwiper({ productImages }: ProductSwiperProps) {
             src={productImage}
             width={600}
             height={1000}
-            className="h-full w-auto border-r-2 border-bc-black px-[10%] py-[10%]"
+            className="
+                    h-full w-auto border-r-2 
+                    border-bc-black 
+                    px-[10%] py-[10%]
+                  "
             priority
           />
         </SwiperSlide>
