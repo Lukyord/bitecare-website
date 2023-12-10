@@ -38,6 +38,7 @@ import DuctTape_2 from "@public/assets/illustrations/about-us/duct-tape-2.png"
 // E
 import EnglishFlag from "@public/assets/common/flags/english-flag.svg"
 // F
+import FacebookIcon from "@public/assets/common/facebook-icon.svg"
 import FacebookLogoFullWhite from "@public/assets/common/socials/facebook-logo-full-white.png"
 import FacebookIcon from "@public/assets/common/socials/facebook-icon.png"
 import FlowerBcPrimary_1 from "@public/assets/illustrations/homepage/flower-bc-primary-1.svg"
@@ -54,6 +55,7 @@ import HomepageDog_3_4 from "@public/assets/homepage/homepage-dog-3-4.png"
 import HomepageDog_5 from "@public/assets/homepage/homepage-dog-5.png"
 import HighlightBlack_1 from "@public/assets/illustrations/homepage/highlight-1-black.svg"
 // I
+import InstagramIcon from "@public/assets/common/instagram-icon.svg"
 // J
 // K
 // L
@@ -165,6 +167,7 @@ export const Images = {
   // E
   EnglishFlag,
   // F
+  FacebookIcon,
   FacebookLogoFullWhite,
   FacebookIcon,
   FishOilDHABlack,
@@ -181,6 +184,7 @@ export const Images = {
   HomepageDog_5,
   HighlightBlack_1,
   // I
+  InstagramIcon,
   // J
   // K
   // L
@@ -217,6 +221,7 @@ export const Images = {
   RenalCareRegistrationNumber,
   RenalCareSummary,
   // S
+  ShopeeIcon,
   ShopeeLogoFullWhite,
   ShopeeIcon,
   SparkleBlack_1,

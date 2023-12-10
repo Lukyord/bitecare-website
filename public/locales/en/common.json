@@ -59,5 +59,32 @@
     "ginkgo-extract": "Ginkgo Extract",
     "crocodile-protein": "Crocodile Protein",
     "gluten-free": "Gluten Free"
+  },
+  "footer": {
+    "tagline1": "See if BiteCare is right for",
+    "tagline2": "your pet. (It totally is!)",
+    "tagline-description1": "Find out why you and your pet will 💚 BiteCare.",
+    "tagline-description2": "Learn our principles and be inspired.",
+    "get-to-know-us": "Get to Know Us",
+    "products": "Products",
+    "support": "Support",
+    "where-to-buy": "Where to Buy",
+    "copy-right": "© 2023 BiteCare",
+    "policy": "Privacy Policy",
+    "terms": "Terms & Conditions"
+  },
+  "footer-product": {
+    "skin-care": "Skin Care",
+    "low-fat": "Low Fat",
+    "senior-care": "Senior Care",
+    "renal-care": "Renal Care"
+  },
+  "footer-support": {
+    "contact-us": "Contact Us",
+    "faq": "FAQs"
+  },
+  "footer-where-to-buy": {
+    "physical-store": "Physical Store",
+    "online-platform": "Online Platforms"
   }
 }
