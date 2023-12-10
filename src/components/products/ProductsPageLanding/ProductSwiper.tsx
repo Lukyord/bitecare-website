@@ -1,7 +1,7 @@
 "use client"
 
-import Image from "next/image"
 import { Swiper, SwiperSlide } from "swiper/react"
+import { Autoplay } from "swiper/modules"
 
 import "swiper/css"
 import { ProductImage } from "@/types/common/product"
@@ -18,7 +18,11 @@ export default function ProductSwiper({ productImages }: ProductSwiperProps) {
     <Swiper
       slidesPerView={1.5}
       speed={1200}
+      autoplay={{
+        delay: 5000,
+      }}
       loop
+      modules={[Autoplay]}
       allowTouchMove={false}
       className="
               relative overflow-visible 
