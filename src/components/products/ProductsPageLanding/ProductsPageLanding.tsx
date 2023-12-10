@@ -1,29 +1,32 @@
 import { getTranslations } from "next-intl/server"
 
 import { Images } from "@/constant/Images"
+import { ProductImage } from "@/types/common/product"
 
 import ProductSwiper from "./ProductSwiper"
 import SecondaryButton from "../../common/Button/SecondaryButton"
+import ProductsPageLandingBackground from "./ProductsPageLandingBackground"
+import ActiveProductContextProvider from "@/context/ActiveProductContextProvider"
 
 export default async function ProductsPageLanding() {
   const tProductsLanding = await getTranslations("products-landing")
   const tButton = await getTranslations("button")
 
-  const productImages = [
-    Images.SkinCareFront,
-    Images.LowFatFront,
-    Images.SeniorCareFront,
-    Images.RenalCareFront,
+  const productImages: ProductImage[] = [
+    { image: Images.SkinCareFront, name: "Skin Care" },
+    { image: Images.LowFatFront, name: "Low Fat" },
+    { image: Images.SeniorCareFront, name: "Senior Care" },
+    { image: Images.RenalCareFront, name: "Renal Care" },
   ]
 
   return (
     <div
       className="
-              flex w-screen flex-col 
-              gap-12 bg-[#86D2DF] pb-14
-              pl-[5vw] pt-28 sm:gap-24 sm:py-28
-              xl:h-[115vh] xl:flex-row 
-              xl:gap-0 xl:pl-[10vw]
+              relative flex w-screen 
+              flex-col gap-12 overflow-hidden
+              pb-14 pl-[5vw] pt-28 sm:gap-24
+              sm:py-28 xl:h-[115vh] 
+              xl:flex-row xl:gap-0 xl:pl-[10vw]
             "
     >
       <div className="flex flex-col justify-center gap-6 lg:gap-10 xl:w-[55%]">
@@ -51,9 +54,12 @@ export default async function ProductsPageLanding() {
           />
         </div>
       </div>
-      <div className="ml-auto flex w-[90%] items-center xl:w-[45%]">
-        <ProductSwiper productImages={productImages} />
-      </div>
+      <ActiveProductContextProvider>
+        <ProductsPageLandingBackground />
+        <div className="relative ml-auto flex w-[90%] items-center xl:w-[45%]">
+          <ProductSwiper productImages={productImages} />
+        </div>
+      </ActiveProductContextProvider>
     </div>
   )
 }

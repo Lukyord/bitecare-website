@@ -1,5 +1,4 @@
 import { ProductTags } from "@/constant/Products"
-import { color } from "framer-motion"
 import { StaticImageData } from "next/image"
 
 export type BiteCareProductName =
@@ -22,4 +21,9 @@ export type ComparingProductCard = {
   bgColor: string
   dividerColor: string
   href: string
+}
+
+export type ProductImage = {
+  image: StaticImageData
+  name: BiteCareProductName
 }

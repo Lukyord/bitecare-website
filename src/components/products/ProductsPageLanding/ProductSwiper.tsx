@@ -1,14 +1,16 @@
 "use client"
 
-import Image, { StaticImageData } from "next/image"
+import Image from "next/image"
 import { Swiper, SwiperSlide } from "swiper/react"
 
 import "swiper/css"
+import { ProductImage } from "@/types/common/product"
 
 import SwiperButtonNext from "./SwiperButtonNext"
+import ProductSwiperSlide from "./ProductSwiperSlide"
 
 type ProductSwiperProps = {
-  productImages: StaticImageData[]
+  productImages: ProductImage[]
 }
 
 export default function ProductSwiper({ productImages }: ProductSwiperProps) {
@@ -19,27 +21,17 @@ export default function ProductSwiper({ productImages }: ProductSwiperProps) {
       loop
       allowTouchMove={false}
       className="
-              relative rounded-bl-3xl 
-              rounded-tl-3xl border-2 
-              border-r-0 border-bc-black
+              relative overflow-visible 
+              rounded-bl-3xl rounded-tl-3xl 
+              border-2 border-r-0
+              border-bc-black
             "
     >
       <SwiperButtonNext />
 
       {productImages.map((productImage, index) => (
         <SwiperSlide key={index}>
-          <Image
-            alt="product-image"
-            src={productImage}
-            width={600}
-            height={1000}
-            className="
-                    h-full w-auto border-r-2 
-                    border-bc-black 
-                    px-[10%] py-[10%]
-                  "
-            priority
-          />
+          <ProductSwiperSlide productImage={productImage} />
         </SwiperSlide>
       ))}
     </Swiper>
