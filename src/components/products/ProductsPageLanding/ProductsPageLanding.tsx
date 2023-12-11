@@ -1,24 +1,17 @@
 import { getTranslations } from "next-intl/server"
 
-import { Images } from "@/constant/Images"
-import { ProductImage } from "@/types/common/product"
-
 import ProductSwiper from "./ProductSwiper"
 import SecondaryButton from "../../common/Button/SecondaryButton"
 import ProductsPageLandingBackground from "./ProductsPageLandingBackground"
 import ActiveProductContextProvider from "@/context/ActiveProductContextProvider"
 import ProductsPageLandingGradientBlur from "./ProductsPageLandingGradientBlur"
+import useProducts from "@/hooks/useProducts"
 
 export default async function ProductsPageLanding() {
   const tProductsLanding = await getTranslations("products-landing")
   const tButton = await getTranslations("button")
 
-  const productImages: ProductImage[] = [
-    { image: Images.SkinCareFront, name: "Skin Care" },
-    { image: Images.LowFatFront, name: "Low Fat" },
-    { image: Images.SeniorCareFront, name: "Senior Care" },
-    { image: Images.RenalCareFront, name: "Renal Care" },
-  ]
+  const { BiteCareProducts } = await useProducts()
 
   return (
     <div
@@ -62,7 +55,7 @@ export default async function ProductsPageLanding() {
         <ProductsPageLandingGradientBlur />
 
         <div className="relative ml-auto flex w-[90%] items-center xl:w-[45%]">
-          <ProductSwiper productImages={productImages} />
+          <ProductSwiper products={BiteCareProducts} />
         </div>
       </ActiveProductContextProvider>
     </div>

@@ -2,19 +2,20 @@
 
 import { useEffect, useState } from "react"
 
-import { ComparingProductCard } from "@/types/common/product"
-
 import Selector from "@/components/common/Selector"
 import CompareCard from "./CompareCard"
+import { BiteCareProduct } from "@/types/common/product"
 
 type CompareCardProps = {
-  ComparingProducts: ComparingProductCard[]
+  products: BiteCareProduct[]
 }
 
-export default function CompareCards({ ComparingProducts }: CompareCardProps) {
-  const [selectedProduct, setSelectedProduct] = useState<
-    ComparingProductCard[]
-  >([ComparingProducts[0], ComparingProducts[1], ComparingProducts[2]])
+export default function CompareCards({ products }: CompareCardProps) {
+  const [selectedProduct, setSelectedProduct] = useState<BiteCareProduct[]>([
+    products[0],
+    products[1],
+    products[2],
+  ])
   const [sliceIndex, setSliceIndex] = useState(0)
 
   useEffect(() => {
@@ -45,7 +46,7 @@ export default function CompareCards({ ComparingProducts }: CompareCardProps) {
         <div className="flex flex-col gap-4" key={index}>
           <Selector
             index={index}
-            choices={ComparingProducts}
+            choices={products}
             value={product.name}
             setSelectedProduct={setSelectedProduct}
           />

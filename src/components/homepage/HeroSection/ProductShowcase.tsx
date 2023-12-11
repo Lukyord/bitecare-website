@@ -4,28 +4,12 @@ import Image from "next/image"
 import { Link } from "@/lib/navigation"
 
 import TranslateXOnScroll from "../../animations/TranslateXOnScroll"
+import useProducts from "@/hooks/useProducts"
 
 type HeroProductShowcaseProps = {}
 
-export default function ProductShowcase({}: HeroProductShowcaseProps) {
-  const Products = [
-    {
-      image: Images.SkinCareFront,
-      alt: "Skin Care",
-      href: "/products/skin-care",
-    },
-    { image: Images.LowFatFront, alt: "Low Fat", href: "/products/low-fat" },
-    {
-      image: Images.SeniorCareFront,
-      alt: "Senior Care",
-      href: "/products/senior-care",
-    },
-    {
-      image: Images.RenalCareFront,
-      alt: "Renal Care",
-      href: "/products/renal-care",
-    },
-  ]
+export default async function ProductShowcase({}: HeroProductShowcaseProps) {
+  const { BiteCareProducts } = await useProducts()
 
   return (
     <div className="relative z-0 w-screen bg-bc-primary">
@@ -56,11 +40,11 @@ export default function ProductShowcase({}: HeroProductShowcaseProps) {
       />
 
       <TranslateXOnScroll translateXStart="-20vw" translateXEnd="0vw">
-        {Products.map((item, index) => (
-          <Link href={item.href} key={index} className="h-full min-w-[25%]">
+        {BiteCareProducts.map((product, index) => (
+          <Link href={product.href} key={index} className="h-full min-w-[25%]">
             <Image
-              alt={item.alt}
-              src={item.image}
+              alt={product.name}
+              src={product.imageFront}
               key={index}
               width={1192}
               height={2128}

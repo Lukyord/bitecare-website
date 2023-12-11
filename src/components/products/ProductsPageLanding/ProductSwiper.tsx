@@ -4,16 +4,16 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay } from "swiper/modules"
 
 import "swiper/css"
-import { ProductImage } from "@/types/common/product"
+import { BiteCareProduct } from "@/types/common/product"
 
 import SwiperButtonNext from "./SwiperButtonNext"
 import ProductSwiperSlide from "./ProductSwiperSlide"
 
 type ProductSwiperProps = {
-  productImages: ProductImage[]
+  products: BiteCareProduct[]
 }
 
-export default function ProductSwiper({ productImages }: ProductSwiperProps) {
+export default function ProductSwiper({ products }: ProductSwiperProps) {
   return (
     <Swiper
       slidesPerView={1.5}
@@ -33,9 +33,9 @@ export default function ProductSwiper({ productImages }: ProductSwiperProps) {
     >
       <SwiperButtonNext />
 
-      {productImages.map((productImage, index) => (
+      {products.map((product, index) => (
         <SwiperSlide key={index}>
-          <ProductSwiperSlide productImage={productImage} />
+          <ProductSwiperSlide product={product} />
         </SwiperSlide>
       ))}
     </Swiper>

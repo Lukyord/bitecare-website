@@ -2,10 +2,7 @@
 
 import React from "react"
 
-import {
-  BiteCareProductName,
-  ComparingProductCard,
-} from "@/types/common/product"
+import { BiteCareProductName, BiteCareProduct } from "@/types/common/product"
 
 import {
   Select,
@@ -18,11 +15,9 @@ import {
 
 type SelectorProps = {
   index: number
-  choices: ComparingProductCard[]
+  choices: BiteCareProduct[]
   value: BiteCareProductName
-  setSelectedProduct: React.Dispatch<
-    React.SetStateAction<ComparingProductCard[]>
-  >
+  setSelectedProduct: React.Dispatch<React.SetStateAction<BiteCareProduct[]>>
 }
 
 export default function Selector({

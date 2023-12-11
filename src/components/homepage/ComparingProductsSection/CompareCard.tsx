@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 
-import { ComparingProductCard } from "@/types/common/product"
-import ProductTag from "@/components/common/ProductTag"
+import { BiteCareProduct } from "@/types/common/product"
 import { useRouter } from "@/lib/navigation"
 
+import ProductTag from "@/components/common/ProductTag"
+
 type CompareCardProps = {
-  selectedProduct: ComparingProductCard
+  selectedProduct: BiteCareProduct
 }
 
 export default function CompareCard({ selectedProduct }: CompareCardProps) {
@@ -46,7 +47,7 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
       >
         <Image
           alt="product front"
-          src={selectedProduct.image2}
+          src={selectedProduct.imageFront}
           width={1192}
           height={2128}
           className="
@@ -60,7 +61,7 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
         />
         <Image
           alt="product dog"
-          src={selectedProduct.image1}
+          src={selectedProduct.imageDog}
           className="
                   absolute bottom-0 left-0 
                   hidden h-full w-auto transition-all

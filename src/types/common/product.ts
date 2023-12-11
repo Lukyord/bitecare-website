@@ -11,19 +11,15 @@ export type BiteCareProductTagName = keyof typeof ProductTags
 
 export type BiteCareProductTag = (typeof ProductTags)[BiteCareProductTagName]
 
-export type ComparingProductCard = {
+export type BiteCareProduct = {
   name: BiteCareProductName
   description1: string
   description2: string
-  image1: StaticImageData
-  image2: StaticImageData
+  imageFront: StaticImageData
+  imageDog: StaticImageData
+  altImageDog: string
   tags: BiteCareProductTag[]
   bgColor: string
   dividerColor: string
   href: string
-}
-
-export type ProductImage = {
-  image: StaticImageData
-  name: BiteCareProductName
 }
