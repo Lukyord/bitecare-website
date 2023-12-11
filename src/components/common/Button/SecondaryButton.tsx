@@ -13,6 +13,7 @@ type SecondaryButtonProps = {
   size: "paragraph" | "h3"
   specificWidth?: string
   href?: string
+  onClick?: () => void
 }
 
 export default function SecondaryButton({
@@ -21,6 +22,7 @@ export default function SecondaryButton({
   size,
   specificWidth,
   href,
+  onClick,
 }: SecondaryButtonProps) {
   const router = useRouter()
   const controls = useAnimation()
@@ -66,7 +68,6 @@ export default function SecondaryButton({
   }, [animationId])
 
   return (
-    //TODO: display toast copy link successfull
     <motion.button
       className={`
         text-bc_black relative
@@ -94,7 +95,10 @@ export default function SecondaryButton({
       ref={containerRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={() => href && router.push(href)}
+      onClick={() => {
+        href && router.push(href)
+        onClick && onClick()
+      }}
     >
       <MovingText controls={controls} icon={icon} text={text} />
       <MovingText controls={controls} icon={icon} text={text} isSecond />

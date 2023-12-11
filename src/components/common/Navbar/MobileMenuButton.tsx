@@ -11,15 +11,16 @@ import { NavbarItem } from "@/types/common/navbar"
 import { TiThMenu } from "react-icons/ti"
 import { RxCross2 } from "react-icons/rx"
 import { FaShareAlt } from "react-icons/fa"
+import { Link } from "@/lib/navigation"
+import { Images } from "@/constant/Images"
+import { useToast } from "@/components/ui/use-toast"
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { Link } from "@/lib/navigation"
-import { Images } from "@/constant/Images"
-
 import SecondaryButton from "../Button/SecondaryButton"
 import MobileLocaleSwitcher from "./MobileLocaleSwitcher"
 
@@ -34,8 +35,9 @@ export default function MobileMenuButton({
   const tNavBar = useTranslations("navbar")
   const tButton = useTranslations("button")
   const tMiscellaneous = useTranslations("miscellaneous")
+  const { toast } = useToast()
 
-  // // Disable scrolling when mobile nav menu is open
+  // Disable scrolling when mobile nav menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden"
@@ -139,7 +141,7 @@ export default function MobileMenuButton({
               <Image
                 alt="dashed line"
                 src={Images.DashedLineBlack}
-                className="w-full"
+                className="h-auto w-full"
               />
               <motion.div
                 className="mx-auto mt-4 w-[90%]"
@@ -154,6 +156,16 @@ export default function MobileMenuButton({
                   text={tButton("tell-a-friend")}
                   icon={<FaShareAlt size={20} />}
                   size="paragraph"
+                  onClick={() => {
+                    //TODO: change domain name
+                    navigator.clipboard
+                      .writeText("https://bitecare-website.vercel.app/")
+                      .then(() =>
+                        toast({
+                          description: tMiscellaneous("copy-link-success"),
+                        })
+                      )
+                  }}
                 />
               </motion.div>
             </motion.div>

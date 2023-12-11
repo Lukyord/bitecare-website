@@ -7,6 +7,7 @@ import "./globals.css"
 
 import Header from "@/components/common/Header"
 import { Navbar } from "@/components/common/Navbar/Navbar"
+import { Toaster } from "@/components/ui/toaster"
 
 const psl = localFont({
   src: "../../../public/fonts/PSL096pro.ttf",
@@ -57,6 +58,7 @@ export default function RootLayout({
           <Navbar />
         </Header>
         {children}
+        <Toaster />
       </body>
     </html>
   )
