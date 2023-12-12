@@ -10,7 +10,7 @@ export default async function ProductsListSection() {
   return (
     <section className="mx-auto mb-20 flex w-[95vw] flex-col items-center">
       <div className="my-10 flex w-full justify-end">
-        <p className="text-paragraph">
+        <p className="mr-[2.5vw] text-paragraph">
           {tMiscellaneous("products")} ({BiteCareProducts.length})
         </p>
       </div>
@@ -19,7 +19,7 @@ export default async function ProductsListSection() {
         className="
                 flex grid-cols-2 flex-wrap 
                 justify-center justify-items-center 
-                gap-x-14 gap-y-10 lg:grid
+                gap-x-10 gap-y-6 lg:grid xl:gap-x-14 xl:gap-y-10
               "
       >
         {BiteCareProducts.map((product, index) => (

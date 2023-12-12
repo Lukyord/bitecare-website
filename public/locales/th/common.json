@@ -32,12 +32,14 @@
     "meet-bite-care": "พบกับ BiteCare",
     "tell-a-friend": "Tell a Friend",
     "see-our-products": "ดูผลิตภัณฑ์ของเรา",
-    "view-more": "ดูเพิ่มเติม"
+    "view-more": "ดูเพิ่มเติม",
+    "faq": "คำถามที่พบบ่อย"
   },
   "miscellaneous": {
     "impressed-by-our-products": "ประทับใจผลิตภัณฑ์ของเรา?",
     "copy-link-success": "คัดลอกลิงค์สำเร็จ",
-    "products": "ผลิตภัณฑ์"
+    "products": "ผลิตภัณฑ์",
+    "check-out-faq": "มีข้อสงสัย? ดูคำถามที่พบบ่อยของเรา"
   },
   "product-tag": {
     "low-calorie-and-fat": "Low calorie & fat",

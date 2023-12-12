@@ -32,12 +32,14 @@
     "meet-bite-care": "Meet Bite Care",
     "tell-a-friend": "Tell a Friend",
     "see-our-products": "See our products",
-    "view-more": "View more"
+    "view-more": "View more",
+    "faq": "FAQ"
   },
   "miscellaneous": {
     "impressed-by-our-products": "Impressed by our products?",
     "copy-link-success": "Link copied to clipboard",
-    "products": "Products"
+    "products": "Products",
+    "check-out-faq": "Have questions? Check out our FAQ"
   },
   "product-tag": {
     "low-calorie-and-fat": "Low calorie & fat",
