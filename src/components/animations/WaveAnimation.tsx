@@ -45,16 +45,20 @@ export default function WaveAnimation() {
   }, [isInview, controls])
 
   return (
-    <div className="relative h-40 w-screen overflow-hidden" ref={containerRef}>
+    <div className="relative h-48 w-screen overflow-hidden" ref={containerRef}>
       <motion.div
-        className="absolute h-full w-full"
+        className="absolute bottom-0 w-full"
         animate={controls}
         ref={waveRef}
       >
-        <Image src={Images.WaveFooter_1} alt="wave1" />
+        <Image
+          className="h-auto w-screen"
+          src={Images.WaveFooter_1}
+          alt="wave1"
+        />
       </motion.div>
       <motion.div
-        className="absolute right-[100%] h-full w-full"
+        className="absolute bottom-0 right-[100%] w-full"
         animate={controls}
         ref={waveRef}
       >
