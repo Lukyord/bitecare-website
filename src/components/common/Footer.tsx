@@ -70,58 +70,81 @@ export default async function Footer() {
   return (
     <footer>
       <WaveAnimation />
-      <div className="mx-auto flex w-[90%] flex-col text-center">
-        <h1 className="text-h3 lg:text-h2">{tFooter("tagline1")}</h1>
-        <h1 className="text-h3 lg:text-h2">{tFooter("tagline2")}</h1>
-        <h2 className="text-paragraph lg:text-h3">
-          {tFooter("tagline-description1")}
-        </h2>
-        <h2 className="text-paragraph lg:text-h3">
-          {tFooter("tagline-description2")}
-        </h2>
-        <SecondaryButton
-          text={tFooter("get-to-know-us")}
-          size="h3"
-          href="/about-us"
-        />
-        <div className="mx-auto mt-10 flex w-[90%] items-center justify-between lg:mt-20 lg:flex-row">
-          <Image
-            className="flex w-1/2"
-            src={Images.BiteCareLogoTextTM}
-            alt="bitecare-footer-logo"
-          />
-          <div className="flex w-1/2 justify-between">
-            {footerItems.map((footerItem, index) => (
-              <ul className="text-paragraph lg:text-h3" key={index}>
-                {footerItem.label}
-                {footerItem.list.map((item, index) => (
-                  <li
-                    className="text-left text-subtitle lg:text-paragraph"
-                    key={index}
-                  >
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                ))}
-              </ul>
-            ))}
+      <div className="bg-bc-primary-container">
+        <div className="mx-auto flex w-[90%] flex-col pt-32 text-center">
+          <h1 className="text-h3 lg:text-h2">{tFooter("tagline1")}</h1>
+          <h1 className="mt-2 text-h3 lg:text-h2">{tFooter("tagline2")}</h1>
+          <h2 className="mt-12 text-paragraph lg:text-h3">
+            {tFooter("tagline-description1")}
+          </h2>
+          <h2 className="mt-2 text-paragraph lg:text-h3">
+            {tFooter("tagline-description2")}
+          </h2>
+          <div className="mt-20">
+            <SecondaryButton
+              text={tFooter("get-to-know-us")}
+              size="h3"
+              href="/about-us"
+            />
           </div>
-        </div>
-        <div className="flex w-full">
-          <div className="flex grow justify-center">
-            <p className="mx-8 lg:mx-10">{tFooter("copy-right")}</p>
-            <p className="mx-8 lg:mx-10">{tFooter("policy")}</p>
-            <p className="mx-8 lg:mx-10">{tFooter("terms")}</p>
+          <div className="mx-auto mt-16 flex w-[90%] items-center justify-between lg:flex-row">
+            <Image
+              className="flex w-1/2 px-10"
+              src={Images.BiteCareLogoTextTM}
+              alt="bitecare-footer-logo"
+            />
+            <div className="flex w-1/2 justify-between px-10">
+              {footerItems.map((footerItem, index) => (
+                <ul
+                  className="flex flex-col text-left text-paragraph lg:text-h3"
+                  key={index}
+                >
+                  <span className="mb-4">{footerItem.label}</span>
+                  {footerItem.list.map((item, index) => (
+                    <li
+                      className="mt-4 text-left text-subtitle lg:text-paragraph"
+                      key={index}
+                    >
+                      <a href={item.href}>{item.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
           </div>
-          <div className="flex justify-end">
-            <Link className="mx-1 lg:mx-2" href="facebook">
-              <Image src={Images.FacebookIcon} alt="facebook" />
-            </Link>
-            <Link className="mx-1 lg:mx-2" href="instagram">
-              <Image src={Images.InstagramIcon} alt="instagram" />
-            </Link>
-            <Link className="mx-1 lg:mx-2" href="shopee">
-              <Image src={Images.ShopeeIcon} alt="youtube" />
-            </Link>
+          <div className="mb-6 mt-32 flex">
+            <div className="w-1/4"></div>
+            <div className="flex w-1/2">
+              <Link
+                className="text-subtitile m-auto lg:text-paragraph"
+                href="/"
+              >
+                {tFooter("copy-right")}
+              </Link>
+              <Link
+                className="text-subtitile m-auto lg:text-paragraph "
+                href="/policy-privacy"
+              >
+                {tFooter("policy")}
+              </Link>
+              <Link
+                className="text-subtitile m-auto lg:text-paragraph"
+                href="/terms-and-conditions"
+              >
+                {tFooter("terms")}
+              </Link>
+            </div>
+            <div className="flex w-1/4 justify-end">
+              <Link className="mx-2 my-auto lg:mx-4" href="facebook">
+                <Image src={Images.FacebookIcon} alt="facebook" />
+              </Link>
+              <Link className="mx-2 my-auto lg:mx-4" href="instagram">
+                <Image src={Images.InstagramIcon} alt="instagram" />
+              </Link>
+              <Link className="mx-2 my-auto lg:mx-4" href="shopee">
+                <Image src={Images.ShopeeIcon} alt="shopee" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
