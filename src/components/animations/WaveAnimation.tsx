@@ -45,7 +45,10 @@ export default function WaveAnimation() {
   }, [isInview, controls])
 
   return (
-    <div className="relative h-48 w-screen overflow-hidden" ref={containerRef}>
+    <div
+      className="relative h-24 w-screen overflow-hidden md:h-32 lg:h-48"
+      ref={containerRef}
+    >
       <motion.div
         className="absolute bottom-0 w-full"
         animate={controls}

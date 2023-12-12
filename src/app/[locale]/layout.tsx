@@ -10,7 +10,7 @@ import "./globals.css"
 import Header from "@/components/common/Header"
 import { Navbar } from "@/components/common/Navbar/Navbar"
 import { Toaster } from "@/components/ui/toaster"
-import Footer from "@/components/common/Footer"
+import Footer from "@/components/common/Footer/Footer"
 
 const psl = localFont({
   src: "../../../public/fonts/PSL096pro.ttf",
