@@ -28,8 +28,8 @@ export default function ProductSwiperSlide({
       <Image
         alt="product-image"
         src={product.imageFront}
-        width={600}
-        height={1000}
+        width={1192}
+        height={2128}
         className="
                 h-full w-auto border-r-2 
                 border-bc-black 

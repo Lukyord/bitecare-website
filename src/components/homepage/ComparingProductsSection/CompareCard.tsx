@@ -41,7 +41,7 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
         transition={{ duration: 1 }}
         className={`
                 relative h-[40vw] w-full 
-                lg:h-[20vw] ${selectedProduct.bgColor} 
+                lg:h-[20vw] ${selectedProduct.compareBgColor} 
                 group overflow-hidden
               `}
       >
@@ -93,7 +93,7 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
               initial={{ width: 0 }}
               animate={{ width: "100%" }}
               className={`
-                  ${selectedProduct.dividerColor} h-1 
+                  ${selectedProduct.compareDividerColor} h-1 
                 `}
             />
           </div>
@@ -101,7 +101,7 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
             <div className="flex flex-wrap gap-1">
               {selectedProduct.tags.map((tag, index) => (
                 <React.Fragment key={index}>
-                  <ProductTag tag={tag} />
+                  <ProductTag tag={tag} size="small" />
                 </React.Fragment>
               ))}
             </div>

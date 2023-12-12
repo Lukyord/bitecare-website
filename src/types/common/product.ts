@@ -19,7 +19,8 @@ export type BiteCareProduct = {
   imageDog: StaticImageData
   altImageDog: string
   tags: BiteCareProductTag[]
-  bgColor: string
-  dividerColor: string
+  compareBgColor: string
+  compareDividerColor: string
+  productCardBgColor: string
   href: string
 }
