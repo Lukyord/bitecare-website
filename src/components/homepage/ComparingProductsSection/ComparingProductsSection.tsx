@@ -6,7 +6,7 @@ import CompareCards from "./CompareCards"
 
 export default async function ComparingProductsSection() {
   const tComparingProducts = await getTranslations("comparing-products")
-  const { BiteCareProducts } = await useProducts()
+  const BiteCareProducts = await useProducts()
 
   return (
     <section

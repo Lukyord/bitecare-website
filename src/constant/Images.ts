@@ -35,8 +35,14 @@ import HighlightBlack_1 from "@public/assets/illustrations/highlight-1-black.svg
 // L
 import LineOaLogoFullWhite from "@public/assets/common/line-oa-logo-full-white.png"
 import LowFatFront from "@public/assets/products/low-fat/low-fat-front.png"
+import LowFatBack from "@public/assets/products/low-fat/low-fat-back.png"
 import LowFatDog from "@public/assets/products/low-fat/low-fat-dog.png"
 import LowFatDogCropped from "@public/assets/products/low-fat/low-fat-dog-cropped.png"
+import LowFatClinicTest from "@public/assets/products/low-fat/low-fat-clinic-test.png"
+import LowFatFactSheet from "@public/assets/products/low-fat/low-fat-factsheet.png"
+import LowFatPalatabilityTest from "@public/assets/products/low-fat/low-fat-palatability-test.png"
+import LowFatRegistrationNumber from "@public/assets/products/low-fat/low-fat-registration-number.png"
+import LowFatSummary from "@public/assets/products/low-fat/low-fat-summary.png"
 // M
 // N
 // O
@@ -44,8 +50,14 @@ import LowFatDogCropped from "@public/assets/products/low-fat/low-fat-dog-croppe
 // Q
 // R
 import RenalCareFront from "@public/assets/products/renal-care/renal-care-front.png"
+import RenalCareBack from "@public/assets/products/renal-care/renal-care-back.png"
 import RenalCareDog from "@public/assets/products/renal-care/renal-care-dog.png"
 import RenalCareDogCropped from "@public/assets/products/renal-care/renal-care-dog-cropped.png"
+import RenalCareClinicTest from "@public/assets/products/renal-care/renal-care-clinic-test.png"
+import RenalCareFactSheet from "@public/assets/products/renal-care/renal-care-factsheet.png"
+import RenalCarePalatabilityTest from "@public/assets/products/renal-care/renal-care-palatability-test.png"
+import RenalCareRegistrationNumber from "@public/assets/products/renal-care/renal-care-registration-number.png"
+import RenalCareSummary from "@public/assets/products/renal-care/renal-care-summary.png"
 // S
 import ShopeeLogoFullWhite from "@public/assets/common/shopee-logo-full-white.png"
 import SparkleBlack_1 from "@public/assets/illustrations/sparkle-1-black.svg"
@@ -54,11 +66,23 @@ import SparkleBcInversePrimary_1 from "@public/assets/illustrations/sparkle-bc-i
 import SparkleBcInversePrimary_2 from "@public/assets/illustrations/sparkle-bc-inverse-primary-2.svg"
 import SparkleBcInversePrimary_3 from "@public/assets/illustrations/sparkle-bc-inverse-primary-3.svg"
 import SeniorCareFront from "@public/assets/products/senior-care/senior-care-front.png"
+import SeniorCareBack from "@public/assets/products/senior-care/senior-care-back.png"
 import SeniorCareDog from "@public/assets/products/senior-care/senior-care-dog.png"
 import SeniorCareDogCropped from "@public/assets/products/senior-care/senior-care-dog-cropped.png"
+import SeniorCareClinicTest from "@public/assets/products/senior-care/senior-care-clinic-test.png"
+import SeniorCareFactSheet from "@public/assets/products/senior-care/senior-care-factsheet.png"
+import SeniorCarePalatabilityTest from "@public/assets/products/senior-care/senior-care-palatability-test.png"
+import SeniorCareRegistrationNumber from "@public/assets/products/senior-care/senior-care-registration-number.png"
+import SeniorCareSummary from "@public/assets/products/senior-care/senior-care-summary.png"
 import SkinCareFront from "@public/assets/products/skin-care/skin-care-front.png"
+import SkinCareBack from "@public/assets/products/skin-care/skin-care-back.png"
 import SkinCareDog from "@public/assets/products/skin-care/skin-care-dog.png"
 import SkinCareDogCropped from "@public/assets/products/skin-care/skin-care-dog-cropped.png"
+import SkinCareClinicTest from "@public/assets/products/skin-care/skin-care-clinic-test.png"
+import SkinCareFactSheet from "@public/assets/products/skin-care/skin-care-factsheet.png"
+import SkinCarePalatabilityTest from "@public/assets/products/skin-care/skin-care-palatability-test.png"
+import SkinCareRegistrationNumber from "@public/assets/products/skin-care/skin-care-registration-number.png"
+import SkinCareSummary from "@public/assets/products/skin-care/skin-care-summary.png"
 import SquigglyLineOrange from "@public/assets/illustrations/squiggly-line-orange.svg"
 // T
 import ThaiFlag from "@public/assets/common/thai-flag.svg"
@@ -104,8 +128,14 @@ export const Images = {
   // L
   LineOaLogoFullWhite,
   LowFatFront,
+  LowFatBack,
   LowFatDog,
   LowFatDogCropped,
+  LowFatClinicTest,
+  LowFatFactSheet,
+  LowFatPalatabilityTest,
+  LowFatRegistrationNumber,
+  LowFatSummary,
   // M
   // N
   // O
@@ -113,8 +143,14 @@ export const Images = {
   // Q
   // R
   RenalCareFront,
+  RenalCareBack,
   RenalCareDog,
   RenalCareDogCropped,
+  RenalCareClinicTest,
+  RenalCareFactSheet,
+  RenalCarePalatabilityTest,
+  RenalCareRegistrationNumber,
+  RenalCareSummary,
   // S
   ShopeeLogoFullWhite,
   SparkleBlack_1,
@@ -123,11 +159,23 @@ export const Images = {
   SparkleBcInversePrimary_2,
   SparkleBcInversePrimary_3,
   SeniorCareFront,
+  SeniorCareBack,
   SeniorCareDog,
   SeniorCareDogCropped,
+  SeniorCareClinicTest,
+  SeniorCareFactSheet,
+  SeniorCarePalatabilityTest,
+  SeniorCareRegistrationNumber,
+  SeniorCareSummary,
   SkinCareFront,
+  SkinCareBack,
   SkinCareDog,
   SkinCareDogCropped,
+  SkinCareClinicTest,
+  SkinCareFactSheet,
+  SkinCarePalatabilityTest,
+  SkinCareRegistrationNumber,
+  SkinCareSummary,
   SquigglyLineOrange,
   // T
   ThaiFlag,

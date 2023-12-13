@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
 import ProductSwiper from "./ProductSwiper"
-import SecondaryButton from "../../common/Button/SecondaryButton"
+import SecondaryButton from "../../../common/Button/SecondaryButton"
 import ProductsPageLandingBackground from "./ProductsPageLandingBackground"
 import ActiveProductContextProvider from "@/context/ActiveProductContextProvider"
 import ProductsPageLandingGradientBlur from "./ProductsPageLandingGradientBlur"
@@ -11,7 +11,7 @@ export default async function ProductsPageLanding() {
   const tProductsLanding = await getTranslations("products-landing")
   const tButton = await getTranslations("button")
 
-  const { BiteCareProducts } = await useProducts()
+  const BiteCareProducts = await useProducts()
 
   return (
     <div

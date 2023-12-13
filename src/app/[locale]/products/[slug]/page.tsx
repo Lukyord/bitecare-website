@@ -1,6 +1,8 @@
-import { notFound } from "next/navigation"
 import { BiteCareProductSlug } from "@/types/common/product"
 import { ProductSlugs } from "@/constant/Products"
+import useProducts from "@/hooks/useProducts"
+import { notFound } from "next/navigation"
+import ProductDetailLanding from "@/components/products/ProductDetail/ProductDetailLanding"
 
 export const dynamicParams = false
 
@@ -15,7 +17,14 @@ export default async function ProductDetailPage({
 }: {
   params: { slug: BiteCareProductSlug }
 }) {
-  // if (!ProductSlugs.includes(slug)) return notFound()
+  const BiteCareProducts = await useProducts()
+  const product = BiteCareProducts.find((product) => product.slug === slug)
 
-  return <div>{slug}</div>
+  if (!product) return notFound()
+
+  return (
+    <div>
+      <ProductDetailLanding product={product} />
+    </div>
+  )
 }

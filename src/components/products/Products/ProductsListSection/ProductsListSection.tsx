@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard"
 import { getTranslations } from "next-intl/server"
 
 export default async function ProductsListSection() {
-  const { BiteCareProducts } = await useProducts()
+  const BiteCareProducts = await useProducts()
   const tMiscellaneous = await getTranslations("miscellaneous")
 
   return (

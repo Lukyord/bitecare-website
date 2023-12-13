@@ -9,7 +9,7 @@ import useProducts from "@/hooks/useProducts"
 type HeroProductShowcaseProps = {}
 
 export default async function ProductShowcase({}: HeroProductShowcaseProps) {
-  const { BiteCareProducts } = await useProducts()
+  const BiteCareProducts = await useProducts()
 
   return (
     <div className="relative z-0 w-screen bg-bc-primary">

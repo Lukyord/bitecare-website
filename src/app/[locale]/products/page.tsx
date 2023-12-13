@@ -1,6 +1,6 @@
 import FaqNavigateSection from "@/components/common/FaqNavigateSection"
-import ProductsListSection from "@/components/products/ProductsListSection/ProductsListSection"
-import ProductsPageLanding from "@/components/products/ProductsPageLanding/ProductsPageLanding"
+import ProductsListSection from "@/components/products/Products/ProductsListSection/ProductsListSection"
+import ProductsPageLanding from "@/components/products/Products/ProductsPageLanding/ProductsPageLanding"
 
 export default function ProductsPage() {
   return (

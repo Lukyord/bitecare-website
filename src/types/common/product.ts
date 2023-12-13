@@ -19,12 +19,18 @@ export type BiteCareProductTag = (typeof ProductTags)[BiteCareProductTagName]
 
 export type BiteCareProduct = {
   name: BiteCareProductName
-  slug: string
+  slug: BiteCareProductSlug
   description1: string
   description2: string
   imageFront: StaticImageData
+  imageBack: StaticImageData
   imageDog: StaticImageData
   altImageDog: string
+  imageSummary: StaticImageData
+  imageClinicTest: StaticImageData
+  imagePalatabilityTest: StaticImageData
+  imageFactSheet: StaticImageData
+  imageRegistrationNumber: StaticImageData
   tags: BiteCareProductTag[]
   compareBgColor: string
   compareDividerColor: string
