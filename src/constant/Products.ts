@@ -1,4 +1,7 @@
-import { BiteCareProductSlug } from "@/types/common/product"
+import {
+  BiteCareProductImageSlug,
+  BiteCareProductSlug,
+} from "@/types/common/product"
 
 export const ProductTags = {
   "Low Calories & Fats": { name: "Low Calories & Fats", color: "bg-[#008166]" },
@@ -24,4 +27,13 @@ export const ProductSlugs: BiteCareProductSlug[] = [
   "skin-care",
   "senior-care",
   "renal-care",
+] as const
+
+export const ProductsImage: BiteCareProductImageSlug[] = [
+  "front",
+  "back",
+  "summary",
+  "clinic-test",
+  "palatability-test",
+  "registration-number",
 ] as const

@@ -17,6 +17,14 @@ export type BiteCareProductTagName = keyof typeof ProductTags
 
 export type BiteCareProductTag = (typeof ProductTags)[BiteCareProductTagName]
 
+export type BiteCareProductImageSlug =
+  | "front"
+  | "back"
+  | "summary"
+  | "clinic-test"
+  | "palatability-test"
+  | "registration-number"
+
 export type BiteCareProduct = {
   name: BiteCareProductName
   slug: BiteCareProductSlug
@@ -36,4 +44,9 @@ export type BiteCareProduct = {
   compareDividerColor: string
   productCardBgColor: string
   href: string
+}
+
+export type ProductImage = {
+  image: StaticImageData
+  slug: BiteCareProductImageSlug
 }
