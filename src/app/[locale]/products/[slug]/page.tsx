@@ -8,6 +8,7 @@ import { ProductSlugs, ProductsImage } from "@/constant/Products"
 
 import useProducts from "@/hooks/useProducts"
 import ProductDetailLanding from "@/components/products/ProductDetail/ProductDetailLanding/ProductDetailLanding"
+import { unstable_setRequestLocale } from "next-intl/server"
 
 export const dynamicParams = false
 
@@ -18,12 +19,14 @@ export async function generateStaticParams() {
 }
 
 export default async function ProductDetailPage({
-  params: { slug },
+  params: { locale, slug },
   searchParams,
 }: {
-  params: { slug: BiteCareProductSlug }
+  params: { locale: string; slug: BiteCareProductSlug }
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
+  unstable_setRequestLocale(locale)
+
   const BiteCareProducts = await useProducts()
   const product = BiteCareProducts.find((product) => product.slug === slug)
 
