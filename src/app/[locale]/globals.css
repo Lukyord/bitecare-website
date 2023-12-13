@@ -94,7 +94,8 @@
 }
 
 *::-webkit-scrollbar-track {
-  background: #d2cfcc;
+  background-color: rgb(210, 207, 204, 0.3);
+  /* background-color: transparent; */
   border-radius: 5px;
 }
 

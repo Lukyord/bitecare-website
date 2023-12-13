@@ -3,6 +3,7 @@ import {
   BiteCareProductImageSlug,
 } from "@/types/common/product"
 import ProductDetailImageGallery from "./ProductDetailImageGallery"
+import ProductDetailInfo from "./ProductDetailInfo"
 
 type ProductDetailLandingProps = {
   product: BiteCareProduct
@@ -16,16 +17,19 @@ export default function ProductDetailLanding({
   return (
     <section
       className="
-                  mx-auto flex h-[100vh] 
-                  w-[90vw] flex-col pb-14 
-                  pt-36 xl:flex-row
+                  mx-auto flex w-[80vw] flex-col 
+                  pb-14 pt-36 lg:h-[115vh] 
+                  xl:flex-row xl:justify-between 2xl:h-[100vh]
                 "
     >
-      <div className="xl:w-[55%]">
+      <div className="sm:w-[55%]">
         <ProductDetailImageGallery
           product={product}
           selectedImage={selectedImage}
         />
+      </div>
+      <div className="sm:w-[40%]">
+        <ProductDetailInfo product={product} />
       </div>
     </section>
   )

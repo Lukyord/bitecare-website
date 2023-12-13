@@ -5,17 +5,18 @@ import { Images } from "@/constant/Images"
 import { ProductTags } from "@/constant/Products"
 
 export default async function useProducts() {
-  const tComparingProducts = await getTranslations("comparing-products")
+  const tSkinCare = await getTranslations("skin-care")
+  const tLowFat = await getTranslations("low-fat")
+  const tSeniorCare = await getTranslations("senior-care")
+  const tRenalCare = await getTranslations("renal-care")
+
   const BiteCareProducts: BiteCareProduct[] = [
     {
       name: "Skin Care",
       slug: "skin-care",
-      description1: tComparingProducts("skin-care-description-1"),
-      description2: tComparingProducts("skin-care-description-2"),
       imageFront: Images.SkinCareFront,
       imageBack: Images.SkinCareBack,
       imageDog: Images.SkinCareDogCropped,
-      altImageDog: "Skin Care Dog",
       imageSummary: Images.SkinCareSummary,
       imageClinicTest: Images.SkinCareClinicTest,
       imagePalatabilityTest: Images.SkinCarePalatabilityTest,
@@ -26,6 +27,35 @@ export default async function useProducts() {
         ProductTags["Gluten Free"],
         ProductTags["Omega-3 & Amino Acids"],
       ],
+      productInfo: {
+        compareDescription1: tSkinCare("compare-description-1"),
+        compareDescription2: tSkinCare("compare-description-2"),
+        productDescription: tSkinCare("product-description"),
+        questions: [
+          tSkinCare("question-1"),
+          tSkinCare("question-2"),
+          tSkinCare("question-3"),
+        ],
+        answers: [
+          tSkinCare("answer-1"),
+          tSkinCare("answer-2"),
+          tSkinCare("answer-3"),
+        ],
+        testimonial: {
+          text: tSkinCare("testimonial"),
+          name: tSkinCare("testimonial-name"),
+        },
+        summaries: [
+          tSkinCare("summary-1"),
+          tSkinCare("summary-2"),
+          tSkinCare("summary-3"),
+        ],
+        summaryDescriptions: [
+          tSkinCare("summary-description-1"),
+          tSkinCare("summary-description-2"),
+          tSkinCare("summary-description-3"),
+        ],
+      },
       compareBgColor: "bg-[#CEEFF4]",
       compareDividerColor: "bg-[#1A9CBC]",
       productCardBgColor: "bg-[#1A9CBC]",
@@ -34,12 +64,9 @@ export default async function useProducts() {
     {
       name: "Low Fat",
       slug: "low-fat",
-      description1: tComparingProducts("low-fat-description-1"),
-      description2: tComparingProducts("low-fat-description-2"),
       imageFront: Images.LowFatFront,
       imageBack: Images.LowFatBack,
       imageDog: Images.LowFatDogCropped,
-      altImageDog: "Low Fat Dog",
       imageSummary: Images.LowFatSummary,
       imageClinicTest: Images.LowFatClinicTest,
       imagePalatabilityTest: Images.LowFatPalatabilityTest,
@@ -50,6 +77,35 @@ export default async function useProducts() {
         ProductTags["L-Carnitine"],
         ProductTags["Collagen Type2"],
       ],
+      productInfo: {
+        compareDescription1: tLowFat("compare-description-1"),
+        compareDescription2: tLowFat("compare-description-2"),
+        productDescription: tLowFat("product-description"),
+        questions: [
+          tLowFat("question-1"),
+          tLowFat("question-2"),
+          tLowFat("question-3"),
+        ],
+        answers: [
+          tLowFat("answer-1"),
+          tLowFat("answer-2"),
+          tLowFat("answer-3"),
+        ],
+        testimonial: {
+          text: tLowFat("testimonial"),
+          name: tLowFat("testimonial-name"),
+        },
+        summaries: [
+          tLowFat("summary-1"),
+          tLowFat("summary-2"),
+          tLowFat("summary-3"),
+        ],
+        summaryDescriptions: [
+          tLowFat("summary-description-1"),
+          tLowFat("summary-description-2"),
+          tLowFat("summary-description-3"),
+        ],
+      },
       compareBgColor: "bg-[#DCF9DD]",
       compareDividerColor: "bg-[#009172]",
       productCardBgColor: "bg-[#009172]",
@@ -58,12 +114,9 @@ export default async function useProducts() {
     {
       name: "Senior Care",
       slug: "senior-care",
-      description1: tComparingProducts("senior-care-description-1"),
-      description2: tComparingProducts("senior-care-description-2"),
       imageFront: Images.SeniorCareFront,
       imageBack: Images.SeniorCareBack,
       imageDog: Images.SeniorCareDogCropped,
-      altImageDog: "Senior Care Dog",
       imageSummary: Images.SeniorCareSummary,
       imageClinicTest: Images.SeniorCareClinicTest,
       imagePalatabilityTest: Images.SeniorCarePalatabilityTest,
@@ -74,6 +127,35 @@ export default async function useProducts() {
         ProductTags["Ginkgo Extract"],
         ProductTags["Collagen Type2"],
       ],
+      productInfo: {
+        compareDescription1: tSeniorCare("compare-description-1"),
+        compareDescription2: tSeniorCare("compare-description-2"),
+        productDescription: tSeniorCare("product-description"),
+        questions: [
+          tSeniorCare("question-1"),
+          tSeniorCare("question-2"),
+          tSeniorCare("question-3"),
+        ],
+        answers: [
+          tSeniorCare("answer-1"),
+          tSeniorCare("answer-2"),
+          tSeniorCare("answer-3"),
+        ],
+        testimonial: {
+          text: tSeniorCare("testimonial"),
+          name: tSeniorCare("testimonial-name"),
+        },
+        summaries: [
+          tSeniorCare("summary-1"),
+          tSeniorCare("summary-2"),
+          tSeniorCare("summary-3"),
+        ],
+        summaryDescriptions: [
+          tSeniorCare("summary-description-1"),
+          tSeniorCare("summary-description-2"),
+          tSeniorCare("summary-description-3"),
+        ],
+      },
       compareBgColor: "bg-[#E6DBF9]",
       compareDividerColor: "bg-[#866DAF]",
       productCardBgColor: "bg-[#866DAF]",
@@ -82,12 +164,9 @@ export default async function useProducts() {
     {
       name: "Renal Care",
       slug: "renal-care",
-      description1: tComparingProducts("renal-care-description-1"),
-      description2: tComparingProducts("renal-care-description-2"),
       imageFront: Images.RenalCareFront,
       imageBack: Images.RenalCareBack,
       imageDog: Images.RenalCareDogCropped,
-      altImageDog: "Renal Care Dog",
       imageSummary: Images.RenalCareSummary,
       imageClinicTest: Images.RenalCareClinicTest,
       imagePalatabilityTest: Images.RenalCarePalatabilityTest,
@@ -98,6 +177,35 @@ export default async function useProducts() {
         ProductTags["Chitosan Extract"],
         ProductTags["Omega-3 & Amino Acids"],
       ],
+      productInfo: {
+        compareDescription1: tRenalCare("compare-description-1"),
+        compareDescription2: tRenalCare("compare-description-2"),
+        productDescription: tRenalCare("product-description"),
+        questions: [
+          tRenalCare("question-1"),
+          tRenalCare("question-2"),
+          tRenalCare("question-3"),
+        ],
+        answers: [
+          tRenalCare("answer-1"),
+          tRenalCare("answer-2"),
+          tRenalCare("answer-3"),
+        ],
+        testimonial: {
+          text: tRenalCare("testimonial"),
+          name: tRenalCare("testimonial-name"),
+        },
+        summaries: [
+          tRenalCare("summary-1"),
+          tRenalCare("summary-2"),
+          tRenalCare("summary-3"),
+        ],
+        summaryDescriptions: [
+          tRenalCare("summary-description-1"),
+          tRenalCare("summary-description-2"),
+          tRenalCare("summary-description-3"),
+        ],
+      },
       compareBgColor: "bg-[#F9D7D7]",
       compareDividerColor: "bg-[#EB7BAD]",
       productCardBgColor: "bg-[#DA7CA6]",

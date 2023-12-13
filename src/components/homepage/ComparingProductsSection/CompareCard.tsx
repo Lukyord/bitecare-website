@@ -115,7 +115,7 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
           animate={{ opacity: 1 }}
           className="mt-3 text-justify text-subtitle xs:mt-6 md:mt-0 lg:text-paragraph"
         >
-          {selectedProduct.description1}
+          {selectedProduct.productInfo.compareDescription1}
         </motion.article>
 
         <motion.article
@@ -124,7 +124,7 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
           animate={{ opacity: 1 }}
           className="mt-6 text-justify text-subtitle lg:text-paragraph"
         >
-          {selectedProduct.description2}
+          {selectedProduct.productInfo.compareDescription2}
         </motion.article>
       </div>
     </div>

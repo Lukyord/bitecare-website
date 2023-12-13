@@ -33,13 +33,15 @@
     "tell-a-friend": "Tell a Friend",
     "see-our-products": "See our products",
     "view-more": "View more",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "get-our-product": "Get our product"
   },
   "miscellaneous": {
     "impressed-by-our-products": "Impressed by our products?",
     "copy-link-success": "Link copied to clipboard",
     "products": "Products",
-    "check-out-faq": "Have questions? Check out our FAQ"
+    "check-out-faq": "Have questions? Check out our FAQ",
+    "you-may-also-like": "You may also like"
   },
   "product-tag": {
     "low-calorie-and-fat": "Low calorie & fat",

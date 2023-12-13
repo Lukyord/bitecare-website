@@ -28,22 +28,34 @@ export type BiteCareProductImageSlug =
 export type BiteCareProduct = {
   name: BiteCareProductName
   slug: BiteCareProductSlug
-  description1: string
-  description2: string
   imageFront: StaticImageData
   imageBack: StaticImageData
   imageDog: StaticImageData
-  altImageDog: string
   imageSummary: StaticImageData
   imageClinicTest: StaticImageData
   imagePalatabilityTest: StaticImageData
   imageFactSheet: StaticImageData
   imageRegistrationNumber: StaticImageData
   tags: BiteCareProductTag[]
+  productInfo: ProductInfo
   compareBgColor: string
   compareDividerColor: string
   productCardBgColor: string
   href: string
+}
+
+export type ProductInfo = {
+  compareDescription1: string
+  compareDescription2: string
+  productDescription: string
+  questions: string[]
+  answers: string[]
+  testimonial: {
+    text: string
+    name: string
+  }
+  summaries: string[]
+  summaryDescriptions: string[]
 }
 
 export type ProductImage = {
