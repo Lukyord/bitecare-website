@@ -9,6 +9,7 @@ export default async function useProducts() {
   const BiteCareProducts: BiteCareProduct[] = [
     {
       name: "Skin Care",
+      slug: "skin-care",
       description1: tComparingProducts("skin-care-description-1"),
       description2: tComparingProducts("skin-care-description-2"),
       imageFront: Images.SkinCareFront,
@@ -26,6 +27,7 @@ export default async function useProducts() {
     },
     {
       name: "Low Fat",
+      slug: "low-fat",
       description1: tComparingProducts("low-fat-description-1"),
       description2: tComparingProducts("low-fat-description-2"),
       imageFront: Images.LowFatFront,
@@ -43,6 +45,7 @@ export default async function useProducts() {
     },
     {
       name: "Senior Care",
+      slug: "senior-care",
       description1: tComparingProducts("senior-care-description-1"),
       description2: tComparingProducts("senior-care-description-2"),
       imageFront: Images.SeniorCareFront,
@@ -60,6 +63,7 @@ export default async function useProducts() {
     },
     {
       name: "Renal Care",
+      slug: "renal-care",
       description1: tComparingProducts("renal-care-description-1"),
       description2: tComparingProducts("renal-care-description-2"),
       imageFront: Images.RenalCareFront,

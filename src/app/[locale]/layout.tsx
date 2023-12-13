@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import localFont from "next/font/local"
 import { notFound } from "next/navigation"
+import { unstable_setRequestLocale } from "next-intl/server"
 
 import { i18n } from "@/config/i18n.config"
 import "./globals.css"
@@ -35,6 +36,12 @@ export const metadata: Metadata = {
   },
 }
 
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({
+    locale,
+  }))
+}
+
 export default function RootLayout({
   children,
   params: { locale },
@@ -44,6 +51,8 @@ export default function RootLayout({
 }) {
   const isValidLocale = i18n.locales.some((cur) => cur === locale)
   if (!isValidLocale) notFound()
+
+  unstable_setRequestLocale(locale)
 
   return (
     <html lang={locale}>

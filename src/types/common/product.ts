@@ -7,12 +7,19 @@ export type BiteCareProductName =
   | "Senior Care"
   | "Renal Care"
 
+export type BiteCareProductSlug =
+  | "skin-care"
+  | "low-fat"
+  | "senior-care"
+  | "renal-care"
+
 export type BiteCareProductTagName = keyof typeof ProductTags
 
 export type BiteCareProductTag = (typeof ProductTags)[BiteCareProductTagName]
 
 export type BiteCareProduct = {
   name: BiteCareProductName
+  slug: string
   description1: string
   description2: string
   imageFront: StaticImageData

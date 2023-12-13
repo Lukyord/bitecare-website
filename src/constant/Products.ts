@@ -1,3 +1,5 @@
+import { BiteCareProductSlug } from "@/types/common/product"
+
 export const ProductTags = {
   "Low Calories & Fats": { name: "Low Calories & Fats", color: "bg-[#008166]" },
   "L-Carnitine": { name: "L-Carnitine", color: "bg-[#00A77B]" },
@@ -16,3 +18,10 @@ export const ProductTags = {
   "Crocodile Protein": { name: "Crocodile Protein", color: "bg-[#009FBA]" },
   "Gluten Free": { name: "Gluten Free", color: "bg-[#64B7CC]" },
 } as const
+
+export const ProductSlugs: BiteCareProductSlug[] = [
+  "low-fat",
+  "skin-care",
+  "senior-care",
+  "renal-care",
+] as const
