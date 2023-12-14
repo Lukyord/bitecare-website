@@ -1,6 +1,6 @@
 import useProducts from "@/hooks/useProducts"
 import React from "react"
-import ProductCard from "./ProductCard"
+import ProductCard from "../../ProductCard"
 import { getTranslations } from "next-intl/server"
 
 export default async function ProductsListSection() {

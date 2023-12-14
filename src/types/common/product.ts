@@ -55,6 +55,7 @@ export type ProductInfo = {
     name: string
   }
   summaries: string[]
+  summaryImages: StaticImageData[]
   summaryDescriptions: string[]
 }
 

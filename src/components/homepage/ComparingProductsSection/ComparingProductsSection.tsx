@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
 import useProducts from "@/hooks/useProducts"
-import ArcGradient from "../PrinciplesSection/ArcGradient"
+import ArcGradient from "./ArcGradient"
 import CompareCards from "./CompareCards"
 
 export default async function ComparingProductsSection() {

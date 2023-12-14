@@ -1,7 +1,13 @@
 import { getTranslations } from "next-intl/server"
 import PrimaryButton from "./Button/PrimaryButton"
 
-export default async function FaqNavigateSection() {
+type FaqNavigateSectionProps = {
+  bottomDivider?: boolean
+}
+
+export default async function FaqNavigateSection({
+  bottomDivider = false,
+}: FaqNavigateSectionProps) {
   const tMiscellaneous = await getTranslations("miscellaneous")
   const tButton = await getTranslations("button")
 
@@ -20,6 +26,8 @@ export default async function FaqNavigateSection() {
       </h2>
 
       <PrimaryButton text={tButton("faq")} href="/#faq" />
+
+      {bottomDivider && <div className="h-1 w-full border-t border-bc-grey" />}
     </section>
   )
 }

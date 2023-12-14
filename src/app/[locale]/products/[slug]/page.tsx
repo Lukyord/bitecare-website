@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation"
+import { unstable_setRequestLocale } from "next-intl/server"
+import Image from "next/image"
 
 import {
   BiteCareProductImageSlug,
@@ -8,7 +10,9 @@ import { ProductSlugs, ProductsImage } from "@/constant/Products"
 
 import useProducts from "@/hooks/useProducts"
 import ProductDetailLanding from "@/components/products/ProductDetail/ProductDetailLanding/ProductDetailLanding"
-import { unstable_setRequestLocale } from "next-intl/server"
+import ProductDetailSummarySection from "@/components/products/ProductDetail/ProductDetailSummarySection"
+import FaqNavigateSection from "@/components/common/FaqNavigateSection"
+import ProductDetailSimilarProductsSection from "@/components/products/ProductDetail/ProductDetailSimilarProductsSection"
 
 export const dynamicParams = false
 
@@ -36,9 +40,32 @@ export default async function ProductDetailPage({
   if (!ProductsImage.includes(selectedImage)) selectedImage = "front"
 
   return (
-    <div>
+    <div className="flex flex-col">
       <ProductDetailLanding product={product} selectedImage={selectedImage} />
-      <div className="my-20">Testimonial</div>
+
+      {/* Testimonial */}
+      <section className="mx-auto my-20 w-[70%] text-center xl:my-36 2xl:my-48">
+        <p className="text-h3 lg:text-h2">
+          {product.productInfo.testimonial.text}
+        </p>
+        <p className="mt-[5vh] text-paragraph lg:text-h3">
+          {product.productInfo.testimonial.name}
+        </p>
+      </section>
+
+      {/* FactSheet */}
+
+      <Image
+        alt={product.name + " Factsheet"}
+        src={product.imageFactSheet}
+        className="mx-auto my-24 h-auto w-[90%] rounded-3xl shadow-lg"
+      />
+
+      <ProductDetailSummarySection product={product} />
+
+      <FaqNavigateSection bottomDivider />
+
+      <ProductDetailSimilarProductsSection product={product} />
     </div>
   )
 }

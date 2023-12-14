@@ -13,7 +13,6 @@ import { BiteCareProduct } from "@/types/common/product"
 import ProductTag from "@/components/common/ProductTag"
 import SecondaryButton from "@/components/common/Button/SecondaryButton"
 import SwiperButtonNext from "../../Products/ProductsPageLanding/SwiperButtonNext"
-import MobileNextCardButton from "./MobileNextCardButton"
 
 type ProductDetailInfoMobileProps = {
   product: BiteCareProduct

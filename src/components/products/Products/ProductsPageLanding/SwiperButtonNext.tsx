@@ -1,7 +1,6 @@
 "use client"
 
 import { useSwiper } from "swiper/react"
-import RotatingCircularSwiperButtonText from "./RotatingCircularSwiperButtonText"
 import { useState } from "react"
 
 type SwiperButtonNextProps = {

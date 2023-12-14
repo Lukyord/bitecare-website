@@ -18,8 +18,8 @@ export default function ProductCard({ product }: ProductCardProps) {
               relative flex h-[275px] w-[325px]
               flex-col justify-between rounded-3xl 
               p-5 ${product.productCardBgColor}
-              group overflow-hidden transition-all duration-300
-              hover:shadow-xl 
+              group flex-shrink-0 overflow-hidden transition-all
+              duration-300 hover:shadow-xl
               xl:h-[500px] xl:w-[600px] xl:px-10 xl:py-14
             `}
     >

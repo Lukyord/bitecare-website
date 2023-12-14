@@ -50,6 +50,11 @@ export default async function useProducts() {
           tSkinCare("summary-2"),
           tSkinCare("summary-3"),
         ],
+        summaryImages: [
+          Images.TempPrinciple_1,
+          Images.TempPrinciple_2,
+          Images.TempPrinciple_3,
+        ],
         summaryDescriptions: [
           tSkinCare("summary-description-1"),
           tSkinCare("summary-description-2"),
@@ -99,6 +104,11 @@ export default async function useProducts() {
           tLowFat("summary-1"),
           tLowFat("summary-2"),
           tLowFat("summary-3"),
+        ],
+        summaryImages: [
+          Images.TempPrinciple_1,
+          Images.TempPrinciple_2,
+          Images.TempPrinciple_3,
         ],
         summaryDescriptions: [
           tLowFat("summary-description-1"),
@@ -150,6 +160,11 @@ export default async function useProducts() {
           tSeniorCare("summary-2"),
           tSeniorCare("summary-3"),
         ],
+        summaryImages: [
+          Images.TempPrinciple_1,
+          Images.TempPrinciple_2,
+          Images.TempPrinciple_3,
+        ],
         summaryDescriptions: [
           tSeniorCare("summary-description-1"),
           tSeniorCare("summary-description-2"),
@@ -199,6 +214,11 @@ export default async function useProducts() {
           tRenalCare("summary-1"),
           tRenalCare("summary-2"),
           tRenalCare("summary-3"),
+        ],
+        summaryImages: [
+          Images.TempPrinciple_1,
+          Images.TempPrinciple_2,
+          Images.TempPrinciple_3,
         ],
         summaryDescriptions: [
           tRenalCare("summary-description-1"),

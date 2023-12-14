@@ -26,7 +26,7 @@ export default function ProductDetailLanding({
     <section
       className="
                   mx-auto flex
-                  w-full flex-col pb-14
+                  w-full flex-col pb-24
                   pt-32 lg:pt-36 xl:h-[115vh] 
                   xl:w-[80vw] xl:flex-row 
                   xl:justify-between 
