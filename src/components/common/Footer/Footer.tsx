@@ -11,7 +11,14 @@ export default async function Footer() {
 
   return (
     <footer>
-      <WaveAnimation />
+      <div className="relative h-24 w-screen overflow-hidden md:h-32 lg:h-48">
+        <div className="absolute z-20">
+          <WaveAnimation image={Images.WaveFooter_1} />
+        </div>
+        <div className="absolute z-10">
+          <WaveAnimation image={Images.WaveFooter_2} reverse={true} />
+        </div>
+      </div>
       <div className="bg-bc-primary-container pb-[2%]">
         <div className="mx-auto flex w-[90%] flex-col pt-[8%] text-center">
           <h1 className="text-4xl md:text-h3 lg:text-h2">
