@@ -129,6 +129,7 @@ import TopQualityIngredientsBlack from "@public/assets/illustrations/homepage/to
 // W
 import WaveBcPrimary_1 from "@public/assets/homepage/wave-bc-primary-1.svg"
 import WaveFooter_1 from "@public/assets/common/wave-footer-1.svg"
+import WaveFooter_2 from "@public/assets/common/wave-footer-2.svg"
 // X
 // Y
 // Z
@@ -259,6 +260,7 @@ export const Images = {
   // W
   WaveBcPrimary_1,
   WaveFooter_1,
+  WaveFooter_2,
   // W
   // Y
   // Z
