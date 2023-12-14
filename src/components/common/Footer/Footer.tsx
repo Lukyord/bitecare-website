@@ -34,11 +34,20 @@ export default async function Footer() {
             {tFooter("tagline-description2")}
           </h2>
           <div className="pt-[6%]">
-            <SecondaryButton
-              text={tFooter("get-to-know-us")}
-              size="h3"
-              href="/about-us"
-            />
+            <div className="hidden sm:block">
+              <SecondaryButton
+                text={tFooter("get-to-know-us")}
+                size="h2"
+                href="/about-us"
+              />
+            </div>
+            <div className="block sm:hidden">
+              <SecondaryButton
+                text={tFooter("get-to-know-us")}
+                size="paragraph"
+                href="/about-us"
+              />
+            </div>
           </div>
           <FooterNavigateSection />
           <div className="flex flex-col-reverse pt-[8%] md:flex-row">
