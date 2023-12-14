@@ -59,6 +59,7 @@ import InstagramIcon from "@public/assets/common/instagram-icon.svg"
 // J
 // K
 // L
+import LineIcon from "@public/assets/common/line-icon.svg"
 import LCarnetineBlack from "@public/assets/illustrations/products/l-carnitine-black.svg"
 import LineOaLogoFullWhite from "@public/assets/common/socials/line-oa-logo-full-white.png"
 import LineIcon from "@public/assets/common/socials/line-icon.png"
@@ -189,6 +190,7 @@ export const Images = {
   // J
   // K
   // L
+  LineIcon,
   LCarnetineBlack,
   LineOaLogoFullWhite,
   LineIcon,

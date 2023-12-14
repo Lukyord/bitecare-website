@@ -8,6 +8,10 @@ import { Images } from "@/constant/Images"
 
 export default async function Footer() {
   const tFooter = await getTranslations("footer")
+  const facebookHref = "https://www.facebook.com/bitecarethailand"
+  const lineHref =
+    "https://linevoom.line.me/user/_dZ4Ene1pJg4iONYAjFcc9jy7lQ1mdlGuZKzTOqY"
+  const shopeeHref = "https://shopee.co.th/bitecare"
 
   return (
     <footer>
@@ -64,13 +68,13 @@ export default async function Footer() {
               </Link>
             </div>
             <div className="flex justify-center md:w-[30%] md:justify-end">
-              <Link className="mx-[2%] my-auto md:mx-[4%]" href="facebook">
+              <Link className="mx-[2%] my-auto md:mx-[4%]" href={facebookHref}>
                 <Image src={Images.FacebookIcon} alt="facebook" />
               </Link>
-              <Link className="mx-[2%] my-auto md:mx-[4%]" href="instagram">
-                <Image src={Images.InstagramIcon} alt="instagram" />
+              <Link className="mx-[2%] my-auto md:mx-[4%]" href={lineHref}>
+                <Image src={Images.LineIcon} alt="line" />
               </Link>
-              <Link className="mx-[2%] my-auto md:mx-[4%]" href="shopee">
+              <Link className="mx-[2%] my-auto md:mx-[4%]" href={shopeeHref}>
                 <Image src={Images.ShopeeIcon} alt="shopee" />
               </Link>
             </div>
