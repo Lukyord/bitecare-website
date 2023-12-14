@@ -1,71 +1,49 @@
 "use client"
 
-import { Images } from "@/constant/Images"
-import { motion, useAnimation, useInView } from "framer-motion"
+import { useInfiniteTranslateX } from "@/hooks/useInfiniteTranslateX"
+import { motion, useInView } from "framer-motion"
+import { StaticImport } from "next/dist/shared/lib/get-img-props"
 import Image from "next/image"
-import { useRef, useState, useEffect } from "react"
+import React, { useEffect } from "react"
 
-export default function WaveAnimation() {
-  const controls = useAnimation()
-  const containerRef = useRef<HTMLDivElement>(null)
-  const waveRef = useRef(null)
-  const isInview = useInView(waveRef)
-  const [animationId, setAnimationId] = useState<number | null>(null)
-  const [lastestXPixels, setLastestXPixels] = useState<number | null>(null)
-  let xPixels = 0
+type WaveAnimationProps = {
+  speed?: number
+  image: StaticImport
+  reverse?: boolean
+}
 
-  const animate = () => {
-    const containerWidth = containerRef.current?.getBoundingClientRect().width
-
-    if (containerWidth) {
-      if (xPixels > containerWidth) {
-        xPixels = 0
-      }
-      controls.set({ x: +xPixels })
-
-      xPixels += 1
-      setAnimationId(requestAnimationFrame(animate))
-    }
-  }
+export default function WaveAnimation({
+  speed = 1,
+  image,
+  reverse = false,
+}: WaveAnimationProps) {
+  const { controls, containerRef, handleIsInview, handleIsNotInview } =
+    useInfiniteTranslateX(false, speed, true, reverse)
+  const isInview = useInView(containerRef)
 
   useEffect(() => {
-    xPixels = lastestXPixels ?? xPixels
-
     if (isInview) {
-      setAnimationId(requestAnimationFrame(animate))
+      handleIsInview()
+    } else {
+      handleIsNotInview()
     }
-
-    return () => {
-      setLastestXPixels(xPixels)
-      if (animationId) {
-        cancelAnimationFrame(animationId)
-        setAnimationId(null)
-      }
-    }
-  }, [isInview, controls])
+  }, [isInview])
 
   return (
     <div
       className="relative h-24 w-screen overflow-hidden md:h-32 lg:h-48"
-      ref={containerRef}
+      ref={containerRef as React.RefObject<HTMLDivElement>}
     >
-      <motion.div
-        className="absolute bottom-0 w-full"
-        animate={controls}
-        ref={waveRef}
-      >
-        <Image
-          className="h-auto w-screen"
-          src={Images.WaveFooter_1}
-          alt="wave1"
-        />
+      <motion.div className="absolute bottom-0 w-full" animate={controls}>
+        <Image className="h-auto w-screen" src={image} alt="wave1" />
       </motion.div>
       <motion.div
-        className="absolute bottom-0 right-[100%] w-full"
+        className={`absolute bottom-0 ${
+          reverse ? "right-[100%]" : "left-[100%]"
+        } w-full`}
         animate={controls}
-        ref={waveRef}
       >
-        <Image src={Images.WaveFooter_1} alt="wave1-extend" />
+        <Image src={image} alt="wave1-extend" />
       </motion.div>
     </div>
   )
