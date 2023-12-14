@@ -1,10 +1,15 @@
+import { pick } from "lodash"
+import { NextIntlClientProvider, useMessages } from "next-intl"
+
 import {
   BiteCareProduct,
   BiteCareProductImageSlug,
 } from "@/types/common/product"
+
 import ProductDetailImageGallery from "./ProductDetailImageGallery"
 import ProductDetailInfo from "./ProductDetailInfo"
 import ProductDetailImageGalleryMobile from "./ProductDetailImageGalleryMobile"
+import ProductDetailInfoMobile from "./ProductDetailInfoMobile"
 
 type ProductDetailLandingProps = {
   product: BiteCareProduct
@@ -15,10 +20,12 @@ export default function ProductDetailLanding({
   product,
   selectedImage,
 }: ProductDetailLandingProps) {
+  const messages = useMessages()
+
   return (
     <section
       className="
-                  mx-auto flex h-[100vh] 
+                  mx-auto flex
                   w-full flex-col pb-14
                   pt-32 lg:pt-36 xl:h-[115vh] 
                   xl:w-[80vw] xl:flex-row 
@@ -41,7 +48,11 @@ export default function ProductDetailLanding({
       <div className="relative block h-[50vh] xl:hidden">
         <ProductDetailImageGalleryMobile product={product} />
       </div>
-      <div className="block h-[40vh] w-[100vw] bg-red-300 xl:hidden"></div>
+      <div className="relative my-[5vh] block h-[40vh] xl:hidden">
+        <NextIntlClientProvider messages={pick(messages, ["button"])}>
+          <ProductDetailInfoMobile product={product} />
+        </NextIntlClientProvider>
+      </div>
     </section>
   )
 }

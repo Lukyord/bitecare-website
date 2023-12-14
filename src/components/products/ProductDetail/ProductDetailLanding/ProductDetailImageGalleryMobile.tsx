@@ -3,12 +3,11 @@
 import React, { useEffect, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectCoverflow } from "swiper/modules"
+import Image from "next/image"
 
 import "swiper/css"
 import "swiper/css/effect-coverflow"
-import "swiper/css/pagination"
 import { BiteCareProduct, ProductImage } from "@/types/common/product"
-import Image from "next/image"
 
 type ProductDetailImageGalleryMobileProps = {
   product: BiteCareProduct

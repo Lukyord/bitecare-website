@@ -4,7 +4,17 @@ import { useSwiper } from "swiper/react"
 import RotatingCircularSwiperButtonText from "./RotatingCircularSwiperButtonText"
 import { useState } from "react"
 
-export default function SwiperButtonNext() {
+type SwiperButtonNextProps = {
+  children: React.ReactNode
+  style: string
+  id: string
+}
+
+export default function SwiperButtonNext({
+  children,
+  id,
+  style,
+}: SwiperButtonNextProps) {
   const swiper = useSwiper()
   const [isButtonDisabled, setButtonDisabled] = useState(false)
 
@@ -22,18 +32,12 @@ export default function SwiperButtonNext() {
 
   return (
     <button
-      id="swiper-button-next"
-      className="
-              absolute left-[55%] top-[10%]
-              z-10 flex items-center
-              justify-center rounded-full border-[3px] border-black
-              bg-bc-primary transition-all
-              [filter:drop-shadow(4px_4px_0px_#000)] active:scale-[0.9]
-            "
+      id={id}
+      className={style}
       onClick={handleClick}
       disabled={isButtonDisabled}
     >
-      <RotatingCircularSwiperButtonText />
+      {children}
     </button>
   )
 }

@@ -48,8 +48,8 @@ export default async function ProductDetailInfo({
             </AccordionTrigger>
             <AccordionContent>
               <p key={index} className="text-justify text-[18px]">
-                {/* {product.productInfo.answers[index]} */}
-                {product.productInfo.compareDescription1}
+                {product.productInfo.answers[index]}
+                {/* {product.productInfo.compareDescription1} */}
               </p>
             </AccordionContent>
           </AccordionItem>
@@ -62,7 +62,7 @@ export default async function ProductDetailInfo({
           text={tButton("get-our-product")}
           size="h3"
           specificWidth="w-[380px]"
-          href="/where-to-buy"
+          href="/where-to-buy?type=physical-store"
         />
       </div>
     </div>

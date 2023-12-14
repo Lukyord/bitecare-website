@@ -38,6 +38,7 @@ export default async function ProductDetailPage({
   return (
     <div>
       <ProductDetailLanding product={product} selectedImage={selectedImage} />
+      <div className="my-20">Testimonial</div>
     </div>
   )
 }
