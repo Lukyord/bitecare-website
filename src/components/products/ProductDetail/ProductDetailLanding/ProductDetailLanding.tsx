@@ -4,6 +4,7 @@ import {
 } from "@/types/common/product"
 import ProductDetailImageGallery from "./ProductDetailImageGallery"
 import ProductDetailInfo from "./ProductDetailInfo"
+import ProductDetailImageGalleryMobile from "./ProductDetailImageGalleryMobile"
 
 type ProductDetailLandingProps = {
   product: BiteCareProduct
@@ -17,20 +18,30 @@ export default function ProductDetailLanding({
   return (
     <section
       className="
-                  mx-auto flex w-[80vw] flex-col 
-                  pb-14 pt-36 lg:h-[115vh] 
-                  xl:flex-row xl:justify-between 2xl:h-[100vh]
+                  mx-auto flex h-[100vh] 
+                  w-full flex-col pb-14
+                  pt-32 lg:pt-36 xl:h-[115vh] 
+                  xl:w-[80vw] xl:flex-row 
+                  xl:justify-between 
+                  2xl:h-[100vh]
                 "
     >
-      <div className="sm:w-[55%]">
+      {/* ========== Desktop ========== */}
+      <div className="hidden w-[55%] xl:block">
         <ProductDetailImageGallery
           product={product}
           selectedImage={selectedImage}
         />
       </div>
-      <div className="sm:w-[40%]">
+      <div className="hidden w-[40%] xl:block">
         <ProductDetailInfo product={product} />
       </div>
+
+      {/* ========== Mobile ========== */}
+      <div className="relative block h-[50vh] xl:hidden">
+        <ProductDetailImageGalleryMobile product={product} />
+      </div>
+      <div className="block h-[40vh] w-[100vw] bg-red-300 xl:hidden"></div>
     </section>
   )
 }

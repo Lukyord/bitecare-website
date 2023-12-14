@@ -45,6 +45,7 @@ export default function ProductDetailImageGallery({
                 alt={productImage.slug}
                 src={productImage.image}
                 className="rounded-xl shadow-md"
+                priority
               />
             </ProductDetailImageLink>
           </React.Fragment>
@@ -72,6 +73,7 @@ export default function ProductDetailImageGallery({
                 max-w-[80%] rounded-2xl 
                 object-contain shadow-2xl
               "
+          priority
         />
       </div>
     </div>
