@@ -6,5 +6,6 @@ export default getRequestConfig(async ({ locale }) => ({
     ...(await import(`../public/locales/${locale}/homepage.json`)).default,
     ...(await import(`../public/locales/${locale}/products.json`)).default,
     ...(await import(`../public/locales/${locale}/product.json`)).default,
+    ...(await import(`../public/locales/${locale}/where-to-buy.json`)).default,
   },
 }))
