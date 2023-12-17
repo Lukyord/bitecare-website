@@ -8,17 +8,17 @@
 // A
 import ArrowCurveUpWhite from "@public/assets/illustrations/arrow-curve-up-white.svg"
 // B
-import BiteCareLogo from "@public/assets/common/bitecare-logo.svg"
-import BiteCareLogoTextTM from "@public/assets/common/bitecare-logo-text-tm.svg"
+import BiteCareLogo from "@public/assets/common/logos/bitecare-logo.svg"
+import BiteCareLogoTextTM from "@public/assets/common/logos/bitecare-logo-text-tm.svg"
 // C
 import CircleLayersBcSecondary from "@public/assets/illustrations/circle-layer-bc-secondary.svg"
 // D
 import DashedLineBlack from "@public/assets/illustrations/dashed-line-black.svg"
 import DogPawBcInversePrimary from "@public/assets/illustrations/dog-paw-bc-inverse-primary.svg"
 // E
-import EnglishFlag from "@public/assets/common/english-flag.svg"
+import EnglishFlag from "@public/assets/common/flags/english-flag.svg"
 // F
-import FacebookLogoFullWhite from "@public/assets/common/facebook-logo-full-white.png"
+import FacebookLogoFullWhite from "@public/assets/common/socials/facebook-logo-full-white.png"
 import FlowerBcPrimary_1 from "@public/assets/illustrations/flower-bc-primary-1.svg"
 import FlowerBcPrimary_2 from "@public/assets/illustrations/flower-bc-primary-2.svg"
 // G
@@ -33,7 +33,7 @@ import HighlightBlack_1 from "@public/assets/illustrations/highlight-1-black.svg
 // J
 // K
 // L
-import LineOaLogoFullWhite from "@public/assets/common/line-oa-logo-full-white.png"
+import LineOaLogoFullWhite from "@public/assets/common/socials/line-oa-logo-full-white.png"
 import LowFatFront from "@public/assets/products/low-fat/low-fat-front.png"
 import LowFatBack from "@public/assets/products/low-fat/low-fat-back.png"
 import LowFatDog from "@public/assets/products/low-fat/low-fat-dog.png"
@@ -44,6 +44,7 @@ import LowFatPalatabilityTest from "@public/assets/products/low-fat/low-fat-pala
 import LowFatRegistrationNumber from "@public/assets/products/low-fat/low-fat-registration-number.png"
 import LowFatSummary from "@public/assets/products/low-fat/low-fat-summary.png"
 // M
+import MarkerRed from "@public/assets/common/marker-red.svg"
 // N
 // O
 // P
@@ -59,7 +60,7 @@ import RenalCarePalatabilityTest from "@public/assets/products/renal-care/renal-
 import RenalCareRegistrationNumber from "@public/assets/products/renal-care/renal-care-registration-number.png"
 import RenalCareSummary from "@public/assets/products/renal-care/renal-care-summary.png"
 // S
-import ShopeeLogoFullWhite from "@public/assets/common/shopee-logo-full-white.png"
+import ShopeeLogoFullWhite from "@public/assets/common/socials/shopee-logo-full-white.png"
 import SparkleBlack_1 from "@public/assets/illustrations/sparkle-1-black.svg"
 import SparkleBlack_2 from "@public/assets/illustrations/sparkle-2-black.svg"
 import SparkleBcInversePrimary_1 from "@public/assets/illustrations/sparkle-bc-inverse-primary-1.svg"
@@ -85,7 +86,7 @@ import SkinCareRegistrationNumber from "@public/assets/products/skin-care/skin-c
 import SkinCareSummary from "@public/assets/products/skin-care/skin-care-summary.png"
 import SquigglyLineOrange from "@public/assets/illustrations/squiggly-line-orange.svg"
 // T
-import ThaiFlag from "@public/assets/common/thai-flag.svg"
+import ThaiFlag from "@public/assets/common/flags/thai-flag.svg"
 import TempPrinciple_1 from "../../tmp/temp-principle-1.svg"
 import TempPrinciple_2 from "../../tmp/temp-principle-2.svg"
 import TempPrinciple_3 from "../../tmp/temp-principle-3.svg"
@@ -137,6 +138,7 @@ export const Images = {
   LowFatRegistrationNumber,
   LowFatSummary,
   // M
+  MarkerRed,
   // N
   // O
   // P
