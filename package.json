@@ -40,7 +40,8 @@
     "sharp": "^0.33.0",
     "swiper": "^11.0.5",
     "tailwind-merge": "^2.0.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.8",

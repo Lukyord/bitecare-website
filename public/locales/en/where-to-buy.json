@@ -18,5 +18,9 @@
   },
   "store-card": {
     "view-on-google-map": "View on Google Map"
+  },
+  "physical-store-toast": {
+    "something-went-wrong": "Uh oh! Something went wrong.",
+    "cant-access-location": "Error accessing your location. Please make sure location access is allowed."
   }
 }
