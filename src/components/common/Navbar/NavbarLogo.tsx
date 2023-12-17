@@ -28,6 +28,7 @@ export default function NavbarLogo() {
             alt="arrow-up"
             src={Images.ArrowCurveUpWhite}
             className="h-auto w-auto"
+            priority
           />
         </button>
       ) : (
@@ -36,6 +37,7 @@ export default function NavbarLogo() {
             src={Images.BiteCareLogo}
             alt="bitecare-logo"
             className="h-full w-full rounded-full bg-white"
+            priority
           />
         </Link>
       )}
