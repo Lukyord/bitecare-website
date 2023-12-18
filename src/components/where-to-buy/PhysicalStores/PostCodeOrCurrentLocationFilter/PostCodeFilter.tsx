@@ -41,9 +41,9 @@ export default function PostCodeFilter({}: PostCodeFilterProps) {
   return (
     <form
       action={clientAction}
-      className="flex items-center rounded-xl bg-white p-4 shadow-lg"
+      className="flex items-center rounded-xl bg-white p-2 shadow-lg lg:p-4"
     >
-      <p className="font-hel_rounded text-h3">
+      <p className="hidden font-hel_rounded text-h3 lg:block">
         {tPhysicalStore("where-do-you-live")}
       </p>
       <Input
@@ -52,10 +52,11 @@ export default function PostCodeFilter({}: PostCodeFilterProps) {
         name="post-code"
         placeholder={`(${tPhysicalStore("where-do-you-live-placeholder")})`}
         className="
-            focus-visible:ring-off mt-auto
-            w-[150px] border-none bg-transparent 
-            py-0 text-paragraph placeholder:text-sm focus-visible:ring-0
+            focus-visible:ring-off w-[150px]
+            border-none bg-transparent py-0 
+            text-subtitle placeholder:text-sm focus-visible:ring-0 
             focus-visible:ring-transparent focus-visible:ring-offset-0
+            sm:text-paragraph lg:mt-auto
           "
         inputMode="numeric"
         onKeyPress={(event) => {
@@ -70,12 +71,13 @@ export default function PostCodeFilter({}: PostCodeFilterProps) {
         type="submit"
         aria-disabled={pending}
         className="
-            flex h-10 w-10 items-center 
+            flex h-6 w-6 items-center 
             justify-center rounded-full 
-            bg-bc-black
+            bg-bc-black 
+            sm:h-10 sm:w-10 
           "
       >
-        <CiSearch size={24} color="white" />
+        <CiSearch color="white" className="text-subtitle sm:text-paragraph" />
       </button>
     </form>
   )

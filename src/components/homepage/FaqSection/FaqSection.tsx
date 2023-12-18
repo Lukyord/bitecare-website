@@ -66,7 +66,7 @@ export default async function FaqSection() {
         alt="squiggly line"
         src={Images.SquigglyLineOrange}
         className="
-              absolute left-[-1%] top-[-5%] 
+              absolute left-[-1%] top-[-10vh] 
               hidden h-auto w-[12vw] lg:block
             "
       />

@@ -31,27 +31,27 @@ export default function FindMe({}: FindMeProps) {
   return (
     <button
       className="
-                    group flex items-center 
-                    gap-3 rounded-xl bg-white 
-                    p-4 shadow-lg transition-all 
-                    duration-500 hover:bg-black
-                  "
+              group flex items-center 
+              gap-3 rounded-xl bg-white 
+              p-2 shadow-lg transition-all duration-500 
+              hover:bg-black sm:p-4
+            "
       onClick={findMe}
     >
       <RiSendPlaneLine
         size={24}
         className="
-                   text-black 
-                    transition-all duration-500 
-                    group-hover:text-white
-                  "
+              text-black 
+                transition-all duration-500 
+              group-hover:text-white
+              "
       />
       <p
         className="
-                    font-hel_rounded text-paragraph 
-                    tracking-tight transition-all 
-                    duration-500 group-hover:text-white
-                  "
+                font-hel_rounded text-subtitle tracking-tight 
+                transition-all duration-500 
+                group-hover:text-white sm:text-paragraph
+              "
       >
         {tPhysicalStore("find-me")}
       </p>

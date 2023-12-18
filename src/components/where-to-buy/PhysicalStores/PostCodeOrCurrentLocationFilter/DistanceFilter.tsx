@@ -30,18 +30,18 @@ export default function DistanceFilter() {
 
   return (
     <Popover
-      onOpenChange={() =>
-        setDistance(parseInt(searchParams.get("distance") || "15"))
+      onOpenChange={(open) =>
+        open && setDistance(parseInt(searchParams.get("distance") || "15"))
       }
     >
       <PopoverTrigger asChild>
         <button
           className="
-              group  flex 
+              group flex 
               items-center rounded-xl 
-              bg-white p-4 shadow-lg 
-              transition-all duration-500
-              hover:bg-black
+              bg-white p-2 shadow-lg transition-all 
+              duration-500 hover:bg-black
+              sm:p-4
             "
         >
           <GiPathDistance
@@ -60,9 +60,9 @@ export default function DistanceFilter() {
         </PopoverClose>
         <div
           className="
-                  flex min-w-[150px] flex-col 
-                  gap-6 rounded-xl bg-white
-                  text-paragraph sm:text-h3
+                  flex flex-col gap-4 
+                  rounded-xl bg-white text-paragraph sm:min-w-[150px]
+                  sm:gap-6 sm:text-h3
                 "
         >
           <h3>{tPhysicalStore("distance")}</h3>

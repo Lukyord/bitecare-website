@@ -8,3 +8,15 @@ export const postCodeSchema = z.object({
       message: "Value must only be numbers",
     }),
 })
+
+export type AreaDivisionChoice = {
+  label: string
+  value: string
+}
+
+export type SearchFilter = {
+  province: string
+  district: string
+  subDistrict: string
+  storeName: string
+}
