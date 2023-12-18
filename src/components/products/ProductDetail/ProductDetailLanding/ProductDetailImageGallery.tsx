@@ -6,8 +6,8 @@ import {
   ProductImage,
 } from "@/types/common/product"
 
-import ProductDetailImageLink from "./ProductDetailImageLink"
 import Image from "next/image"
+import { Link } from "@/lib/navigation"
 
 type ProductDetailImageGalleryProps = {
   product: BiteCareProduct
@@ -40,14 +40,19 @@ export default function ProductDetailImageGallery({
       >
         {productImages.map((productImage, index) => (
           <React.Fragment key={index}>
-            <ProductDetailImageLink productImage={productImage}>
+            <Link
+              href={`${product.href}?${new URLSearchParams({
+                image: productImage.slug,
+              })}`}
+              scroll={false}
+            >
               <Image
                 alt={productImage.slug}
                 src={productImage.image}
                 className="rounded-xl shadow-md"
                 priority
               />
-            </ProductDetailImageLink>
+            </Link>
           </React.Fragment>
         ))}
       </div>

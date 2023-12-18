@@ -1,7 +1,7 @@
 {
   "physical-store": {
     "where-do-you-live": "Where do you live?",
-    "where-do-you-live-placeholder": "you can provide us with a postal code",
+    "where-do-you-live-placeholder": "your postal code",
     "find-me": "Find me",
     "filter": "Filter",
     "location": "Location",

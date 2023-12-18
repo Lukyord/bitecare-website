@@ -1,7 +1,7 @@
 {
   "physical-store": {
     "where-do-you-live": "คุณอาศัยที่ไหน?",
-    "where-do-you-live-placeholder": "ใส่รหัสไปรษณีย์ของคุณ",
+    "where-do-you-live-placeholder": "ใส่รหัสไปรษณีย์",
     "find-me": "ตำแหน่งของฉัน",
     "filter": "ตัวกรอง",
     "location": "ที่อยู่",
