@@ -42,14 +42,14 @@ export default function DistanceFilter({
               group flex 
               items-center rounded-xl 
               bg-white p-2 shadow-lg transition-all 
-              duration-500 hover:bg-black
+              duration-500 hover:bg-bc-black
               sm:p-4
             "
         >
           <GiPathDistance
             size={24}
             className="
-             text-black 
+             text-bc-black 
               transition-all duration-500 
               group-hover:text-white
             "
@@ -63,8 +63,8 @@ export default function DistanceFilter({
         <div
           className="
                   flex flex-col gap-4 
-                  rounded-xl bg-white text-paragraph sm:min-w-[150px]
-                  sm:gap-6 sm:text-h3
+                  rounded-3xl bg-white text-paragraph 
+                  sm:min-w-[150px] sm:gap-6 sm:text-h3
                 "
         >
           <h3>{tPhysicalStore("distance")}</h3>

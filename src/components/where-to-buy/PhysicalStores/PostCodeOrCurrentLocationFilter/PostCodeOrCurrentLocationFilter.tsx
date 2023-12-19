@@ -9,7 +9,7 @@ import PostCodeFilter from "./PostCodeFilter"
 import FindMe from "./FindMe"
 import DistanceFilter from "./DistanceFilter"
 import { useToast } from "@/components/ui/use-toast"
-import usePhysicalStoreSearch from "@/hooks/usePhysicalStoreSearch"
+import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
 
 export default function PostCodeOrCurrentLocationFilter() {
   const map = useMap()

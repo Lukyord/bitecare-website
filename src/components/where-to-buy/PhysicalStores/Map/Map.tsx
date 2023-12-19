@@ -24,6 +24,7 @@ export default function Map({ children, setMapReady }: MapProps) {
       zoom={15}
       scrollWheelZoom={false}
       zoomControl={false}
+      doubleClickZoom={false}
       className="relative h-[60vh] w-[100vw] overflow-clip sm:h-[100vh]"
       whenReady={() => {
         setMapReady(true)

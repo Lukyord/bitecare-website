@@ -1,19 +1,23 @@
+"use client"
+
+import React from "react"
 import { useTranslations } from "next-intl"
 
 import { CiSearch } from "react-icons/ci"
-import { PhysicalStore } from "@/types/where-to-buy/physical-store"
 
 import { Separator } from "@/components/ui/separator"
+import ResultCard from "./ResultCard"
+import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
-type ResultProps = {
-  result: PhysicalStore[]
-}
-
-export default function Result({ result }: ResultProps) {
+export default function Result() {
   const tPhysicalStore = useTranslations("physical-store")
+  const { result } = usePhysicalStoreSearch()
+
+  if (!result) return null
 
   return (
-    <div className="w-[600px] rounded-xl bg-white shadow-lg lg:p-2">
+    <div className="w-[600px] rounded-xl bg-white shadow-lg lg:p-2 ">
       <h3
         className="
                   p-4 text-start font-hel_rounded 
@@ -24,7 +28,7 @@ export default function Result({ result }: ResultProps) {
         {tPhysicalStore("result")}
       </h3>
 
-      <div className="flex flex-col items-center gap-3 px-4 font-psl">
+      <div className="flex flex-col items-center gap-3 px-4  font-psl">
         <Separator className="my-4 bg-bc-black px-4" />
 
         {result.length === 0 ? (
@@ -36,7 +40,13 @@ export default function Result({ result }: ResultProps) {
             </p>
           </div>
         ) : (
-          <div></div>
+          <ScrollArea className="h-[50vh] w-full">
+            {result.map((store, index) => (
+              <React.Fragment key={index}>
+                <ResultCard physicalStore={store} />
+              </React.Fragment>
+            ))}
+          </ScrollArea>
         )}
       </div>
     </div>

@@ -23,7 +23,7 @@ import {
 import { Separator } from "@/components/ui/separator"
 import AddressComboBox from "./AddressComboBox"
 import SearchButton from "./SearchButton"
-import usePhysicalStoreSearch from "@/hooks/usePhysicalStoreSearch"
+import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
 
 export default function LocationFilter() {
   const [searchFilter, setSearchFilter] = useState<SearchFilter>({
@@ -32,7 +32,7 @@ export default function LocationFilter() {
     subDistrict: "",
     storeName: "",
   })
-  const { setResult, filterAccordionValue, setFilterAccordionValue } =
+  const { filterAccordionValue, setFilterAccordionValue } =
     usePhysicalStoreSearch()
   const tPhysicalStore = useTranslations("physical-store")
 
@@ -90,11 +90,7 @@ export default function LocationFilter() {
             />
           </div>
 
-          <SearchButton
-            searchFilter={searchFilter}
-            setResult={setResult}
-            setFilterAccordionValue={setFilterAccordionValue}
-          />
+          <SearchButton searchFilter={searchFilter} />
         </AccordionContent>
       </AccordionItem>
     </Accordion>

@@ -9,27 +9,24 @@ import {
 
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
+import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
 
 type SearchButtonProps = {
   searchFilter: SearchFilter
-  setResult: React.Dispatch<React.SetStateAction<PhysicalStore[] | null>>
-  setFilterAccordionValue: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function SearchButton({
-  searchFilter,
-  setResult,
-  setFilterAccordionValue,
-}: SearchButtonProps) {
+export default function SearchButton({ searchFilter }: SearchButtonProps) {
   const { toast } = useToast()
   const tButton = useTranslations("button")
   const tPhysicalStoreToast = useTranslations("physical-store-toast")
+  const { setResult, setFilterAccordionValue } = usePhysicalStoreSearch()
+
   return (
     <Link
       className="mt-8 flex w-full justify-center"
       href={`/where-to-buy?type=physical-store&province=${searchFilter.province}&district=${searchFilter.district}&subDistrict=${searchFilter.subDistrict}&storeName=${searchFilter.storeName}`}
       scroll={false}
-      onClick={() => {
+      onClick={async () => {
         if (!searchFilter.province && !searchFilter.storeName) {
           return toast({
             title: tPhysicalStoreToast("filter-input-required"),
@@ -39,11 +36,9 @@ export default function SearchButton({
           })
         }
 
-        const result = filterResult(searchFilter)
-        console.log("searchFilter", searchFilter)
-        console.log("result", result)
+        const newResult = await filterResult(searchFilter)
+        setResult(newResult)
         setFilterAccordionValue("")
-        setResult(result)
       }}
     >
       <Button className="rounded-full px-10 py-6 font-psl text-[40px]">

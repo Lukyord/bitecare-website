@@ -24,14 +24,14 @@ export default function FindMe({ distance, filterByDistance }: FindMeProps) {
               group flex items-center 
               gap-3 rounded-xl bg-white 
               p-2 shadow-lg transition-all duration-500 
-              hover:bg-black sm:p-4
+              hover:bg-bc-black sm:p-4
             "
         onClick={filterByDistance}
       >
         <RiSendPlaneLine
           size={24}
           className="
-              text-black 
+              text-bc-black 
                 transition-all duration-500 
               group-hover:text-white
               "
@@ -39,7 +39,7 @@ export default function FindMe({ distance, filterByDistance }: FindMeProps) {
         <p
           className="
                 font-hel_rounded text-subtitle tracking-tight 
-                transition-all duration-500 
+                text-bc-black transition-all duration-500
                 group-hover:text-white sm:text-paragraph
               "
         >

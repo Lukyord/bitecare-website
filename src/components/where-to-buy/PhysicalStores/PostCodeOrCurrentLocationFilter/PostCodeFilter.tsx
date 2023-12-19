@@ -10,7 +10,7 @@ import { postCodeSchema } from "@/types/where-to-buy/physical-store"
 
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
-import usePhysicalStoreSearch from "@/hooks/usePhysicalStoreSearch"
+import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
 
 export default function PostCodeFilter() {
   const { toast } = useToast()
