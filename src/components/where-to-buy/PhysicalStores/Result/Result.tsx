@@ -17,12 +17,12 @@ export default function Result() {
   if (!result) return null
 
   return (
-    <div className="w-[600px] rounded-xl bg-white shadow-lg lg:p-2 ">
+    <div className="w-[600px] cursor-default rounded-xl bg-white shadow-lg lg:p-2">
       <h3
         className="
-                  p-4 text-start font-hel_rounded 
-                  text-paragraph hover:no-underline 
-                  sm:text-h3
+                  p-4 text-start 
+                  font-hel_rounded text-paragraph 
+                  hover:no-underline sm:text-h3
                 "
       >
         {tPhysicalStore("result")}
@@ -40,12 +40,14 @@ export default function Result() {
             </p>
           </div>
         ) : (
-          <ScrollArea className="h-[50vh] w-full">
-            {result.map((store, index) => (
-              <React.Fragment key={index}>
-                <ResultCard physicalStore={store} />
-              </React.Fragment>
-            ))}
+          <ScrollArea className="h-[50vh] w-full pr-4">
+            <div className="flex flex-col gap-3">
+              {result.map((store, index) => (
+                <React.Fragment key={index}>
+                  <ResultCard physicalStore={store} />
+                </React.Fragment>
+              ))}
+            </div>
           </ScrollArea>
         )}
       </div>

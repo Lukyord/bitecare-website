@@ -1,7 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import {
   PhysicalStore,
@@ -24,6 +24,8 @@ import { Separator } from "@/components/ui/separator"
 import AddressComboBox from "./AddressComboBox"
 import SearchButton from "./SearchButton"
 import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
+import { useSearchParams } from "next/navigation"
+import { filterResult } from "@/lib/where-to-buy/filterResult"
 
 export default function LocationFilter() {
   const [searchFilter, setSearchFilter] = useState<SearchFilter>({
@@ -32,9 +34,41 @@ export default function LocationFilter() {
     subDistrict: "",
     storeName: "",
   })
-  const { filterAccordionValue, setFilterAccordionValue } =
+  const searchParams = useSearchParams()
+  const urlProvince = searchParams.get("province")
+  const urlDistrict = searchParams.get("district")
+  const urlSubDistrict = searchParams.get("subDistrict")
+  const urlStoreName = searchParams.get("storeName")
+  const { filterAccordionValue, setFilterAccordionValue, setResult } =
     usePhysicalStoreSearch()
   const tPhysicalStore = useTranslations("physical-store")
+
+  useEffect(() => {
+    if (urlProvince || urlDistrict || urlSubDistrict || urlStoreName) {
+      setFilterAccordionValue("")
+      setSearchFilter({
+        province: urlProvince || "",
+        district: urlDistrict || "",
+        subDistrict: urlSubDistrict || "",
+        storeName: urlStoreName || "",
+      })
+      setResult(
+        filterResult({
+          province: urlProvince || "",
+          district: urlDistrict || "",
+          subDistrict: urlSubDistrict || "",
+          storeName: urlStoreName || "",
+        })
+      )
+    }
+  }, [
+    urlProvince,
+    urlDistrict,
+    urlSubDistrict,
+    urlStoreName,
+    setResult,
+    setFilterAccordionValue,
+  ])
 
   return (
     <Accordion

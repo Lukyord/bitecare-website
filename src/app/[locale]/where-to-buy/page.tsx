@@ -20,7 +20,6 @@ export default async function WhereToBuyPage({
         messages={pick(
           messages,
           "physical-store",
-          "store-card",
           "physical-store-toast",
           "button"
         )}

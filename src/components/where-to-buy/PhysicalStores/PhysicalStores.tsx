@@ -24,8 +24,8 @@ export default function PhysicalStores({}: PhysicalStoresProps) {
   return (
     <section>
       {!mapReady && <MapLoadingSkeleton />}
-      <DynamicMap setMapReady={setMapReady}>
-        <PhysicalStoreSearchContextProvider>
+      <PhysicalStoreSearchContextProvider>
+        <DynamicMap setMapReady={setMapReady}>
           <div
             className="
                   absolute inset-x-[2vw] 
@@ -37,8 +37,8 @@ export default function PhysicalStores({}: PhysicalStoresProps) {
             <LocationFilter />
             <Result />
           </div>
-        </PhysicalStoreSearchContextProvider>
-      </DynamicMap>
+        </DynamicMap>
+      </PhysicalStoreSearchContextProvider>
     </section>
   )
 }

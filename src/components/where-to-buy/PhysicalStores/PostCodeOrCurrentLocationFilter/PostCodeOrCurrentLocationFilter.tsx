@@ -2,8 +2,10 @@
 
 import { useSearchParams } from "next/navigation"
 import { useMap } from "react-leaflet"
-import { useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useTranslations } from "next-intl"
+
+import { filterByDistanceLatLong } from "@/lib/where-to-buy/filterByDistance"
 
 import PostCodeFilter from "./PostCodeFilter"
 import FindMe from "./FindMe"
@@ -15,17 +17,23 @@ export default function PostCodeOrCurrentLocationFilter() {
   const map = useMap()
   const { toast } = useToast()
   const searchParams = useSearchParams()
-  const [distance, setDistance] = useState(
-    parseInt(searchParams.get("distance") || "15")
-  )
+  const urlDistance = searchParams.get("distance")
+  const [distance, setDistance] = useState(parseInt(urlDistance || "15"))
   const { setResult, setFilterAccordionValue } = usePhysicalStoreSearch()
   const tPhysicalStoreToast = useTranslations("physical-store-toast")
 
-  const filterByDistance = () => {
+  const filterByDistance = useCallback(() => {
     map.locate().on("locationfound", function (e) {
       map.flyTo(e.latlng, map.getZoom())
 
       setFilterAccordionValue("")
+      setResult(
+        filterByDistanceLatLong(
+          e.latlng.lat,
+          e.latlng.lng,
+          parseInt(urlDistance || "15")
+        )
+      )
     })
 
     map.locate().on("locationerror", function (e) {
@@ -34,7 +42,18 @@ export default function PostCodeOrCurrentLocationFilter() {
         description: tPhysicalStoreToast("cant-access-location"),
       })
     })
-  }
+  }, [
+    map,
+    setResult,
+    setFilterAccordionValue,
+    toast,
+    tPhysicalStoreToast,
+    urlDistance,
+  ])
+
+  useEffect(() => {
+    if (urlDistance) filterByDistance()
+  }, [urlDistance, setResult, setFilterAccordionValue, filterByDistance])
 
   return (
     <div className="flex h-fit w-full items-center justify-between">
@@ -42,11 +61,7 @@ export default function PostCodeOrCurrentLocationFilter() {
 
       {/* Find me & DistanceFilter */}
       <div className="flex items-center gap-2 sm:gap-6">
-        <DistanceFilter
-          distance={distance}
-          setDistance={setDistance}
-          filterByDistance={filterByDistance}
-        />
+        <DistanceFilter distance={distance} setDistance={setDistance} />
         <FindMe distance={distance} filterByDistance={filterByDistance} />
       </div>
     </div>

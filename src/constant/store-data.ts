@@ -5409,7 +5409,7 @@ export const StoresData = [
     phone: 881814242,
     "post-code": 55160,
     link: "https://www.google.com/maps/place/%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%81%E0%B8%A5%E0%B8%B2%E0%B8%87+%E0%B9%80%E0%B8%9E%E0%B9%87%E0%B8%97+%E0%B9%80%E0%B8%A7%E0%B8%A5%E0%B9%80%E0%B8%99%E0%B8%AA/@16.6197693,98.1080429,7z/data=!4m10!1m2!2m1!1z4LmA4LiK4Li14Lii4LiH4LiB4Lil4Liy4LiH4Liq4Lix4LiV4Lin4LmB4Lie4LiX4Lii4LmMICjguYDguJ7guYfguJcg4LmA4Lin4Lil4LmA4LiZ4LiqKQ!3m6!1s0x312809990c80aefb:0xb7551f0f40209602!8m2!3d19.2852525!4d100.862653!15sCljguYDguIrguLXguKLguIfguIHguKXguLLguIfguKrguLHguJXguKfguYHguJ7guJfguKLguYwgKOC5gOC4nuC5h-C4lyDguYDguKfguKXguYDguJnguKopkgEMdmV0ZXJpbmFyaWFu4AEA!16s%2Fg%2F11v3qqf2_t?entry=ttu",
-    lat: "19.512575925431964,",
+    lat: 19.512575925431964,
     long: 100.9205429265,
   },
   {

@@ -18,13 +18,11 @@ import { Button } from "@/components/ui/button"
 type DistanceFilterProps = {
   distance: number
   setDistance: React.Dispatch<React.SetStateAction<number>>
-  filterByDistance: () => void
 }
 
 export default function DistanceFilter({
   distance,
   setDistance,
-  filterByDistance,
 }: DistanceFilterProps) {
   const searchParams = useSearchParams()
   const tButton = useTranslations("button")
@@ -88,7 +86,6 @@ export default function DistanceFilter({
             className="flex w-full justify-center"
             href={`/where-to-buy?type=physical-store&distance=${distance}`}
             scroll={false}
-            onClick={filterByDistance}
           >
             <Button className="rounded-full px-10 py-6 font-psl text-[40px]">
               {tButton("search")}

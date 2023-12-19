@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl"
 import { useFormStatus } from "react-dom"
+import { useSearchParams } from "next/navigation"
 
 import { CiSearch } from "react-icons/ci"
 import { useRouter } from "@/lib/navigation"
@@ -11,10 +12,14 @@ import { postCodeSchema } from "@/types/where-to-buy/physical-store"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
 import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
+import { filterByPostCode } from "@/lib/where-to-buy/filterByPostCode"
+import { useEffect } from "react"
 
 export default function PostCodeFilter() {
   const { toast } = useToast()
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const urlPostCode = searchParams.get("postCode")
   const { pending } = useFormStatus()
   const { setResult, setFilterAccordionValue } = usePhysicalStoreSearch()
   const tPhysicalStore = useTranslations("physical-store")
@@ -35,8 +40,18 @@ export default function PostCodeFilter() {
       })
     }
 
+    postCode && setResult(filterByPostCode(postCode.toString()))
+    setFilterAccordionValue("")
+
     router.replace(`/where-to-buy?type=physical-store&postCode=${postCode}`)
   }
+
+  useEffect(() => {
+    if (urlPostCode) {
+      setResult(filterByPostCode(urlPostCode))
+      setFilterAccordionValue("")
+    }
+  }, [urlPostCode, setResult, setFilterAccordionValue])
 
   return (
     <form
@@ -67,6 +82,7 @@ export default function PostCodeFilter() {
         maxLength={5}
         autoComplete="off"
       />
+
       <button
         type="submit"
         aria-disabled={pending}

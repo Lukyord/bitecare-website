@@ -14,9 +14,6 @@
     "no-result": "อุ๊ปส์! ไม่พบอะไร",
     "no-result-description": "เราไม่พบผลการค้นหา ลองอีกครั้ง"
   },
-  "store-card": {
-    "view-on-google-map": "ดูบน Google Map"
-  },
   "physical-store-toast": {
     "something-went-wrong": "อุ๊ปส์! บางอย่างผิดพลาด",
     "cant-access-location": "ไม่สามารถเข้าถึงตำแหน่งได้ กรุณาเปิดใช้งานตำแหน่งของคุณ",

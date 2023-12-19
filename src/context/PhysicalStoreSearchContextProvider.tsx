@@ -1,7 +1,7 @@
 "use client"
 
 import { PhysicalStore } from "@/types/where-to-buy/physical-store"
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 
 type PhysicalStoreSearchContextType = {
   result: PhysicalStore[] | null

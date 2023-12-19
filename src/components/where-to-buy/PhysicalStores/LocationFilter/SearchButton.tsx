@@ -2,10 +2,7 @@ import { useTranslations } from "next-intl"
 
 import { Link } from "@/lib/navigation"
 import { filterResult } from "@/lib/where-to-buy/filterResult"
-import {
-  PhysicalStore,
-  SearchFilter,
-} from "@/types/where-to-buy/physical-store"
+import { SearchFilter } from "@/types/where-to-buy/physical-store"
 
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
@@ -18,6 +15,7 @@ type SearchButtonProps = {
 export default function SearchButton({ searchFilter }: SearchButtonProps) {
   const { toast } = useToast()
   const tButton = useTranslations("button")
+
   const tPhysicalStoreToast = useTranslations("physical-store-toast")
   const { setResult, setFilterAccordionValue } = usePhysicalStoreSearch()
 
