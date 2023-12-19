@@ -19,6 +19,8 @@
   },
   "physical-store-toast": {
     "something-went-wrong": "Uh oh! Something went wrong.",
-    "cant-access-location": "Error accessing your location. Please make sure location access is allowed."
+    "cant-access-location": "Error accessing your location. Please make sure location access is allowed.",
+    "filter-input-required": "Filter input required",
+    "filter-input-required-description": "Please fill in at least one filter input."
   }
 }

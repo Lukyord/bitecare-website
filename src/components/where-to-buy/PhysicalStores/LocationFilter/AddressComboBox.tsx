@@ -54,21 +54,26 @@ export default function AddressComboBox({
     setOpen(false)
     if (addressKey === "province") {
       setSearchFilter((prev) => ({
-        ...prev,
-        province: currentValue,
+        province: currentValue === prev.province ? "" : currentValue,
         district: "",
         subDistrict: "",
+        storeName: "",
       }))
     } else if (addressKey === "district") {
       setSearchFilter((prev) => ({
         ...prev,
-        district: currentValue,
+        district: currentValue === prev.district ? "" : currentValue,
         subDistrict: "",
+      }))
+    } else if (addressKey === "subDistrict") {
+      setSearchFilter((prev) => ({
+        ...prev,
+        subDistrict: currentValue === prev.subDistrict ? "" : currentValue,
       }))
     } else {
       setSearchFilter((prev) => ({
         ...prev,
-        subDistrict: currentValue,
+        storeName: currentValue,
       }))
     }
   }
@@ -109,7 +114,9 @@ export default function AddressComboBox({
                   className="text-[24px]"
                   key={address.value}
                   value={address.value}
-                  onSelect={(currentValue) => handleSelectItem(currentValue)}
+                  onSelect={() => {
+                    handleSelectItem(address.value)
+                  }}
                 >
                   <Check
                     className={cn(

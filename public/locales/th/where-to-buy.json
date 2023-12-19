@@ -19,6 +19,8 @@
   },
   "physical-store-toast": {
     "something-went-wrong": "อุ๊ปส์! บางอย่างผิดพลาด",
-    "cant-access-location": "ไม่สามารถเข้าถึงตำแหน่งได้ กรุณาเปิดใช้งานตำแหน่งของคุณ"
+    "cant-access-location": "ไม่สามารถเข้าถึงตำแหน่งได้ กรุณาเปิดใช้งานตำแหน่งของคุณ",
+    "filter-input-required": "กรุณาใส่ตัวกรอง",
+    "filter-input-required-description": "กรุณาใส่ตัวกรองอย่างน้อยหนึ่งตัว"
   }
 }

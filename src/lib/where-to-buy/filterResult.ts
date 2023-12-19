@@ -14,16 +14,19 @@ export function filterResult(searchFilter: SearchFilter): PhysicalStore[] {
               store.province === searchFilter.province &&
               store.district === searchFilter.district
           )
-        : Stores.filter((store) => {
-            store.province === searchFilter.province &&
+        : Stores.filter(
+            (store) =>
+              store.province === searchFilter.province &&
               store.district === searchFilter.district &&
               store["sub-district"] === searchFilter.subDistrict
-          })
+          )
 
   const resultByStoreName =
     searchFilter.storeName === ""
       ? result
-      : result.filter((store) => store.name.includes(searchFilter.storeName))
+      : searchFilter.province === ""
+        ? Stores.filter((store) => store.name.includes(searchFilter.storeName))
+        : result.filter((store) => store.name.includes(searchFilter.storeName))
 
   return resultByStoreName
 }

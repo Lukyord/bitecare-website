@@ -100,7 +100,7 @@ export default function DistanceFilter() {
               })
             }}
           >
-            <Button size="lg" className="w-fit text-2xl">
+            <Button className="rounded-full px-10 py-6 font-psl text-[40px]">
               {tButton("search")}
             </Button>
           </Link>

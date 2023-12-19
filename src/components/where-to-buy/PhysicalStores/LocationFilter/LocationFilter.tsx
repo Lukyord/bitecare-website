@@ -1,7 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { SearchFilter } from "@/types/where-to-buy/physical-store"
 import { provinces } from "@/constant/addresses"
@@ -20,6 +20,8 @@ import {
 import { Separator } from "@/components/ui/separator"
 import AddressComboBox from "./AddressComboBox"
 import { Button } from "@/components/ui/button"
+import { filterResult } from "@/lib/where-to-buy/filterResult"
+import SearchButton from "./SearchButton"
 
 type LocationFilterProps = {}
 
@@ -86,7 +88,7 @@ export default function LocationFilter({}: LocationFilterProps) {
             />
           </div>
 
-          <Button>{tButton("search")}</Button>
+          <SearchButton searchFilter={searchFilter} />
         </AccordionContent>
       </AccordionItem>
     </Accordion>
