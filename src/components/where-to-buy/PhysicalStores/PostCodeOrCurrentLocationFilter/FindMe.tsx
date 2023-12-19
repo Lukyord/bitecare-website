@@ -12,7 +12,7 @@ type FindMeProps = {}
 export default function FindMe({}: FindMeProps) {
   const map = useMap()
   const { toast } = useToast()
-  const tPhysicalStore = useTranslations("physical-store")
+  const tButton = useTranslations("button")
   const tPhysicalStoreToast = useTranslations("physical-store-toast")
 
   const findMe = () => {
@@ -53,7 +53,7 @@ export default function FindMe({}: FindMeProps) {
                 group-hover:text-white sm:text-paragraph
               "
       >
-        {tPhysicalStore("find-me")}
+        {tButton("find-me")}
       </p>
     </button>
   )

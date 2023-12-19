@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import { Check, ChevronsUpDown } from "lucide-react"
 import {
-  AreaDivisionChoice,
+  ComboBoxChoice,
   SearchFilter,
 } from "@/types/where-to-buy/physical-store"
 import { useTranslations } from "next-intl"
@@ -24,10 +24,11 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 type PostCodeFilterProps = {
-  addressChoices: AreaDivisionChoice[]
+  addressChoices: ComboBoxChoice[]
   setSearchFilter: React.Dispatch<React.SetStateAction<SearchFilter>>
   addressKey: keyof SearchFilter
-  disabled: boolean
+  disabled?: boolean
+  value: string
 }
 
 export default function AddressComboBox({
@@ -35,9 +36,9 @@ export default function AddressComboBox({
   setSearchFilter,
   addressKey,
   disabled,
+  value,
 }: PostCodeFilterProps) {
   const [open, setOpen] = useState(false)
-  const [value, setValue] = useState("")
   const tPhysicalStore = useTranslations("physical-store")
 
   const placeholder =
@@ -45,7 +46,32 @@ export default function AddressComboBox({
       ? tPhysicalStore("province")
       : addressKey === "district"
         ? tPhysicalStore("district/area")
-        : tPhysicalStore("subdistrict/subarea")
+        : addressKey === "subDistrict"
+          ? tPhysicalStore("subdistrict/subarea")
+          : tPhysicalStore("store-name")
+
+  const handleSelectItem = (currentValue: string) => {
+    setOpen(false)
+    if (addressKey === "province") {
+      setSearchFilter((prev) => ({
+        ...prev,
+        province: currentValue,
+        district: "",
+        subDistrict: "",
+      }))
+    } else if (addressKey === "district") {
+      setSearchFilter((prev) => ({
+        ...prev,
+        district: currentValue,
+        subDistrict: "",
+      }))
+    } else {
+      setSearchFilter((prev) => ({
+        ...prev,
+        subDistrict: currentValue,
+      }))
+    }
+  }
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -83,14 +109,7 @@ export default function AddressComboBox({
                   className="text-[24px]"
                   key={address.value}
                   value={address.value}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue)
-                    setSearchFilter((prev) => ({
-                      ...prev,
-                      [addressKey]: currentValue,
-                    }))
-                    setOpen(false)
-                  }}
+                  onSelect={(currentValue) => handleSelectItem(currentValue)}
                 >
                   <Check
                     className={cn(

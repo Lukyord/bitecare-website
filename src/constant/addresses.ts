@@ -1,4 +1,4 @@
-import { AreaDivisionChoice } from "@/types/where-to-buy/physical-store"
+import { ComboBoxChoice } from "@/types/where-to-buy/physical-store"
 import { Stores } from "./stores"
 
 const uniqueProvinces = Array.from(
@@ -11,21 +11,17 @@ const uniqueSubDistricts = Array.from(
   new Set(Stores.map((store) => store["sub-district"].trim()))
 )
 
-export const provinces: AreaDivisionChoice[] = uniqueProvinces.map(
-  (province) => ({
-    label: province,
-    value: province,
-  })
-)
+export const provinces: ComboBoxChoice[] = uniqueProvinces.map((province) => ({
+  label: province,
+  value: province,
+}))
 
-export const districts: AreaDivisionChoice[] = uniqueDistricts.map(
-  (district) => ({
-    label: district,
-    value: district,
-  })
-)
+export const districts: ComboBoxChoice[] = uniqueDistricts.map((district) => ({
+  label: district,
+  value: district,
+}))
 
-export const subDistricts: AreaDivisionChoice[] = uniqueSubDistricts.map(
+export const subDistricts: ComboBoxChoice[] = uniqueSubDistricts.map(
   (subDistrict) => ({
     label: subDistrict,
     value: subDistrict,

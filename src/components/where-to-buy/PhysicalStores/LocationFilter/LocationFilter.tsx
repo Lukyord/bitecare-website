@@ -1,6 +1,15 @@
 "use client"
 
 import { useTranslations } from "next-intl"
+import { useState } from "react"
+
+import { SearchFilter } from "@/types/where-to-buy/physical-store"
+import { provinces } from "@/constant/addresses"
+import {
+  filterDistrictByProvince,
+  filterSubDistrictByDistrict,
+} from "@/lib/where-to-buy/filterByAddress"
+import { filterByStoreName } from "@/lib/where-to-buy/filterByStoreName"
 
 import {
   Accordion,
@@ -9,14 +18,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Separator } from "@/components/ui/separator"
-import { useState } from "react"
-import { SearchFilter } from "@/types/where-to-buy/physical-store"
 import AddressComboBox from "./AddressComboBox"
-import { districts, provinces, subDistricts } from "@/constant/addresses"
-import {
-  filterDistrictFromProvince,
-  filterSubDistrictFromDistrict,
-} from "@/lib/filterAddress"
+import { Button } from "@/components/ui/button"
 
 type LocationFilterProps = {}
 
@@ -28,6 +31,7 @@ export default function LocationFilter({}: LocationFilterProps) {
     storeName: "",
   })
   const tPhysicalStore = useTranslations("physical-store")
+  const tButton = useTranslations("button")
   const tPhysicalStoreToast = useTranslations("physical-store-toast")
 
   return (
@@ -56,28 +60,33 @@ export default function LocationFilter({}: LocationFilterProps) {
                 addressChoices={provinces}
                 setSearchFilter={setSearchFilter}
                 addressKey="province"
-                disabled={false}
+                value={searchFilter.province}
               />
               <AddressComboBox
-                addressChoices={filterDistrictFromProvince(
-                  searchFilter.province
-                )}
+                addressChoices={filterDistrictByProvince(searchFilter)}
                 setSearchFilter={setSearchFilter}
                 addressKey="district"
                 disabled={searchFilter.province === ""}
+                value={searchFilter.district}
               />
               <AddressComboBox
-                addressChoices={filterSubDistrictFromDistrict(
-                  searchFilter.province,
-                  searchFilter.district
-                )}
+                addressChoices={filterSubDistrictByDistrict(searchFilter)}
                 setSearchFilter={setSearchFilter}
                 addressKey="subDistrict"
                 disabled={searchFilter.district === ""}
+                value={searchFilter.subDistrict}
               />
             </div>
             <h3 className="font-psl text-h3">{tPhysicalStore("store-name")}</h3>
+            <AddressComboBox
+              addressChoices={filterByStoreName(searchFilter)}
+              setSearchFilter={setSearchFilter}
+              addressKey="storeName"
+              value={searchFilter.storeName}
+            />
           </div>
+
+          <Button>{tButton("search")}</Button>
         </AccordionContent>
       </AccordionItem>
     </Accordion>

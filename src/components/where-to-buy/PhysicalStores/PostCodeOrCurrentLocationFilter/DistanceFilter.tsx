@@ -25,6 +25,7 @@ export default function DistanceFilter() {
   const [distance, setDistance] = useState(
     parseInt(searchParams.get("distance") || "15")
   )
+  const tButton = useTranslations("button")
   const tPhysicalStore = useTranslations("physical-store")
   const tPhysicalStoreToast = useTranslations("physical-store-toast")
 
@@ -100,7 +101,7 @@ export default function DistanceFilter() {
             }}
           >
             <Button size="lg" className="w-fit text-2xl">
-              {tPhysicalStore("search")}
+              {tButton("search")}
             </Button>
           </Link>
         </div>

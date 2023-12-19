@@ -1,3 +1,4 @@
+import { Stores } from "@/constant/stores"
 import { z } from "zod"
 
 export const postCodeSchema = z.object({
@@ -9,7 +10,9 @@ export const postCodeSchema = z.object({
     }),
 })
 
-export type AreaDivisionChoice = {
+export type PhysicalStore = (typeof Stores)[number]
+
+export type ComboBoxChoice = {
   label: string
   value: string
 }

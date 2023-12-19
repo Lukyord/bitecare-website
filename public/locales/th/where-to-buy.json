@@ -2,7 +2,6 @@
   "physical-store": {
     "where-do-you-live": "คุณอาศัยที่ไหน?",
     "where-do-you-live-placeholder": "ใส่รหัสไปรษณีย์",
-    "find-me": "ตำแหน่งของฉัน",
     "filter": "ตัวกรอง",
     "location": "ที่อยู่",
     "province": "จังหวัด",
@@ -11,7 +10,6 @@
     "store-name": "ชื่อร้าน",
     "distance": "ระยะทาง",
     "km": "กม.",
-    "search": "ค้นหา",
     "result": "ผลลัพธ์",
     "no-result": "อุ๊ปส์! ไม่พบอะไร",
     "no-result-description": "เราไม่พบผลการค้นหา ลองอีกครั้ง"

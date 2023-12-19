@@ -2,7 +2,6 @@
   "physical-store": {
     "where-do-you-live": "Where do you live?",
     "where-do-you-live-placeholder": "your postal code",
-    "find-me": "Find me",
     "filter": "Filters",
     "location": "Location",
     "province": "Province",
@@ -11,7 +10,6 @@
     "store-name": "Store Name",
     "distance": "Distance",
     "km": "km",
-    "search": "Search",
     "result": "Result",
     "no-result": "Whoops, nothing",
     "no-result-description": "We couldn&apos;t find any search results. Give it another go"

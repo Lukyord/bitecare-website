@@ -21,7 +21,8 @@ export default async function WhereToBuyPage({
           messages,
           "physical-store",
           "store-card",
-          "physical-store-toast"
+          "physical-store-toast",
+          "button"
         )}
       >
         <PhysicalStores />
