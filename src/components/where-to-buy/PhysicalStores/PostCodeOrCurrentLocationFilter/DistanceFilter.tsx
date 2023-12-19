@@ -1,10 +1,8 @@
 "use client"
 
-import { useState } from "react"
 import { Link } from "@/lib/navigation"
 import { useTranslations } from "next-intl"
 import { GiPathDistance } from "react-icons/gi"
-import { useMap } from "react-leaflet"
 
 import {
   Popover,
@@ -16,18 +14,21 @@ import { PopoverArrow, PopoverClose } from "@radix-ui/react-popover"
 import { Slider } from "@/components/ui/slider"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { useToast } from "@/components/ui/use-toast"
 
-export default function DistanceFilter() {
-  const map = useMap()
-  const { toast } = useToast()
+type DistanceFilterProps = {
+  distance: number
+  setDistance: React.Dispatch<React.SetStateAction<number>>
+  filterByDistance: () => void
+}
+
+export default function DistanceFilter({
+  distance,
+  setDistance,
+  filterByDistance,
+}: DistanceFilterProps) {
   const searchParams = useSearchParams()
-  const [distance, setDistance] = useState(
-    parseInt(searchParams.get("distance") || "15")
-  )
   const tButton = useTranslations("button")
   const tPhysicalStore = useTranslations("physical-store")
-  const tPhysicalStoreToast = useTranslations("physical-store-toast")
 
   return (
     <Popover
@@ -87,18 +88,7 @@ export default function DistanceFilter() {
             className="flex w-full justify-center"
             href={`/where-to-buy?type=physical-store&distance=${distance}`}
             scroll={false}
-            onClick={() => {
-              map.locate().on("locationfound", function (e) {
-                map.flyTo(e.latlng, map.getZoom())
-              })
-
-              map.locate().on("locationerror", function (e) {
-                toast({
-                  title: tPhysicalStoreToast("something-went-wrong"),
-                  description: tPhysicalStoreToast("cant-access-location"),
-                })
-              })
-            }}
+            onClick={filterByDistance}
           >
             <Button className="rounded-full px-10 py-6 font-psl text-[40px]">
               {tButton("search")}

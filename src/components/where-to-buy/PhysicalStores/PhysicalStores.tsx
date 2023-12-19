@@ -1,10 +1,13 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import PostCodeOrCurrentLocationFilter from "./PostCodeOrCurrentLocationFilter/PostCodeOrCurrentLocationFilter"
 import { useState } from "react"
+
+import PostCodeOrCurrentLocationFilter from "./PostCodeOrCurrentLocationFilter/PostCodeOrCurrentLocationFilter"
 import MapLoadingSkeleton from "./Map/MapLoadingSkeleton"
 import LocationFilter from "./LocationFilter/LocationFilter"
+import Result from "./Result/Result"
+import usePhysicalStoreSearch from "@/hooks/usePhysicalStoreSearch"
 
 const DynamicMap = dynamic(
   () => import("@/components/where-to-buy/PhysicalStores/Map/Map"),
@@ -17,6 +20,7 @@ type PhysicalStoresProps = {}
 
 export default function PhysicalStores({}: PhysicalStoresProps) {
   const [mapReady, setMapReady] = useState(false)
+  const { result } = usePhysicalStoreSearch()
 
   return (
     <section>
@@ -31,6 +35,7 @@ export default function PhysicalStores({}: PhysicalStoresProps) {
         >
           <PostCodeOrCurrentLocationFilter />
           <LocationFilter />
+          {result && <Result result={result} />}
         </div>
       </DynamicMap>
     </section>

@@ -10,13 +10,13 @@ import { postCodeSchema } from "@/types/where-to-buy/physical-store"
 
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
+import usePhysicalStoreSearch from "@/hooks/usePhysicalStoreSearch"
 
-type PostCodeFilterProps = {}
-
-export default function PostCodeFilter({}: PostCodeFilterProps) {
+export default function PostCodeFilter() {
   const { toast } = useToast()
   const router = useRouter()
   const { pending } = useFormStatus()
+  const { setResult, setFilterAccordionValue } = usePhysicalStoreSearch()
   const tPhysicalStore = useTranslations("physical-store")
   const tPhysicalStoreToast = useTranslations("physical-store-toast")
 

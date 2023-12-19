@@ -1,9 +1,12 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
-import { SearchFilter } from "@/types/where-to-buy/physical-store"
+import {
+  PhysicalStore,
+  SearchFilter,
+} from "@/types/where-to-buy/physical-store"
 import { provinces } from "@/constant/addresses"
 import {
   filterDistrictByProvince,
@@ -19,28 +22,27 @@ import {
 } from "@/components/ui/accordion"
 import { Separator } from "@/components/ui/separator"
 import AddressComboBox from "./AddressComboBox"
-import { Button } from "@/components/ui/button"
-import { filterResult } from "@/lib/where-to-buy/filterResult"
 import SearchButton from "./SearchButton"
+import usePhysicalStoreSearch from "@/hooks/usePhysicalStoreSearch"
 
-type LocationFilterProps = {}
-
-export default function LocationFilter({}: LocationFilterProps) {
+export default function LocationFilter() {
   const [searchFilter, setSearchFilter] = useState<SearchFilter>({
     province: "",
     district: "",
     subDistrict: "",
     storeName: "",
   })
+  const { setResult, filterAccordionValue, setFilterAccordionValue } =
+    usePhysicalStoreSearch()
   const tPhysicalStore = useTranslations("physical-store")
-  const tButton = useTranslations("button")
-  const tPhysicalStoreToast = useTranslations("physical-store-toast")
 
   return (
     <Accordion
       type="single"
       collapsible
       className="w-[600px] rounded-xl bg-white shadow-lg lg:p-2"
+      value={filterAccordionValue}
+      onValueChange={setFilterAccordionValue}
     >
       <AccordionItem value="location filter" className="border-none">
         <AccordionTrigger
@@ -88,7 +90,11 @@ export default function LocationFilter({}: LocationFilterProps) {
             />
           </div>
 
-          <SearchButton searchFilter={searchFilter} />
+          <SearchButton
+            searchFilter={searchFilter}
+            setResult={setResult}
+            setFilterAccordionValue={setFilterAccordionValue}
+          />
         </AccordionContent>
       </AccordionItem>
     </Accordion>
