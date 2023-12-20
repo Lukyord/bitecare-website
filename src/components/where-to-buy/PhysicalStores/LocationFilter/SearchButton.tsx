@@ -22,8 +22,22 @@ export default function SearchButton({ searchFilter }: SearchButtonProps) {
   return (
     <Link
       className="mt-8 flex w-full justify-center"
-      href={`/where-to-buy?type=physical-store&province=${searchFilter.province}&district=${searchFilter.district}&subDistrict=${searchFilter.subDistrict}&storeName=${searchFilter.storeName}`}
+      href={{
+        pathname: "/where-to-buy",
+        query: {
+          type: "physical-store",
+          province: searchFilter.province,
+          district: searchFilter.district,
+          subDistrict: searchFilter.subDistrict,
+          storeName: searchFilter.storeName,
+          distance: null,
+          postCode: null,
+          focus: null,
+        },
+      }}
+      prefetch={false}
       scroll={false}
+      replace
       onClick={async () => {
         if (!searchFilter.province && !searchFilter.storeName) {
           return toast({

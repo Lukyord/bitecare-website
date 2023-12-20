@@ -16,8 +16,22 @@ export default function FindMe({ distance, filterByDistance }: FindMeProps) {
 
   return (
     <Link
-      href={`/where-to-buy?type=physical-store&distance=${distance}`}
+      href={{
+        pathname: "/where-to-buy",
+        query: {
+          type: "physical-store",
+          province: null,
+          district: null,
+          subDistrict: null,
+          storeName: null,
+          distance: distance.toString(),
+          postCode: null,
+          focus: null,
+        },
+      }}
       scroll={false}
+      replace
+      prefetch={false}
     >
       <button
         className="

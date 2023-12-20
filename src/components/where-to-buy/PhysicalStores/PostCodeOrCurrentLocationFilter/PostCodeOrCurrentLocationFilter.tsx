@@ -1,7 +1,7 @@
 "use client"
 
 import { useSearchParams } from "next/navigation"
-import { useMap } from "react-leaflet"
+import { Circle, useMap } from "react-leaflet"
 import { useCallback, useEffect, useState } from "react"
 import { useTranslations } from "next-intl"
 
@@ -19,6 +19,7 @@ export default function PostCodeOrCurrentLocationFilter() {
   const searchParams = useSearchParams()
   const urlDistance = searchParams.get("distance")
   const [distance, setDistance] = useState(parseInt(urlDistance || "15"))
+  const [radiusCenter, setRadiusCenter] = useState<[number, number]>([0, 0])
   const { setResult, setFilterAccordionValue } = usePhysicalStoreSearch()
   const tPhysicalStoreToast = useTranslations("physical-store-toast")
 
@@ -27,6 +28,7 @@ export default function PostCodeOrCurrentLocationFilter() {
       map.flyTo(e.latlng, map.getZoom())
 
       setFilterAccordionValue("")
+      setRadiusCenter([e.latlng.lat, e.latlng.lng])
       setResult(
         filterByDistanceLatLong(
           e.latlng.lat,
@@ -64,6 +66,14 @@ export default function PostCodeOrCurrentLocationFilter() {
         <DistanceFilter distance={distance} setDistance={setDistance} />
         <FindMe distance={distance} filterByDistance={filterByDistance} />
       </div>
+
+      {radiusCenter && urlDistance && (
+        <Circle
+          center={radiusCenter}
+          pathOptions={{ color: "blue", stroke: false }}
+          radius={distance * 1000}
+        />
+      )}
     </div>
   )
 }

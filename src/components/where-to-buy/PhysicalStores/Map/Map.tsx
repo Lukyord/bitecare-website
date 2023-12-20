@@ -7,10 +7,12 @@ import {
   Marker,
   Popup,
   ZoomControl,
+  Tooltip,
 } from "react-leaflet"
 import { useTranslations } from "next-intl"
+import { useRouter, useSearchParams } from "next/navigation"
 
-import { Link } from "@/lib/navigation"
+import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa"
 import "leaflet/dist/leaflet.css"
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css" // Re-uses images from ~leaflet package
 import "leaflet-defaulticon-compatibility"
@@ -24,8 +26,17 @@ type MapProps = {
 }
 
 export default function Map({ children, setMapReady }: MapProps) {
+  const router = useRouter()
   const { result } = usePhysicalStoreSearch()
   const tButton = useTranslations("button")
+  const searchParams = useSearchParams()
+  const focus = searchParams.get("focus")
+  const province = searchParams.get("province")
+  const district = searchParams.get("district")
+  const subDistrict = searchParams.get("subDistrict")
+  const storeName = searchParams.get("storeName")
+  const distance = searchParams.get("distance")
+  const postCode = searchParams.get("postCode")
 
   return (
     <MapContainer
@@ -45,19 +56,50 @@ export default function Map({ children, setMapReady }: MapProps) {
       />
       {result?.map((store, index) => (
         <React.Fragment key={index}>
-          <Marker position={[store.lat, store.long]}>
+          <Marker
+            position={[store.lat, store.long]}
+            eventHandlers={{
+              click: () => {
+                router.replace(
+                  `/where-to-buy?type=physical-store&province=${province}&district=${district}&subDistrict=${subDistrict}&distance=${distance}&postCode=${postCode}&focus=${store.name}`,
+                  { scroll: false }
+                )
+              },
+            }}
+          >
+            <Tooltip>
+              <p className="px-4 font-psl text-subtitle sm:text-paragraph">
+                {store.name}
+              </p>
+            </Tooltip>
             <Popup>
               <div className="flex flex-col gap-3 font-psl">
-                <h4 className="text-subtitle sm:text-h3">{store.name}</h4>
-                <Link
-                  href={store.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <h4 className="text-paragraph text-bc-black sm:text-h3">
+                  {store.name}
+                </h4>
+                <div className=" flex h-fit items-center gap-2">
+                  <FaMapMarkerAlt size={24} className="text-[#F24E1E]" />
+                  <span className="text-subtitle text-bc-black">
+                    {store.address}
+                  </span>
+                </div>
+                {store.phone && (
+                  <div className=" flex items-center gap-2">
+                    <FaPhoneAlt size={24} className="text-bc-primary" />
+                    <span className="text-subtitle text-bc-black">
+                      {store.phone}
+                    </span>
+                  </div>
+                )}
+
+                <div
+                  className="flex justify-center"
+                  onClick={() => window.open(store.link, "_blank")}
                 >
-                  <Button className="text-[16px] sm:text-[24px]">
+                  <Button className="w-fit text-[16px] sm:text-[24px]">
                     {tButton("view-on-google-map")}
                   </Button>
-                </Link>
+                </div>
               </div>
             </Popup>
           </Marker>

@@ -1,23 +1,44 @@
 "use client"
 
+import { LatLngBoundsLiteral } from "leaflet"
+import { useSearchParams } from "next/navigation"
 import { useEffect } from "react"
-import { useMap } from "react-leaflet"
+import { Circle, useMap } from "react-leaflet"
 
 import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
-import { LatLngBoundsLiteral } from "leaflet"
+import { Stores } from "@/constant/stores"
+import { filterResult } from "@/lib/where-to-buy/filterResult"
 
 export default function MapFitBoundOnSearch() {
   const map = useMap()
-  const { result } = usePhysicalStoreSearch()
+  const { result, setResult, setFilterAccordionValue } =
+    usePhysicalStoreSearch()
+  const searchParams = useSearchParams()
+  const focus = searchParams.get("focus")
+  const focusStore = Stores.find((store) => store.name === focus)
 
   useEffect(() => {
+    if (focus) {
+      if (!result) {
+        setResult(
+          filterResult({
+            province: "",
+            district: "",
+            subDistrict: "",
+            storeName: focus,
+          })
+        )
+      }
+    }
+
     if (result && result.length > 0 && typeof window !== "undefined") {
       const latitudes = result.map((item) => item.lat)
       const longitudes = result.map((item) => item.long)
+      const smallScreen = window.innerWidth <= 1024
 
       let bounds: LatLngBoundsLiteral
 
-      if (window.innerWidth <= 1024) {
+      if (smallScreen) {
         bounds = [
           [Math.min(...latitudes), Math.min(...longitudes)],
           [Math.max(...latitudes), Math.max(...longitudes)],
@@ -29,9 +50,35 @@ export default function MapFitBoundOnSearch() {
         ]
       }
 
-      map.fitBounds(bounds, { padding: [20, 20] })
+      if (focusStore) {
+        const offSet = smallScreen ? 0 : 0.01
+        map.flyTo([focusStore.lat, focusStore.long - offSet], 15)
+        setFilterAccordionValue("")
+      } else {
+        map.fitBounds(bounds, { padding: [20, 20] })
+      }
     }
-  }, [result, map])
+  }, [
+    result,
+    map,
+    searchParams,
+    setResult,
+    setFilterAccordionValue,
+    focusStore,
+    focus,
+  ])
+
+  if (focusStore) {
+    return (
+      <Circle
+        pathOptions={{
+          color: "red",
+        }}
+        center={[focusStore.lat, focusStore.long]}
+        radius={100}
+      />
+    )
+  }
 
   return null
 }

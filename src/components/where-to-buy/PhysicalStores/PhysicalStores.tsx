@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic"
 import { useState } from "react"
 
-import PostCodeOrCurrentLocationFilter from "./PostCodeOrCurrentLocationFilter/PostCodeOrCurrentLocationFilter"
 import MapLoadingSkeleton from "./Map/MapLoadingSkeleton"
 import LocationFilter from "./LocationFilter/LocationFilter"
 import Result from "./Result/Result"
@@ -19,6 +18,16 @@ const DynamicMap = dynamic(
 const DynamicMapFitBoundOnSearch = dynamic(
   () =>
     import("@/components/where-to-buy/PhysicalStores/Map/MapFitBoundOnSearch"),
+  {
+    ssr: false,
+  }
+)
+
+const DynamicPostCodeOrCurrentLocationFilter = dynamic(
+  () =>
+    import(
+      "@/components/where-to-buy/PhysicalStores/PostCodeOrCurrentLocationFilter/PostCodeOrCurrentLocationFilter"
+    ),
   {
     ssr: false,
   }
@@ -41,7 +50,7 @@ export default function PhysicalStores({}: PhysicalStoresProps) {
                     z-[999] w-[96vw]
                   "
           >
-            <PostCodeOrCurrentLocationFilter />
+            <DynamicPostCodeOrCurrentLocationFilter />
           </div>
           <div
             className="

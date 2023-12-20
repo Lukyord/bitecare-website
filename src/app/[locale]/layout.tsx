@@ -19,6 +19,7 @@ const helveltica_rounded = localFont({
   src: "../../../public/fonts/HelveticaRoundedLTStd-Bd.otf",
   display: "swap",
   variable: "--font-helveltica-rounded",
+  fallback: ["var(--font-psl)"],
 })
 
 export const metadata: Metadata = {

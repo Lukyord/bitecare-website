@@ -33,8 +33,8 @@ export default function DistanceFilter({
   return (
     <Popover
       open={openPopover}
-      onOpenChange={(open) => {
-        open && setDistance(parseInt(searchParams.get("distance") || "15"))
+      onOpenChange={() => {
+        setDistance(parseInt(searchParams.get("distance") || "15"))
         setOpenPopover(!openPopover)
       }}
     >
@@ -88,8 +88,22 @@ export default function DistanceFilter({
 
           <Link
             className="flex w-full justify-center"
-            href={`/where-to-buy?type=physical-store&distance=${distance}`}
+            href={{
+              pathname: "/where-to-buy",
+              query: {
+                type: "physical-store",
+                province: null,
+                district: null,
+                subDistrict: null,
+                storeName: null,
+                distance: distance.toString(),
+                postCode: null,
+                focus: null,
+              },
+            }}
             scroll={false}
+            replace
+            prefetch={false}
             onClick={() => setOpenPopover(false)}
           >
             <Button className="rounded-full px-10 py-6 font-psl text-[40px]">

@@ -1,11 +1,11 @@
 "use client"
 
 import { useTranslations } from "next-intl"
+import { useEffect } from "react"
 import { useFormStatus } from "react-dom"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 
 import { CiSearch } from "react-icons/ci"
-import { useRouter } from "@/lib/navigation"
 import { zodErrorMessage } from "@/lib/zodErrorMessage"
 import { postCodeSchema } from "@/types/where-to-buy/physical-store"
 
@@ -13,7 +13,6 @@ import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
 import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
 import { filterByPostCode } from "@/lib/where-to-buy/filterByPostCode"
-import { useEffect } from "react"
 
 export default function PostCodeFilter() {
   const { toast } = useToast()
@@ -43,7 +42,10 @@ export default function PostCodeFilter() {
     postCode && setResult(filterByPostCode(postCode.toString()))
     setFilterAccordionValue("")
 
-    router.replace(`/where-to-buy?type=physical-store&postCode=${postCode}`)
+    router.replace(
+      `/where-to-buy?type=physical-store&province=&district=&subDistrict=&distance=&postCode=${postCode}&focus=`,
+      { scroll: false }
+    )
   }
 
   useEffect(() => {
@@ -73,10 +75,10 @@ export default function PostCodeFilter() {
         placeholder={`(${tPhysicalStore("where-do-you-live-placeholder")})`}
         className="
             focus-visible:ring-off w-[150px]
-            border-none bg-transparent py-0 
-            text-subtitle placeholder:text-sm focus-visible:ring-0 
-            focus-visible:ring-transparent focus-visible:ring-offset-0
-            sm:text-paragraph lg:mt-auto
+            border-none bg-transparent py-0
+            text-subtitle placeholder:font-hel_rounded placeholder:text-sm 
+            focus-visible:ring-0 focus-visible:ring-transparent
+            focus-visible:ring-offset-0 sm:text-paragraph lg:mt-auto
           "
         inputMode="numeric"
         onKeyPress={(event) => {
