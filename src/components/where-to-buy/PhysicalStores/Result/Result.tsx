@@ -3,6 +3,7 @@
 import React from "react"
 import { useTranslations } from "next-intl"
 
+import { cn } from "@/lib/utils"
 import { CiSearch } from "react-icons/ci"
 
 import { Separator } from "@/components/ui/separator"
@@ -17,7 +18,13 @@ export default function Result() {
   if (!result) return null
 
   return (
-    <div className="w-[600px] cursor-default rounded-xl bg-white shadow-lg lg:p-2">
+    <div
+      className="
+              w-full cursor-default rounded-xl 
+              bg-white shadow-lg lg:w-[600px] 
+              lg:p-2
+            "
+    >
       <h3
         className="
                   p-4 text-start 
@@ -40,7 +47,11 @@ export default function Result() {
             </p>
           </div>
         ) : (
-          <ScrollArea className="h-[50vh] w-full pr-4">
+          <ScrollArea
+            className={`mb-4 w-full pr-4 ${cn({
+              "h-[50vh]": result.length > 1,
+            })}`}
+          >
             <div className="flex flex-col gap-3">
               {result.map((store, index) => (
                 <React.Fragment key={index}>

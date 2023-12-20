@@ -16,7 +16,7 @@ export default function ResultCard({ physicalStore }: ResultCardProps) {
   return (
     <div
       className="
-                flex h-[200px] w-full 
+                flex max-h-fit min-h-[200px] w-full 
                 flex-col justify-between gap-5
                 rounded-2xl bg-bc-surface-container 
                 p-8 transition-all

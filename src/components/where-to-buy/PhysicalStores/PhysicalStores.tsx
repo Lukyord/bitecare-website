@@ -16,6 +16,14 @@ const DynamicMap = dynamic(
   }
 )
 
+const DynamicMapFitBoundOnSearch = dynamic(
+  () =>
+    import("@/components/where-to-buy/PhysicalStores/Map/MapFitBoundOnSearch"),
+  {
+    ssr: false,
+  }
+)
+
 type PhysicalStoresProps = {}
 
 export default function PhysicalStores({}: PhysicalStoresProps) {
@@ -26,18 +34,30 @@ export default function PhysicalStores({}: PhysicalStoresProps) {
       {!mapReady && <MapLoadingSkeleton />}
       <PhysicalStoreSearchContextProvider>
         <DynamicMap setMapReady={setMapReady}>
+          <DynamicMapFitBoundOnSearch />
           <div
             className="
-                  absolute inset-x-[2vw] 
-                  inset-y-[2.5vh] z-[999] 
-                  flex flex-col gap-4
-                "
+                    absolute left-[2vw] top-[16px] 
+                    z-[999] w-[96vw]
+                  "
           >
             <PostCodeOrCurrentLocationFilter />
+          </div>
+          <div
+            className="
+                      absolute left-[2vw] top-[100px] 
+                      z-[999] hidden flex-col gap-4
+                      lg:flex         
+                    "
+          >
             <LocationFilter />
             <Result />
           </div>
         </DynamicMap>
+        <div className="mx-[2vw] my-4 flex flex-col gap-4 lg:hidden">
+          <LocationFilter />
+          <Result />
+        </div>
       </PhysicalStoreSearchContextProvider>
     </section>
   )

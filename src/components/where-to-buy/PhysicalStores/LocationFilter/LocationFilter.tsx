@@ -69,7 +69,7 @@ export default function LocationFilter() {
     <Accordion
       type="single"
       collapsible
-      className="w-[600px] rounded-xl bg-white shadow-lg lg:p-2"
+      className="w-full rounded-xl bg-white shadow-lg lg:w-[600px] lg:p-2"
       value={filterAccordionValue}
       onValueChange={setFilterAccordionValue}
     >

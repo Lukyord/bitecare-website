@@ -73,7 +73,7 @@ export default function AddressComboBox({
     } else {
       setSearchFilter((prev) => ({
         ...prev,
-        storeName: currentValue,
+        storeName: currentValue === prev.storeName ? "" : currentValue,
       }))
     }
   }
@@ -97,7 +97,7 @@ export default function AddressComboBox({
       </PopoverTrigger>
       <PopoverContent
         align="start"
-        className="z-[999] w-[552px] p-0"
+        className="z-[9999] w-[552px] p-0"
         avoidCollisions
       >
         <Command>

@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Link } from "@/lib/navigation"
 import { useTranslations } from "next-intl"
 import { GiPathDistance } from "react-icons/gi"
@@ -27,12 +28,15 @@ export default function DistanceFilter({
   const searchParams = useSearchParams()
   const tButton = useTranslations("button")
   const tPhysicalStore = useTranslations("physical-store")
+  const [openPopover, setOpenPopover] = useState(false)
 
   return (
     <Popover
-      onOpenChange={(open) =>
+      open={openPopover}
+      onOpenChange={(open) => {
         open && setDistance(parseInt(searchParams.get("distance") || "15"))
-      }
+        setOpenPopover(!openPopover)
+      }}
     >
       <PopoverTrigger asChild>
         <button
@@ -86,6 +90,7 @@ export default function DistanceFilter({
             className="flex w-full justify-center"
             href={`/where-to-buy?type=physical-store&distance=${distance}`}
             scroll={false}
+            onClick={() => setOpenPopover(false)}
           >
             <Button className="rounded-full px-10 py-6 font-psl text-[40px]">
               {tButton("search")}
