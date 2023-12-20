@@ -50,6 +50,11 @@ export default function PostCodeFilter() {
     if (urlPostCode) {
       setResult(filterByPostCode(urlPostCode))
       setFilterAccordionValue("")
+      const input = document.getElementById("post-code")
+
+      if (input) {
+        input.setAttribute("value", urlPostCode)
+      }
     }
   }, [urlPostCode, setResult, setFilterAccordionValue])
 

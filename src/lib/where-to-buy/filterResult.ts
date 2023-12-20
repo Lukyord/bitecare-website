@@ -25,8 +25,16 @@ export function filterResult(searchFilter: SearchFilter): PhysicalStore[] {
     searchFilter.storeName === ""
       ? result
       : searchFilter.province === ""
-        ? Stores.filter((store) => store.name.includes(searchFilter.storeName))
-        : result.filter((store) => store.name.includes(searchFilter.storeName))
+        ? Stores.filter(
+            (store) =>
+              store.name.includes(searchFilter.storeName) ||
+              store["customer-name"].includes(searchFilter.storeName)
+          )
+        : result.filter(
+            (store) =>
+              store.name.includes(searchFilter.storeName) ||
+              store["customer-name"].includes(searchFilter.storeName)
+          )
 
   return resultByStoreName
 }

@@ -1,4 +1,3 @@
-import * as BiteCareStoresJSON from "../../data/BiteCareJSON.json"
 import StoresData from "@/constant/store-data"
 
 export const Stores: typeof StoresData = StoresData.map((store) => {

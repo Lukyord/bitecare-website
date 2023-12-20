@@ -5,7 +5,6 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 
 import { BiteCareProduct } from "@/types/common/product"
-import { useRouter } from "@/lib/navigation"
 
 import ProductTag from "@/components/common/ProductTag"
 
@@ -14,7 +13,6 @@ type CompareCardProps = {
 }
 
 export default function CompareCard({ selectedProduct }: CompareCardProps) {
-  const router = useRouter()
   const [animationKey, setAnimationKey] = useState(0)
 
   useEffect(() => {

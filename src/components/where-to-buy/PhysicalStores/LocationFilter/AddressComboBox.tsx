@@ -91,9 +91,7 @@ export default function AddressComboBox({
           aria-expanded={open}
           className="w-full justify-between px-4"
         >
-          {value
-            ? addressChoices.find((address) => address.value === value)?.label
-            : placeholder}
+          {value ? value : placeholder}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -109,10 +107,10 @@ export default function AddressComboBox({
               {tPhysicalStore("no-result")}
             </CommandEmpty>
             <CommandGroup>
-              {addressChoices.map((address) => (
+              {addressChoices.map((address, index) => (
                 <CommandItem
                   className="text-[24px]"
-                  key={address.value}
+                  key={index}
                   value={address.value}
                   onSelect={() => {
                     handleSelectItem(address.value)

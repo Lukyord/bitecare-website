@@ -35,15 +35,17 @@ export default function LocationFilter() {
     storeName: "",
   })
   const searchParams = useSearchParams()
-  const urlProvince = searchParams.get("province")
-  const urlDistrict = searchParams.get("district")
-  const urlSubDistrict = searchParams.get("subDistrict")
-  const urlStoreName = searchParams.get("storeName")
+
   const { filterAccordionValue, setFilterAccordionValue, setResult } =
     usePhysicalStoreSearch()
   const tPhysicalStore = useTranslations("physical-store")
 
   useEffect(() => {
+    const urlProvince = searchParams.get("province")
+    const urlDistrict = searchParams.get("district")
+    const urlSubDistrict = searchParams.get("subDistrict")
+    const urlStoreName = searchParams.get("storeName")
+
     if (urlProvince || urlDistrict || urlSubDistrict || urlStoreName) {
       setFilterAccordionValue("")
       setSearchFilter({
@@ -61,14 +63,7 @@ export default function LocationFilter() {
         })
       )
     }
-  }, [
-    urlProvince,
-    urlDistrict,
-    urlSubDistrict,
-    urlStoreName,
-    setResult,
-    setFilterAccordionValue,
-  ])
+  }, [searchParams, setResult, setFilterAccordionValue])
 
   return (
     <Accordion
