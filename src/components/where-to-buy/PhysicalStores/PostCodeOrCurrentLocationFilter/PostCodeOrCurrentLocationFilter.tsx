@@ -58,15 +58,16 @@ export default function PostCodeOrCurrentLocationFilter() {
   }, [urlDistance, setResult, setFilterAccordionValue, filterByDistance])
 
   return (
-    <div className="flex h-fit w-full items-center justify-between">
-      <PostCodeFilter />
+    <div className="relative">
+      <div className="absolute left-0">
+        <PostCodeFilter />
+      </div>
 
       {/* Find me & DistanceFilter */}
-      <div className="flex items-center gap-2 sm:gap-6">
+      <div className="absolute right-0 top-1/2 flex items-center gap-2 sm:gap-6">
         <DistanceFilter distance={distance} setDistance={setDistance} />
         <FindMe distance={distance} filterByDistance={filterByDistance} />
       </div>
-
       {radiusCenter && urlDistance && (
         <Circle
           center={radiusCenter}

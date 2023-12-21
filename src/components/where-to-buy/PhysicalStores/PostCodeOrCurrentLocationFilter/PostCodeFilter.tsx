@@ -76,7 +76,7 @@ export default function PostCodeFilter() {
         className="
             focus-visible:ring-off w-[150px]
             border-none bg-transparent py-0
-            text-subtitle placeholder:font-hel_rounded placeholder:text-sm 
+            text-subtitle placeholder:font-psl placeholder:text-[20px] 
             focus-visible:ring-0 focus-visible:ring-transparent
             focus-visible:ring-offset-0 sm:text-paragraph lg:mt-auto
           "
