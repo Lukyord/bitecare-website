@@ -18,17 +18,15 @@ export default function MapFitBoundOnSearch() {
   const focusStore = Stores.find((store) => store.name === focus)
 
   useEffect(() => {
-    if (focus) {
-      if (!result) {
-        setResult(
-          filterResult({
-            province: "",
-            district: "",
-            subDistrict: "",
-            storeName: focus,
-          })
-        )
-      }
+    if (focus && !result) {
+      setResult(
+        filterResult({
+          province: "",
+          district: "",
+          subDistrict: "",
+          storeName: focus,
+        })
+      )
     }
 
     if (result && result.length > 0 && typeof window !== "undefined") {

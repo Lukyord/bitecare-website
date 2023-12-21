@@ -31,12 +31,12 @@ export default function ResultCard({ physicalStore }: ResultCardProps) {
         pathname: "/where-to-buy",
         query: {
           type: "physical-store",
-          province: province,
-          district: district,
-          subDistrict: subDistrict,
-          storeName: storeName,
-          distance: distance,
-          postCode: postCode,
+          province: province || "",
+          district: district || "",
+          subDistrict: subDistrict || "",
+          storeName: storeName || "",
+          distance: distance || "",
+          postCode: postCode || "",
           focus: physicalStore.name,
         },
       }}

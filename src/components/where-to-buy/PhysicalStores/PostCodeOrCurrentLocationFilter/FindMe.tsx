@@ -20,13 +20,13 @@ export default function FindMe({ distance, filterByDistance }: FindMeProps) {
         pathname: "/where-to-buy",
         query: {
           type: "physical-store",
-          province: null,
-          district: null,
-          subDistrict: null,
-          storeName: null,
+          province: "",
+          district: "",
+          subDistrict: "",
+          storeName: "",
           distance: distance.toString(),
-          postCode: null,
-          focus: null,
+          postCode: "",
+          focus: "",
         },
       }}
       scroll={false}

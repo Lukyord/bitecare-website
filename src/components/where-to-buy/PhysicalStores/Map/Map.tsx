@@ -30,13 +30,12 @@ export default function Map({ children, setMapReady }: MapProps) {
   const { result } = usePhysicalStoreSearch()
   const tButton = useTranslations("button")
   const searchParams = useSearchParams()
-  const focus = searchParams.get("focus")
-  const province = searchParams.get("province")
-  const district = searchParams.get("district")
-  const subDistrict = searchParams.get("subDistrict")
-  const storeName = searchParams.get("storeName")
-  const distance = searchParams.get("distance")
-  const postCode = searchParams.get("postCode")
+  const province = searchParams.get("province") || ""
+  const district = searchParams.get("district") || ""
+  const subDistrict = searchParams.get("subDistrict") || ""
+  const storeName = searchParams.get("storeName") || ""
+  const distance = searchParams.get("distance") || ""
+  const postCode = searchParams.get("postCode") || ""
 
   return (
     <MapContainer
@@ -60,8 +59,17 @@ export default function Map({ children, setMapReady }: MapProps) {
             position={[store.lat, store.long]}
             eventHandlers={{
               click: () => {
+                const queryParams = new URLSearchParams({
+                  province,
+                  district,
+                  subDistrict,
+                  storeName,
+                  distance,
+                  postCode,
+                  focus: store.name,
+                })
                 router.replace(
-                  `/where-to-buy?type=physical-store&province=${province}&district=${district}&subDistrict=${subDistrict}&distance=${distance}&postCode=${postCode}&focus=${store.name}`,
+                  `/where-to-buy?type=physical-store&${queryParams.toString()}`,
                   { scroll: false }
                 )
               },

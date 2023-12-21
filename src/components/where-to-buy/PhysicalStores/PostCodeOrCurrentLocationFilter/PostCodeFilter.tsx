@@ -43,7 +43,7 @@ export default function PostCodeFilter() {
     setFilterAccordionValue("")
 
     router.replace(
-      `/where-to-buy?type=physical-store&province=&district=&subDistrict=&distance=&postCode=${postCode}&focus=`,
+      `/where-to-buy?type=physical-store&province=&district=&subDistrict=&storeName&distance=&postCode=${postCode}&focus=`,
       { scroll: false }
     )
   }

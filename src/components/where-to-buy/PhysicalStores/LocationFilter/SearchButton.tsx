@@ -26,13 +26,13 @@ export default function SearchButton({ searchFilter }: SearchButtonProps) {
         pathname: "/where-to-buy",
         query: {
           type: "physical-store",
-          province: searchFilter.province,
-          district: searchFilter.district,
-          subDistrict: searchFilter.subDistrict,
-          storeName: searchFilter.storeName,
-          distance: null,
-          postCode: null,
-          focus: null,
+          province: searchFilter.province || "",
+          district: searchFilter.district || "",
+          subDistrict: searchFilter.subDistrict || "",
+          storeName: searchFilter.storeName || "",
+          distance: "",
+          postCode: "",
+          focus: "",
         },
       }}
       prefetch={false}
