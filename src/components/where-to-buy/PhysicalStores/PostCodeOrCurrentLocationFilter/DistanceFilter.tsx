@@ -3,7 +3,8 @@
 import { useState } from "react"
 import { Link } from "@/lib/navigation"
 import { useTranslations } from "next-intl"
-import { GiPathDistance } from "react-icons/gi"
+
+import { RiSendPlaneLine } from "react-icons/ri"
 
 import {
   Popover,
@@ -41,21 +42,30 @@ export default function DistanceFilter({
       <PopoverTrigger asChild>
         <button
           className="
-              group flex 
-              items-center rounded-xl 
-              bg-white p-2 shadow-lg transition-all 
-              duration-500 hover:bg-bc-black
-              sm:p-4
+              group flex items-center 
+              gap-3 rounded-xl 
+              bg-white p-2 shadow-lg 
+              transition-all duration-500
+              hover:bg-bc-black sm:p-4
             "
         >
-          <GiPathDistance
+          <RiSendPlaneLine
             size={24}
             className="
-             text-bc-black 
-              transition-all duration-500 
+              text-bc-black 
+                transition-all duration-500 
               group-hover:text-white
-            "
+              "
           />
+          <p
+            className="
+                font-hel_rounded text-subtitle tracking-tight 
+                text-bc-black transition-all duration-500
+                group-hover:text-white sm:text-paragraph
+              "
+          >
+            {tButton("find-me")}
+          </p>
         </button>
       </PopoverTrigger>
       <PopoverContent className="z-[999]" avoidCollisions>

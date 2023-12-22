@@ -10,7 +10,7 @@ export default async function FaqSection() {
   const Faqs = [
     {
       question: tFaq("question-1"),
-      answer: [tFaq("answer-1"), tFaq("answer-1-2")],
+      answer: [tFaq("answer-1")],
     },
     {
       question: tFaq("question-2"),
@@ -18,7 +18,7 @@ export default async function FaqSection() {
     },
     {
       question: tFaq("question-3"),
-      answer: [tFaq("answer-3"), tFaq("answer-3-2")],
+      answer: [tFaq("answer-3")],
     },
     {
       question: tFaq("question-4"),
@@ -47,6 +47,34 @@ export default async function FaqSection() {
     {
       question: tFaq("question-10"),
       answer: [tFaq("answer-10")],
+    },
+    {
+      question: tFaq("question-11"),
+      answer: [tFaq("answer-11"), tFaq("answer-11-2")],
+    },
+    {
+      question: tFaq("question-12"),
+      answer: [tFaq("answer-12")],
+    },
+    {
+      question: tFaq("question-13"),
+      answer: [
+        tFaq("answer-13"),
+        tFaq("answer-13-2"),
+        tFaq("answer-13-3"),
+        tFaq("answer-13-4"),
+      ],
+    },
+    {
+      question: tFaq("question-14"),
+      answer: [
+        tFaq("answer-14"),
+        tFaq("answer-14-2"),
+        tFaq("answer-14-3"),
+        tFaq("answer-14-4"),
+        tFaq("answer-14-5"),
+        tFaq("answer-14-6"),
+      ],
     },
   ]
 

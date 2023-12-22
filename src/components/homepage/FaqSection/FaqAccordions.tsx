@@ -49,13 +49,16 @@ export default function FaqAccordions({ Faqs }: FaqAccordionProps) {
               {faq.question}
             </AccordionTrigger>
             <AccordionContent>
-              {faq.answer.map((answer, index) => (
-                <div key={index} className="mb-4 mt-4 flex flex-col gap-2 ">
-                  <p className="text-justify text-subtitle lg:text-paragraph">
+              <div className="mb-4 mt-4 flex flex-col gap-6">
+                {faq.answer.map((answer, index) => (
+                  <p
+                    key={index}
+                    className="text-justify text-subtitle lg:text-paragraph"
+                  >
                     {answer}
                   </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </AccordionContent>
           </AccordionItem>
         ))}

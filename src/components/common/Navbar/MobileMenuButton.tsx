@@ -107,6 +107,7 @@ export default function MobileMenuButton({
                         href={breadcrumbItem.href}
                         key={index}
                         className="mt-4 flex flex-col gap-2 px-8 sm:px-12"
+                        onClick={() => setMobileMenuOpen(false)}
                       >
                         <p className="text-paragraph">{breadcrumbItem.title}</p>
                         <p className="text-subtitle text-bc-grey">

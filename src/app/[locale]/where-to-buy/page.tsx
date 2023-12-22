@@ -3,7 +3,6 @@ import { NextIntlClientProvider } from "next-intl"
 import { getMessages, unstable_setRequestLocale } from "next-intl/server"
 
 import PhysicalStores from "@/components/where-to-buy/PhysicalStores/PhysicalStores"
-import { Suspense } from "react"
 
 export default async function WhereToBuyPage({
   params: { locale },

@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from "next/navigation"
 import { useSearchParams } from "next/navigation"
 import { Circle, useMap } from "react-leaflet"
 import { useCallback, useEffect, useState } from "react"
@@ -8,13 +9,13 @@ import { useTranslations } from "next-intl"
 import { filterByDistanceLatLong } from "@/lib/where-to-buy/filterByDistance"
 
 import PostCodeFilter from "./PostCodeFilter"
-import FindMe from "./FindMe"
 import DistanceFilter from "./DistanceFilter"
 import { useToast } from "@/components/ui/use-toast"
 import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
 
 export default function PostCodeOrCurrentLocationFilter() {
   const map = useMap()
+  const router = useRouter()
   const { toast } = useToast()
   const searchParams = useSearchParams()
   const urlDistance = searchParams.get("distance")
@@ -43,6 +44,7 @@ export default function PostCodeOrCurrentLocationFilter() {
         title: tPhysicalStoreToast("something-went-wrong"),
         description: tPhysicalStoreToast("cant-access-location"),
       })
+      router.replace("/where-to-buy?type=physical-store", { scroll: false })
     })
   }, [
     map,
@@ -51,6 +53,7 @@ export default function PostCodeOrCurrentLocationFilter() {
     toast,
     tPhysicalStoreToast,
     urlDistance,
+    router,
   ])
 
   useEffect(() => {
@@ -66,7 +69,6 @@ export default function PostCodeOrCurrentLocationFilter() {
       {/* Find me & DistanceFilter */}
       <div className="absolute right-0 top-1/2 flex items-center gap-2 sm:gap-6">
         <DistanceFilter distance={distance} setDistance={setDistance} />
-        <FindMe distance={distance} filterByDistance={filterByDistance} />
       </div>
       {radiusCenter && urlDistance && (
         <Circle
