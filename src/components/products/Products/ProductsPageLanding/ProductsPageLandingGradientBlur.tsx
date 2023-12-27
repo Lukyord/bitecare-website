@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useLayoutEffect, useState } from "react"
 
 import { useActiveProduct } from "@/context/ActiveProductContextProvider"
 
@@ -25,6 +26,26 @@ const backgroundGradients = {
 
 export default function ProductsPageLandingGradientBlur() {
   const { activeProduct } = useActiveProduct()
+  const [delay, setDelay] = useState(0.5)
+
+  useLayoutEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        if (window.innerWidth < 1024) {
+          setDelay(1)
+        } else {
+          setDelay(0.5)
+        }
+      }
+
+      window.addEventListener("resize", handleResize)
+      handleResize()
+
+      return () => {
+        window.removeEventListener("resize", handleResize)
+      }
+    }
+  }, [activeProduct])
 
   return (
     <>
@@ -34,14 +55,13 @@ export default function ProductsPageLandingGradientBlur() {
         }}
         animate={{
           background: backgroundGradients[activeProduct].background,
-          transition: { delay: 0.5, ease: [0.83, 0, 0.17, 1] },
+          transition: { delay, ease: [0.83, 0, 0.17, 1] },
         }}
         className={`
                   absolute left-0 top-0 
                   -z-10 h-[80vw] w-[80vw] 
                   rounded-full blur-[100px] filter
-                  xl:left-[5%] xl:top-[5%]
-                  xl:h-[40vw] xl:w-[40vw]
+                  xl:left-[5%] xl:top-[5%] xl:h-[40vw] xl:w-[40vw]
                 `}
       />
 
@@ -56,14 +76,3 @@ export default function ProductsPageLandingGradientBlur() {
     </>
   )
 }
-
-// ${cn({
-//   "bg-[linear-gradient(180deg,_rgba(27,_211,_251,_0.60)_0%,_rgba(17,_112,_255,_0.28)_100%)]":
-//     activeProduct === "Skin Care",
-//   "bg-[linear-gradient(180deg,_rgba(102,_221,_192,_0.60)_0%,_rgba(0,_255,_200,_0.60)_100%)]":
-//     activeProduct === "Low Fat",
-//   "bg-[linear-gradient(180deg,_rgba(134,_109,_175,_0.60)_0%,_rgba(242,_232,_255,_0.60)_100%)]":
-//     activeProduct === "Senior Care",
-//   "bg-[linear-gradient(180deg,_rgba(235,_123,_173,_0.60)_0%,_rgba(255,_233,_246,_0.60)_100%)]":
-//     activeProduct === "Renal Care",
-// })}

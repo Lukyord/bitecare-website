@@ -67,7 +67,7 @@ export default function ProductsPageLandingBackground() {
     }
   }, [activeProduct])
 
-  const style = `absolute -z-10 -translate-x-1/2 -translate-y-1/2 rounded-full`
+  const style = `absolute -z-10 -translate-x-1/2 -translate-y-1/2 rounded-full hidden lg:block`
 
   return (
     <>
