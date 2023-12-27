@@ -1,14 +1,14 @@
 {
   "hero": {
-    "hero-description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "cta-subtitle": "Pet food your 🐶 will ❤️, guaranteed"
+    "hero-description": "BiteCare is your trusted companion in canine well-being, offering expertly crafted dog treat tailored to meet the unique needs of every furry friend.",
+    "cta-subtitle": "Dog treat your 🐶 will ❤️, guaranteed"
   },
   "principles": {
     "header": "BiteCare Principles",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-    "principle-1-description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-    "principle-2-description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-    "principle-3-description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+    "description": "Where Health Meets Happiness",
+    "principle-1-description": "Customized nutrition for senior dogs, renal health, low-fat diets, and skin care.",
+    "principle-2-description": "Top-quality, responsibly sourced ingredients like farm-fresh meats and nutrient-rich vegetables.",
+    "principle-3-description": "BiteCare thrives on Transparency and Trust, providing clear insights into palatability and clinic tests.",
     "slogan": "Bite care, Bite me",
     "slogan-description": "Treat your puppy's health—just like the first day you met!"
   },

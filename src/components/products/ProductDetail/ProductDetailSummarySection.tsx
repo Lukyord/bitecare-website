@@ -12,7 +12,7 @@ export default function ProductDetailSummarySection({
     <section
       className="
             mx-auto my-24 flex 
-            w-[70%] flex-col gap-8 
+            w-[70%] flex-col gap-16 
             text-center md:w-[40%]
             lg:w-[70%] lg:flex-row
             lg:justify-between xl:mb-36
@@ -23,15 +23,17 @@ export default function ProductDetailSummarySection({
           key={index}
           className="
             flex flex-col items-center 
-            justify-center gap-6 lg:w-[28%]
+            gap-6 lg:w-[28%]
           "
         >
-          <p className="text-h3">{summary}</p>
-          <Image
-            alt="summary icon"
-            src={product.productInfo.summaryImages[index]}
-            className="h-auto w-[100px] lg:w-[120px]"
-          />
+          <p className="h-20 text-h3 lg:h-28">{summary}</p>
+          <div className="h-32 lg:h-40">
+            <Image
+              alt="summary icon"
+              src={product.productInfo.summaryImages[index]}
+              className="h-auto w-[100px] lg:w-[120px]"
+            />
+          </div>
           <p className="text-paragraph">
             {product.productInfo.summaryDescriptions[index]}
           </p>

@@ -51,9 +51,9 @@ export default async function useProducts() {
           tSkinCare("summary-3"),
         ],
         summaryImages: [
-          Images.TempPrinciple_1,
-          Images.TempPrinciple_2,
-          Images.TempPrinciple_3,
+          Images.CrocodileProteinBlack,
+          Images.Omega3AndAminoAcids,
+          Images.GlutenFreeBlack,
         ],
         summaryDescriptions: [
           tSkinCare("summary-description-1"),
@@ -106,9 +106,9 @@ export default async function useProducts() {
           tLowFat("summary-3"),
         ],
         summaryImages: [
-          Images.TempPrinciple_1,
-          Images.TempPrinciple_2,
-          Images.TempPrinciple_3,
+          Images.LowFatBlack,
+          Images.LCarnetineBlack,
+          Images.CollagenType2Black,
         ],
         summaryDescriptions: [
           tLowFat("summary-description-1"),
@@ -161,9 +161,9 @@ export default async function useProducts() {
           tSeniorCare("summary-3"),
         ],
         summaryImages: [
-          Images.TempPrinciple_1,
-          Images.TempPrinciple_2,
-          Images.TempPrinciple_3,
+          Images.FishOilDHABlack,
+          Images.GinkgoExtractBlack,
+          Images.CollagenType2Black,
         ],
         summaryDescriptions: [
           tSeniorCare("summary-description-1"),
@@ -216,9 +216,9 @@ export default async function useProducts() {
           tRenalCare("summary-3"),
         ],
         summaryImages: [
-          Images.TempPrinciple_1,
-          Images.TempPrinciple_2,
-          Images.TempPrinciple_3,
+          Images.LowProteinAndPhosphorusBlack,
+          Images.Omega3AndAminoAcids,
+          Images.ChitosanExtractBlack,
         ],
         summaryDescriptions: [
           tRenalCare("summary-description-1"),

@@ -12,15 +12,15 @@ export default async function PrinciplesSection() {
 
   const Principles = [
     {
-      icon: Images.TempPrinciple_1,
+      icon: Images.NutritionBlack,
       description: tPrinciples("principle-1-description"),
     },
     {
-      icon: Images.TempPrinciple_2,
+      icon: Images.TopQualityIngredientsBlack,
       description: tPrinciples("principle-2-description"),
     },
     {
-      icon: Images.TempPrinciple_3,
+      icon: Images.ClinicTestBlack,
       description: tPrinciples("principle-3-description"),
     },
   ]
@@ -34,7 +34,7 @@ export default async function PrinciplesSection() {
                 "
     >
       {/* Principles */}
-      <div className="flex flex-col items-center gap-12">
+      <div className="flex flex-col items-center gap-16">
         <div className="w-[80%] sm:w-[50%]">
           <h1 className="text-h3 lg:text-h2">{tPrinciples("header")}</h1>
           <p className="text-paragraph">{tPrinciples("description")}</p>
@@ -42,7 +42,7 @@ export default async function PrinciplesSection() {
 
         <div
           className="
-                  flex w-[70%] flex-col gap-8 md:w-[40%] 
+                  flex w-[70%] flex-col gap-16 md:w-[40%] 
                   lg:w-[70%] 
                   lg:flex-row
                   lg:justify-between
@@ -56,11 +56,13 @@ export default async function PrinciplesSection() {
                   justify-center gap-6 lg:w-[28%]
                 "
             >
-              <Image
-                alt="principle icon"
-                src={principle.icon}
-                className="h-auto w-[100px] lg:w-[120px]"
-              />
+              <div className="h-32 lg:h-40">
+                <Image
+                  alt="principle icon"
+                  src={principle.icon}
+                  className="h-auto w-[100px] lg:w-[120px]"
+                />
+              </div>
               <p className="text-paragraph">{principle.description}</p>
             </div>
           ))}
