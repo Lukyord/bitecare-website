@@ -89,7 +89,7 @@ export default function ProductDetailInfoMobile({
                       gap-4
                     "
             >
-              <p className="text-h3">{question}</p>
+              <p className="w-[70%] text-h3">{question}</p>
               <p>{product.productInfo.answers[index]}</p>
             </div>
           </SwiperSlide>

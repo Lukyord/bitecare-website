@@ -2,6 +2,7 @@
 
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay } from "swiper/modules"
+import { useLayoutEffect, useState } from "react"
 
 import "swiper/css"
 import { BiteCareProduct } from "@/types/common/product"
@@ -15,9 +16,30 @@ type ProductSwiperProps = {
 }
 
 export default function ProductSwiper({ products }: ProductSwiperProps) {
+  const [slidesPerView, setSlidesPerView] = useState(2.5)
+
+  useLayoutEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        if (window.innerWidth < 1280) {
+          setSlidesPerView(2.5)
+        } else {
+          setSlidesPerView(1.5)
+        }
+      }
+
+      window.addEventListener("resize", handleResize)
+      handleResize()
+
+      return () => {
+        window.removeEventListener("resize", handleResize)
+      }
+    }
+  }, [])
+
   return (
     <Swiper
-      slidesPerView={1.5}
+      slidesPerView={slidesPerView}
       speed={1200}
       autoplay={{
         delay: 5000,
@@ -34,7 +56,7 @@ export default function ProductSwiper({ products }: ProductSwiperProps) {
     >
       <SwiperButtonNext
         style="
-              absolute left-[55%] top-[10%]
+              absolute left-[65%] lg:left-[75%] xl:left-[55%] top-[10%]
               z-10 flex items-center
               justify-center rounded-full border-[3px] border-black
               bg-bc-primary transition-all

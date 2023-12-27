@@ -31,7 +31,7 @@ export default function ProductsPageLandingGradientBlur() {
   useLayoutEffect(() => {
     if (typeof window !== "undefined") {
       const handleResize = () => {
-        if (window.innerWidth < 1024) {
+        if (window.innerWidth < 1280) {
           setDelay(1)
         } else {
           setDelay(0.5)
@@ -45,7 +45,7 @@ export default function ProductsPageLandingGradientBlur() {
         window.removeEventListener("resize", handleResize)
       }
     }
-  }, [activeProduct])
+  }, [])
 
   return (
     <>

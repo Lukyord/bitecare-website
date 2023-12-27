@@ -21,14 +21,13 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
 
   return (
     <div
-      // onClick={() => router.push(selectedProduct.href)}
       className="
-                group flex cursor-pointer
-                flex-col overflow-hidden
-                rounded-2xl bg-white
-                text-left transition-all
-                duration-300 ease-in-out
-                hover:shadow-2xl
+                group flex h-full
+                cursor-pointer flex-col
+                overflow-hidden rounded-2xl
+                bg-white text-left
+                transition-all duration-300
+                ease-in-out hover:shadow-2xl
               "
     >
       {/* Product Image */}
