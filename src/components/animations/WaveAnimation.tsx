@@ -27,7 +27,7 @@ export default function WaveAnimation({
     } else {
       handleIsNotInview()
     }
-  }, [isInview])
+  }, [handleIsInview, handleIsNotInview, isInview])
 
   return (
     <div
