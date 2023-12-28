@@ -55,7 +55,6 @@ import HomepageDog_3_4 from "@public/assets/homepage/homepage-dog-3-4.png"
 import HomepageDog_5 from "@public/assets/homepage/homepage-dog-5.png"
 import HighlightBlack_1 from "@public/assets/illustrations/homepage/highlight-1-black.svg"
 // I
-import InstagramIcon from "@public/assets/common/instagram-icon.svg"
 // J
 // K
 // L
@@ -129,8 +128,8 @@ import TopQualityIngredientsBlack from "@public/assets/illustrations/homepage/to
 // V
 // W
 import WaveBcPrimary_1 from "@public/assets/homepage/wave-bc-primary-1.svg"
-import WaveFooter_1 from "@public/assets/common/wave-footer-1.svg"
-import WaveFooter_2 from "@public/assets/common/wave-footer-2.svg"
+import WaveFooterBcPrimary_1 from "@public/assets/common/wave-footer-bc-primary-1.svg"
+import WaveFooterBcInversePrimary_2 from "@public/assets/common/wave-footer-bc-inverse-primary2.svg"
 // X
 // Y
 // Z
@@ -186,7 +185,6 @@ export const Images = {
   HomepageDog_5,
   HighlightBlack_1,
   // I
-  InstagramIcon,
   // J
   // K
   // L
@@ -261,8 +259,8 @@ export const Images = {
   // V
   // W
   WaveBcPrimary_1,
-  WaveFooter_1,
-  WaveFooter_2,
+  WaveFooterBcPrimary_1,
+  WaveFooterBcInversePrimary_2,
   // W
   // Y
   // Z
