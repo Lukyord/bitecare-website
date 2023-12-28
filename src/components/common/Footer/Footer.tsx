@@ -5,22 +5,23 @@ import WaveAnimation from "../../animations/WaveAnimation"
 import SecondaryButton from "../Button/SecondaryButton"
 import FooterNavigateSection from "./FooterNavigateSection"
 import { Images } from "@/constant/Images"
+import { Links } from "@/constant/Links"
 
 export default async function Footer() {
   const tFooter = await getTranslations("footer")
-  const facebookHref = "https://www.facebook.com/bitecarethailand"
-  const lineHref =
-    "https://linevoom.line.me/user/_dZ4Ene1pJg4iONYAjFcc9jy7lQ1mdlGuZKzTOqY"
-  const shopeeHref = "https://shopee.co.th/bitecare"
+  const tButton = await getTranslations("button")
 
   return (
     <footer>
       <div className="relative h-24 w-screen overflow-hidden md:h-32 lg:h-48">
         <div className="absolute z-20">
-          <WaveAnimation image={Images.WaveFooter_1} />
+          <WaveAnimation image={Images.WaveFooterBcPrimary_1} />
         </div>
         <div className="absolute z-10">
-          <WaveAnimation image={Images.WaveFooter_2} reverse={true} />
+          <WaveAnimation
+            image={Images.WaveFooterBcInversePrimary_2}
+            reverse={true}
+          />
         </div>
       </div>
       <div className="bg-bc-primary-container pb-[2%]">
@@ -40,14 +41,14 @@ export default async function Footer() {
           <div className="pt-[6%]">
             <div className="hidden sm:block">
               <SecondaryButton
-                text={tFooter("get-to-know-us")}
+                text={tButton("get-to-know-us")}
                 size="h2"
                 href="/about-us"
               />
             </div>
             <div className="block sm:hidden">
               <SecondaryButton
-                text={tFooter("get-to-know-us")}
+                text={tButton("get-to-know-us")}
                 size="paragraph"
                 href="/about-us"
               />
@@ -68,13 +69,22 @@ export default async function Footer() {
               </Link>
             </div>
             <div className="flex justify-center md:w-[30%] md:justify-end">
-              <Link className="mx-[2%] my-auto md:mx-[4%]" href={facebookHref}>
+              <Link
+                className="mx-[2%] my-auto md:mx-[4%]"
+                href={Links.facebookHref}
+              >
                 <Image src={Images.FacebookIcon} alt="facebook" />
               </Link>
-              <Link className="mx-[2%] my-auto md:mx-[4%]" href={lineHref}>
+              <Link
+                className="mx-[2%] my-auto md:mx-[4%]"
+                href={Links.lineHref}
+              >
                 <Image src={Images.LineIcon} alt="line" />
               </Link>
-              <Link className="mx-[2%] my-auto md:mx-[4%]" href={shopeeHref}>
+              <Link
+                className="mx-[2%] my-auto md:mx-[4%]"
+                href={Links.shopeeHref}
+              >
                 <Image src={Images.ShopeeIcon} alt="shopee" />
               </Link>
             </div>
