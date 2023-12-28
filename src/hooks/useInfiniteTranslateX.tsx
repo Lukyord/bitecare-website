@@ -58,7 +58,6 @@ export function useInfiniteTranslateX(
     xPixels = lastestXPixels
 
     if (!animationId) {
-      console.log("in condition")
       setAnimationId(requestAnimationFrame(animate))
     }
   }
