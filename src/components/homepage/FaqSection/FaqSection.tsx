@@ -81,9 +81,9 @@ export default async function FaqSection() {
   return (
     <section
       className="
-              relative my-28 flex h-full w-screen 
+              relative mt-28 flex h-full w-screen 
               scroll-mt-36 flex-col items-center
-              gap-14 text-center xs:my-14 lg:my-28
+              gap-14 text-center xs:mt-14 lg:mt-28
             "
     >
       <h1 className="text-h3 lg:text-h2" id="faq">
