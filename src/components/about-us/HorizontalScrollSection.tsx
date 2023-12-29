@@ -18,6 +18,11 @@ export default function HorizontalScrollSection({
     if (window.innerWidth > 1280) {
       gsap.registerPlugin(ScrollTrigger)
 
+      gsap.to("body", {
+        duration: 2,
+        overflow: "hidden",
+      })
+
       const pin = gsap.fromTo(
         sectionRef.current,
         {
@@ -36,6 +41,13 @@ export default function HorizontalScrollSection({
           },
         }
       )
+
+      setTimeout(() => {
+        gsap.to("body", {
+          duration: 0,
+          overflow: "auto",
+        })
+      }, 2000)
 
       return () => {
         pin.kill()
