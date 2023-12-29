@@ -1,11 +1,9 @@
 import { getTranslations } from "next-intl/server"
-import Image from "next/image"
-import Link from "next/link"
 import WaveAnimation from "../../animations/WaveAnimation"
 import SecondaryButton from "../Button/SecondaryButton"
 import FooterNavigateSection from "./FooterNavigateSection"
 import { Images } from "@/constant/Images"
-import { Links } from "@/constant/Links"
+import FooterCopyrightSection from "./FooterCopyrightSection"
 
 export default async function Footer() {
   const tFooter = await getTranslations("footer")
@@ -55,40 +53,11 @@ export default async function Footer() {
             </div>
           </div>
           <FooterNavigateSection />
-          <div className="flex flex-col-reverse pt-[8%] md:flex-row">
-            <div className="w-0 md:w-[30%]"></div>
-            <div className="text-subtitile flex pt-[4%] text-neutral-400 md:w-[40%] md:pt-0 lg:text-paragraph">
-              <Link className="m-auto" href="/">
-                {tFooter("copy-right")}
-              </Link>
-              <Link className="m-auto" href="/policy-privacy">
-                {tFooter("policy")}
-              </Link>
-              <Link className="m-auto" href="/terms-and-conditions">
-                {tFooter("terms")}
-              </Link>
-            </div>
-            <div className="flex justify-center md:w-[30%] md:justify-end">
-              <Link
-                className="mx-[2%] my-auto md:mx-[4%]"
-                href={Links.facebookHref}
-              >
-                <Image src={Images.FacebookIcon} alt="facebook" />
-              </Link>
-              <Link
-                className="mx-[2%] my-auto md:mx-[4%]"
-                href={Links.lineHref}
-              >
-                <Image src={Images.LineIcon} alt="line" />
-              </Link>
-              <Link
-                className="mx-[2%] my-auto md:mx-[4%]"
-                href={Links.shopeeHref}
-              >
-                <Image src={Images.ShopeeIcon} alt="shopee" />
-              </Link>
-            </div>
-          </div>
+          <FooterCopyrightSection
+            copyright={tFooter("copy-right")}
+            policy={tFooter("policy")}
+            terms={tFooter("terms")}
+          />
         </div>
       </div>
     </footer>
