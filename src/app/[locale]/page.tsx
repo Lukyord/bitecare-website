@@ -13,7 +13,7 @@ export default function Home({
   unstable_setRequestLocale(locale)
   // font-hel_rounded
   return (
-    <main className="no-scrollbar overflow-x-hidden pt-28">
+    <main className="overflow-x-hidden pt-28">
       <HeroSection />
       <PrinciplesSection />
       <ComparingProductsSection />

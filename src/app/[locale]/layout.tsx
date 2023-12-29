@@ -60,7 +60,7 @@ export default function RootLayout({
       <body
         className={`
                 ${psl.variable} ${helveltica_rounded.variable} 
-                no-scrollbar bg-bc-surface
+              bg-bc-surface
                 font-psl
               `}
       >

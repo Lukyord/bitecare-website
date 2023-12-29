@@ -54,7 +54,7 @@ export default function AboutUsLanding({ images }: AboutUsLandingProps) {
       animate4([
         [
           scope4.current,
-          { right: mobile ? "0" : "30%", bottom: "5%" },
+          { right: mobile ? "0" : "30%", bottom: mobile ? "10%" : "5%" },
           endAnimationTransition,
         ],
       ])

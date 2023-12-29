@@ -19,6 +19,7 @@ import AboutUsGalleryImage_3 from "@public/assets/about-us/about-us-gallery-imag
 // B
 import BiteCareLogo from "@public/assets/common/logos/bitecare-logo.svg"
 import BiteCareLogoTextTM from "@public/assets/common/logos/bitecare-logo-text-tm.svg"
+import BiteCareLogoText from "@public/assets/common/logos/bitecare-logo-text.svg"
 import Blob_1 from "@public/assets/illustrations/about-us/blob-1.svg"
 import Blob_2 from "@public/assets/illustrations/about-us/blob-2.svg"
 import Blob_3 from "@public/assets/illustrations/about-us/blob-3.svg"
@@ -139,6 +140,7 @@ export const Images = {
   AboutUsGalleryImage_3,
   // B
   BiteCareLogo,
+  BiteCareLogoText,
   BiteCareLogoTextTM,
   Blob_1,
   Blob_2,

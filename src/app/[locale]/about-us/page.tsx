@@ -2,6 +2,7 @@ import { Images } from "@/constant/Images"
 
 import AboutUsLanding from "@/components/about-us/AboutUsLanding"
 import HorizontalScrollSection from "@/components/about-us/HorizontalScrollSection"
+import WelcomeToBiteCare from "@/components/about-us/WelcomeToBiteCare"
 
 export default function page() {
   return (
@@ -15,9 +16,7 @@ export default function page() {
             Images.AboutUsDog_4,
           ]}
         />
-        <div className="flex h-[100vh] w-[100vw] items-center justify-center bg-bc-surface">
-          <h3>Section 2</h3>
-        </div>
+        <WelcomeToBiteCare />
         <div className="flex h-[100vh] w-[100vw] items-center justify-center">
           <h3>Section 3</h3>
         </div>

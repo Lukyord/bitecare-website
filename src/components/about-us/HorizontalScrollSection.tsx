@@ -23,24 +23,19 @@ export default function HorizontalScrollSection({
         overflow: "hidden",
       })
 
-      const pin = gsap.fromTo(
-        sectionRef.current,
-        {
-          translateX: 0,
-        },
-        {
-          translateX: "-400vw",
-          ease: "none",
+      const sectionWidth = sectionRef.current?.getBoundingClientRect().width
 
-          scrollTrigger: {
-            trigger: triggerRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-            pin: true,
-          },
-        }
-      )
+      const pin = gsap.to(sectionRef.current, {
+        translateX: sectionWidth && -sectionWidth,
+        ease: "none",
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 2,
+          pin: true,
+        },
+      })
 
       setTimeout(() => {
         gsap.to("body", {
