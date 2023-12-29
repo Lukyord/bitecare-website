@@ -7,9 +7,21 @@
 // Common Illustration
 // A
 import ArrowCurveUpWhite from "@public/assets/illustrations/common/arrow-curve-up-white.svg"
+import AboutUsBcDifferenceDog from "@public/assets/about-us/about-us-bc-difference-dog.png"
+import AboutUsContactUsDog from "@public/assets/about-us/about-us-contact-us-dog.png"
+import AboutUsDog_1 from "@public/assets/about-us/about-us-dog-1.png"
+import AboutUsDog_2 from "@public/assets/about-us/about-us-dog-2.png"
+import AboutUsDog_3 from "@public/assets/about-us/about-us-dog-3.png"
+import AboutUsDog_4 from "@public/assets/about-us/about-us-dog-4.png"
+import AboutUsGalleryImage_1 from "@public/assets/about-us/about-us-gallery-image-1.png"
+import AboutUsGalleryImage_2 from "@public/assets/about-us/about-us-gallery-image-2.png"
+import AboutUsGalleryImage_3 from "@public/assets/about-us/about-us-gallery-image-3.png"
 // B
 import BiteCareLogo from "@public/assets/common/logos/bitecare-logo.svg"
 import BiteCareLogoTextTM from "@public/assets/common/logos/bitecare-logo-text-tm.svg"
+import Blob_1 from "@public/assets/illustrations/about-us/blob-1.svg"
+import Blob_2 from "@public/assets/illustrations/about-us/blob-2.svg"
+import Blob_3 from "@public/assets/illustrations/about-us/blob-3.svg"
 // C
 import CircleLayersBcSecondary from "@public/assets/illustrations/homepage/circle-layer-bc-secondary.svg"
 import ChitosanExtractBlack from "@public/assets/illustrations/products/chitosan-extract-black.svg"
@@ -19,6 +31,8 @@ import ClinicTestBlack from "@public/assets/illustrations/homepage/clinic-test-b
 // D
 import DashedLineBlack from "@public/assets/illustrations/common/dashed-line-black.svg"
 import DogPawBcInversePrimary from "@public/assets/illustrations/homepage/dog-paw-bc-inverse-primary.svg"
+import DuctTape_1 from "@public/assets/illustrations/about-us/duct-tape-1.png"
+import DuctTape_2 from "@public/assets/illustrations/about-us/duct-tape-2.png"
 // E
 import EnglishFlag from "@public/assets/common/flags/english-flag.svg"
 // F
@@ -114,9 +128,21 @@ import WaveBcPrimary_1 from "@public/assets/homepage/wave-bc-primary-1.svg"
 export const Images = {
   // A
   ArrowCurveUpWhite,
+  AboutUsBcDifferenceDog,
+  AboutUsContactUsDog,
+  AboutUsDog_1,
+  AboutUsDog_2,
+  AboutUsDog_3,
+  AboutUsDog_4,
+  AboutUsGalleryImage_1,
+  AboutUsGalleryImage_2,
+  AboutUsGalleryImage_3,
   // B
   BiteCareLogo,
   BiteCareLogoTextTM,
+  Blob_1,
+  Blob_2,
+  Blob_3,
   // C
   CircleLayersBcSecondary,
   ChitosanExtractBlack,
@@ -126,6 +152,8 @@ export const Images = {
   // D
   DashedLineBlack,
   DogPawBcInversePrimary,
+  DuctTape_1,
+  DuctTape_2,
   // E
   EnglishFlag,
   // F

@@ -1,0 +1,35 @@
+{
+  "landing": {
+    "welcome-to": "Welcome to",
+    "landing-description-1": "At BiteCare, our passion for canine well-being goes beyond providing nourishment; it's a commitment to enhancing the lives of our furry companions.",
+    "landing-description-2": "Founded on the belief that every dog deserves the best care, BiteCare is more than just a brand - it's a promise of love, health, and joy for your loyal friends.",
+    "landing-quote": "“Passionately Crafting Canine Wellness.”"
+  },
+  "bitecare-difference": {
+    "header": "The BiteCare Difference",
+    "tailored-nutrition": "Tailored Nutrition",
+    "tailored-nutrition-description-1": "BiteCare offers a range of specialized dog foods crafted to meet the specific needs of your dogs. Each formula is a result of meticulous research and a genuine love for our canine companions.",
+    "tailored-nutrition-description-2": "Think of BiteCare as your dog's personal nutritionist. Our Tailored Nutrition approach allows you to create a personalized care plan for your pet.",
+    "tailored-nutrition-quote": "“Every bite is tailored to match your dog's life stage and health considerations.”",
+    "premium-ingredients": "Premium Ingredients",
+    "premium-ingredients-description-1": "At BiteCare, we believe that exceptional meals start with exceptional ingredients. Our commitment to “Premium Ingredients” means that every bite your is crafted with love and care.",
+    "premium-ingredients-description-2": "We source our ingredients from trusted suppliers and use only the finest quality meats, fruits, and vegetables. Our recipes are free from artificial flavors, colors, and preservatives.",
+    "premium-ingredients-quote": "“No fillers, no compromises, just pure, nutrition.”",
+    "bitecare-community-description": "BiteCare isn't just a brand; it's a community of pet lovers who share a common goal - to provide the best for our furry friends. Join us on this journey towards healthier, happier dogs.",
+    "bitecare-thanks": "Thank you for choosing BiteCare. Because every wag, bark, and cuddle matters. ❤️"
+  },
+  "contact-us": {
+    "header": "Contact Us",
+    "email": "EMAIL",
+    "send-us-a-message": "Send us a message",
+    "phone-number": "PHONE NUMBER",
+    "contact-hours": "CONTACT HOURS",
+    "monday-sun": "Mon - Sun, 9-20",
+    "social": "SOCIAL",
+    "lets-collaborate": "Let's Collaborate",
+    "first-name": "FIRST NAME",
+    "last-name": "LAST NAME",
+    "company-name": "COMPANY NAME",
+    "message": "MESSAGE"
+  }
+}
