@@ -11,6 +11,7 @@ export default async function Footer() {
 
   return (
     <footer>
+      {/* Wave Animation */}
       <div className="relative h-24 w-screen overflow-hidden md:h-32 lg:h-48 2xl:h-72">
         <div className="absolute z-20">
           <WaveAnimation image={Images.WaveFooterBcPrimary_1} />
@@ -23,6 +24,7 @@ export default async function Footer() {
         </div>
       </div>
       <div className="bg-bc-primary-container pb-[2%]">
+        {/* Tagline Section */}
         <div className="mx-auto flex w-[90%] flex-col pt-[8%] text-center">
           <h1 className="text-4xl md:text-h3 lg:text-h2">
             {tFooter("tagline1")}
@@ -36,6 +38,8 @@ export default async function Footer() {
           <h2 className="text-subtitle md:text-paragraph lg:text-h3">
             {tFooter("tagline-description2")}
           </h2>
+
+          {/* Get to Know Button */}
           <div className="pt-[6%]">
             <div className="hidden sm:block">
               <SecondaryButton
@@ -52,6 +56,7 @@ export default async function Footer() {
               />
             </div>
           </div>
+
           <FooterNavigateSection />
           <FooterCopyrightSection
             copyright={tFooter("copy-right")}
