@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import localFont from "next/font/local"
 import { notFound } from "next/navigation"
 import { unstable_setRequestLocale } from "next-intl/server"
+import { Noto_Sans } from "next/font/google"
 
 import { i18n } from "@/config/i18n.config"
 import "./globals.css"
@@ -19,6 +20,14 @@ const helveltica_rounded = localFont({
   src: "../../../public/fonts/HelveticaRoundedLTStd-Bd.otf",
   display: "swap",
   variable: "--font-helveltica-rounded",
+  fallback: ["var(--font-psl)"],
+})
+
+const noto = Noto_Sans({
+  weight: ["100", "400"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-noto",
   fallback: ["var(--font-psl)"],
 })
 
@@ -60,6 +69,7 @@ export default function RootLayout({
       <body
         className={`
                 ${psl.variable} ${helveltica_rounded.variable} 
+                ${noto.variable}
               bg-bc-surface
                 font-psl
               `}

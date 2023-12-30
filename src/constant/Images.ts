@@ -39,6 +39,7 @@ import DuctTape_2 from "@public/assets/illustrations/about-us/duct-tape-2.png"
 import EnglishFlag from "@public/assets/common/flags/english-flag.svg"
 // F
 import FacebookLogoFullWhite from "@public/assets/common/socials/facebook-logo-full-white.png"
+import FacebookIcon from "@public/assets/common/socials/facebook-icon.png"
 import FlowerBcPrimary_1 from "@public/assets/illustrations/homepage/flower-bc-primary-1.svg"
 import FlowerBcPrimary_2 from "@public/assets/illustrations/homepage/flower-bc-primary-2.svg"
 import FishOilDHABlack from "@public/assets/illustrations/products/fish-oil-dha-black.svg"
@@ -58,6 +59,7 @@ import HighlightBlack_1 from "@public/assets/illustrations/homepage/highlight-1-
 // L
 import LCarnetineBlack from "@public/assets/illustrations/products/l-carnitine-black.svg"
 import LineOaLogoFullWhite from "@public/assets/common/socials/line-oa-logo-full-white.png"
+import LineIcon from "@public/assets/common/socials/line-icon.png"
 import LowFatBlack from "@public/assets/illustrations/products/low-fat-black.svg"
 import LowFatFront from "@public/assets/products/low-fat/low-fat-front.png"
 import LowFatBack from "@public/assets/products/low-fat/low-fat-back.png"
@@ -89,6 +91,7 @@ import RenalCareRegistrationNumber from "@public/assets/products/renal-care/rena
 import RenalCareSummary from "@public/assets/products/renal-care/renal-care-summary.png"
 // S
 import ShopeeLogoFullWhite from "@public/assets/common/socials/shopee-logo-full-white.png"
+import ShopeeIcon from "@public/assets/common/socials/shopee-icon.png"
 import SparkleBlack_1 from "@public/assets/illustrations/homepage/sparkle-1-black.svg"
 import SparkleBlack_2 from "@public/assets/illustrations/homepage/sparkle-2-black.svg"
 import SparkleBcInversePrimary_1 from "@public/assets/illustrations/homepage/sparkle-bc-inverse-primary-1.svg"
@@ -162,6 +165,7 @@ export const Images = {
   EnglishFlag,
   // F
   FacebookLogoFullWhite,
+  FacebookIcon,
   FishOilDHABlack,
   FlowerBcPrimary_1,
   FlowerBcPrimary_2,
@@ -181,6 +185,7 @@ export const Images = {
   // L
   LCarnetineBlack,
   LineOaLogoFullWhite,
+  LineIcon,
   LowFatBlack,
   LowFatFront,
   LowFatBack,
@@ -212,6 +217,7 @@ export const Images = {
   RenalCareSummary,
   // S
   ShopeeLogoFullWhite,
+  ShopeeIcon,
   SparkleBlack_1,
   SparkleBlack_2,
   SparkleBcInversePrimary_1,

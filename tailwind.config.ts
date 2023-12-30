@@ -94,6 +94,7 @@ module.exports = {
       fontFamily: {
         psl: ["var(--font-psl)"],
         hel_rounded: ["var(--font-helveltica-rounded)"],
+        noto: ["var(--font-noto)"],
       },
       boxShadow: {
         bc_small: "4px 4px 6px 0px rgba(0, 0, 0, 0.25)",

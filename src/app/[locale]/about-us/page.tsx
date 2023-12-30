@@ -1,11 +1,20 @@
+import { unstable_setRequestLocale } from "next-intl/server"
+
 import { Images } from "@/constant/Images"
 
 import AboutUsLanding from "@/components/about-us/AboutUsLanding"
 import HorizontalScrollSection from "@/components/about-us/HorizontalScrollSection"
 import WelcomeToBiteCare from "@/components/about-us/WelcomeToBiteCare"
 import BiteCareDifference from "@/components/about-us/BiteCareDifference"
+import ContactUs from "@/components/about-us/ContactUs"
 
-export default function page() {
+export default function AboutUs({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  unstable_setRequestLocale(locale)
+
   return (
     <div>
       <HorizontalScrollSection>
@@ -19,9 +28,7 @@ export default function page() {
         />
         <WelcomeToBiteCare />
         <BiteCareDifference />
-        <div className="flex h-[100vh] w-[100vw] items-center justify-center">
-          <h3>Section 5</h3>
-        </div>
+        <ContactUs />
       </HorizontalScrollSection>
     </div>
   )

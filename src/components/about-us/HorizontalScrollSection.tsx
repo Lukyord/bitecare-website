@@ -1,23 +1,26 @@
 "use client"
 
+import { useUrl } from "nextjs-current-url"
 import gsap from "gsap"
 import ScrollTrigger from "gsap/dist/ScrollTrigger"
+import ScrollToPlugin from "gsap/dist/ScrollToPlugin"
 import { useLayoutEffect, useRef } from "react"
+import { useRouter } from "@/lib/navigation"
 
 export default function HorizontalScrollSection({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const url = useUrl()
   const triggerRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
     if (window.innerWidth > 1280) {
-      gsap.registerPlugin(ScrollTrigger)
-
       gsap.to("body", {
         duration: 2,
         overflow: "hidden",
@@ -47,6 +50,19 @@ export default function HorizontalScrollSection({
       }
     }
   }, [])
+
+  useLayoutEffect(() => {
+    if (url && url.toString().includes("#contact-us")) {
+      gsap.to(window, {
+        scrollTo: {
+          y: "max",
+          autoKill: true,
+        },
+        duration: 1,
+      })
+      return
+    }
+  }, [url])
 
   return (
     <div className="overflow-y-auto overflow-x-hidden xl:overflow-hidden">

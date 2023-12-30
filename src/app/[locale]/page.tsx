@@ -11,7 +11,7 @@ export default function Home({
   params: { locale: string }
 }) {
   unstable_setRequestLocale(locale)
-  // font-hel_rounded
+
   return (
     <main className="overflow-x-hidden pt-28">
       <HeroSection />

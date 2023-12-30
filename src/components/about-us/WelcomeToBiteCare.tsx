@@ -68,7 +68,8 @@ export default async function WelcomeToBiteCare() {
               key={index}
               alt="about-us-gallery-image"
               src={image}
-              className="desktop:w-[40vw] desktop:h-auto"
+              className="desktop:h-auto desktop:w-[40vw]"
+              priority
             />
           ))}
         </TranslateYOnScroll>
@@ -81,6 +82,7 @@ export default async function WelcomeToBiteCare() {
               alt="about-us-gallery-image"
               src={image}
               className="h-[20vh] w-auto object-cover lg:h-[30vh]"
+              priority
             />
           ))}
         </TranslateXOnScroll>
