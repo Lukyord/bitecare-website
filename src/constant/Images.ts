@@ -16,6 +16,7 @@ import AboutUsDog_4 from "@public/assets/about-us/about-us-dog-4.png"
 import AboutUsGalleryImage_1 from "@public/assets/about-us/about-us-gallery-image-1.png"
 import AboutUsGalleryImage_2 from "@public/assets/about-us/about-us-gallery-image-2.png"
 import AboutUsGalleryImage_3 from "@public/assets/about-us/about-us-gallery-image-3.png"
+import AboutUsGalleryImage_4 from "@public/assets/about-us/about-us-gallery-image-4.png"
 // B
 import BiteCareLogo from "@public/assets/common/logos/bitecare-logo.svg"
 import BiteCareLogoTextTM from "@public/assets/common/logos/bitecare-logo-text-tm.svg"
@@ -138,6 +139,7 @@ export const Images = {
   AboutUsGalleryImage_1,
   AboutUsGalleryImage_2,
   AboutUsGalleryImage_3,
+  AboutUsGalleryImage_4,
   // B
   BiteCareLogo,
   BiteCareLogoText,

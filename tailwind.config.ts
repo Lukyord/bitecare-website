@@ -18,6 +18,7 @@ module.exports = {
     extend: {
       screens: {
         xs: "430px",
+        desktop: "1920px",
       },
       colors: {
         //BiteCare Colors

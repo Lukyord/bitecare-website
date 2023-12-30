@@ -1,6 +1,8 @@
-import { Images } from "@/constant/Images"
 import { getTranslations } from "next-intl/server"
 import Image from "next/image"
+
+import { Images } from "@/constant/Images"
+
 import TranslateYOnScroll from "../animations/TranslateYOnScroll"
 import TranslateXOnScroll from "../animations/TranslateXOnScroll"
 
@@ -11,13 +13,14 @@ export default async function WelcomeToBiteCare() {
     Images.AboutUsGalleryImage_1,
     Images.AboutUsGalleryImage_2,
     Images.AboutUsGalleryImage_3,
+    Images.AboutUsGalleryImage_4,
   ]
 
   return (
     <section
       className="
-                    my-[10vh] flex h-[100vh] 
-                    w-[100vw] flex-col gap-14
+                    flex h-fit w-[100vw] 
+                    flex-col gap-14 pt-[10vh]
                     xl:my-0 xl:flex-row xl:gap-0
                     "
     >
@@ -59,13 +62,18 @@ export default async function WelcomeToBiteCare() {
         </div>
       </div>
       <div className="hidden h-full w-[40%] xl:block">
-        <TranslateYOnScroll translateYStart="-30vh" translateYEnd="30vh">
+        <TranslateYOnScroll translateYStart="-20vh" translateYEnd="0vh">
           {AboutUsImages.map((image, index) => (
-            <Image key={index} alt="about-us-gallery-image" src={image} />
+            <Image
+              key={index}
+              alt="about-us-gallery-image"
+              src={image}
+              className="desktop:w-[40vw] desktop:h-auto"
+            />
           ))}
         </TranslateYOnScroll>
       </div>
-      <div className="h-full w-[40%] xl:hidden">
+      <div className="h-fit w-[40%] xl:hidden">
         <TranslateXOnScroll translateXStart="-30vw" translateXEnd="0vw">
           {AboutUsImages.map((image, index) => (
             <Image

@@ -23,10 +23,8 @@ export default function HorizontalScrollSection({
         overflow: "hidden",
       })
 
-      const sectionWidth = sectionRef.current?.getBoundingClientRect().width
-
       const pin = gsap.to(sectionRef.current, {
-        translateX: sectionWidth && -sectionWidth,
+        translateX: "-400vw",
         ease: "none",
         scrollTrigger: {
           trigger: triggerRef.current,
@@ -55,7 +53,7 @@ export default function HorizontalScrollSection({
       <div ref={triggerRef}>
         <div
           ref={sectionRef}
-          className="relative flex h-[500vh] w-[100vw] flex-col xl:h-[100vh] xl:w-[500vw] xl:flex-row"
+          className="relative flex h-fit w-[100vw] flex-col xl:h-[100vh] xl:w-[500vw] xl:flex-row"
         >
           {children}
         </div>
