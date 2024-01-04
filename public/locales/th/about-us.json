@@ -30,6 +30,7 @@
     "first-name": "ชื่อจริง",
     "last-name": "นามสกุล",
     "company-name": "ชื่อบริษัท",
-    "message": "ข้อความ"
+    "message": "ข้อความ",
+    "message-place-holder": "ข้อความของคุณ"
   }
 }

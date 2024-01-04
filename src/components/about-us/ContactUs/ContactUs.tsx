@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { getTranslations } from "next-intl/server"
+import { getMessages, getTranslations } from "next-intl/server"
 
 import { Images } from "@/constant/Images"
 import { Link } from "@/lib/navigation"
@@ -8,8 +8,11 @@ import { Links } from "@/constant/Links"
 import SendMessageButton from "./SendMessageButton"
 import OpenSendMessageFormButton from "./OpenSendMessageFormButton"
 import ContactUsFormContextProvider from "@/context/ContactUsFormContextProvider"
+import { NextIntlClientProvider } from "next-intl"
+import { pick } from "lodash"
 
 export default async function ContactUs() {
+  const messages = await getMessages()
   const tContactUs = await getTranslations("contact-us")
 
   const labelStyle = "text-paragraph mb-2 sm:mb-4"
@@ -44,20 +47,24 @@ export default async function ContactUs() {
       id="contact-us"
       className="
             relative flex h-fit 
-            w-[100vw] flex-col py-[5vh] 
-            xl:h-[100vh] xl:w-[100vw] xl:flex-row 
-            xl:py-0 xl:pl-[5vw]
+            w-[100vw] flex-col py-[5vh]
+            lg:flex-row lg:pb-0 xl:h-[100vh] xl:w-[100vw] 
+            xl:pl-[5vw] xl:pt-0
           "
     >
       <ContactUsFormContextProvider>
-        <OpenSendMessageFormButton />
+        <NextIntlClientProvider
+          messages={pick(messages, "contact-us", "button")}
+        >
+          <OpenSendMessageFormButton />
+        </NextIntlClientProvider>
         <div className="relative h-full w-fit">
           <Image
             alt="contact us dog"
             width={683}
             height={1024}
             src={Images.AboutUsContactUsDog}
-            className="h-auto w-[100vw] object-contain xl:h-[110vh] xl:w-auto"
+            className="h-auto w-[100vw] object-contain lg:h-[110vh] lg:w-auto"
           />
           <h2
             className="
@@ -70,7 +77,7 @@ export default async function ContactUs() {
           </h2>
         </div>
 
-        <div className="z-10 mt-[-30%] flex flex-1 items-center justify-center xl:mt-0">
+        <div className="z-10 mt-[-30%] flex flex-1 items-center justify-center lg:mt-0">
           <div
             className="
                     flex flex-col justify-center 

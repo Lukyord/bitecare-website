@@ -30,6 +30,7 @@
     "first-name": "FIRST NAME",
     "last-name": "LAST NAME",
     "company-name": "COMPANY NAME",
-    "message": "MESSAGE"
+    "message": "MESSAGE",
+    "message-place-holder": "I'd like to chat about"
   }
 }

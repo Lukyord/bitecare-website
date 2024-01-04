@@ -1,20 +1,56 @@
 "use client"
 
+import { z } from "zod"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+
+import { ContactUsFormSchema } from "@/types/about-us/contact-us-form"
 import { cn } from "@/lib/utils"
+import { BsSend } from "react-icons/bs"
 import { FaChevronLeft } from "react-icons/fa"
 
 import { useOpenContactUsForm } from "@/context/ContactUsFormContextProvider"
-
-type OpenSendMessageFormButtonProps = {}
+import ContactUsForm from "./ContactUsForm"
+import OpenFormButton from "./OpenFormButton"
+import { Form } from "@/components/ui/form"
+import { toast } from "@/components/ui/use-toast"
+import FormFields from "./FormFields"
+import SecondaryButton from "@/components/common/Button/SecondaryButton"
 
 export default function OpenSendMessageFormButton() {
   const { formOpen, setFormOpen } = useOpenContactUsForm()
+  const tContactUs = useTranslations("contact-us")
+  const tButton = useTranslations("button")
+
+  const form = useForm<z.infer<typeof ContactUsFormSchema>>({
+    resolver: zodResolver(ContactUsFormSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      message: "",
+    },
+  })
+
+  const onSubmit = (data: z.infer<typeof ContactUsFormSchema>) => {
+    toast({
+      title: "You submitted the following values:",
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      ),
+    })
+  }
 
   return (
     <>
       <div
+        onClick={() => setFormOpen(!formOpen)}
         className={`
-                  absolute left-0 top-0 z-20
+                  absolute left-[-5%] top-0 z-20
                   h-screen w-screen bg-black/60
                   transition-opacity duration-700 ease-in-out
                   ${cn({
@@ -23,45 +59,47 @@ export default function OpenSendMessageFormButton() {
                   })}
                 `}
       />
-      <section
-        className={`
-                absolute right-0 top-0 z-[99999] h-screen
-                w-[70vw] bg-bc-primary-container
-                transition-transform duration-500 ease-in-out
-                ${cn({
-                  "translate-x-[100%]": !formOpen,
-                  "translate-x-[0%]": formOpen,
-                })}
-                })}
-              `}
-      >
-        <div className="relative h-full w-full">
-          <button
-            onClick={() => setFormOpen(!formOpen)}
-            className={`
-              absolute left-0 top-1/2
-              flex h-20 w-20 translate-y-[-50%] 
-              transform items-center rounded-full border
-              border-bc-grey bg-white text-h3
-              transition-transform duration-500 ease-in-out
-              ${cn({
-                "translate-x-[-70%]": !formOpen,
-                "translate-x-[-50%] justify-center": formOpen,
-              })}
-          `}
-          >
-            <FaChevronLeft
-              size={30}
-              className={`transform transition-transform duration-500 ease-in-out ${cn(
-                {
-                  "rotate-180": formOpen,
-                  "ml-[15%] rotate-0": !formOpen,
-                }
-              )}`}
-            />
-          </button>
+      <ContactUsForm>
+        <OpenFormButton />
+        <h2
+          className="
+                  flex items-center 
+                  justify-between text-h3 xl:h-[20%] 
+                  xl:text-h2
+                "
+        >
+          {tContactUs("lets-collaborate")}
+          <span onClick={() => setFormOpen(false)}>
+            <FaChevronLeft size={30} className="rotate-180" />
+          </span>
+        </h2>
+        <div className="h-fit xl:h-[80%]">
+          <Form {...form}>
+            <form
+              className="flex h-full w-full flex-col gap-5 xl:gap-10"
+              action={async (formData) => {}}
+            >
+              <div
+                className="
+                          flex h-[90%] w-full 
+                          flex-col gap-6 xl:overflow-hidden 
+                          xl:pr-6 xl:hover:overflow-y-auto xl:hover:pr-4
+                        "
+              >
+                <FormFields form={form} />
+              </div>
+              <div className="h-[10%] w-full">
+                <SecondaryButton
+                  text={tButton("send-message")}
+                  icon={<BsSend />}
+                  size="paragraph"
+                  specificWidth="w-[50%]"
+                />
+              </div>
+            </form>
+          </Form>
         </div>
-      </section>
+      </ContactUsForm>
     </>
   )
 }
