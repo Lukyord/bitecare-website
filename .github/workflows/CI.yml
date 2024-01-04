@@ -1,6 +1,12 @@
 name: CI
 
-on: [pull_request]
+on: 
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
 
 jobs:
   ci:
@@ -19,3 +25,7 @@ jobs:
 
       - name: Build App
         run: npm run build
+
+      - name: Block on Failure
+        if: failure()
+        run: exit 1
