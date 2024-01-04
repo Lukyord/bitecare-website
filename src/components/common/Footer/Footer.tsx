@@ -9,7 +9,6 @@ type FooterProps = {
 export default function Footer({ children }: FooterProps) {
   const pathName = usePathname()
 
-  console.log("pathName", pathName)
   if (pathName === "/about-us" || pathName === "/en/about-us") {
     return null
   }
