@@ -14,6 +14,7 @@ type SecondaryButtonProps = {
   specificWidth?: string
   href?: string
   onClick?: () => void
+  disabled?: boolean
 }
 
 export default function SecondaryButton({
@@ -23,6 +24,7 @@ export default function SecondaryButton({
   specificWidth,
   href,
   onClick,
+  disabled = false,
 }: SecondaryButtonProps) {
   const router = useRouter()
   const controls = useAnimation()
@@ -69,11 +71,13 @@ export default function SecondaryButton({
 
   return (
     <motion.button
+      disabled={disabled}
       className={`
-        text-bc_black relative
-        overflow-hidden whitespace-nowrap
+        text-bc_black disabled:bg-opacity-65
+        relative overflow-hidden  whitespace-nowrap
         border border-bc-black
-        bg-white
+        bg-white disabled:cursor-not-allowed
+        disabled:opacity-50 disabled:hover:scale-100
         ${specificWidth && specificWidth}
         ${cn({
           "h-12 text-paragraph": size === "paragraph",

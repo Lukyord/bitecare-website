@@ -1,5 +1,11 @@
-import { FormControl, FormItem, FormLabel } from "@/components/ui/form"
+import {
+  FormControl,
+  FormDescription,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import { ControllerRenderProps } from "react-hook-form"
 
 type ContactFormField<
@@ -33,27 +39,49 @@ type ContactUsFormProps = {
     | "companyName"
     | "phoneNumber"
   >
+  maxLength?: number
+  description?: string
 }
 
 export default function ContactUsInput({
   label,
   placeholder,
   field,
+  maxLength,
+  description,
 }: ContactUsFormProps) {
   return (
     <FormItem className="w-full">
       <FormLabel className="text-paragraph">{label}</FormLabel>
       <FormControl>
-        <Input
+        <Textarea
+          rows={1}
           transparent
           notoThin
           bottomBorder
           {...field}
           placeholder={placeholder}
-          autoComplete="off"
-          className={`${field.value ? "opacity-100" : "opacity-30"}`}
+          className={`${
+            field.value ? "opacity-100" : "opacity-30"
+          } resize-none`}
+          maxLength={maxLength}
+          onKeyPress={(event) => {
+            if (maxLength === 10 && !/[0-9]/.test(event.key)) {
+              event.preventDefault()
+            }
+
+            if (event.key === " ") {
+              event.preventDefault()
+            }
+          }}
+          autoComplete="false"
         />
       </FormControl>
+      {description && (
+        <FormDescription className="text-paragraph">
+          {description}
+        </FormDescription>
+      )}
     </FormItem>
   )
 }

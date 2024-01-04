@@ -30,7 +30,13 @@
     "first-name": "FIRST NAME",
     "last-name": "LAST NAME",
     "company-name": "COMPANY NAME",
+    "company-name-description": "If you're an individual, type “-”",
     "message": "MESSAGE",
     "message-place-holder": "I'd like to chat about"
+  },
+  "contact-us-toast": {
+    "something-went-wrong": "Uh oh! Something went wrong.",
+    "success": "Success!",
+    "message-sent": "Message sent! We'll get back to you soon."
   }
 }

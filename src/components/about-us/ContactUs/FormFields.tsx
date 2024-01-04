@@ -64,6 +64,7 @@ export default function FormFields({ form }: FormFieldsProps) {
             label={tContactUs("company-name")}
             placeholder={tContactUs("company-name")}
             field={field}
+            description={tContactUs("company-name-description")}
           />
         )}
       />
@@ -86,8 +87,9 @@ export default function FormFields({ form }: FormFieldsProps) {
         render={({ field }) => (
           <ContactUsInput
             label={tContactUs("phone-number")}
-            placeholder={tContactUs("phone-number")}
+            placeholder={"096930XXXX"}
             field={field}
+            maxLength={10}
           />
         )}
       />

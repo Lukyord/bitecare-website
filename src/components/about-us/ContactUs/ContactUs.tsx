@@ -54,7 +54,7 @@ export default async function ContactUs() {
     >
       <ContactUsFormContextProvider>
         <NextIntlClientProvider
-          messages={pick(messages, "contact-us", "button")}
+          messages={pick(messages, "contact-us", "button", "contact-us-toast")}
         >
           <OpenSendMessageFormButton />
         </NextIntlClientProvider>

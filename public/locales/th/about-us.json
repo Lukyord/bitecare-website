@@ -30,7 +30,13 @@
     "first-name": "ชื่อจริง",
     "last-name": "นามสกุล",
     "company-name": "ชื่อบริษัท",
+    "company-name-description": "หากคุณติดต่อในนามบุคคล กรุณาพิม “-”",
     "message": "ข้อความ",
     "message-place-holder": "ข้อความของคุณ"
+  },
+  "contact-us-toast": {
+    "something-went-wrong": "อุ๊ปส์ บางอย่างผิดพลาด",
+    "success": "สำเร็จ",
+    "message-sent": "ข้อความของคุณถูกส่งแล้ว เราจะติดต่อกลับโดยเร็วที่สุด"
   }
 }
