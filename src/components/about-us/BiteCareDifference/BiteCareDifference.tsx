@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server"
-import TextRevealFromBottom from "../animations/TextRevealFromBottom"
-import WhiteTextBox from "./BiteCareDifference/WhiteTextBox"
+import TextRevealFromBottom from "../../animations/TextRevealFromBottom"
+import WhiteTextBox from "./WhiteTextBox"
 import Image from "next/image"
 import { Images } from "@/constant/Images"
-import BlobBackground_1 from "./BiteCareDifference/BlobBackground_1"
-import BlobBackground_2 from "./BiteCareDifference/BlobBackground_2"
+import BlobBackground_1 from "./BlobBackground_1"
+import BlobBackground_2 from "./BlobBackground_2"
 
 export default async function BiteCareDifference() {
   const tBiteCareDifference = await getTranslations("bitecare-difference")
@@ -37,10 +37,10 @@ export default async function BiteCareDifference() {
         {/* BiteCare Difference */}
         <div
           className="
-                    desktop:pb-[5vh] relative flex
-                    h-full flex-col gap-14 pb-40
-                    xl:w-[45%] xl:flex-row
-                    xl:gap-[5%]
+                    relative flex h-full
+                    flex-col gap-14 pb-40 xl:w-[45%]
+                    xl:flex-row xl:gap-[5%]
+                    desktop:pb-[5vh]
                   "
         >
           <TextRevealFromBottom duration={1} delay={0.65}>

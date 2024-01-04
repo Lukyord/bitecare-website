@@ -23,8 +23,9 @@ export default async function HeroSection({}: HeroSectionProps) {
       >
         <div
           className="
-                  flex flex-col items-center gap-4
-                  sm:max-w-[80%] md:max-w-[60%] lg:max-w-[45%] 
+                  z-20 flex flex-col items-center
+                  gap-4 sm:max-w-[80%] md:max-w-[60%] 
+                  lg:max-w-[45%]
                 "
         >
           <Image
