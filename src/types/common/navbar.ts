@@ -5,10 +5,9 @@ export type NavigationBreadcrumb = {
 }
 
 export type NavbarItem = {
-  label: NavigationMenuTitle
+  label: string
   breadcrumb: NavigationBreadcrumb[]
 }
-
 
 export type NavigationMenuSlug = keyof IntlMessages["navbar"]
 
