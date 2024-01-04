@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
 
 import { FaChevronDown } from "react-icons/fa"
@@ -11,12 +10,10 @@ import BreadcrumbItem from "./BreadcrumbItem"
 import { cn } from "@/lib/utils"
 
 type NavbarMenuItemProps = {
-  navbaritem: NavbarItem
+   navbaritem: NavbarItem
 }
 
 export default function NavbarMenuItem({ navbaritem }: NavbarMenuItemProps) {
-  const tNavBar = useTranslations("navbar")
-
   return (
     <li
       className={`
@@ -26,7 +23,7 @@ export default function NavbarMenuItem({ navbaritem }: NavbarMenuItemProps) {
             hover:bg-bc-inverse-primary hover:text-white
      `}
     >
-      <p className="whitespace-nowrap">{tNavBar(navbaritem.label)}</p>
+      <p className="whitespace-nowrap">{navbaritem.label}</p>
       {navbaritem.breadcrumb && (
         <FaChevronDown
           size={12}
