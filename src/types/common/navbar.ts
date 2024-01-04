@@ -9,14 +9,11 @@ export type NavbarItem = {
   breadcrumb: NavigationBreadcrumb[]
 }
 
-export type NavigationMenuTitle = "Products"
-| "Where to buy"
-| "Support"
 
 export type NavigationMenuSlug = keyof IntlMessages["navbar"]
 
 export type NavigationMenu = {
-  label: NavigationMenuTitle
+  label: string
   slug: NavigationMenuSlug
   breadCrumbs: NavigationBreadcrumb[]
 }
