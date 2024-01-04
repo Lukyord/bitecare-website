@@ -6,7 +6,7 @@ import AboutUsLanding from "@/components/about-us/AboutUsLanding"
 import HorizontalScrollSection from "@/components/about-us/HorizontalScrollSection"
 import WelcomeToBiteCare from "@/components/about-us/WelcomeToBiteCare"
 import BiteCareDifference from "@/components/about-us/BiteCareDifference"
-import ContactUs from "@/components/about-us/ContactUs"
+import ContactUs from "@/components/about-us/ContactUs/ContactUs"
 
 export default function AboutUs({
   params: { locale },
