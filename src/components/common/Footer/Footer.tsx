@@ -14,5 +14,5 @@ export default function Footer({ children }: FooterProps) {
     return null
   }
 
-  return <>{children}</>
+  return <footer>{children}</footer>
 }

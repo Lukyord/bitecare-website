@@ -10,7 +10,7 @@ export default async function FooterSection() {
   const tButton = await getTranslations("button")
 
   return (
-    <footer className="overflow-hidden">
+    <div className="overflow-hidden">
       {/* Wave Animation */}
       <div className="relative h-24 w-screen overflow-hidden md:h-32 lg:h-48 2xl:h-96">
         <div className="absolute z-20">
@@ -65,6 +65,6 @@ export default async function FooterSection() {
           />
         </div>
       </div>
-    </footer>
+    </div>
   )
 }
