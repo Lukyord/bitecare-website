@@ -6,14 +6,14 @@ import useNavigation from "@/hooks/useNavigation"
 
 export default async function FooterNavigateSection() {
   const NavigationMenus = await useNavigation()
-  
+
   const footerItems = NavigationMenus.map((menu) => ({
     label: menu.label,
     breadCrumbs: menu.breadCrumbs,
   }))
 
   return (
-    <div className="mx-auto flex w-[90%] flex-col items-center justify-between pt-[6%] md:flex-row">
+    <div className="mx-auto flex w-[90%] flex-col items-center justify-between overflow-hidden pt-[6%] md:flex-row">
       <Image
         className="flex w-full md:w-1/2 md:pr-[4%]"
         src={Images.BiteCareLogoTextTM}
@@ -28,7 +28,7 @@ export default async function FooterNavigateSection() {
             <span className="pb-4">{footerItem.label}</span>
             {footerItem.breadCrumbs.map((breadCrumb, index) => (
               <li
-                className="pt-4 text-left text-subtitle text-neutral-500 lg:text-paragraph"
+                className="pt-4 text-left text-subtitle text-neutral-500 hover:text-black lg:text-paragraph"
                 key={index}
               >
                 <Link href={breadCrumb.href}>{breadCrumb.title}</Link>

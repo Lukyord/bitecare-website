@@ -11,6 +11,7 @@ import Header from "@/components/common/Header"
 import { Navbar } from "@/components/common/Navbar/Navbar"
 import { Toaster } from "@/components/ui/toaster"
 import Footer from "@/components/common/Footer/Footer"
+import FooterSection from "@/components/common/Footer/FooterSection"
 
 const psl = localFont({
   src: "../../../public/fonts/PSL096pro.ttf",
@@ -80,7 +81,9 @@ export default function RootLayout({
         </Header>
         {children}
         <Toaster />
-        <Footer />
+        <Footer>
+          <FooterSection />
+        </Footer>
       </body>
     </html>
   )

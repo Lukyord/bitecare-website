@@ -33,29 +33,33 @@ export default function FooterCopyrightSection({
   terms,
 }: CopyrightProps) {
   return (
-    <div className="flex flex-col-reverse pt-[8%] md:flex-row">
+    <div className="flex  flex-col-reverse overflow-hidden pt-[8%] md:flex-row">
       <div className="w-0 md:w-[30%]"></div>
-      <div className="text-subtitile flex pt-[4%] text-neutral-400 md:w-[40%] md:pt-0 lg:text-paragraph">
-        <Link className="m-auto" href="/">
-          {copyright}
-        </Link>
-        <Link className="m-auto" href="/policy-privacy">
-          {policy}
-        </Link>
-        <Link className="m-auto" href="/terms-and-conditions">
-          {terms}
-        </Link>
-      </div>
-      <div className="flex justify-center md:w-[30%] md:justify-end">
-        {socialMediaList.map((socialMedia, index) => (
-          <Link
-            className="mx-[2%] my-auto md:mx-[4%]"
-            href={socialMedia.href}
-            key={index}
-          >
-            <Image src={socialMedia.icon} alt={socialMedia.label} />
+      <div className="pt-[4%] md:w-[40%] md:pt-0">
+        <div className="mx-auto flex w-full max-w-xl justify-center text-subtitle text-neutral-400 lg:text-paragraph">
+          <Link className="m-auto" href="/">
+            {copyright}
           </Link>
-        ))}
+          <Link className="m-auto" href="/policy-privacy">
+            {policy}
+          </Link>
+          <Link className="m-auto" href="/terms-and-conditions">
+            {terms}
+          </Link>
+        </div>
+      </div>
+      <div className="md:w-[30%]">
+        <div className="mx-auto flex w-full max-w-sm  justify-center md:mx-0 md:ml-auto md:justify-end">
+          {socialMediaList.map((socialMedia, index) => (
+            <Link
+              className="mx-[2%] my-auto md:mx-[4%]"
+              href={socialMedia.href}
+              key={index}
+            >
+              <Image src={socialMedia.icon} alt={socialMedia.label} />
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   )
