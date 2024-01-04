@@ -126,8 +126,8 @@ import TopQualityIngredientsBlack from "@public/assets/illustrations/homepage/to
 // V
 // W
 import WaveBcPrimary_1 from "@public/assets/homepage/wave-bc-primary-1.svg"
-import WaveFooterBcPrimary_1 from "@public/assets/common/wave-footer-bc-primary-1.svg"
-import WaveFooterBcInversePrimary_2 from "@public/assets/common/wave-footer-bc-inverse-primary2.svg"
+import WaveFooterBcPrimary_1 from "@public/assets/illustrations/common/wave-footer-bc-primary-1.svg"
+import WaveFooterBcInversePrimary_2 from "@public/assets/illustrations/common/wave-footer-bc-inverse-primary2.svg"
 // X
 // Y
 // Z
@@ -168,7 +168,6 @@ export const Images = {
   // F
   FacebookIcon,
   FacebookLogoFullWhite,
-  FacebookIcon,
   FishOilDHABlack,
   FlowerBcPrimary_1,
   FlowerBcPrimary_2,
@@ -189,7 +188,6 @@ export const Images = {
   LineIcon,
   LCarnetineBlack,
   LineOaLogoFullWhite,
-  LineIcon,
   LowFatBlack,
   LowFatFront,
   LowFatBack,
@@ -222,7 +220,6 @@ export const Images = {
   // S
   ShopeeIcon,
   ShopeeLogoFullWhite,
-  ShopeeIcon,
   SparkleBlack_1,
   SparkleBlack_2,
   SparkleBcInversePrimary_1,
