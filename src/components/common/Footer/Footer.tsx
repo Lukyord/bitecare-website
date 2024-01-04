@@ -12,7 +12,7 @@ export default async function Footer() {
   return (
     <footer>
       {/* Wave Animation */}
-      <div className="relative h-24 w-screen overflow-hidden md:h-32 lg:h-48 2xl:h-72">
+      <div className="relative h-24 w-screen overflow-hidden md:h-32 lg:h-48 2xl:h-80">
         <div className="absolute z-20">
           <WaveAnimation image={Images.WaveFooterBcPrimary_1} />
         </div>

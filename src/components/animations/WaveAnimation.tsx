@@ -31,7 +31,7 @@ export default function WaveAnimation({
 
   return (
     <div
-      className="relative h-24 w-screen overflow-hidden md:h-32 lg:h-48 2xl:h-72"
+      className="relative h-24 w-screen overflow-hidden md:h-32 lg:h-48 2xl:h-80"
       ref={containerRef as React.RefObject<HTMLDivElement>}
     >
       <motion.div className="absolute bottom-0 w-full" animate={controls}>
