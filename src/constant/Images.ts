@@ -38,7 +38,6 @@ import DuctTape_2 from "@public/assets/illustrations/about-us/duct-tape-2.png"
 // E
 import EnglishFlag from "@public/assets/common/flags/english-flag.svg"
 // F
-import FacebookIcon from "@public/assets/common/facebook-icon.svg"
 import FacebookLogoFullWhite from "@public/assets/common/socials/facebook-logo-full-white.png"
 import FacebookIcon from "@public/assets/common/socials/facebook-icon.png"
 import FlowerBcPrimary_1 from "@public/assets/illustrations/homepage/flower-bc-primary-1.svg"
@@ -58,7 +57,6 @@ import HighlightBlack_1 from "@public/assets/illustrations/homepage/highlight-1-
 // J
 // K
 // L
-import LineIcon from "@public/assets/common/line-icon.svg"
 import LCarnetineBlack from "@public/assets/illustrations/products/l-carnitine-black.svg"
 import LineOaLogoFullWhite from "@public/assets/common/socials/line-oa-logo-full-white.png"
 import LineIcon from "@public/assets/common/socials/line-icon.png"
