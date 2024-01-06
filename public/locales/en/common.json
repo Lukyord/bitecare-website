@@ -39,7 +39,8 @@
     "search": "Search",
     "find-me": "Find me",
     "view-on-google-map": "View on Google Map",
-    "send-message": "Send message"
+    "send-message": "Send message",
+    "get-to-know-us": "Get to Know Us"
   },
   "miscellaneous": {
     "impressed-by-our-products": "Impressed by our products?",
@@ -59,5 +60,14 @@
     "ginkgo-extract": "Ginkgo Extract",
     "crocodile-protein": "Crocodile Protein",
     "gluten-free": "Gluten Free"
+  },
+  "footer": {
+    "tagline1": "See if BiteCare is right for",
+    "tagline2": "your pet. (It totally is!)",
+    "tagline-description1": "Find out why you and your pet will 💚 BiteCare.",
+    "tagline-description2": "Learn our principles and be inspired.",
+    "copy-right": "© 2023 BiteCare",
+    "policy": "Privacy Policy",
+    "terms": "Terms & Conditions"
   }
 }

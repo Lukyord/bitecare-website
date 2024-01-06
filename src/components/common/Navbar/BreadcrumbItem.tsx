@@ -3,11 +3,11 @@
 import { motion } from "framer-motion"
 
 import { Link } from "@/lib/navigation"
-import { NavbarBreadcrumb } from "@/types/common/navbar"
+import { NavigationBreadcrumb } from "@/types/common/navbar"
 import { FaArrowRight } from "react-icons/fa6"
 
 type BreadcrumbItemProps = {
-  breadcrumbItem: NavbarBreadcrumb
+  breadcrumbItem: NavigationBreadcrumb
 }
 
 const arrowVariants = {

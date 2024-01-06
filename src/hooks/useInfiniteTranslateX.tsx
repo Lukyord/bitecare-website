@@ -6,11 +6,14 @@ import { useAnimation } from "framer-motion"
 
 export function useInfiniteTranslateX(
   startOnHover: boolean = false,
-  xSpeed: number = 0.5
+  xSpeed: number = 0.5,
+  waveAnimation: boolean = false,
+  reverse: boolean = false
 ) {
   const controls = useAnimation()
   const containerRef = useRef<HTMLDivElement | HTMLButtonElement | null>(null)
   const [animationId, setAnimationId] = useState<number | null>(null)
+  const [lastestXPixels, setLastestXPixels] = useState<number>(0)
 
   let xPixels = 0
 
@@ -21,9 +24,13 @@ export function useInfiniteTranslateX(
       if (xPixels > containerWidth) {
         xPixels = 0
       }
-      controls.set({ x: -xPixels, y: "-50%" })
+      controls.set({
+        x: reverse ? +xPixels : -xPixels,
+        y: waveAnimation ? "0%" : "-50%",
+      })
 
       xPixels += xSpeed
+      setLastestXPixels(xPixels)
       setAnimationId(requestAnimationFrame(animate))
     }
   }
@@ -47,8 +54,24 @@ export function useInfiniteTranslateX(
     }
   }
 
+  const handleIsInview = () => {
+    xPixels = lastestXPixels
+
+    if (!animationId) {
+      setAnimationId(requestAnimationFrame(animate))
+    }
+  }
+
+  const handleIsNotInview = () => {
+    if (animationId) {
+      cancelAnimationFrame(animationId)
+      setAnimationId(null)
+    }
+  }
+
   useEffect(() => {
-    if (!startOnHover) setAnimationId(requestAnimationFrame(animate))
+    if (!startOnHover && !waveAnimation)
+      setAnimationId(requestAnimationFrame(animate))
 
     return () => {
       if (animationId) {
@@ -57,5 +80,12 @@ export function useInfiniteTranslateX(
     }
   }, [controls])
 
-  return { controls, containerRef, handleMouseEnter, handleMouseLeave }
+  return {
+    controls,
+    containerRef,
+    handleMouseEnter,
+    handleMouseLeave,
+    handleIsInview,
+    handleIsNotInview,
+  }
 }

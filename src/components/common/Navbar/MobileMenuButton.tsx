@@ -32,7 +32,6 @@ export default function MobileMenuButton({
   NavbarItems,
 }: MobileMenuButtonProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const tNavBar = useTranslations("navbar")
   const tButton = useTranslations("button")
   const tMiscellaneous = useTranslations("miscellaneous")
   const { toast } = useToast()
@@ -99,7 +98,7 @@ export default function MobileMenuButton({
                   className="text-paragraph"
                 >
                   <AccordionTrigger className="px-4 sm:px-8 ">
-                    {tNavBar(navbarItem.label)}
+                    {navbarItem.label}
                   </AccordionTrigger>
                   <AccordionContent>
                     {navbarItem.breadcrumb?.map((breadcrumbItem, index) => (

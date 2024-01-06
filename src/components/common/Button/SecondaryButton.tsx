@@ -10,7 +10,7 @@ import { useRouter } from "@/lib/navigation"
 type SecondaryButtonProps = {
   text: string
   icon?: React.ReactNode
-  size: "paragraph" | "h3"
+  size: "paragraph" | "h3" | "h2"
   specificWidth?: string
   href?: string
   onClick?: () => void
@@ -82,6 +82,7 @@ export default function SecondaryButton({
         ${cn({
           "h-12 text-paragraph": size === "paragraph",
           "h-20 text-h3": size === "h3",
+          "h-24 text-h2": size === "h2",
           "w-full": !specificWidth,
         })}
       `}
