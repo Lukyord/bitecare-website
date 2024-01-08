@@ -3,7 +3,7 @@ import { getMessages, getTranslations } from "next-intl/server"
 
 import { Images } from "@/constant/Images"
 import { Link } from "@/lib/navigation"
-import { Links } from "@/constant/Links"
+import { SocialMediaList } from "@/constant/Links"
 
 import SendMessageButton from "./SendMessageButton"
 import OpenSendMessageFormButton from "./OpenSendMessageFormButton"
@@ -17,30 +17,6 @@ export default async function ContactUs() {
 
   const labelStyle = "text-paragraph mb-2 sm:mb-4"
   const textStyle = "font-noto text-[36px] font-thin"
-
-  // hover font bold without layout shift
-  // before:invisible before:block
-  // before:h-0 before:overflow-hidden before:font-bold
-  // before:content-[attr(title)]
-
-  //TODO: move this to constant to be the only one source of truth
-  const socialMediaList = [
-    {
-      label: "Facebook",
-      href: Links.facebookHref,
-      icon: Images.FacebookIcon,
-    },
-    {
-      label: "Line",
-      href: Links.lineHref,
-      icon: Images.LineIcon,
-    },
-    {
-      label: "Shopee",
-      href: Links.shopeeHref,
-      icon: Images.ShopeeIcon,
-    },
-  ]
 
   return (
     <section
@@ -108,7 +84,7 @@ export default async function ContactUs() {
             <div>
               <h3 className={`${labelStyle}`}>{tContactUs("social")}</h3>
               <div className="flex flex-row gap-3">
-                {socialMediaList.map((social) => (
+                {SocialMediaList.map((social) => (
                   <Link
                     href={social.href}
                     key={social.label}

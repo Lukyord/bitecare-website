@@ -1,31 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Images } from "@/constant/Images"
-import { Links } from "@/constant/Links"
+import { SocialMediaList } from "@/constant/Links"
 
 type CopyrightProps = {
   copyright: string
   policy: string
   terms: string
 }
-
-const socialMediaList = [
-  {
-    label: "Facebook",
-    href: Links.facebookHref,
-    icon: Images.FacebookIcon,
-  },
-  {
-    label: "Line",
-    href: Links.lineHref,
-    icon: Images.LineIcon,
-  },
-  {
-    label: "Shopee",
-    href: Links.shopeeHref,
-    icon: Images.ShopeeIcon,
-  },
-]
 
 export default function FooterCopyrightSection({
   copyright,
@@ -50,13 +31,13 @@ export default function FooterCopyrightSection({
       </div>
       <div className="md:w-[30%]">
         <div className="mx-auto flex w-full max-w-sm  justify-center md:mx-0 md:ml-auto md:justify-end">
-          {socialMediaList.map((socialMedia, index) => (
+          {SocialMediaList.map((social, index) => (
             <Link
               className="mx-[2%] my-auto md:mx-[4%]"
-              href={socialMedia.href}
+              href={social.href}
               key={index}
             >
-              <Image src={socialMedia.icon} alt={socialMedia.label} />
+              <Image src={social.icon} alt={social.label} />
             </Link>
           ))}
         </div>

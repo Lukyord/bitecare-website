@@ -64,6 +64,21 @@ export default function HorizontalScrollSection({
     }
   }, [url])
 
+  useLayoutEffect(() => {
+    const enableScrolling = () => {
+      gsap.to("body", {
+        duration: 0,
+        overflow: "auto",
+      })
+    }
+
+    document.body.addEventListener("click", enableScrolling)
+
+    return () => {
+      document.body.removeEventListener("click", enableScrolling)
+    }
+  }, [])
+
   return (
     <div className="overflow-y-auto overflow-x-hidden xl:overflow-hidden">
       <div ref={triggerRef}>
