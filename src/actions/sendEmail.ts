@@ -14,8 +14,6 @@ export const sendEmail = async (
   const { firstName, lastName, companyName, email, phoneNumber, message } =
     trimmedFormData
 
-  console.log("sent")
-
   if (!validateString(message, 500)) {
     return {
       error: "Invalid message",
@@ -47,6 +45,12 @@ export const sendEmail = async (
   } catch (error: unknown) {
     return {
       error: getErrorMessage(error),
+    }
+  }
+
+  if (data.error) {
+    return {
+      error: getErrorMessage(data.error),
     }
   }
 

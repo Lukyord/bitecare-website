@@ -116,7 +116,6 @@ export default function OpenSendMessageFormButton() {
                   })
                 }
 
-                setFormOpen(false)
                 const { data, error } = await sendEmail(trimmedFormData)
 
                 if (error) {
@@ -127,6 +126,7 @@ export default function OpenSendMessageFormButton() {
                   })
                   return
                 }
+                setFormOpen(false)
 
                 toast({
                   title: tContactUsToast("success"),
