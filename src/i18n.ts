@@ -1,12 +1,20 @@
+import { notFound } from "next/navigation"
 import { getRequestConfig } from "next-intl/server"
 
-export default getRequestConfig(async ({ locale }) => ({
-  messages: {
-    ...(await import(`../public/locales/${locale}/common.json`)).default,
-    ...(await import(`../public/locales/${locale}/homepage.json`)).default,
-    ...(await import(`../public/locales/${locale}/products.json`)).default,
-    ...(await import(`../public/locales/${locale}/product.json`)).default,
-    ...(await import(`../public/locales/${locale}/where-to-buy.json`)).default,
-    ...(await import(`../public/locales/${locale}/about-us.json`)).default,
-  },
-}))
+import { i18n } from "./config/i18n.config"
+
+export default getRequestConfig(async ({ locale }) => {
+  if (!i18n.locales.includes(locale as any)) notFound()
+
+  return {
+    messages: {
+      ...(await import(`../public/locales/${locale}/common.json`)).default,
+      ...(await import(`../public/locales/${locale}/homepage.json`)).default,
+      ...(await import(`../public/locales/${locale}/products.json`)).default,
+      ...(await import(`../public/locales/${locale}/product.json`)).default,
+      ...(await import(`../public/locales/${locale}/where-to-buy.json`))
+        .default,
+      ...(await import(`../public/locales/${locale}/about-us.json`)).default,
+    },
+  }
+})

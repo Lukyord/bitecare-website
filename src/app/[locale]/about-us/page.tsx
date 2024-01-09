@@ -28,7 +28,7 @@ export default function AboutUs({
         />
         <WelcomeToBiteCare />
         <BiteCareDifference />
-        <ContactUs />
+        <ContactUs locale={locale} />
       </HorizontalScrollSection>
     </div>
   )

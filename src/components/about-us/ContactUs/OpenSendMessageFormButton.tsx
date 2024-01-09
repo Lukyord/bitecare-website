@@ -73,7 +73,7 @@ export default function OpenSendMessageFormButton() {
                 "
         >
           {tContactUs("lets-collaborate")}
-          <span onClick={() => setFormOpen(false)}>
+          <span onClick={() => setFormOpen(false)} className="cursor-pointer">
             <FaChevronLeft size={30} className="rotate-180" />
           </span>
         </h2>

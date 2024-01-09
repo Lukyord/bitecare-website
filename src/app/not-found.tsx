@@ -1,16 +1,17 @@
-import { getTranslations } from "next-intl/server"
+"use client"
+
+import Error from "next/error"
 
 // Render the default Next.js 404 page when a route
 // is requested that doesn't match the middleware and
 // therefore doesn't have a locale associated with it.
 
-export default async function NotFound() {
-  const tCommon = await getTranslations("miscellaneous")
-
+export default function NotFound() {
   return (
-    <body>
-      <h2>Page not found</h2>
-      <h3>{tCommon("check-out-faq")}</h3>
-    </body>
+    <html lang="en">
+      <body>
+        <Error statusCode={404} />
+      </body>
+    </html>
   )
 }

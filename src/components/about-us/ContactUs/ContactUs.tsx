@@ -11,12 +11,18 @@ import ContactUsFormContextProvider from "@/context/ContactUsFormContextProvider
 import { NextIntlClientProvider } from "next-intl"
 import { pick } from "lodash"
 
-export default async function ContactUs() {
+type ConactUsProps = {
+  locale: string
+}
+
+export default async function ContactUs({ locale }: ConactUsProps) {
   const messages = await getMessages()
   const tContactUs = await getTranslations("contact-us")
 
   const labelStyle = "text-paragraph mb-2 sm:mb-4"
-  const textStyle = "font-noto text-[36px] font-thin"
+  const textStyle = `${
+    locale === "th" ? "font-psl" : "font-noto"
+  } text-[36px] font-thin`
 
   return (
     <section

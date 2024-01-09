@@ -12,6 +12,8 @@ import { Navbar } from "@/components/common/Navbar/Navbar"
 import { Toaster } from "@/components/ui/toaster"
 import Footer from "@/components/common/Footer/Footer"
 import FooterSection from "@/components/common/Footer/FooterSection"
+import { NextIntlClientProvider, useMessages } from "next-intl"
+import { pick } from "lodash"
 
 const psl = localFont({
   src: "../../../public/fonts/PSL096pro.ttf",
@@ -66,6 +68,8 @@ export default function RootLayout({
 
   unstable_setRequestLocale(locale)
 
+  const messages = useMessages()
+
   return (
     <html lang={locale}>
       <body
@@ -79,7 +83,12 @@ export default function RootLayout({
         <Header>
           <Navbar />
         </Header>
-        {children}
+        <NextIntlClientProvider
+          locale={locale}
+          messages={pick(messages, "error", "button")}
+        >
+          {children}
+        </NextIntlClientProvider>
         <Toaster />
         <Footer>
           <FooterSection />

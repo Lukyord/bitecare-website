@@ -40,7 +40,10 @@
     "find-me": "Find me",
     "view-on-google-map": "View on Google Map",
     "send-message": "Send message",
-    "get-to-know-us": "Get to Know Us"
+    "get-to-know-us": "Get to Know Us",
+    "back-to-homepage": "Back to homepage",
+    "contact-us": "Contact Us",
+    "retry": "Retry"
   },
   "miscellaneous": {
     "impressed-by-our-products": "Impressed by our products?",
@@ -69,5 +72,11 @@
     "copy-right": "© 2023 BiteCare",
     "policy": "Privacy Policy",
     "terms": "Terms & Conditions"
+  },
+  "error": {
+    "page-not-found": "Ooups, page not found",
+    "page-not-found-description": "We are sorry for the inconvenience. It looks like you're trying to access a page that has been deleted or never even existed.",
+    "error": "Sorry, it's not you. it's us.",
+    "error-description": "We are experiencing an internal server problem. Please try again later or report the in the Contact Us form."
   }
 }
