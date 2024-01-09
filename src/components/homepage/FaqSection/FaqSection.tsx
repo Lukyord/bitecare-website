@@ -18,7 +18,7 @@ export default async function FaqSection() {
     },
     {
       question: tFaq("question-3"),
-      answer: [tFaq("answer-3")],
+      answer: [tFaq("answer-3"), tFaq("answer-3-2")],
     },
     {
       question: tFaq("question-4"),

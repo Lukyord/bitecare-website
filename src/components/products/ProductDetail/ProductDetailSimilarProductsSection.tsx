@@ -25,8 +25,8 @@ export default async function ProductDetailSimilarProductsSection({
       <div
         className="
                 mt-10 flex w-full gap-[5vw] 
-                overflow-hidden pb-8 pr-[5vw]
-                hover:overflow-x-auto hover:pb-6
+                pb-6 pr-[5vw]
+                overflow-x-auto
               "
       >
         {BiteCareProducts.filter((p) => p.name !== product.name).map(

@@ -110,7 +110,7 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
           key={animationKey + "_article_1"}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="mt-3 text-justify text-subtitle xs:mt-6 md:mt-0 lg:text-paragraph"
+          className="mt-3 text-subtitle xs:mt-6 md:mt-0 lg:text-paragraph"
         >
           {selectedProduct.productInfo.compareDescription1}
         </motion.article>
