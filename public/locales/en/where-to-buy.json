@@ -1,4 +1,9 @@
 {
+  "where-to-buy-landing": {
+    "where-to-get-bite-care": "Where to get Bite Care",
+    "physical-stores": "Physical Stores",
+    "online-stores": "Online Stores"
+  },
   "physical-store": {
     "where-do-you-live": "Where do you live?",
     "where-do-you-live-placeholder": "your postal code",
@@ -19,5 +24,8 @@
     "cant-access-location": "Error accessing your location. Please make sure location access is allowed.",
     "filter-input-required": "Filter input required",
     "filter-input-required-description": "Please fill in at least one filter input."
+  },
+  "online-store": {
+    "platforms": "Platforms"
   }
 }
