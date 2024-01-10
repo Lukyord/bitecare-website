@@ -26,6 +26,8 @@ module.exports = {
         "bc-primary": "#549B51",
         "bc-inverse-primary": "#9DD67D",
         "bc-primary-container": "#CBE4CB",
+        "bc-tab-active": "#B8F397",
+        "bc-tab-inactive": "#9DD67D",
 
         "bc-black": "#072100",
         "bc-grey": "#74796D",
