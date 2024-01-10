@@ -33,7 +33,7 @@ export default function ProductSwiperSlide({
                 h-full max-h-[30vh] w-auto
                 border-r-2 
                 border-bc-black px-[10%]
-                py-[10%] sm:max-h-full
+                py-[10%] sm:max-h-[600px] xl:max-h-[60vh] 2xl:max-h-full
               "
       priority
     />

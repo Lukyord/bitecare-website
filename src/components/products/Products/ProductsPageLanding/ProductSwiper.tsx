@@ -56,7 +56,7 @@ export default function ProductSwiper({ products }: ProductSwiperProps) {
     >
       <SwiperButtonNext
         style="
-              absolute left-[65%] lg:left-[75%] xl:left-[55%] top-[10%]
+              absolute left-[65%] md:left-[70%] lg:left-[75%] xl:left-[55%] top-[10%]
               z-10 flex items-center
               justify-center rounded-full border-[3px] border-black
               bg-bc-primary transition-all
