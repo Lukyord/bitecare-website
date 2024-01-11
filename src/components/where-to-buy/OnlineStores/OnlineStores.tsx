@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl"
 
 export default function OnlineStores() {
   const tOnlineStores = useTranslations("online-store")
+
   return (
     <>
       <div className="flex justify-center bg-bc-inverse-primary 2xl:min-h-[80vh]">

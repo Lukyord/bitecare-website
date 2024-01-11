@@ -47,12 +47,12 @@ export default async function useNavigation() {
       breadCrumbs: [
         {
           title: tNavigationWhereToBuy("physical-store"),
-          href: "/where-to-buy?type=physical-store",
+          href: "/where-to-buy?type=physical-stores",
           description: tNavigationWhereToBuy("physical-store-description"),
         },
         {
           title: tNavigationWhereToBuy("online-platform"),
-          href: "/where-to-buy?type=online-platform",
+          href: "/where-to-buy?type=online-stores",
           description: tNavigationWhereToBuy("online-platform-description"),
         },
       ],
