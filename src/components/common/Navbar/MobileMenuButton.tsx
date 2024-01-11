@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/accordion"
 import SecondaryButton from "../Button/SecondaryButton"
 import MobileLocaleSwitcher from "./MobileLocaleSwitcher"
+import { useMobileMenuOpen } from "@/context/MobileMenuOpenContextProvider"
 
 type MobileMenuButtonProps = {
   NavbarItems: NavbarItem[]
@@ -31,23 +32,10 @@ type MobileMenuButtonProps = {
 export default function MobileMenuButton({
   NavbarItems,
 }: MobileMenuButtonProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { mobileMenuOpen, setMobileMenuOpen } = useMobileMenuOpen()
   const tButton = useTranslations("button")
   const tMiscellaneous = useTranslations("miscellaneous")
   const { toast } = useToast()
-
-  // Disable scrolling when mobile nav menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = "unset"
-    }
-
-    return () => {
-      document.body.style.overflow = "unset"
-    }
-  }, [mobileMenuOpen])
 
   return (
     <>
@@ -77,7 +65,7 @@ export default function MobileMenuButton({
             transition={{ duration: 0.75, ease: [0.83, 0, 0.17, 1] }}
             className="
                   fixed left-0 top-0 -z-10 
-                  flex h-screen w-screen 
+                  flex h-[100dvh] w-screen 
                   flex-col 
                   bg-bc-primary-container pt-28 md:pt-32
                 "
@@ -141,7 +129,7 @@ export default function MobileMenuButton({
               <Image
                 alt="dashed line"
                 src={Images.DashedLineBlack}
-                className="h-auto w-full"
+                className="h-auto w-screen"
               />
               <motion.div
                 className="mx-auto mt-4 w-[90%]"

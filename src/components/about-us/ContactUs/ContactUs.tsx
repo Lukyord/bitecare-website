@@ -47,6 +47,7 @@ export default async function ContactUs({ locale }: ConactUsProps) {
             height={1024}
             src={Images.AboutUsContactUsDog}
             className="h-auto w-[100vw] object-contain lg:h-[110vh] lg:w-auto"
+            priority
           />
           <h2
             className="

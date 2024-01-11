@@ -5,14 +5,19 @@ import { Link, usePathname } from "@/lib/navigation"
 import Image from "next/image"
 import { gsap } from "gsap"
 import { ScrollToPlugin } from "gsap/ScrollToPlugin"
+import { useMobileMenuOpen } from "@/context/MobileMenuOpenContextProvider"
 
 gsap.registerPlugin(ScrollToPlugin)
 
 export default function NavbarLogo() {
   const pathname = usePathname()
+  const { setMobileMenuOpen } = useMobileMenuOpen()
 
   return (
-    <div className="h-[42px] w-[70px] sm:w-[91px] lg:h-[54px]">
+    <div
+      className="h-[42px] w-[70px] sm:w-[91px] lg:h-[54px]"
+      onClick={() => setMobileMenuOpen(false)}
+    >
       {pathname === "/" || pathname === "/en" ? (
         <button
           className="

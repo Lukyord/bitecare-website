@@ -18,14 +18,27 @@ export default function ContactUsFormContextProvider({
   const [formOpen, setFormOpen] = useState(false)
 
   useEffect(() => {
+    const handleScroll = (e: TouchEvent) => {
+      if (formOpen) {
+        const formElement = document.getElementById("contact-us-form-fields") // Replace with the actual ID of your form
+
+        if (formElement && !formElement.contains(e.target as Node)) {
+          e.preventDefault()
+          e.stopPropagation()
+        }
+      }
+    }
     if (formOpen) {
       document.body.style.overflow = "hidden"
+      document.addEventListener("touchmove", handleScroll, { passive: false })
     } else {
       document.body.style.overflow = "unset"
+      document.removeEventListener("touchmove", handleScroll)
     }
 
     return () => {
       document.body.style.overflow = "unset"
+      document.removeEventListener("touchmove", handleScroll)
     }
   }, [formOpen])
 

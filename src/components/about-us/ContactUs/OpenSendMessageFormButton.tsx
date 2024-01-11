@@ -38,17 +38,6 @@ export default function OpenSendMessageFormButton() {
     },
   })
 
-  const onSubmit = (data: z.infer<typeof ContactUsFormSchema>) => {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
-  }
-
   return (
     <>
       <div
@@ -67,8 +56,8 @@ export default function OpenSendMessageFormButton() {
         <OpenFormButton />
         <h2
           className="
-                  flex items-center 
-                  justify-between text-h3 xl:h-[20%] 
+                  flex h-[20%] 
+                  items-center justify-between text-h3 
                   xl:text-h2
                 "
         >
@@ -77,7 +66,7 @@ export default function OpenSendMessageFormButton() {
             <FaChevronLeft size={30} className="rotate-180" />
           </span>
         </h2>
-        <div className="h-fit xl:h-[80%]">
+        <div className="h-[80%]">
           <Form {...form}>
             <form
               autoComplete="false"
@@ -137,10 +126,11 @@ export default function OpenSendMessageFormButton() {
               }}
             >
               <div
+                id="contact-us-form-fields"
                 className="
-                          flex h-[90%] w-full 
-                          flex-col gap-6 xl:overflow-hidden 
-                          xl:pr-6 xl:hover:overflow-y-auto xl:hover:pr-4
+                          flex h-[90%] w-full
+                          flex-col gap-6 overflow-y-auto 
+                          pr-4
                         "
               >
                 <FormFields form={form} />

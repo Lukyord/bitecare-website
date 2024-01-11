@@ -1,7 +1,6 @@
 import React from "react"
 
 import { NavbarItem } from "@/types/common/navbar"
-import { Link } from "@/lib/navigation"
 
 import NavbarMenuItem from "./NavbarMenuItem"
 import LocaleSwitcher from "./LocaleSwitcher"
@@ -12,27 +11,30 @@ import useNavigation from "@/hooks/useNavigation"
 import { NextIntlClientProvider } from "next-intl"
 import { pick } from "lodash"
 import { getMessages } from "next-intl/server"
+import MobileMenuOpenContextProvider from "@/context/MobileMenuOpenContextProvider"
+import MobileNavbarCTAButton from "./MobileNavbarCTAButton"
 
 export async function Navbar() {
   const messages = await getMessages()
   const NavigationMenus = await useNavigation()
-  
+
   const NavbarItems: NavbarItem[] = NavigationMenus.map((menu) => ({
     label: menu.label,
     breadcrumb: menu.breadCrumbs,
   }))
 
   return (
-      <nav
-        id="navbar"
-        className="
+    <nav
+      id="navbar"
+      className="
              
               mt-4 flex w-[90%] max-w-5xl items-center
               justify-between rounded-full
               bg-bc-primary-container p-2
               shadow-bc_small sm:mt-8
             "
-      >
+    >
+      <MobileMenuOpenContextProvider>
         <div className="flex gap-7">
           <NavbarLogo />
 
@@ -52,31 +54,16 @@ export async function Navbar() {
         </div>
 
         {/*========== Mobile ==========*/}
-        <Link
-          href="/about-us"
-          className="
-              flex h-[42px] items-center 
-              justify-center rounded-full 
-              bg-bc-primary px-4 
-              text-paragraph text-white
-              lg:hidden
-            "
-        >
-          Meet BiteCare
-        </Link>
+        <MobileNavbarCTAButton />
 
         <div className="block lg:hidden">
-        <NextIntlClientProvider
-          messages={pick(
-          messages,
-          "button",
-          "miscellaneous"
-          )}
-        >
-          <MobileMenuButton NavbarItems={NavbarItems} />
-        </NextIntlClientProvider>
-          
+          <NextIntlClientProvider
+            messages={pick(messages, "button", "miscellaneous")}
+          >
+            <MobileMenuButton NavbarItems={NavbarItems} />
+          </NextIntlClientProvider>
         </div>
-      </nav>
+      </MobileMenuOpenContextProvider>
+    </nav>
   )
 }

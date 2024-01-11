@@ -11,7 +11,7 @@ export default function ProductsPage({
 }) {
   unstable_setRequestLocale(locale)
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <ProductsPageLanding />
       <ProductsListSection />
       <FaqNavigateSection />
