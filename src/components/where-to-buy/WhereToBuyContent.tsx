@@ -8,14 +8,18 @@ import { useTranslations } from "next-intl"
 
 type WhereToBuyContentProps = {}
 
+const tabs = ["physical-store", "online-platform"]
+
 export default function WhereToBuyContent({}: WhereToBuyContentProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const tWhereToBuy = useTranslations("where-to-buy-landing")
   const defaultTab = searchParams.get("type") || "physical-store"
 
-  const handleTabChange = (tab: string) => {
-    router.replace(`?type=${tab}`, { scroll: false })
+  const handleTabChange = () => {
+    if (defaultTab === tabs[0]) {
+      router.replace(`?type=${tabs[1]}`, { scroll: false })
+    } else router.replace(`?type=${tabs[0]}`, { scroll: false })
   }
 
   return (
@@ -25,16 +29,10 @@ export default function WhereToBuyContent({}: WhereToBuyContentProps) {
       className="flex flex-col items-center"
     >
       <TabsList className="grid w-[80%] max-w-md grid-cols-2">
-        <TabsTrigger
-          value="physical-store"
-          onClick={() => handleTabChange("physical-store")}
-        >
+        <TabsTrigger value="physical-store" onClick={() => handleTabChange()}>
           {tWhereToBuy("physical-store")}
         </TabsTrigger>
-        <TabsTrigger
-          value="online-platform"
-          onClick={() => handleTabChange("online-platform")}
-        >
+        <TabsTrigger value="online-platform" onClick={() => handleTabChange()}>
           {tWhereToBuy("online-platform")}
         </TabsTrigger>
       </TabsList>
