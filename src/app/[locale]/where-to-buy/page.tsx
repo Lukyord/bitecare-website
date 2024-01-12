@@ -30,7 +30,7 @@ export default async function WhereToBuyPage({
           "where-to-buy-landing",
           "physical-store",
           "physical-store-toast",
-          "online-store",
+          "online-platform",
           "button"
         )}
       >

@@ -3,7 +3,7 @@ import PlatformCard from "./PlatformCard"
 import { useTranslations } from "next-intl"
 
 export default function OnlineStores() {
-  const tOnlineStores = useTranslations("online-store")
+  const tOnlineStores = useTranslations("online-platform")
 
   return (
     <>
