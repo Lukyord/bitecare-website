@@ -101,7 +101,7 @@ export default function ProductDetailInfoMobile({
           text={tButton("get-our-product")}
           size="paragraph"
           specificWidth="w-[250px]"
-          href="/where-to-buy?type=physical-store"
+          href="/where-to-buy?type=physical-stores"
         />
       </div>
     </>

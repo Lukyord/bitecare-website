@@ -25,7 +25,7 @@ export default function SearchButton({ searchFilter }: SearchButtonProps) {
       href={{
         pathname: "/where-to-buy",
         query: {
-          type: "physical-store",
+          type: "physical-stores",
           province: searchFilter.province || "",
           district: searchFilter.district || "",
           subDistrict: searchFilter.subDistrict || "",

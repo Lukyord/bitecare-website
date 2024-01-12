@@ -44,7 +44,7 @@ export default function PostCodeOrCurrentLocationFilter() {
         title: tPhysicalStoreToast("something-went-wrong"),
         description: tPhysicalStoreToast("cant-access-location"),
       })
-      router.replace("/where-to-buy?type=physical-store", { scroll: false })
+      router.replace("/where-to-buy?type=physical-stores", { scroll: false })
     })
   }, [
     map,
