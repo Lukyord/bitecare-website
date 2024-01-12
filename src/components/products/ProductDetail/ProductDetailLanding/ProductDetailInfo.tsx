@@ -62,7 +62,7 @@ export default async function ProductDetailInfo({
           text={tButton("get-our-product")}
           size="h3"
           specificWidth="w-[380px]"
-          href="/where-to-buy?type=physical-stores"
+          href="/where-to-buy?type=physical-store"
         />
       </div>
     </div>

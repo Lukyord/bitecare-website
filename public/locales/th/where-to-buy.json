@@ -1,8 +1,8 @@
 {
   "where-to-buy-landing": {
     "where-to-get-bite-care": "ซื้อ Bite Care ได้ที่ไหน",
-    "physical-stores": "ร้านค้า",
-    "online-stores": "ร้านค้าออนไลน์"
+    "physical-store": "ร้านค้า",
+    "online-platform": "แพลตฟอร์มออนไลน์"
   },
   "physical-store": {
     "where-do-you-live": "คุณอาศัยที่ไหน",
@@ -25,7 +25,7 @@
     "filter-input-required": "กรุณาใส่ตัวกรอง",
     "filter-input-required-description": "กรุณาใส่ตัวกรองอย่างน้อยหนึ่งตัว"
   },
-  "online-store": {
+  "online-platform": {
     "platforms": "แพลตฟอร์ม"
   }
 }

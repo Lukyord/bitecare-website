@@ -12,7 +12,7 @@ export default function WhereToBuyContent({}: WhereToBuyContentProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const tWhereToBuy = useTranslations("where-to-buy-landing")
-  const defaultTab = searchParams.get("type") || "physical-stores"
+  const defaultTab = searchParams.get("type") || "physical-store"
 
   const handleTabChange = (tab: string) => {
     router.replace(`?type=${tab}`, { scroll: false })
@@ -26,24 +26,24 @@ export default function WhereToBuyContent({}: WhereToBuyContentProps) {
     >
       <TabsList className="grid w-[80%] max-w-md grid-cols-2">
         <TabsTrigger
-          value="physical-stores"
-          onClick={() => handleTabChange("physical-stores")}
+          value="physical-store"
+          onClick={() => handleTabChange("physical-store")}
         >
-          {tWhereToBuy("physical-stores")}
+          {tWhereToBuy("physical-store")}
         </TabsTrigger>
         <TabsTrigger
-          value="online-stores"
-          onClick={() => handleTabChange("online-stores")}
+          value="online-platform"
+          onClick={() => handleTabChange("online-platform")}
         >
-          {tWhereToBuy("online-stores")}
+          {tWhereToBuy("online-platform")}
         </TabsTrigger>
       </TabsList>
 
-      <TabsContent value="physical-stores" className="my-10 w-full 2xl:my-20">
+      <TabsContent value="physical-store" className="my-10 w-full 2xl:my-20">
         <PhysicalStores />
       </TabsContent>
 
-      <TabsContent value="online-stores" className="my-10 w-full 2xl:my-20">
+      <TabsContent value="online-platform" className="my-10 w-full 2xl:my-20">
         <OnlineStores />
       </TabsContent>
     </Tabs>
