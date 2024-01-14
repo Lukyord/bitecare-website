@@ -1,8 +1,13 @@
+import { Metadata } from "next"
 import { pick } from "lodash"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, unstable_setRequestLocale } from "next-intl/server"
 
 import PhysicalStores from "@/components/where-to-buy/PhysicalStores/PhysicalStores"
+
+export const metadata: Metadata = {
+  title: "Where To Buy",
+}
 
 export default async function WhereToBuyPage({
   params: { locale },

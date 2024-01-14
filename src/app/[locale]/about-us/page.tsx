@@ -1,4 +1,5 @@
 import { unstable_setRequestLocale } from "next-intl/server"
+import { Metadata } from "next"
 
 import { Images } from "@/constant/Images"
 
@@ -7,6 +8,10 @@ import HorizontalScrollSection from "@/components/about-us/HorizontalScrollSecti
 import WelcomeToBiteCare from "@/components/about-us/WelcomeToBiteCare"
 import BiteCareDifference from "@/components/about-us/BiteCareDifference/BiteCareDifference"
 import ContactUs from "@/components/about-us/ContactUs/ContactUs"
+
+export const metadata: Metadata = {
+  title: "About Us"
+}
 
 export default function AboutUs({
   params: { locale },

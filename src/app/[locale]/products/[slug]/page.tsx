@@ -4,6 +4,7 @@ import Image from "next/image"
 
 import {
   BiteCareProductImageSlug,
+  BiteCareProductName,
   BiteCareProductSlug,
 } from "@/types/common/product"
 import { ProductSlugs, ProductsImage } from "@/constant/Products"
@@ -20,6 +21,31 @@ export async function generateStaticParams() {
   return ProductSlugs.map((product) => ({
     slug: product,
   }))
+}
+
+export async function generateMetadata({
+  params: { slug },
+}: {
+  params: { slug: BiteCareProductSlug }
+}) {
+  const productTitleMap: Record<BiteCareProductSlug, BiteCareProductName> = {
+    "skin-care": "Skin Care",
+    "low-fat": "Low Fat",
+    "senior-care": "Senior Care",
+    "renal-care": "Renal Care",
+  }
+
+  const title: BiteCareProductName | undefined = productTitleMap[slug]
+
+  if (!title) {
+    return {
+      title: "Unknown Product",
+    }
+  }
+
+  return {
+    title,
+  }
 }
 
 export default async function ProductDetailPage({

@@ -1,11 +1,11 @@
-import type { Metadata } from "next"
 import localFont from "next/font/local"
 import { notFound } from "next/navigation"
-import { unstable_setRequestLocale } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { Noto_Sans } from "next/font/google"
 
 import { i18n } from "@/config/i18n.config"
 import "./globals.css"
+import OpengraphImage from "@/app/opengraph-image.png"
 
 import Header from "@/components/common/Header"
 import { Navbar } from "@/components/common/Navbar/Navbar"
@@ -35,19 +35,46 @@ const noto = Noto_Sans({
   fallback: ["var(--font-psl)"],
 })
 
-export const metadata: Metadata = {
-  title: "BiteCare",
-  //TODO: Add description
-  description: "Description",
-  //TODO: Add Base URL
-  // metadataBase: new URL("https://www.agnoshealth.com"),
-  alternates: {
-    canonical: "/",
-    languages: {
-      en: "/en",
-      th: "/",
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  const tMetadata = await getTranslations("metadata")
+
+  return {
+    title: {
+      default: "BiteCare",
+      template: "%s | BiteCare",
     },
-  },
+    description: tMetadata("description"),
+    openGraph: {
+      title: {
+        default: "BiteCare",
+        template: "%s | BiteCare",
+      },
+      description: tMetadata("description"),
+      image: OpengraphImage,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: {
+        default: "BiteCare",
+        template: "%s | BiteCare",
+      },
+      description: tMetadata("description"),
+      image: OpengraphImage,
+    },
+    //TODO: change Base URL
+    metadataBase: new URL("https://bitecare-website.vercel.app"),
+    alternates: {
+      canonical: "/",
+      languages: {
+        en: "/en",
+        th: "/",
+      },
+    },
+  }
 }
 
 export async function generateStaticParams() {
