@@ -6,20 +6,21 @@ import OnlineStores from "@/components/where-to-buy/OnlineStores/OnlineStores"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"
 
-type WhereToBuyContentProps = {}
+const tabs = {
+  physicalStore: "physical-store",
+  onlinePlatform: "online-platform",
+}
 
-const tabs = ["physical-store", "online-platform"]
-
-export default function WhereToBuyContent({}: WhereToBuyContentProps) {
+export default function WhereToBuyTabs() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const tWhereToBuy = useTranslations("where-to-buy-landing")
   const defaultTab = searchParams.get("type") || "physical-store"
 
   const handleTabChange = () => {
-    if (defaultTab === tabs[0]) {
-      router.replace(`?type=${tabs[1]}`, { scroll: false })
-    } else router.replace(`?type=${tabs[0]}`, { scroll: false })
+    if (defaultTab === tabs.physicalStore) {
+      router.replace(`?type=${tabs.onlinePlatform}`, { scroll: false })
+    } else router.replace(`?type=${tabs.physicalStore}`, { scroll: false })
   }
 
   return (
@@ -28,7 +29,7 @@ export default function WhereToBuyContent({}: WhereToBuyContentProps) {
       defaultValue={defaultTab}
       className="flex flex-col items-center"
     >
-      <TabsList className="grid w-[80%] max-w-md grid-cols-2">
+      <TabsList className="mb-10 grid w-[80%] max-w-md grid-cols-2">
         <TabsTrigger value="physical-store" onClick={() => handleTabChange()}>
           {tWhereToBuy("physical-store")}
         </TabsTrigger>
@@ -37,11 +38,17 @@ export default function WhereToBuyContent({}: WhereToBuyContentProps) {
         </TabsTrigger>
       </TabsList>
 
-      <TabsContent value="physical-store" className="my-10 w-full 2xl:my-20">
+      <TabsContent
+        value="physical-store"
+        className="sub-desktop:my-20 my-10 w-full"
+      >
         <PhysicalStores />
       </TabsContent>
 
-      <TabsContent value="online-platform" className="my-10 w-full 2xl:my-20">
+      <TabsContent
+        value="online-platform"
+        className="sub-desktop:my-20 my-10 w-full"
+      >
         <OnlineStores />
       </TabsContent>
     </Tabs>

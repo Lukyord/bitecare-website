@@ -7,8 +7,8 @@ export default function OnlineStores() {
 
   return (
     <>
-      <div className="flex justify-center bg-bc-inverse-primary 2xl:min-h-[80vh]">
-        <div className="justify-left my-20 w-screen max-w-screen-2xl flex-col px-7 2xl:w-[1400px]">
+      <div className="flex min-h-[52rem] justify-center bg-bc-inverse-primary md:min-h-[60rem]">
+        <div className="justify-left sub-desktop:w-[1400px] sub-desktop:max-w-screen-2xl my-10 w-screen flex-col px-7 md:my-20 lg:max-w-screen-lg">
           <h1 className="text-paragraph md:px-7 lg:text-h3">
             {tOnlineStores("platforms")} ({SocialMediaList.length})
           </h1>

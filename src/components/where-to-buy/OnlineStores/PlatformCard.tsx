@@ -18,12 +18,13 @@ export default function PlatformCard({
   return (
     <>
       <Link
-        className="relative mx-auto my-4 h-32 w-full rounded-3xl md:w-[80%] 2xl:mx-6 2xl:my-6 2xl:h-72 2xl:w-72"
+        className="sub-desktop:mx-6 sub-desktop:my-6 sub-desktop:h-72 sub-desktop:w-72 relative mx-auto my-3 h-32 w-full rounded-lg md:w-[80%] lg:mx-3 lg:my-3 lg:h-[218px] lg:w-[218px] lg:rounded-3xl"
         href={href}
         style={{ backgroundColor: platformColor }}
+        target="_blank"
       >
         <Image
-          className="absolute inset-x-0 bottom-0 h-[80%] w-auto p-6 2xl:h-auto"
+          className="sub-desktop:max-h-[100px] absolute inset-x-0 bottom-0 max-h-[86px] w-auto p-4"
           src={platformLogo}
           alt={label}
         />

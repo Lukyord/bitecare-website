@@ -11,21 +11,20 @@ export const SocialMediaList = [
     href: facebookHref,
     icon: Images.FacebookIcon,
     platformLogo: Images.FacebookLogoFullWhite,
-    platformColor: "#475A96"
+    platformColor: "#475A96",
   },
   {
     label: "Line",
     href: lineHref,
     icon: Images.LineIcon,
     platformLogo: Images.LineOaLogoFullWhite,
-    platformColor: "#00B900"
-
+    platformColor: "#00B900",
   },
   {
     label: "Shopee",
     href: shopeeHref,
     icon: Images.ShopeeIcon,
     platformLogo: Images.ShopeeLogoFullWhite,
-    platformColor: "#FF5722"
+    platformColor: "#FF5722",
   },
 ]

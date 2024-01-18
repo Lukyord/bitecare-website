@@ -18,7 +18,7 @@ module.exports = {
     extend: {
       screens: {
         xs: "430px",
-        "2xl": "1400px",
+        "sub-desktop": "1400px",
         desktop: "1920px",
       },
       colors: {

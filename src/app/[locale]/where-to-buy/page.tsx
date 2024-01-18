@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import WhereToBuyContent from "@/components/where-to-buy/WhereToBuyContent"
+import WhereToBuyTabs from "@/components/where-to-buy/WhereToBuyTabs"
 import { pick } from "lodash"
 import { NextIntlClientProvider } from "next-intl"
 import {
@@ -34,11 +34,11 @@ export default async function WhereToBuyPage({
           "button"
         )}
       >
-        <h1 className="my-8 text-center text-h3 lg:text-h2 2xl:my-20 2xl:text-h1">
+        <h1 className="sub-desktop:my-20 sub-desktop:text-h1 mb-8 mt-0 text-center text-h3 md:mt-8 lg:text-h2">
           {tWhereToBuy("where-to-get-bite-care")}
         </h1>
 
-        <WhereToBuyContent />
+        <WhereToBuyTabs />
       </NextIntlClientProvider>
     </div>
   )
