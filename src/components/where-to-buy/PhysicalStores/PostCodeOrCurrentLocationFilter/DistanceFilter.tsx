@@ -101,7 +101,7 @@ export default function DistanceFilter({
             href={{
               pathname: "/where-to-buy",
               query: {
-                type: "physical-store",
+                type: "physical-stores",
                 province: "",
                 district: "",
                 subDistrict: "",

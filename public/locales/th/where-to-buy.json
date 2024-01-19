@@ -1,4 +1,9 @@
 {
+  "where-to-buy-landing": {
+    "where-to-get-bite-care": "ซื้อ Bite Care ได้ที่ไหน",
+    "physical-store": "ร้านค้า",
+    "online-platform": "แพลตฟอร์มออนไลน์"
+  },
   "physical-store": {
     "where-do-you-live": "คุณอาศัยที่ไหน",
     "where-do-you-live-placeholder": "ใส่รหัสไปรษณีย์",
@@ -19,5 +24,8 @@
     "cant-access-location": "ไม่สามารถเข้าถึงตำแหน่งได้ กรุณาเปิดใช้งานตำแหน่งของคุณ",
     "filter-input-required": "กรุณาใส่ตัวกรอง",
     "filter-input-required-description": "กรุณาใส่ตัวกรองอย่างน้อยหนึ่งตัว"
+  },
+  "online-platform": {
+    "platforms": "แพลตฟอร์ม"
   }
 }

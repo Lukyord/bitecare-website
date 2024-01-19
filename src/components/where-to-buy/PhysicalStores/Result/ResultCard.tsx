@@ -30,7 +30,7 @@ export default function ResultCard({ physicalStore }: ResultCardProps) {
       href={{
         pathname: "/where-to-buy",
         query: {
-          type: "physical-store",
+          type: "physical-stores",
           province: province || "",
           district: district || "",
           subDistrict: subDistrict || "",
