@@ -45,7 +45,7 @@ export async function generateMetadata({
   return {
     title: {
       default: "BiteCare",
-      template: "%s | BiteCare",
+      template: "%s | BiteCare - Functional dog treat",
     },
     description: tMetadata("description"),
     openGraph: {
@@ -66,12 +66,14 @@ export async function generateMetadata({
       image: OpengraphImage,
     },
     //TODO: change Base URL
-    metadataBase: new URL("https://bitecare-website.vercel.app"),
+    metadataBase: new URL(
+      process.env.BASE_URL || "https://bitecare-website.vercel.app"
+    ),
     alternates: {
-      canonical: "/",
+      canonical: process.env.BASE_URL || "https://bitecare-website.vercel.app",
       languages: {
-        en: "/en",
-        th: "/",
+        en: `${process.env.BASE_URL}/en`,
+        th: `${process.env.BASE_URL}`,
       },
     },
   }
