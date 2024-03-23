@@ -70,14 +70,14 @@ export default async function ProductDetailPage({
       <ProductDetailLanding product={product} selectedImage={selectedImage} />
 
       {/* Testimonial */}
-      <section className="mx-auto my-20 w-[70%] text-center xl:my-36 2xl:my-48">
+      {/* <section className="mx-auto my-20 w-[70%] text-center xl:my-36 2xl:my-48">
         <p className="text-h3 lg:text-h2">
           {product.productInfo.testimonial.text}
         </p>
         <p className="mt-[5vh] text-paragraph lg:text-h3">
           {product.productInfo.testimonial.name}
         </p>
-      </section>
+      </section> */}
 
       {/* FactSheet */}
 
