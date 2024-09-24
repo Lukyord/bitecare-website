@@ -21,13 +21,13 @@ export default function HorizontalScrollSection({
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
     if (window.innerWidth > 1280) {
-      gsap.to("body", {
-        duration: 2,
-        overflow: "hidden",
-      })
+      // gsap.to("body", {
+      //   duration: 2,
+      //   overflow: "hidden",
+      // })
 
       const pin = gsap.to(sectionRef.current, {
-        translateX: "-400vw",
+        translateX: "-450vw",
         ease: "none",
         scrollTrigger: {
           trigger: triggerRef.current,
@@ -38,12 +38,12 @@ export default function HorizontalScrollSection({
         },
       })
 
-      setTimeout(() => {
-        gsap.to("body", {
-          duration: 0,
-          overflow: "auto",
-        })
-      }, 2000)
+      // setTimeout(() => {
+      //   gsap.to("body", {
+      //     duration: 0,
+      //     overflow: "auto",
+      //   })
+      // }, 2000)
 
       return () => {
         pin.kill()
@@ -84,7 +84,7 @@ export default function HorizontalScrollSection({
       <div ref={triggerRef}>
         <div
           ref={sectionRef}
-          className="relative flex h-fit w-[100vw] flex-col xl:h-[100vh] xl:w-[500vw] xl:flex-row"
+          className="relative flex h-fit w-[100vw] flex-col xl:h-[100vh] xl:w-[550vw] xl:flex-row"
         >
           {children}
         </div>

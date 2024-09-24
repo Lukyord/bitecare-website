@@ -20,15 +20,24 @@ const OnlinePlatformLogos = [
     image: Images.FacebookLogoFullWhite,
     alt: "Facebook",
   },
+  {
+    image: Images.TiktokLogoFull,
+    alt: "Tiktok",
+  },
 ]
 
 export default function OnlinePlatforms() {
-  const { controls, containerRef } = useInfiniteTranslateX()
+  const { controls, containerRef } = useInfiniteTranslateX(
+    false,
+    0,
+    false,
+    false
+  )
 
   return (
     <div
       ref={containerRef as React.RefObject<HTMLDivElement>}
-      className="relative z-10 h-[15vw] w-screen overflow-hidden bg-bc-black"
+      className="relative z-10 h-[12.5vw] w-screen overflow-hidden bg-bc-black"
     >
       <MovingLogos controls={controls} Logos={OnlinePlatformLogos} />
       <MovingLogos controls={controls} Logos={OnlinePlatformLogos} isSecond />
@@ -61,7 +70,8 @@ function MovingLogos({ controls, Logos, isSecond }: MovingLogosProps) {
           src={logo.image}
           key={index}
           height={300}
-          className="h-[7.5vw] w-auto object-contain"
+          className="h-[5vw] w-auto object-contain"
+          style={{ filter: "brightness(0) invert(1)" }}
         />
       ))}
     </motion.div>

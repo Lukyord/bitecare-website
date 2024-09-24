@@ -39,9 +39,9 @@ export default async function ProductShowcase({}: HeroProductShowcaseProps) {
             "
       />
 
-      <TranslateXOnScroll translateXStart="-20vw" translateXEnd="0vw">
+      <TranslateXOnScroll translateXStart="-5vw" translateXEnd="1vw">
         {BiteCareProducts.map((product, index) => (
-          <Link href={product.href} key={index} className="h-full min-w-[25%]">
+          <Link href={product.href} key={index} className="h-full min-w-[20%]">
             <Image
               alt={product.name}
               src={product.imageFront}

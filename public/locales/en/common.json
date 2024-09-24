@@ -2,7 +2,9 @@
   "navbar": {
     "products": "Products",
     "where-to-buy": "Where to buy",
-    "support": "Support"
+    "support": "Support",
+    "faq": "FAQ",
+    "contact-us": "Contact Us"
   },
   "navbar-products-breadcrumb": {
     "see-all": "See all",
@@ -17,10 +19,10 @@
     "renal-care-description": "Renal Care Bite Care products"
   },
   "navbar-where-to-buy-breadcrumb": {
-    "physical-store": "Physical Store",
-    "physical-store-description": "Physical Store Bite Care products",
-    "online-platform": "Online Platform",
-    "online-platform-description": "Online Platform Bite Care products"
+    "physical-store": "Nearby Stores",
+    "physical-store-description": "Search nearby locations",
+    "online-platform": "Online Stores",
+    "online-platform-description": "Search online stores"
   },
   "navbar-support-breadcrumb": {
     "contact-us": "Contact Us",
@@ -29,7 +31,7 @@
     "faq-description": "FAQ Bite Care products"
   },
   "button": {
-    "meet-bite-care": "Meet Bite Care",
+    "meet-bite-care": "About Us",
     "tell-a-friend": "Tell a Friend",
     "see-our-products": "See our products",
     "view-more": "View more",

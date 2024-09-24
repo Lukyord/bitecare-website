@@ -21,10 +21,10 @@ export default function ProductDetailImageGallery({
   const productImages: ProductImage[] = [
     { image: product.imageFront, slug: "front" },
     { image: product.imageBack, slug: "back" },
-    { image: product.imageSummary, slug: "summary" },
-    { image: product.imageClinicTest, slug: "clinic-test" },
-    { image: product.imagePalatabilityTest, slug: "palatability-test" },
-    { image: product.imageRegistrationNumber, slug: "registration-number" },
+    // { image: product.imageSummary, slug: "summary" },
+    // { image: product.imageClinicTest, slug: "clinic-test" },
+    // { image: product.imagePalatabilityTest, slug: "palatability-test" },
+    // { image: product.imageRegistrationNumber, slug: "registration-number" },
   ]
 
   return (

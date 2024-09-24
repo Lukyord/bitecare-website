@@ -79,32 +79,51 @@ export default function MobileMenuButton({
                       border-bc-black
                     "
             >
-              {NavbarItems.map((navbarItem, index) => (
-                <AccordionItem
-                  value={`item-${index}`}
-                  key={index}
-                  className="text-paragraph"
-                >
-                  <AccordionTrigger className="px-4 sm:px-8 ">
-                    {navbarItem.label}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    {navbarItem.breadcrumb?.map((breadcrumbItem, index) => (
+              {NavbarItems.map((navbarItem, index) => {
+                if (navbarItem.breadcrumb.length === 0) {
+                  return (
+                    navbarItem.href && (
                       <Link
-                        href={breadcrumbItem.href}
+                        href={navbarItem.href}
                         key={index}
-                        className="mt-4 flex flex-col gap-2 px-8 sm:px-12"
+                        className="flex h-[72px] flex-col justify-center gap-2 border-b border-bc-black px-4 py-4 sm:px-8"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        <p className="text-paragraph">{breadcrumbItem.title}</p>
-                        <p className="text-subtitle text-bc-grey">
-                          {breadcrumbItem.description}
-                        </p>
+                        <h3 className="text-paragraph">{navbarItem.label}</h3>
                       </Link>
-                    ))}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
+                    )
+                  )
+                }
+
+                return (
+                  <AccordionItem
+                    value={`item-${index}`}
+                    key={index}
+                    className="text-paragraph"
+                  >
+                    <AccordionTrigger className="px-4 sm:px-8 ">
+                      {navbarItem.label}
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      {navbarItem.breadcrumb?.map((breadcrumbItem, index) => (
+                        <Link
+                          href={breadcrumbItem.href}
+                          key={index}
+                          className="mt-4 flex flex-col gap-2 px-8 sm:px-12"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          <p className="text-paragraph">
+                            {breadcrumbItem.title}
+                          </p>
+                          <p className="text-subtitle text-bc-grey">
+                            {breadcrumbItem.description}
+                          </p>
+                        </Link>
+                      ))}
+                    </AccordionContent>
+                  </AccordionItem>
+                )
+              })}
             </Accordion>
 
             <motion.div

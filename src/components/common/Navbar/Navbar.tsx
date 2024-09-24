@@ -13,6 +13,8 @@ import { pick } from "lodash"
 import { getMessages } from "next-intl/server"
 import MobileMenuOpenContextProvider from "@/context/MobileMenuOpenContextProvider"
 import MobileNavbarCTAButton from "./MobileNavbarCTAButton"
+import HomeButton from "./HomeButton"
+import AboutUsButton from "./AboutUsButton"
 
 export async function Navbar() {
   const messages = await getMessages()
@@ -21,13 +23,13 @@ export async function Navbar() {
   const NavbarItems: NavbarItem[] = NavigationMenus.map((menu) => ({
     label: menu.label,
     breadcrumb: menu.breadCrumbs,
+    href: menu.href,
   }))
 
   return (
     <nav
       id="navbar"
       className="
-             
               mt-4 flex w-[90%] max-w-5xl items-center
               justify-between rounded-full
               bg-bc-primary-container p-2
@@ -36,7 +38,8 @@ export async function Navbar() {
     >
       <MobileMenuOpenContextProvider>
         <div className="flex gap-7">
-          <NavbarLogo />
+          {/* <NavbarLogo /> */}
+          <HomeButton />
 
           {/*========== Desktop ==========*/}
           <ul className="hidden gap-3 lg:flex">
@@ -50,11 +53,13 @@ export async function Navbar() {
 
         <div className="hidden h-[49px] gap-6 lg:flex">
           <LocaleSwitcher />
-          <NavbarCTAButton text="Meet BiteCare" href="/about-us" />
+          {/* <NavbarCTAButton text="Meet BiteCare" href="/about-us" /> */}
+          <AboutUsButton />
         </div>
 
         {/*========== Mobile ==========*/}
-        <MobileNavbarCTAButton />
+        {/* <MobileNavbarCTAButton /> */}
+        <AboutUsButton mobile />
 
         <div className="block lg:hidden">
           <NextIntlClientProvider

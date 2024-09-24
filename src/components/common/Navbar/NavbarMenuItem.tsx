@@ -2,6 +2,7 @@
 
 import React from "react"
 import { motion } from "framer-motion"
+import { useRouter } from "@/lib/navigation"
 
 import { FaChevronDown } from "react-icons/fa"
 
@@ -10,10 +11,12 @@ import BreadcrumbItem from "./BreadcrumbItem"
 import { cn } from "@/lib/utils"
 
 type NavbarMenuItemProps = {
-   navbaritem: NavbarItem
+  navbaritem: NavbarItem
 }
 
 export default function NavbarMenuItem({ navbaritem }: NavbarMenuItemProps) {
+  const router = useRouter()
+
   return (
     <li
       className={`
@@ -22,25 +25,29 @@ export default function NavbarMenuItem({ navbaritem }: NavbarMenuItemProps) {
             rounded-full px-5 py-3 text-paragraph
             hover:bg-bc-inverse-primary hover:text-white
      `}
+      onClick={() => {
+        navbaritem.href && router.push(navbaritem.href)
+      }}
     >
       <p className="whitespace-nowrap">{navbaritem.label}</p>
-      {navbaritem.breadcrumb && (
+      {navbaritem.breadcrumb.length > 0 && navbaritem.breadcrumb && (
         <FaChevronDown
           size={12}
           className={`transform transition-transform duration-300 group-hover:rotate-180`}
         />
       )}
-      <motion.div
-        initial={{ x: "-50%", y: 20 }}
-        whileInView={{ x: "-50%", y: 0 }}
-        className="
+      {navbaritem.breadcrumb.length > 0 && (
+        <motion.div
+          initial={{ x: "-50%", y: 20 }}
+          whileInView={{ x: "-50%", y: 0 }}
+          className="
                 absolute left-1/2 top-[100%] 
                 hidden translate-x-[-50%]
                 items-center justify-center 
                 pt-6 group-hover:flex"
-      >
-        <div
-          className={`
+        >
+          <div
+            className={`
                 rounded-lg border
                 bg-white p-4 shadow-lg
                 ${cn({
@@ -49,14 +56,15 @@ export default function NavbarMenuItem({ navbaritem }: NavbarMenuItemProps) {
                   "flex flex-col gap-2": navbaritem.breadcrumb.length <= 3,
                 })}
               `}
-        >
-          {navbaritem.breadcrumb.map((breadcrumbItem, index) => (
-            <React.Fragment key={index}>
-              <BreadcrumbItem breadcrumbItem={breadcrumbItem} />
-            </React.Fragment>
-          ))}
-        </div>
-      </motion.div>
+          >
+            {navbaritem.breadcrumb.map((breadcrumbItem, index) => (
+              <React.Fragment key={index}>
+                <BreadcrumbItem breadcrumbItem={breadcrumbItem} />
+              </React.Fragment>
+            ))}
+          </div>
+        </motion.div>
+      )}
     </li>
   )
 }

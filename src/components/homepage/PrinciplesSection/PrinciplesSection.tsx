@@ -82,7 +82,7 @@ export default async function PrinciplesSection() {
           <h1 className="text-h3 md:text-h2 lg:text-h1">
             {tPrinciples("slogan")}
           </h1>
-          <h3 className="text-subtitle md:text-paragraph lg:text-h3">
+          <h3 className="mt-3 text-subtitle md:text-paragraph lg:mt-6 lg:text-h3">
             {tPrinciples("slogan-description")}
           </h3>
         </div>

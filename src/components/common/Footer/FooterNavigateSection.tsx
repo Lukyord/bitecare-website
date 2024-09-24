@@ -16,7 +16,7 @@ export default async function FooterNavigateSection() {
     <div className="mx-auto flex w-[90%] flex-col items-center justify-between overflow-hidden pt-[6%] md:flex-row">
       <Image
         className="flex w-full md:w-1/2 md:pr-[4%]"
-        src={Images.BiteCareLogoTextTM}
+        src={Images.BiteCareLogoNew}
         alt="bitecare-footer-logo"
       />
       <div className="flex w-full justify-between pt-[8%] md:w-1/2 md:pl-[4%] md:pt-0">

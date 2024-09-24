@@ -15,11 +15,6 @@ export default async function useNavigation() {
       slug: "products",
       breadCrumbs: [
         {
-          title: tNavigationProduct("see-all"),
-          href: "/products",
-          description: tNavigationProduct("see-all-description"),
-        },
-        {
           title: tNavigationProduct("skin-care"),
           href: "/products/skin-care",
           description: tNavigationProduct("skin-care-description"),
@@ -39,6 +34,11 @@ export default async function useNavigation() {
           href: "/products/renal-care",
           description: tNavigationProduct("renal-care-description"),
         },
+        {
+          title: tNavigationProduct("see-all"),
+          href: "/products",
+          description: tNavigationProduct("see-all-description"),
+        },
       ],
     },
     {
@@ -57,21 +57,33 @@ export default async function useNavigation() {
         },
       ],
     },
+    // {
+    //   label: tNavigationMenu("support"),
+    //   slug: "support",
+    //   breadCrumbs: [
+    //     {
+    //       title: tNavigationSupport("faq"),
+    //       href: "/#faq",
+    //       description: tNavigationSupport("faq-description"),
+    //     },
+    //     {
+    //       title: tNavigationSupport("contact-us"),
+    //       href: "/about-us#contact-us",
+    //       description: tNavigationSupport("contact-us-description"),
+    //     },
+    //   ],
+    // },
     {
-      label: tNavigationMenu("support"),
-      slug: "support",
-      breadCrumbs: [
-        {
-          title: tNavigationSupport("faq"),
-          href: "/#faq",
-          description: tNavigationSupport("faq-description"),
-        },
-        {
-          title: tNavigationSupport("contact-us"),
-          href: "/about-us#contact-us",
-          description: tNavigationSupport("contact-us-description"),
-        },
-      ],
+      label: tNavigationSupport("faq"),
+      slug: "faq",
+      href: "/#faq",
+      breadCrumbs: [],
+    },
+    {
+      label: tNavigationSupport("contact-us"),
+      slug: "contact-us",
+      href: "/about-us#contact-us",
+      breadCrumbs: [],
     },
   ]
 

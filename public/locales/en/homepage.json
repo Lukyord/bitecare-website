@@ -1,16 +1,17 @@
 {
   "hero": {
-    "hero-description": "BiteCare is your trusted companion in canine well-being, offering expertly crafted dog treat tailored to meet the unique needs of every furry friend.",
-    "cta-subtitle": "Dog treat your 🐶 will ❤️, guaranteed"
+    "hero-description": "BiteCare is your trusted companion in pet well-being, offering expertly crafted dog treat tailored to meet the unique needs of every furry friend.",
+    "cta-subtitle": "Pet treat your 🐶 and 🐱 will ❤️, guaranteed",
+    "cta-button-text": "Meet BiteCare"
   },
   "principles": {
     "header": "BiteCare Principles",
     "description": "Where Health Meets Happiness",
-    "principle-1-description": "Customized nutrition for senior dogs, renal health, low-fat diets, and skin care.",
-    "principle-2-description": "Top-quality, responsibly sourced ingredients like farm-fresh meats and nutrient-rich vegetables.",
-    "principle-3-description": "BiteCare thrives on Transparency and Trust, providing clear insights into palatability and clinic tests.",
-    "slogan": "Bite care, Bite me",
-    "slogan-description": "Treat your puppy's health—just like the first day you met!"
+    "principle-1-description": "Research, development, and tested by Kasetsart University Veterinary Hospital",
+    "principle-2-description": "High-quality ingredients for the benefit and enjoyment of your dog",
+    "principle-3-description": "The only brand that tests after consumption to ensure no impact on liver, kidney, and weight levels, while also prioritizing taste through palatability testing",
+    "slogan": "Care in every bite ",
+    "slogan-description": "Where healthy meets delicious"
   },
   "comparing-products": {
     "header": "Comparing Products"

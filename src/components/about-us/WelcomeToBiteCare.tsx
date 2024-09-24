@@ -35,10 +35,10 @@ export default async function WelcomeToBiteCare() {
           {tLanding("welcome-to")}
           <Image
             alt="bitecare logo"
-            src={Images.BiteCareLogoText}
+            src={Images.BiteCareLogoNew}
             width={373}
             height={180}
-            className="ml-[25%] mt-[-5%] h-auto w-[70%]"
+            className="mx-auto mt-[-5%] h-auto w-[70%] lg:ml-[25%] lg:mr-0"
           />
         </h1>
 

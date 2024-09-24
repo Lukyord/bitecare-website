@@ -13,14 +13,21 @@ import AboutUsDog_1 from "@public/assets/about-us/about-us-dog-1.png"
 import AboutUsDog_2 from "@public/assets/about-us/about-us-dog-2.png"
 import AboutUsDog_3 from "@public/assets/about-us/about-us-dog-3.png"
 import AboutUsDog_4 from "@public/assets/about-us/about-us-dog-4.png"
+import AboutUsDog_5 from "@public/assets/about-us/about-us-dog-5.png"
 import AboutUsGalleryImage_1 from "@public/assets/about-us/about-us-gallery-image-1.png"
 import AboutUsGalleryImage_2 from "@public/assets/about-us/about-us-gallery-image-2.png"
 import AboutUsGalleryImage_3 from "@public/assets/about-us/about-us-gallery-image-3.png"
 import AboutUsGalleryImage_4 from "@public/assets/about-us/about-us-gallery-image-4.png"
+import AboutUsSparkle_1 from "@public/assets/about-us/about-us-sparkle-1.svg"
+import AboutUsSparkle_2 from "@public/assets/about-us/about-us-sparkle-2.svg"
+import AboutUsPaw from "@public/assets/about-us/about-us-paw.svg"
+import AboutUsWave from "@public/assets/about-us/about-us-wave.svg"
+import AboutUsWaveMobile from "@public/assets/about-us/about-us-wave-mobile.svg"
 // B
 import BiteCareLogo from "@public/assets/common/logos/bitecare-logo.svg"
 import BiteCareLogoTextTM from "@public/assets/common/logos/bitecare-logo-text-tm.svg"
 import BiteCareLogoText from "@public/assets/common/logos/bitecare-logo-text.svg"
+import BiteCareLogoNew from "@public/assets/common/logos/bitecare-logo-new.png"
 import Blob_1 from "@public/assets/illustrations/about-us/blob-1.svg"
 import Blob_2 from "@public/assets/illustrations/about-us/blob-2.svg"
 import Blob_3 from "@public/assets/illustrations/about-us/blob-3.svg"
@@ -39,7 +46,7 @@ import DuctTape_2 from "@public/assets/illustrations/about-us/duct-tape-2.png"
 import EnglishFlag from "@public/assets/common/flags/english-flag.svg"
 // F
 import FacebookLogoFullWhite from "@public/assets/common/socials/facebook-logo-full-white.png"
-import FacebookIcon from "@public/assets/common/socials/facebook-icon.png"
+import FacebookIcon from "@public/assets/common/socials/facebook-icon.svg"
 import FlowerBcPrimary_1 from "@public/assets/illustrations/homepage/flower-bc-primary-1.svg"
 import FlowerBcPrimary_2 from "@public/assets/illustrations/homepage/flower-bc-primary-2.svg"
 import FishOilDHABlack from "@public/assets/illustrations/products/fish-oil-dha-black.svg"
@@ -59,7 +66,7 @@ import HighlightBlack_1 from "@public/assets/illustrations/homepage/highlight-1-
 // L
 import LCarnetineBlack from "@public/assets/illustrations/products/l-carnitine-black.svg"
 import LineOaLogoFullWhite from "@public/assets/common/socials/line-oa-logo-full-white.png"
-import LineIcon from "@public/assets/common/socials/line-icon.png"
+import LineIcon from "@public/assets/common/socials/line-icon.svg"
 import LowFatBlack from "@public/assets/illustrations/products/low-fat-black.svg"
 import LowFatFront from "@public/assets/products/low-fat/low-fat-front.png"
 import LowFatBack from "@public/assets/products/low-fat/low-fat-back.png"
@@ -91,7 +98,7 @@ import RenalCareRegistrationNumber from "@public/assets/products/renal-care/rena
 import RenalCareSummary from "@public/assets/products/renal-care/renal-care-summary.png"
 // S
 import ShopeeLogoFullWhite from "@public/assets/common/socials/shopee-logo-full-white.png"
-import ShopeeIcon from "@public/assets/common/socials/shopee-icon.png"
+import ShopeeIcon from "@public/assets/common/socials/shopee-icon.svg"
 import SparkleBlack_1 from "@public/assets/illustrations/homepage/sparkle-1-black.svg"
 import SparkleBlack_2 from "@public/assets/illustrations/homepage/sparkle-2-black.svg"
 import SparkleBcInversePrimary_1 from "@public/assets/illustrations/homepage/sparkle-bc-inverse-primary-1.svg"
@@ -121,6 +128,8 @@ import ThaiFlag from "@public/assets/common/flags/thai-flag.svg"
 import TempPrinciple_1 from "../../tmp/temp-principle-1.svg"
 import TempPrinciple_2 from "../../tmp/temp-principle-2.svg"
 import TempPrinciple_3 from "../../tmp/temp-principle-3.svg"
+import TiktokLogoFull from "../../public/assets/common/socials/tiktok-logo-full.png"
+import TiktokIcon from "../../public/assets/common/socials/tiktok-icon.svg"
 import TopQualityIngredientsBlack from "@public/assets/illustrations/homepage/top-quality-ingredients-blakc.svg"
 // U
 // V
@@ -141,14 +150,21 @@ export const Images = {
   AboutUsDog_2,
   AboutUsDog_3,
   AboutUsDog_4,
+  AboutUsDog_5,
   AboutUsGalleryImage_1,
   AboutUsGalleryImage_2,
   AboutUsGalleryImage_3,
   AboutUsGalleryImage_4,
+  AboutUsSparkle_1,
+  AboutUsSparkle_2,
+  AboutUsPaw,
+  AboutUsWave,
+  AboutUsWaveMobile,
   // B
   BiteCareLogo,
   BiteCareLogoText,
   BiteCareLogoTextTM,
+  BiteCareLogoNew,
   Blob_1,
   Blob_2,
   Blob_3,
@@ -249,6 +265,8 @@ export const Images = {
   TempPrinciple_1,
   TempPrinciple_2,
   TempPrinciple_3,
+  TiktokLogoFull,
+  TiktokIcon,
   TopQualityIngredientsBlack,
   // U
   // V

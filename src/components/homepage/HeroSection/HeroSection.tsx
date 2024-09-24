@@ -30,7 +30,7 @@ export default async function HeroSection({}: HeroSectionProps) {
         >
           <Image
             alt="logo text"
-            src={Images.BiteCareLogoTextTM}
+            src={Images.BiteCareLogoNew}
             width={613}
             height={295}
           />
@@ -39,7 +39,7 @@ export default async function HeroSection({}: HeroSectionProps) {
             {tHero("hero-description")}
           </p>
 
-          <PrimaryButton text="Meet BiteCare" href="/about-us" />
+          <PrimaryButton text={tHero("cta-button-text")} href="/about-us" />
           <p className="mt-4 text-subtitle">{tHero("cta-subtitle")}</p>
         </div>
         <div className="relative -z-10 -mb-[15%] lg:mb-0">

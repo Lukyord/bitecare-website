@@ -2,7 +2,9 @@
   "navbar": {
     "products": "สินค้าของเรา",
     "where-to-buy": "ซื้อที่ไหน",
-    "support": "สนับสนุน"
+    "support": "สนับสนุน",
+    "faq": "คำถามที่พบบ่อย",
+    "contact-us": "ติดต่อเรา"
   },
   "navbar-products-breadcrumb": {
     "see-all": "ดูทั้งหมด",
@@ -17,10 +19,10 @@
     "renal-care-description": "ผลิตภัณฑ์ดูแลไต"
   },
   "navbar-where-to-buy-breadcrumb": {
-    "physical-store": "ร้านค้า",
+    "physical-store": "โรงพยาบาลสัตว์หรือเพ็ทช็อปใกล้บ้าน",
     "physical-store-description": "ไปซื้อเองที่หน้าร้าน",
-    "online-platform": "แพลตฟอร์มออนไลน์",
-    "online-platform-description": "สั่งสินค้าผ่านแพลตฟอร์มออนไลน์"
+    "online-platform": "ร้านค้าออนไลน์",
+    "online-platform-description": "ค้นหาร้านค้าออนไลน์"
   },
   "navbar-support-breadcrumb": {
     "contact-us": "ติดต่อเรา",
@@ -29,7 +31,7 @@
     "faq-description": "คำถามที่พบบ่อยเกี่ยวกับสินค้า"
   },
   "button": {
-    "meet-bite-care": "พบกับ BiteCare",
+    "meet-bite-care": "เกี่ยวกับเรา",
     "tell-a-friend": "Tell a Friend",
     "see-our-products": "ดูผลิตภัณฑ์ของเรา",
     "view-more": "ดูเพิ่มเติม",

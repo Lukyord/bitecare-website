@@ -82,7 +82,7 @@ export default async function ContactUs({ locale }: ConactUsProps) {
             </div>
             <div>
               <h3 className={`${labelStyle}`}>{tContactUs("phone-number")}</h3>
-              <h4 className={`${textStyle}`}>+66 96 123 4567</h4>
+              <h4 className={`${textStyle}`}>+66-2-9600429</h4>
             </div>
             <div>
               <h3 className={`${labelStyle}`}>{tContactUs("contact-hours")}</h3>
