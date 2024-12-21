@@ -1,9 +1,6 @@
 import { setRequestLocale } from "next-intl/server"
 import { Metadata } from "next"
 
-import { Images } from "@/constant/Images"
-
-import AboutUsLanding from "@/components/about-us/AboutUsLanding"
 import HorizontalScrollSection from "@/components/about-us/HorizontalScrollSection"
 import WelcomeToBiteCare from "@/components/about-us/WelcomeToBiteCare"
 import BiteCareDifference from "@/components/about-us/BiteCareDifference/BiteCareDifference"

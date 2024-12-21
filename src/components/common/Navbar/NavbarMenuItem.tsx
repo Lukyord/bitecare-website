@@ -40,11 +40,7 @@ export default function NavbarMenuItem({ navbaritem }: NavbarMenuItemProps) {
         <motion.div
           initial={{ x: "-50%", y: 20 }}
           whileInView={{ x: "-50%", y: 0 }}
-          className="
-                absolute left-1/2 top-[100%] 
-                hidden translate-x-[-50%]
-                items-center justify-center 
-                pt-6 group-hover:flex"
+          className="absolute left-1/2 top-[100%] hidden translate-x-[-50%] items-center justify-center pt-6 group-hover:flex"
         >
           <div
             className={`
