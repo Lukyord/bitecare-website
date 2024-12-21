@@ -101,6 +101,91 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product".
+ */
+export interface Product {
+  id: string
+  slug: string
+  label: string
+  description: {
+    root: {
+      type: string
+      children: {
+        type: string
+        version: number
+        [k: string]: unknown
+      }[]
+      direction: ("ltr" | "rtl") | null
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | ""
+      indent: number
+      version: number
+    }
+    [k: string]: unknown
+  }
+  tags?: (string | ProductTag)[] | null
+  facts?:
+    | {
+        title: string
+        description: {
+          root: {
+            type: string
+            children: {
+              type: string
+              version: number
+              [k: string]: unknown
+            }[]
+            direction: ("ltr" | "rtl") | null
+            format:
+              | "left"
+              | "start"
+              | "center"
+              | "right"
+              | "end"
+              | "justify"
+              | ""
+            indent: number
+            version: number
+          }
+          [k: string]: unknown
+        }
+        id?: string | null
+      }[]
+    | null
+  specifications?:
+    | {
+        title: string
+        description: string
+        image: string | Media
+        id?: string | null
+      }[]
+    | null
+  "product-images"?:
+    | {
+        front: string | Media
+        back: string | Media
+        summary: string | Media
+        "clinic-test": string | Media
+        "palatability-test": string | Media
+        "registration-number": string | Media
+        id?: string | null
+      }[]
+    | null
+  updatedAt: string
+  createdAt: string
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-tag".
+ */
+export interface ProductTag {
+  id: string
+  Label: string
+  color: string
+  updatedAt: string
+  createdAt: string
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -188,6 +273,54 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T
   loginAttempts?: T
   lockUntil?: T
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product_select".
+ */
+export interface ProductSelect<T extends boolean = true> {
+  slug?: T
+  label?: T
+  description?: T
+  tags?: T
+  facts?:
+    | T
+    | {
+        title?: T
+        description?: T
+        id?: T
+      }
+  specifications?:
+    | T
+    | {
+        title?: T
+        description?: T
+        image?: T
+        id?: T
+      }
+  "product-images"?:
+    | T
+    | {
+        front?: T
+        back?: T
+        summary?: T
+        "clinic-test"?: T
+        "palatability-test"?: T
+        "registration-number"?: T
+        id?: T
+      }
+  updatedAt?: T
+  createdAt?: T
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-tag_select".
+ */
+export interface ProductTagSelect<T extends boolean = true> {
+  Label?: T
+  color?: T
+  updatedAt?: T
+  createdAt?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

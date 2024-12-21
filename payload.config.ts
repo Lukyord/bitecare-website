@@ -4,12 +4,13 @@ import { mongooseAdapter } from "@payloadcms/db-mongodb"
 import { gcsStorage } from "@payloadcms/storage-gcs"
 import { buildConfig, Locale } from "payload"
 import type { Locale as DefinedLocale } from "@/config/i18n.config"
-import { Media } from "@/payload/collections/media"
-import { Users } from "@/payload/collections/users"
+import { ProductTag, Media, Product, Users } from "@/payload/collections"
+import path from "path"
+import { pino } from "pino"
 
 export default buildConfig({
   editor: lexicalEditor(),
-  collections: [Media, Users],
+  collections: [Media, Users, Product, ProductTag],
   secret: process.env.PAYLOAD_SECRET || "",
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || "",
@@ -33,6 +34,9 @@ export default buildConfig({
       },
     }),
   ],
+  typescript: {
+    outputFile: path.resolve(__dirname, "./src/payload/type-gen.ts"),
+  },
   localization: {
     locales: [
       {
@@ -48,5 +52,6 @@ export default buildConfig({
     })[],
     defaultLocale: "en",
   },
+  logger: pino({ name: "admin" }),
   sharp,
 })
