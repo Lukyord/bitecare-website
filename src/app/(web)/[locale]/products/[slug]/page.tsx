@@ -49,14 +49,13 @@ export async function generateMetadata({
   }
 }
 
-export default async function ProductDetailPage({
-  params,
-  searchParams,
-}: {
+export default async function ProductDetailPage(props: {
   params: Promise<{ locale: string; slug: BiteCareProductSlug }>
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-  const { slug, locale } = await params
+  const { locale, slug } = await props.params
+  const searchParams = await props.searchParams
+
   setRequestLocale(locale)
 
   const BiteCareProducts = await getProducts()

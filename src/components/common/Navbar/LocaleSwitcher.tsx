@@ -5,7 +5,7 @@ import { useLocale } from "next-intl"
 import { motion } from "framer-motion"
 
 import { Images } from "@/constant/Images"
-import { i18n } from "@/config/i18n.config"
+import { i18n, Locale } from "@/config/i18n.config"
 import { FaChevronDown } from "react-icons/fa"
 import { usePathname, useRouter } from "@/lib/navigation"
 
@@ -15,7 +15,7 @@ export default function LocaleSwitcher() {
 
   const currentLocale = useLocale()
 
-  const changeLanguage = (locale: string) => {
+  const changeLanguage = (locale: Locale) => {
     router.replace(pathName, { locale })
   }
 

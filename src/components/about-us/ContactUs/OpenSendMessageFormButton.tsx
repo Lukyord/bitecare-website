@@ -98,11 +98,12 @@ export default function OpenSendMessageFormButton() {
                 })
 
                 if (!result.success) {
-                  return toast({
+                  toast({
                     variant: "destructive",
                     title: tContactUsToast("something-went-wrong"),
                     description: zodErrorMessage(result.error.issues),
                   })
+                  return
                 }
 
                 const { data, error } = await sendEmail(trimmedFormData)
@@ -139,14 +140,14 @@ export default function OpenSendMessageFormButton() {
                 <button
                   type="submit"
                   className="
-                    disabled:bg-opacity-65 group flex 
-                    h-[3rem] w-[50%] max-w-[200px] items-center
-                    justify-center gap-2 rounded-full 
-                    bg-gray-900 p-4 text-paragraph
-                    text-white outline-none
-                    transition-all hover:scale-110
-                    hover:bg-gray-950 focus:scale-110
-                    active:scale-105 disabled:cursor-not-allowed
+                    group flex h-[3rem] 
+                    w-[50%] max-w-[200px] items-center justify-center
+                    gap-2 rounded-full bg-gray-900 
+                    p-4 text-paragraph text-white
+                    outline-none transition-all
+                    hover:scale-110 hover:bg-gray-950
+                    focus:scale-110 active:scale-105
+                    disabled:cursor-not-allowed disabled:bg-opacity-65
                     disabled:opacity-50 disabled:hover:scale-100
                     dark:bg-white/10
                   "

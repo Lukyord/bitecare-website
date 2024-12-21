@@ -5,19 +5,22 @@ import { NextIntlClientProvider } from "next-intl"
 import {
   getMessages,
   getTranslations,
-  unstable_setRequestLocale,
+  setRequestLocale,
 } from "next-intl/server"
+import { Suspense } from "react"
 
 export const metadata: Metadata = {
   title: "Where To Buy",
 }
 
-export default async function WhereToBuyPage({
-  params: { locale },
-}: {
-  params: { locale: string }
+export default async function WhereToBuyPage(props: {
+  params: Promise<{ locale: string }>
 }) {
-  unstable_setRequestLocale(locale)
+  const params = await props.params
+
+  const { locale } = params
+
+  setRequestLocale(locale)
 
   const messages = await getMessages()
   const tWhereToBuy = await getTranslations("where-to-buy-landing")
@@ -34,11 +37,13 @@ export default async function WhereToBuyPage({
           "button"
         )}
       >
-        <h1 className="sub-desktop:my-20 sub-desktop:text-h1 mb-8 mt-0 text-center text-h3 md:mt-8 lg:text-h2">
+        <h1 className="mb-8 mt-0 text-center text-h3 md:mt-8 lg:text-h2 sub-desktop:my-20 sub-desktop:text-h1">
           {tWhereToBuy("where-to-get-bite-care")}
         </h1>
-
-        <WhereToBuyTabs />
+        {/* https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout */}
+        <Suspense>
+          <WhereToBuyTabs />
+        </Suspense>
       </NextIntlClientProvider>
     </div>
   )
