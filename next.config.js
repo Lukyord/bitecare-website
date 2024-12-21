@@ -3,6 +3,10 @@ const { withPayload } = require('@payloadcms/next/withPayload')
 
 
 /** @type {import('next').NextConfig} */
-const nextConfig = withPayload(withNextIntl({}))
+const nextConfig = withPayload(withNextIntl({
+    experimental: {
+        reactCompiler: true,
+    }
+}))
 
 module.exports = nextConfig
