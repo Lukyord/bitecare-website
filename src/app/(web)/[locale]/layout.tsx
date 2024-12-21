@@ -5,7 +5,7 @@ import { Noto_Sans } from "next/font/google"
 
 import { i18n } from "@/config/i18n.config"
 import "./globals.css"
-import OpengraphImage from "@/app/opengraph-image.png"
+import OpengraphImage from "@/app/(web)/opengraph-image.png"
 
 import Header from "@/components/common/Header"
 import { Navbar } from "@/components/common/Navbar/Navbar"
@@ -16,12 +16,12 @@ import { NextIntlClientProvider, useMessages } from "next-intl"
 import { pick } from "lodash"
 
 const psl = localFont({
-  src: "../../../public/fonts/PSL096pro.ttf",
+  src: "../../../../public/fonts/PSL096pro.ttf",
   display: "swap",
   variable: "--font-psl",
 })
 const helveltica_rounded = localFont({
-  src: "../../../public/fonts/HelveticaRoundedLTStd-Bd.otf",
+  src: "../../../../public/fonts/HelveticaRoundedLTStd-Bd.otf",
   display: "swap",
   variable: "--font-helveltica-rounded",
   fallback: ["var(--font-psl)"],
