@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from "next-intl/server"
+import { setRequestLocale } from "next-intl/server"
 import { Metadata } from "next"
 
 import { Images } from "@/constant/Images"
@@ -14,12 +14,14 @@ export const metadata: Metadata = {
   title: "About Us",
 }
 
-export default function AboutUs({
-  params: { locale },
+export default async function AboutUs({
+  params,
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
-  unstable_setRequestLocale(locale)
+  const locale = (await params).locale
+
+  setRequestLocale(locale)
 
   return (
     <div>

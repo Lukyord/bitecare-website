@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation"
-import { unstable_setRequestLocale } from "next-intl/server"
+import { setRequestLocale } from "next-intl/server"
 import Image from "next/image"
 
 import {
@@ -24,10 +24,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({
-  params: { slug },
+  params,
 }: {
-  params: { slug: BiteCareProductSlug }
+  params: Promise<{ slug: BiteCareProductSlug }>
 }) {
+  const slug = (await params).slug
   const productTitleMap: Record<BiteCareProductSlug, BiteCareProductName> = {
     "skin-care": "Skin Care",
     "low-fat": "Low Fat",
@@ -49,13 +50,14 @@ export async function generateMetadata({
 }
 
 export default async function ProductDetailPage({
-  params: { locale, slug },
+  params,
   searchParams,
 }: {
-  params: { locale: string; slug: BiteCareProductSlug }
+  params: Promise<{ locale: string; slug: BiteCareProductSlug }>
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  unstable_setRequestLocale(locale)
+  const { slug, locale } = await params
+  setRequestLocale(locale)
 
   const BiteCareProducts = await getProducts()
   const product = BiteCareProducts.find((product) => product.slug === slug)
