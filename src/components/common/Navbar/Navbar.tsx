@@ -7,7 +7,7 @@ import LocaleSwitcher from "./LocaleSwitcher"
 import NavbarCTAButton from "./NavbarCTAButton"
 import NavbarLogo from "./NavbarLogo"
 import MobileMenuButton from "./MobileMenuButton"
-import useNavigation from "@/hooks/useNavigation"
+import getNavigation from "@/actions/getNavigation"
 import { NextIntlClientProvider } from "next-intl"
 import { pick } from "lodash"
 import { getMessages } from "next-intl/server"
@@ -18,7 +18,7 @@ import AboutUsButton from "./AboutUsButton"
 
 export async function Navbar() {
   const messages = await getMessages()
-  const NavigationMenus = await useNavigation()
+  const NavigationMenus = await getNavigation()
 
   const NavbarItems: NavbarItem[] = NavigationMenus.map((menu) => ({
     label: menu.label,
