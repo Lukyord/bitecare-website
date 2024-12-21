@@ -1,12 +1,12 @@
 import { getTranslations } from "next-intl/server"
 
-import useProducts from "@/hooks/useProducts"
+import getProducts from "@/actions/getProducts"
 import ArcGradient from "./ArcGradient"
 import CompareCards from "./CompareCards"
 
 export default async function ComparingProductsSection() {
   const tComparingProducts = await getTranslations("comparing-products")
-  const BiteCareProducts = await useProducts()
+  const BiteCareProducts = await getProducts()
 
   return (
     <section

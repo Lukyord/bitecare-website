@@ -9,11 +9,11 @@ import {
 } from "@/types/common/product"
 import { ProductSlugs, ProductsImage } from "@/constant/Products"
 
-import useProducts from "@/hooks/useProducts"
 import ProductDetailLanding from "@/components/products/ProductDetail/ProductDetailLanding/ProductDetailLanding"
 import ProductDetailSummarySection from "@/components/products/ProductDetail/ProductDetailSummarySection"
 import FaqNavigateSection from "@/components/common/FaqNavigateSection"
 import ProductDetailSimilarProductsSection from "@/components/products/ProductDetail/ProductDetailSimilarProductsSection"
+import getProducts from "@/actions/getProducts"
 
 export const dynamicParams = false
 
@@ -57,7 +57,7 @@ export default async function ProductDetailPage({
 }) {
   unstable_setRequestLocale(locale)
 
-  const BiteCareProducts = await useProducts()
+  const BiteCareProducts = await getProducts()
   const product = BiteCareProducts.find((product) => product.slug === slug)
 
   if (!product) return notFound()

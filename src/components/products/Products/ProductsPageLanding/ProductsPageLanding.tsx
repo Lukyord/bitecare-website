@@ -5,13 +5,13 @@ import SecondaryButton from "../../../common/Button/SecondaryButton"
 import ProductsPageLandingBackground from "./ProductsPageLandingBackground"
 import ActiveProductContextProvider from "@/context/ActiveProductContextProvider"
 import ProductsPageLandingGradientBlur from "./ProductsPageLandingGradientBlur"
-import useProducts from "@/hooks/useProducts"
+import getProducts from "@/actions/getProducts"
 
 export default async function ProductsPageLanding() {
   const tProductsLanding = await getTranslations("products-landing")
   const tButton = await getTranslations("button")
 
-  const BiteCareProducts = await useProducts()
+  const BiteCareProducts = await getProducts()
 
   return (
     <div

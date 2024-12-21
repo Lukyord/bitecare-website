@@ -4,7 +4,7 @@ import { BiteCareProduct } from "@/types/common/product"
 import { Images } from "@/constant/Images"
 import { ProductTags } from "@/constant/Products"
 
-export default async function useProducts() {
+export default async function getProducts() {
   const tSkinCare = await getTranslations("skin-care")
   const tLowFat = await getTranslations("low-fat")
   const tSeniorCare = await getTranslations("senior-care")
