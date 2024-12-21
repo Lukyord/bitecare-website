@@ -3,7 +3,13 @@ import { getRequestConfig } from "next-intl/server"
 
 import { i18n } from "./config/i18n.config"
 
-export default getRequestConfig(async ({ locale }) => {
+export default getRequestConfig(async ({ requestLocale }) => {
+  let locale = await requestLocale
+
+  if (!locale || !i18n.locales.includes(locale as any)) {
+    locale = i18n.defaultLocale
+  }
+
   if (!i18n.locales.includes(locale as any)) notFound()
 
   return {
