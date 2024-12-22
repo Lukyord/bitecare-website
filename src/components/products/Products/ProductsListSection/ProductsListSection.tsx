@@ -1,10 +1,10 @@
-import useProducts from "@/hooks/useProducts"
+import getProducts from "@/actions/getProducts"
 import React from "react"
 import ProductCard from "../../ProductCard"
 import { getTranslations } from "next-intl/server"
 
 export default async function ProductsListSection() {
-  const BiteCareProducts = await useProducts()
+  const BiteCareProducts = await getProducts()
   const tMiscellaneous = await getTranslations("miscellaneous")
 
   return (

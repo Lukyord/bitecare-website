@@ -4,14 +4,14 @@ import React from "react"
 import Image from "next/image"
 
 import { Images } from "@/constant/Images"
-import { i18n } from "@/config/i18n.config"
+import { i18n, Locale } from "@/config/i18n.config"
 import { usePathname, useRouter } from "@/lib/navigation"
 
 export default function MobileLocaleSwitcher() {
   const pathName = usePathname()
   const router = useRouter()
 
-  const changeLanguage = (locale: string) => {
+  const changeLanguage = (locale: Locale) => {
     router.replace(pathName, { locale })
   }
 

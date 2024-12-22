@@ -2,10 +2,10 @@ import { getTranslations } from "next-intl/server"
 import Image from "next/image"
 import Link from "next/link"
 import { Images } from "@/constant/Images"
-import useNavigation from "@/hooks/useNavigation"
+import getNavigation from "@/actions/getNavigation"
 
 export default async function FooterNavigateSection() {
-  const NavigationMenus = await useNavigation()
+  const NavigationMenus = await getNavigation()
 
   const footerItems = NavigationMenus.map((menu) => ({
     label: menu.label,

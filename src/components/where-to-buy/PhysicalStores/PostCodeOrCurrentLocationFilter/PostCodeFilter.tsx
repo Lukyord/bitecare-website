@@ -32,11 +32,12 @@ export default function PostCodeFilter() {
     const result = postCodeSchema.safeParse({ postCode })
 
     if (!result.success) {
-      return toast({
+      toast({
         variant: "destructive",
         title: tPhysicalStoreToast("something-went-wrong"),
         description: zodErrorMessage(result.error.issues),
       })
+      return
     }
 
     postCode && setResult(filterByPostCode(postCode.toString()))

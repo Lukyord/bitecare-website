@@ -4,12 +4,12 @@ import Image from "next/image"
 import { Link } from "@/lib/navigation"
 
 import TranslateXOnScroll from "../../animations/TranslateXOnScroll"
-import useProducts from "@/hooks/useProducts"
+import getProducts from "@/actions/getProducts"
 
 type HeroProductShowcaseProps = {}
 
 export default async function ProductShowcase({}: HeroProductShowcaseProps) {
-  const BiteCareProducts = await useProducts()
+  const BiteCareProducts = await getProducts()
 
   return (
     <div className="relative z-0 w-screen bg-bc-primary">

@@ -1,7 +1,7 @@
 import { NavigationMenu } from "@/types/common/navbar"
 import { getTranslations } from "next-intl/server"
 
-export default async function useNavigation() {
+export default async function getNavigation() {
   const tNavigationMenu = await getTranslations("navbar")
   const tNavigationProduct = await getTranslations("navbar-products-breadcrumb")
   const tNavigationWhereToBuy = await getTranslations(

@@ -42,25 +42,16 @@ export default function OpenSendMessageFormButton() {
     <>
       <div
         onClick={() => setFormOpen(!formOpen)}
-        className={`
-                  absolute left-[-5%] top-0 z-20
-                  h-screen w-screen bg-black/60
-                  transition-opacity duration-700 ease-in-out
-                  ${cn({
-                    "pointer-events-none opacity-0": !formOpen,
-                    "pointer-events-auto opacity-100": formOpen,
-                  })}
-                `}
+        className={`absolute left-[-5%] top-0 z-20 h-screen w-screen bg-black/60 transition-opacity duration-700 ease-in-out ${cn(
+          {
+            "pointer-events-none opacity-0": !formOpen,
+            "pointer-events-auto opacity-100": formOpen,
+          }
+        )}`}
       />
       <ContactUsForm>
         <OpenFormButton />
-        <h2
-          className="
-                  flex h-[20%] 
-                  items-center justify-between text-h3 
-                  xl:text-h2
-                "
-        >
+        <h2 className="flex h-[20%] items-center justify-between text-h3 xl:text-h2">
           {tContactUs("lets-collaborate")}
           <span onClick={() => setFormOpen(false)} className="cursor-pointer">
             <FaChevronLeft size={30} className="rotate-180" />
@@ -98,11 +89,12 @@ export default function OpenSendMessageFormButton() {
                 })
 
                 if (!result.success) {
-                  return toast({
+                  toast({
                     variant: "destructive",
                     title: tContactUsToast("something-went-wrong"),
                     description: zodErrorMessage(result.error.issues),
                   })
+                  return
                 }
 
                 const { data, error } = await sendEmail(trimmedFormData)
@@ -127,51 +119,25 @@ export default function OpenSendMessageFormButton() {
             >
               <div
                 id="contact-us-form-fields"
-                className="
-                          flex h-[90%] w-full
-                          flex-col gap-6 overflow-y-auto 
-                          pr-4
-                        "
+                className="flex h-[90%] w-full flex-col gap-6 overflow-y-auto pr-4"
               >
                 <FormFields form={form} />
               </div>
               <div className="h-[10%] w-full">
                 <button
                   type="submit"
-                  className="
-                    disabled:bg-opacity-65 group flex 
-                    h-[3rem] w-[50%] max-w-[200px] items-center
-                    justify-center gap-2 rounded-full 
-                    bg-gray-900 p-4 text-paragraph
-                    text-white outline-none
-                    transition-all hover:scale-110
-                    hover:bg-gray-950 focus:scale-110
-                    active:scale-105 disabled:cursor-not-allowed
-                    disabled:opacity-50 disabled:hover:scale-100
-                    dark:bg-white/10
-                  "
+                  className="group flex h-[3rem]  w-[50%] max-w-[200px] items-center justify-center gap-2 rounded-full bg-gray-900  p-4 text-paragraph text-white outline-none transition-all hover:scale-110 hover:bg-gray-950 focus:scale-110 active:scale-105 disabled:cursor-not-allowed disabled:bg-opacity-65 disabled:opacity-50 disabled:hover:scale-100 dark:bg-white/10"
                   disabled={status.pending}
                 >
                   {status.pending ? (
                     <>
                       <p>Loading ...</p>
-                      <div
-                        className="
-                              h-5 w-5 animate-spin 
-                              rounded-full border 
-                              border-b-2 border-white
-                            "
-                      />
+                      <div className="h-5 w-5 animate-spin rounded-full border border-b-2 border-white" />
                     </>
                   ) : (
                     <>
                       <p>{tButton("send-message")}</p>
-                      <FaPaperPlane
-                        className="
-                        text-xs opacity-70 transition-all 
-                        group-hover:-translate-y-1 group-hover:translate-x-1
-                      "
-                      />
+                      <FaPaperPlane className="text-xs opacity-70 transition-all group-hover:-translate-y-1 group-hover:translate-x-1" />
                     </>
                   )}
                 </button>

@@ -29,11 +29,7 @@ export default function TranslateXOnScroll({
     <motion.div
       ref={ref}
       style={{ translateX: translateXProgress }}
-      className="
-              flex h-full w-screen
-              transform items-center 
-              gap-[5%] pb-[10vh]
-            "
+      className="flex h-full w-screen transform items-center gap-[5%] pb-[10vh]"
     >
       {children}
     </motion.div>

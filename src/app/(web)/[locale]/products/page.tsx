@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { unstable_setRequestLocale } from "next-intl/server"
+import { setRequestLocale } from "next-intl/server"
 
 import FaqNavigateSection from "@/components/common/FaqNavigateSection"
 import ProductsListSection from "@/components/products/Products/ProductsListSection/ProductsListSection"
@@ -9,12 +9,13 @@ export const metadata: Metadata = {
   title: "Products",
 }
 
-export default function ProductsPage({
-  params: { locale },
+export default async function ProductsPage({
+  params,
 }: {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
-  unstable_setRequestLocale(locale)
+  const locale = (await params).locale
+  setRequestLocale(locale)
   return (
     <div className="overflow-x-hidden">
       <ProductsPageLanding />

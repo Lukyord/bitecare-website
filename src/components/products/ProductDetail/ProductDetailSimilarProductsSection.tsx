@@ -3,7 +3,7 @@ import React from "react"
 
 import { BiteCareProduct } from "@/types/common/product"
 
-import useProducts from "@/hooks/useProducts"
+import getProducts from "@/actions/getProducts"
 import ProductCard from "../ProductCard"
 
 type ProductDetailSimilarProductsSectionProps = {
@@ -14,7 +14,7 @@ export default async function ProductDetailSimilarProductsSection({
   product,
 }: ProductDetailSimilarProductsSectionProps) {
   const tMiscellaneous = await getTranslations("miscellaneous")
-  const BiteCareProducts = await useProducts()
+  const BiteCareProducts = await getProducts()
 
   return (
     <section className="my-24 w-full pl-[5vw]">
@@ -25,8 +25,8 @@ export default async function ProductDetailSimilarProductsSection({
       <div
         className="
                 mt-10 flex w-full gap-[5vw] 
-                pb-6 pr-[5vw]
-                overflow-x-auto
+                overflow-x-auto pb-6
+                pr-[5vw]
               "
       >
         {BiteCareProducts.filter((p) => p.name !== product.name).map(

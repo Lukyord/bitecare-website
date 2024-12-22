@@ -52,11 +52,7 @@ export default function TranslateYOnScroll({
     <div ref={triggerRef}>
       <div
         ref={ref}
-        className="
-            flex h-screen w-full 
-            transform flex-col
-            items-center gap-5 
-          "
+        className="flex h-screen w-full transform flex-col items-center gap-5"
       >
         {children}
       </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler */
 "use client"
 
 import React from "react"
@@ -30,6 +31,7 @@ export default function SecondaryButton({
   const controls = useAnimation()
   const containerRef = useRef<HTMLButtonElement>(null)
   const [animationId, setAnimationId] = useState<number | null>(null)
+
   let xPixels = 0
 
   const animate = () => {
@@ -73,10 +75,10 @@ export default function SecondaryButton({
     <motion.button
       disabled={disabled}
       className={`
-        text-bc_black disabled:bg-opacity-65
-        relative overflow-hidden  whitespace-nowrap
-        border border-bc-black
-        bg-white disabled:cursor-not-allowed
+        text-bc_black relative
+        overflow-hidden whitespace-nowrap  border
+        border-bc-black bg-white
+        disabled:cursor-not-allowed disabled:bg-opacity-65
         disabled:opacity-50 disabled:hover:scale-100
         ${specificWidth && specificWidth}
         ${cn({

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation"
-import { unstable_setRequestLocale } from "next-intl/server"
+import { setRequestLocale } from "next-intl/server"
 import Image from "next/image"
 
 import {
@@ -9,11 +9,11 @@ import {
 } from "@/types/common/product"
 import { ProductSlugs, ProductsImage } from "@/constant/Products"
 
-import useProducts from "@/hooks/useProducts"
 import ProductDetailLanding from "@/components/products/ProductDetail/ProductDetailLanding/ProductDetailLanding"
 import ProductDetailSummarySection from "@/components/products/ProductDetail/ProductDetailSummarySection"
 import FaqNavigateSection from "@/components/common/FaqNavigateSection"
 import ProductDetailSimilarProductsSection from "@/components/products/ProductDetail/ProductDetailSimilarProductsSection"
+import getProducts from "@/actions/getProducts"
 
 export const dynamicParams = false
 
@@ -24,10 +24,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({
-  params: { slug },
+  params,
 }: {
-  params: { slug: BiteCareProductSlug }
+  params: Promise<{ slug: BiteCareProductSlug }>
 }) {
+  const slug = (await params).slug
   const productTitleMap: Record<BiteCareProductSlug, BiteCareProductName> = {
     "skin-care": "Skin Care",
     "low-fat": "Low Fat",
@@ -48,16 +49,16 @@ export async function generateMetadata({
   }
 }
 
-export default async function ProductDetailPage({
-  params: { locale, slug },
-  searchParams,
-}: {
-  params: { locale: string; slug: BiteCareProductSlug }
-  searchParams: { [key: string]: string | string[] | undefined }
+export default async function ProductDetailPage(props: {
+  params: Promise<{ locale: string; slug: BiteCareProductSlug }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
-  unstable_setRequestLocale(locale)
+  const { locale, slug } = await props.params
+  const searchParams = await props.searchParams
 
-  const BiteCareProducts = await useProducts()
+  setRequestLocale(locale)
+
+  const BiteCareProducts = await getProducts()
   const product = BiteCareProducts.find((product) => product.slug === slug)
 
   if (!product) return notFound()

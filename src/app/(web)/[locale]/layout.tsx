@@ -1,3 +1,4 @@
+import { use } from "react"
 import localFont from "next/font/local"
 import { notFound } from "next/navigation"
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
@@ -5,7 +6,7 @@ import { Noto_Sans } from "next/font/google"
 
 import { i18n } from "@/config/i18n.config"
 import "./globals.css"
-import OpengraphImage from "@/app/opengraph-image.png"
+import OpengraphImage from "@/app/(web)/opengraph-image.png"
 
 import Header from "@/components/common/Header"
 import { Navbar } from "@/components/common/Navbar/Navbar"
@@ -16,12 +17,12 @@ import { NextIntlClientProvider, useMessages } from "next-intl"
 import { pick } from "lodash"
 
 const psl = localFont({
-  src: "../../../public/fonts/PSL096pro.ttf",
+  src: "../../../../public/fonts/PSL096pro.ttf",
   display: "swap",
   variable: "--font-psl",
 })
 const helveltica_rounded = localFont({
-  src: "../../../public/fonts/HelveticaRoundedLTStd-Bd.otf",
+  src: "../../../../public/fonts/HelveticaRoundedLTStd-Bd.otf",
   display: "swap",
   variable: "--font-helveltica-rounded",
   fallback: ["var(--font-psl)"],
@@ -35,11 +36,13 @@ const noto = Noto_Sans({
   fallback: ["var(--font-psl)"],
 })
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string }
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>
 }) {
+  const params = await props.params
+
+  const { locale } = params
+
   const tMetadata = await getTranslations("metadata")
 
   return {
@@ -85,13 +88,16 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function RootLayout({
-  children,
-  params: { locale },
-}: {
+export default function RootLayout(props: {
   children: React.ReactNode
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
+  const params = use(props.params)
+
+  const { locale } = params
+
+  const { children } = props
+
   const isValidLocale = i18n.locales.some((cur) => cur === locale)
   if (!isValidLocale) notFound()
 
