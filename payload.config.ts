@@ -11,7 +11,7 @@ export default buildConfig({
   collections: [Media, Users],
   secret: process.env.PAYLOAD_SECRET || "",
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI || "",
+    url: process.env.MONGODB_URI || "",
   }),
   localization: {
     locales: [

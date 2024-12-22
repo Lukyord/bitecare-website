@@ -39,7 +39,7 @@ export default function PhysicalStores({}: PhysicalStoresProps) {
   const [mapReady, setMapReady] = useState(false)
 
   return (
-    <section>
+    <section className="overflow-hidden">
       {!mapReady && <MapLoadingSkeleton />}
       <PhysicalStoreSearchContextProvider>
         <DynamicMap setMapReady={setMapReady}>

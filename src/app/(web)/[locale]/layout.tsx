@@ -1,4 +1,4 @@
-import { use } from "react";
+import { use } from "react"
 import localFont from "next/font/local"
 import { notFound } from "next/navigation"
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
@@ -36,16 +36,12 @@ const noto = Noto_Sans({
   fallback: ["var(--font-psl)"],
 })
 
-export async function generateMetadata(
-  props: {
-    params: Promise<{ locale: string }>
-  }
-) {
-  const params = await props.params;
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>
+}) {
+  const params = await props.params
 
-  const {
-    locale
-  } = params;
+  const { locale } = params
 
   const tMetadata = await getTranslations("metadata")
 
@@ -92,21 +88,15 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function RootLayout(
-  props: {
-    children: React.ReactNode
-    params: Promise<{ locale: string }>
-  }
-) {
-  const params = use(props.params);
+export default function RootLayout(props: {
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
+}) {
+  const params = use(props.params)
 
-  const {
-    locale
-  } = params;
+  const { locale } = params
 
-  const {
-    children
-  } = props;
+  const { children } = props
 
   const isValidLocale = i18n.locales.some((cur) => cur === locale)
   if (!isValidLocale) notFound()
