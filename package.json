@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "test-build": "npm run build"
+    "test-build": "npm run build",
+    "typegen": "payload generate:types && payload generate:importmap"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css}": [
@@ -17,10 +18,9 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.3",
-    "@payloadcms/db-mongodb": "^3.10.0",
-    "@payloadcms/next": "^3.10.0",
-    "@payloadcms/richtext-lexical": "^3.10.0",
-    "@payloadcms/storage-gcs": "^3.11.0",
+    "@payloadcms/db-mongodb": "^3.11.0",
+    "@payloadcms/next": "^3.11.0",
+    "@payloadcms/richtext-lexical": "^3.11.0",
     "@payloadcms/translations": "^3.11.0",
     "@payloadcms/ui": "^3.11.0",
     "@radix-ui/react-accordion": "^1.1.2",
@@ -52,7 +52,7 @@
     "next": "15.1.2",
     "next-intl": "^3.1.2",
     "nextjs-current-url": "^1.0.3",
-    "payload": "^3.10.0",
+    "payload": "^3.11.0",
     "pino": "^9.5.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",

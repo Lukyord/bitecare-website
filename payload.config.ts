@@ -6,7 +6,6 @@ import { buildConfig, Locale } from "payload"
 import type { Locale as DefinedLocale } from "@/config/i18n.config"
 import { ProductTag, Media, Product, Users } from "@/payload/collections"
 import path from "path"
-import { pino } from "pino"
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -52,6 +51,5 @@ export default buildConfig({
     })[],
     defaultLocale: "en",
   },
-  logger: pino({ name: "admin" }),
   sharp,
 })
