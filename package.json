@@ -9,7 +9,8 @@
     "lint": "next lint",
     "prepare": "husky install",
     "test-build": "npm run build",
-    "typegen": "payload generate:types && payload generate:importmap"
+    "codegen": "payload generate:types & payload-graphql generate:schema & payload generate:importmap",
+    "generate:graphQLSchema": "payload-graphql generate:schema"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css}": [
@@ -70,6 +71,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@payloadcms/graphql": "^3.11.0",
     "@types/leaflet": "^1.9.8",
     "@types/lodash": "^4.14.202",
     "@types/negotiator": "^0.6.3",
