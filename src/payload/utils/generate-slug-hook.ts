@@ -1,12 +1,14 @@
-import { CollectionBeforeChangeHook } from "payload"
+import { FieldHook } from "payload"
 import slugify from "slugify"
 
 export function generateSlugHook(
   titleField: string,
-  slugField = "slug"
-): CollectionBeforeChangeHook {
+  slugField: string
+): FieldHook {
   return ({ data }) => {
-    console.log(data)
+    if (!data) {
+      return data
+    }
     if (!(titleField in data)) {
       return data
     }

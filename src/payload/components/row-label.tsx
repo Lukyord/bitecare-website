@@ -33,6 +33,7 @@ const RowLabel = ({
         })
     }
   }, [])
+
   if (label) return label
 
   let generated: any = data

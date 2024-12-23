@@ -13,8 +13,13 @@ export const ProductTag: CollectionConfig = {
     },
     {
       name: "color",
+      label: "Color",
       type: "text",
-      required: true,
+      admin: {
+        components: {
+          Field: "@/payload/components/color-picker",
+        },
+      },
     },
   ],
 }
