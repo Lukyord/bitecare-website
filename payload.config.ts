@@ -33,6 +33,10 @@ export default buildConfig({
       },
     }),
   ],
+  graphQL: {
+    schemaOutputFile: path.resolve(__dirname, "./src/payload/schema.graphql"),
+    disablePlaygroundInProduction: true,
+  },
   typescript: {
     outputFile: path.resolve(__dirname, "./src/payload/type-gen.ts"),
   },
