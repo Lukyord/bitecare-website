@@ -112,29 +112,20 @@ export interface Product {
    */
   slug: string;
   description: string;
-  'primary-color'?: string | null;
+  primary_color: string;
   tags?: (string | ProductTag)[] | null;
-  facts?:
-    | {
-        title: string;
-        description: string;
-        id?: string | null;
-      }[]
-    | null;
-  specifications?:
-    | {
-        title: string;
-        description: string;
-        image: string | Media;
-        id?: string | null;
-      }[]
-    | null;
-  front?: (string | null) | Media;
-  back?: (string | null) | Media;
-  summary?: (string | null) | Media;
-  'clinic-test'?: (string | null) | Media;
-  'palatability-test'?: (string | null) | Media;
-  'registration-number'?: (string | null) | Media;
+  facts: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  front_img: string | Media;
+  back_img: string | Media;
+  summary_img: string | Media;
+  clinic_test_img: string | Media;
+  palatability_test_img: string | Media;
+  registration_number_img: string | Media;
+  fact_sheet_img: string | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -144,7 +135,9 @@ export interface Product {
  */
 export interface ProductTag {
   id: string;
-  Label: string;
+  label: string;
+  description: string;
+  icon_img: string | Media;
   color?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -255,7 +248,7 @@ export interface ProductSelect<T extends boolean = true> {
   label?: T;
   slug?: T;
   description?: T;
-  'primary-color'?: T;
+  primary_color?: T;
   tags?: T;
   facts?:
     | T
@@ -264,20 +257,13 @@ export interface ProductSelect<T extends boolean = true> {
         description?: T;
         id?: T;
       };
-  specifications?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        image?: T;
-        id?: T;
-      };
-  front?: T;
-  back?: T;
-  summary?: T;
-  'clinic-test'?: T;
-  'palatability-test'?: T;
-  'registration-number'?: T;
+  front_img?: T;
+  back_img?: T;
+  summary_img?: T;
+  clinic_test_img?: T;
+  palatability_test_img?: T;
+  registration_number_img?: T;
+  fact_sheet_img?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -286,7 +272,9 @@ export interface ProductSelect<T extends boolean = true> {
  * via the `definition` "product-tag_select".
  */
 export interface ProductTagSelect<T extends boolean = true> {
-  Label?: T;
+  label?: T;
+  description?: T;
+  icon_img?: T;
   color?: T;
   updatedAt?: T;
   createdAt?: T;

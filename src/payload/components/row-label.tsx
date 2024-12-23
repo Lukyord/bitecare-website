@@ -44,7 +44,7 @@ const RowLabel = ({
 
   if (generated) return generated
 
-  return `${getTranslation(defaultLabel, i18n)} ${String(rowNumber).padStart(2, "0")}`
+  return `${getTranslation(defaultLabel, i18n)} ${String(rowNumber ?? 0 + 1).padStart(2, "0")}`
 }
 
 export default RowLabel

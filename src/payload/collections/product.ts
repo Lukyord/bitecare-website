@@ -6,7 +6,7 @@ export const Product: CollectionConfig = {
   slug: "product",
   admin: {
     useAsTitle: "label",
-    defaultColumns: ["slug", "label", "tags", "updatedAt"],
+    defaultColumns: ["label", "description", "updatedAt"],
   },
   fields: [
     {
@@ -14,13 +14,6 @@ export const Product: CollectionConfig = {
       tabs: [
         {
           label: "General",
-          // Auto slug generation still doesn't work
-          // hooks: {
-          //   beforeChange: [
-          //     generateSlugHook("label", "id"),
-          //     ({ data }) => console.log(data),
-          //   ],
-          // },
           fields: [
             {
               type: "row",
@@ -62,14 +55,15 @@ export const Product: CollectionConfig = {
             },
             {
               name: "description",
-              type: "text",
+              type: "textarea",
               label: "Description",
               required: true,
               localized: true,
             },
             {
-              name: "primary-color",
+              name: "primary_color",
               label: "Primary Color",
+              required: true,
               type: "text",
               admin: {
                 components: {
@@ -87,6 +81,7 @@ export const Product: CollectionConfig = {
               name: "facts",
               type: "array",
               label: "Facts",
+              required: true,
               fields: [
                 {
                   name: "title",
@@ -103,7 +98,6 @@ export const Product: CollectionConfig = {
                   required: true,
                 },
               ],
-              // Not working, can't be bothered to fix it lol
               admin: {
                 components: {
                   RowLabel: createRowLabel({
@@ -113,80 +107,59 @@ export const Product: CollectionConfig = {
                 },
               },
             },
-            {
-              name: "specifications",
-              type: "array",
-              label: "Specifications",
-              fields: [
-                {
-                  name: "title",
-                  type: "text",
-                  label: "Title",
-                  localized: true,
-                  required: true,
-                },
-                {
-                  name: "description",
-                  type: "text",
-                  label: "Description",
-                  localized: true,
-                  required: true,
-                },
-                {
-                  name: "image",
-                  type: "upload",
-                  relationTo: "media",
-                  required: true,
-                },
-              ],
-            },
           ],
         },
         {
           label: "Product Images",
-          description: "Product Images",
           fields: [
             {
-              name: "front",
+              name: "front_img",
               label: "Front",
               type: "upload",
               relationTo: "media",
-              // required: true,
+              required: true,
             },
             {
-              name: "back",
+              name: "back_img",
               label: "Back",
               type: "upload",
               relationTo: "media",
-              // required: true,
+              required: true,
             },
             {
-              name: "summary",
+              name: "summary_img",
               label: "Summary",
               type: "upload",
               relationTo: "media",
-              // required: true,
+              required: true,
             },
             {
-              name: "clinic-test",
+              name: "clinic_test_img",
               label: "Clinic Test",
               type: "upload",
               relationTo: "media",
-              // required: true,
+              required: true,
             },
             {
-              name: "palatability-test",
+              name: "palatability_test_img",
               label: "Palatability Test",
               type: "upload",
               relationTo: "media",
-              // required: true,
+              required: true,
             },
             {
-              name: "registration-number",
+              name: "registration_number_img",
               label: "Registration Number",
               type: "upload",
               relationTo: "media",
-              // required: true,
+              required: true,
+            },
+            {
+              name: "fact_sheet_img",
+              label: "Fact Sheet",
+              type: "upload",
+              relationTo: "media",
+              required: true,
             },
           ],
         },

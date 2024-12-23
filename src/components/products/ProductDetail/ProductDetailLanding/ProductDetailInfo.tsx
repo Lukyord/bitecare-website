@@ -6,12 +6,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import type { Product, ProductTag as ProductTagType } from "@/payload/type-gen"
 import { BiteCareProduct } from "@/types/common/product"
 import { getTranslations } from "next-intl/server"
 import React from "react"
 
 type ProductDetailInfoProps = {
-  product: BiteCareProduct
+  product: Product
 }
 
 export default async function ProductDetailInfo({
@@ -23,32 +24,34 @@ export default async function ProductDetailInfo({
     <div className="mt-[5%] flex h-full w-full flex-col">
       {/* Header */}
       <div className="flex flex-col gap-4">
-        <h1 className="text-h2">{product.name}</h1>
-        <div className={`${product.compareDividerColor} h-1 w-[60%]`} />
+        <h1 className="text-h2">{product.label}</h1>
+        {/* TODO: Specific divider color? */}
+        <div className={`${product.primary_color} h-1 w-[60%]`} />
         <div className="flex gap-1">
-          {product.tags.map((tag, index) => (
+          {product.tags?.map((tag, index) => (
             <React.Fragment key={index}>
-              <ProductTag tag={tag} size="large" />
+              <ProductTag tag={tag as ProductTagType} size="large" />
             </React.Fragment>
           ))}
         </div>
       </div>
 
       {/* Description */}
-      <p className="my-6 text-justify text-paragraph">
-        {product.productInfo.productDescription}
-      </p>
+      <p className="my-6 text-justify text-paragraph">{product.description}</p>
 
       {/* Question */}
       <Accordion type="single" collapsible>
-        {product.productInfo.questions.map((question, index) => (
-          <AccordionItem value={`item-${index}`} key={index}>
+        {product.facts.map((fact, index) => (
+          <AccordionItem
+            value={`fact-${fact.id}`}
+            key={fact.id ?? `fact-unknown-${index}`}
+          >
             <AccordionTrigger className="my-1 text-start text-paragraph">
-              {question}
+              {fact.title}
             </AccordionTrigger>
             <AccordionContent>
               <p key={index} className="text-justify text-[18px]">
-                {product.productInfo.answers[index]}
+                {fact.description}
                 {/* {product.productInfo.compareDescription1} */}
               </p>
             </AccordionContent>
