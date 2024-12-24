@@ -7,6 +7,7 @@ type Options<T extends TypedCollectionSelect["product"]> = {
   select?: T
   locale?: Locale
   depth?: number
+  page?: number
 }
 
 export const getAllProducts = async <

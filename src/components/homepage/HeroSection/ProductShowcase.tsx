@@ -4,17 +4,23 @@ import Image from "next/image"
 import { Link } from "@/lib/navigation"
 
 import TranslateXOnScroll from "../../animations/TranslateXOnScroll"
-import getProducts from "@/actions/getProducts"
+import { getAllProducts } from "@/payload/service"
+import { Media } from "@/payload/type-gen"
 
-type HeroProductShowcaseProps = {}
-
-export default async function ProductShowcase({}: HeroProductShowcaseProps) {
-  const BiteCareProducts = await getProducts()
+export default async function ProductShowcase() {
+  const products = await getAllProducts({
+    select: {
+      slug: true,
+      front_img: true,
+    },
+    // Only select the first 4 products
+    page: 4,
+  })
 
   return (
     <div className="relative z-0 w-screen bg-bc-primary">
       <Image
-        alt="wave bc priamry 1"
+        alt="wave bc primary 1"
         src={Images.WaveBcPrimary_1}
         width={1442}
         height={240}
@@ -40,20 +46,19 @@ export default async function ProductShowcase({}: HeroProductShowcaseProps) {
       />
 
       <TranslateXOnScroll translateXStart="-5vw" translateXEnd="1vw">
-        {BiteCareProducts.map((product, index) => (
-          <Link href={product.href} key={index} className="h-full min-w-[20%]">
+        {products.map((product, index) => (
+          <Link
+            href={`/products/${product.slug}`}
+            key={product.slug}
+            className="h-full min-w-[20%]"
+          >
             <Image
-              alt={product.name}
-              src={product.imageFront}
+              alt={product.slug}
+              src={(product.front_img as Media).url ?? ""}
               key={index}
               width={1192}
               height={2128}
-              className="
-                    h-full w-full 
-                    object-cover transition-all 
-                    duration-300 hover:scale-110
-                    hover:[box-shadow:10px_10px_10px_0px_rgba(255,_255,_255,_0.25)]                
-                  "
+              className="h-full w-full object-cover transition-all duration-300 hover:scale-110 hover:[box-shadow:10px_10px_10px_0px_rgba(255,_255,_255,_0.25)]"
               priority
             />
           </Link>
