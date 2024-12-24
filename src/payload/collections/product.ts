@@ -61,6 +61,20 @@ export const Product: CollectionConfig = {
               localized: true,
             },
             {
+              name: "compare_description_main",
+              label: "Compare Description Main",
+              type: "textarea",
+              required: true,
+              localized: true,
+            },
+            {
+              name: "compare_description_sub",
+              label: "Compare Description Sub",
+              type: "textarea",
+              required: true,
+              localized: true,
+            },
+            {
               name: "primary_color",
               label: "Primary Color",
               required: true,
@@ -157,6 +171,25 @@ export const Product: CollectionConfig = {
             {
               name: "fact_sheet_img",
               label: "Fact Sheet",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+          ],
+        },
+        {
+          label: "Assets",
+          fields: [
+            {
+              name: "dog_image",
+              label: "Dog Image",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+            {
+              name: "dog_image_cropped",
+              label: "Dog Image Cropped",
               type: "upload",
               relationTo: "media",
               required: true,

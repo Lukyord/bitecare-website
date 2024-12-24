@@ -112,6 +112,8 @@ export interface Product {
    */
   slug: string;
   description: string;
+  compare_description_main: string;
+  compare_description_sub: string;
   primary_color: string;
   tags?: (string | ProductTag)[] | null;
   facts: {
@@ -126,6 +128,8 @@ export interface Product {
   palatability_test_img: string | Media;
   registration_number_img: string | Media;
   fact_sheet_img: string | Media;
+  dog_image: string | Media;
+  dog_image_cropped: string | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -248,6 +252,8 @@ export interface ProductSelect<T extends boolean = true> {
   label?: T;
   slug?: T;
   description?: T;
+  compare_description_main?: T;
+  compare_description_sub?: T;
   primary_color?: T;
   tags?: T;
   facts?:
@@ -264,6 +270,8 @@ export interface ProductSelect<T extends boolean = true> {
   palatability_test_img?: T;
   registration_number_img?: T;
   fact_sheet_img?: T;
+  dog_image?: T;
+  dog_image_cropped?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -821,6 +821,8 @@ type Product {
   label: String
   slug: String!
   description: String
+  compare_description_main(depth: Int): JSON
+  compare_description_sub(depth: Int): JSON!
   primary_color: String!
   tags(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [ProductTag!]
   facts: [Product_Facts!]!
@@ -831,9 +833,15 @@ type Product {
   palatability_test_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
   registration_number_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
   fact_sheet_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
+  dog_image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
   updatedAt: DateTime
   createdAt: DateTime
 }
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 type ProductTag {
   id: String!
@@ -869,6 +877,8 @@ input Product_where {
   label: Product_label_operator
   slug: Product_slug_operator
   description: Product_description_operator
+  compare_description_main: Product_compare_description_main_operator
+  compare_description_sub: Product_compare_description_sub_operator
   primary_color: Product_primary_color_operator
   tags: Product_tags_operator
   facts__title: Product_facts__title_operator
@@ -881,6 +891,7 @@ input Product_where {
   palatability_test_img: Product_palatability_test_img_operator
   registration_number_img: Product_registration_number_img_operator
   fact_sheet_img: Product_fact_sheet_img_operator
+  dog_image: Product_dog_image_operator
   updatedAt: Product_updatedAt_operator
   createdAt: Product_createdAt_operator
   id: Product_id_operator
@@ -915,6 +926,20 @@ input Product_description_operator {
   contains: String
 }
 
+input Product_compare_description_main_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+}
+
+input Product_compare_description_sub_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+}
+
 input Product_primary_color_operator {
   equals: String
   not_equals: String
@@ -933,11 +958,6 @@ input Product_tags_operator {
   all: [JSON]
   exists: Boolean
 }
-
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 input Product_facts__title_operator {
   equals: String
@@ -1026,6 +1046,14 @@ input Product_fact_sheet_img_operator {
   all: [JSON]
 }
 
+input Product_dog_image_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
 input Product_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -1063,6 +1091,8 @@ input Product_where_and {
   label: Product_label_operator
   slug: Product_slug_operator
   description: Product_description_operator
+  compare_description_main: Product_compare_description_main_operator
+  compare_description_sub: Product_compare_description_sub_operator
   primary_color: Product_primary_color_operator
   tags: Product_tags_operator
   facts__title: Product_facts__title_operator
@@ -1075,6 +1105,7 @@ input Product_where_and {
   palatability_test_img: Product_palatability_test_img_operator
   registration_number_img: Product_registration_number_img_operator
   fact_sheet_img: Product_fact_sheet_img_operator
+  dog_image: Product_dog_image_operator
   updatedAt: Product_updatedAt_operator
   createdAt: Product_createdAt_operator
   id: Product_id_operator
@@ -1086,6 +1117,8 @@ input Product_where_or {
   label: Product_label_operator
   slug: Product_slug_operator
   description: Product_description_operator
+  compare_description_main: Product_compare_description_main_operator
+  compare_description_sub: Product_compare_description_sub_operator
   primary_color: Product_primary_color_operator
   tags: Product_tags_operator
   facts__title: Product_facts__title_operator
@@ -1098,6 +1131,7 @@ input Product_where_or {
   palatability_test_img: Product_palatability_test_img_operator
   registration_number_img: Product_registration_number_img_operator
   fact_sheet_img: Product_fact_sheet_img_operator
+  dog_image: Product_dog_image_operator
   updatedAt: Product_updatedAt_operator
   createdAt: Product_createdAt_operator
   id: Product_id_operator
@@ -1121,6 +1155,8 @@ type ProductDocAccessFields {
   label: ProductDocAccessFields_label
   slug: ProductDocAccessFields_slug
   description: ProductDocAccessFields_description
+  compare_description_main: ProductDocAccessFields_compare_description_main
+  compare_description_sub: ProductDocAccessFields_compare_description_sub
   primary_color: ProductDocAccessFields_primary_color
   tags: ProductDocAccessFields_tags
   facts: ProductDocAccessFields_facts
@@ -1131,6 +1167,7 @@ type ProductDocAccessFields {
   palatability_test_img: ProductDocAccessFields_palatability_test_img
   registration_number_img: ProductDocAccessFields_registration_number_img
   fact_sheet_img: ProductDocAccessFields_fact_sheet_img
+  dog_image: ProductDocAccessFields_dog_image
   updatedAt: ProductDocAccessFields_updatedAt
   createdAt: ProductDocAccessFields_createdAt
 }
@@ -1201,6 +1238,52 @@ type ProductDocAccessFields_description_Update {
 }
 
 type ProductDocAccessFields_description_Delete {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_compare_description_main {
+  create: ProductDocAccessFields_compare_description_main_Create
+  read: ProductDocAccessFields_compare_description_main_Read
+  update: ProductDocAccessFields_compare_description_main_Update
+  delete: ProductDocAccessFields_compare_description_main_Delete
+}
+
+type ProductDocAccessFields_compare_description_main_Create {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_compare_description_main_Read {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_compare_description_main_Update {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_compare_description_main_Delete {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_compare_description_sub {
+  create: ProductDocAccessFields_compare_description_sub_Create
+  read: ProductDocAccessFields_compare_description_sub_Read
+  update: ProductDocAccessFields_compare_description_sub_Update
+  delete: ProductDocAccessFields_compare_description_sub_Delete
+}
+
+type ProductDocAccessFields_compare_description_sub_Create {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_compare_description_sub_Read {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_compare_description_sub_Update {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_compare_description_sub_Delete {
   permission: Boolean!
 }
 
@@ -1507,6 +1590,29 @@ type ProductDocAccessFields_fact_sheet_img_Update {
 }
 
 type ProductDocAccessFields_fact_sheet_img_Delete {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_dog_image {
+  create: ProductDocAccessFields_dog_image_Create
+  read: ProductDocAccessFields_dog_image_Read
+  update: ProductDocAccessFields_dog_image_Update
+  delete: ProductDocAccessFields_dog_image_Delete
+}
+
+type ProductDocAccessFields_dog_image_Create {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_dog_image_Read {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_dog_image_Update {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_dog_image_Delete {
   permission: Boolean!
 }
 
@@ -2910,6 +3016,8 @@ type ProductFields {
   label: ProductFields_label
   slug: ProductFields_slug
   description: ProductFields_description
+  compare_description_main: ProductFields_compare_description_main
+  compare_description_sub: ProductFields_compare_description_sub
   primary_color: ProductFields_primary_color
   tags: ProductFields_tags
   facts: ProductFields_facts
@@ -2920,6 +3028,7 @@ type ProductFields {
   palatability_test_img: ProductFields_palatability_test_img
   registration_number_img: ProductFields_registration_number_img
   fact_sheet_img: ProductFields_fact_sheet_img
+  dog_image: ProductFields_dog_image
   updatedAt: ProductFields_updatedAt
   createdAt: ProductFields_createdAt
 }
@@ -2990,6 +3099,52 @@ type ProductFields_description_Update {
 }
 
 type ProductFields_description_Delete {
+  permission: Boolean!
+}
+
+type ProductFields_compare_description_main {
+  create: ProductFields_compare_description_main_Create
+  read: ProductFields_compare_description_main_Read
+  update: ProductFields_compare_description_main_Update
+  delete: ProductFields_compare_description_main_Delete
+}
+
+type ProductFields_compare_description_main_Create {
+  permission: Boolean!
+}
+
+type ProductFields_compare_description_main_Read {
+  permission: Boolean!
+}
+
+type ProductFields_compare_description_main_Update {
+  permission: Boolean!
+}
+
+type ProductFields_compare_description_main_Delete {
+  permission: Boolean!
+}
+
+type ProductFields_compare_description_sub {
+  create: ProductFields_compare_description_sub_Create
+  read: ProductFields_compare_description_sub_Read
+  update: ProductFields_compare_description_sub_Update
+  delete: ProductFields_compare_description_sub_Delete
+}
+
+type ProductFields_compare_description_sub_Create {
+  permission: Boolean!
+}
+
+type ProductFields_compare_description_sub_Read {
+  permission: Boolean!
+}
+
+type ProductFields_compare_description_sub_Update {
+  permission: Boolean!
+}
+
+type ProductFields_compare_description_sub_Delete {
   permission: Boolean!
 }
 
@@ -3296,6 +3451,29 @@ type ProductFields_fact_sheet_img_Update {
 }
 
 type ProductFields_fact_sheet_img_Delete {
+  permission: Boolean!
+}
+
+type ProductFields_dog_image {
+  create: ProductFields_dog_image_Create
+  read: ProductFields_dog_image_Read
+  update: ProductFields_dog_image_Update
+  delete: ProductFields_dog_image_Delete
+}
+
+type ProductFields_dog_image_Create {
+  permission: Boolean!
+}
+
+type ProductFields_dog_image_Read {
+  permission: Boolean!
+}
+
+type ProductFields_dog_image_Update {
+  permission: Boolean!
+}
+
+type ProductFields_dog_image_Delete {
   permission: Boolean!
 }
 
@@ -3958,6 +4136,8 @@ input mutationProductInput {
   label: String
   slug: String!
   description: String
+  compare_description_main: JSON
+  compare_description_sub: JSON!
   primary_color: String!
   tags: [String]
   facts: [mutationProduct_FactsInput!]
@@ -3968,6 +4148,7 @@ input mutationProductInput {
   palatability_test_img: String
   registration_number_img: String
   fact_sheet_img: String
+  dog_image: String
   updatedAt: String
   createdAt: String
 }
@@ -3982,6 +4163,8 @@ input mutationProductUpdateInput {
   label: String
   slug: String
   description: String
+  compare_description_main: JSON
+  compare_description_sub: JSON
   primary_color: String
   tags: [String]
   facts: [mutationProductUpdate_FactsInput]
@@ -3992,6 +4175,7 @@ input mutationProductUpdateInput {
   palatability_test_img: String
   registration_number_img: String
   fact_sheet_img: String
+  dog_image: String
   updatedAt: String
   createdAt: String
 }
