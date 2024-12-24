@@ -32,8 +32,14 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    home: Home;
+    common: Common;
+  };
+  globalsSelect: {
+    home: HomeSelect<false> | HomeSelect<true>;
+    common: CommonSelect<false> | CommonSelect<true>;
+  };
   locale: 'en' | 'th';
   user: User & {
     collection: 'users';
@@ -318,6 +324,187 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: string;
+  hero: {
+    header_text: string;
+    subheader_text: string;
+    cta_text: string;
+  };
+  principle: {
+    principle_header: string;
+    principle_subheader: string;
+    /**
+     * Principles needs to be exactly 3
+     */
+    principles: {
+      title: string;
+      icon: string | Media;
+      id?: string | null;
+    }[];
+  };
+  slogan: {
+    slogan_header: string;
+    slogan_description: string;
+  };
+  faq?: {
+    faq_list?:
+      | {
+          question: string;
+          answer: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "common".
+ */
+export interface Common {
+  id: string;
+  button: {
+    meet_bite_care: string;
+    tell_a_friend: string;
+    see_our_products: string;
+    view_more: string;
+    faq: string;
+    get_our_product: string;
+    more_info: string;
+    search: string;
+    find_me: string;
+    view_on_google_map: string;
+    send_message: string;
+    get_to_know_us: string;
+    back_to_homepage: string;
+    contact_us: string;
+    retry: string;
+  };
+  footer: {
+    tagline: {
+      tagline_header: string;
+      tagline_description: string;
+    };
+    legal: {
+      copyright: string;
+      privacy_policy: string;
+      terms_and_conditions: string;
+    };
+  };
+  error: {
+    page_not_found: string;
+    page_not_found_description: string;
+    error: string;
+    error_description: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        header_text?: T;
+        subheader_text?: T;
+        cta_text?: T;
+      };
+  principle?:
+    | T
+    | {
+        principle_header?: T;
+        principle_subheader?: T;
+        principles?:
+          | T
+          | {
+              title?: T;
+              icon?: T;
+              id?: T;
+            };
+      };
+  slogan?:
+    | T
+    | {
+        slogan_header?: T;
+        slogan_description?: T;
+      };
+  faq?:
+    | T
+    | {
+        faq_list?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "common_select".
+ */
+export interface CommonSelect<T extends boolean = true> {
+  button?:
+    | T
+    | {
+        meet_bite_care?: T;
+        tell_a_friend?: T;
+        see_our_products?: T;
+        view_more?: T;
+        faq?: T;
+        get_our_product?: T;
+        more_info?: T;
+        search?: T;
+        find_me?: T;
+        view_on_google_map?: T;
+        send_message?: T;
+        get_to_know_us?: T;
+        back_to_homepage?: T;
+        contact_us?: T;
+        retry?: T;
+      };
+  footer?:
+    | T
+    | {
+        tagline?:
+          | T
+          | {
+              tagline_header?: T;
+              tagline_description?: T;
+            };
+        legal?:
+          | T
+          | {
+              copyright?: T;
+              privacy_policy?: T;
+              terms_and_conditions?: T;
+            };
+      };
+  error?:
+    | T
+    | {
+        page_not_found?: T;
+        page_not_found_description?: T;
+        error?: T;
+        error_description?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
