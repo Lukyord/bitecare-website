@@ -2,7 +2,7 @@
 
 import React from "react"
 
-import { BiteCareProductName, BiteCareProduct } from "@/types/common/product"
+import { ProductComparison } from "@/types/common/product"
 
 import {
   Select,
@@ -15,9 +15,9 @@ import {
 
 type SelectorProps = {
   index: number
-  choices: BiteCareProduct[]
-  value: BiteCareProductName
-  setSelectedProduct: React.Dispatch<React.SetStateAction<BiteCareProduct[]>>
+  choices: ProductComparison[]
+  value: string
+  setSelectedProduct: React.Dispatch<React.SetStateAction<ProductComparison[]>>
 }
 
 export default function Selector({
@@ -34,7 +34,7 @@ export default function Selector({
 
           // Check if the selected value is already present in the array
           const duplicateIndex = newSelectedProduct.findIndex(
-            (product) => product.name === value
+            (product) => product.slug === value
           )
 
           if (duplicateIndex !== -1) {
@@ -45,7 +45,7 @@ export default function Selector({
           } else {
             // If the value is not present, update the selected product
             newSelectedProduct[index] =
-              choices.find((choice) => choice.name === value) || prev[index]
+              choices.find((choice) => choice.slug === value) || prev[index]
           }
 
           return newSelectedProduct
@@ -60,7 +60,7 @@ export default function Selector({
         <SelectGroup>
           {choices.map((choice, index) => (
             <React.Fragment key={index}>
-              <SelectItem value={choice.name}>{choice.name}</SelectItem>
+              <SelectItem value={choice.slug}>{choice.label}</SelectItem>
             </React.Fragment>
           ))}
         </SelectGroup>

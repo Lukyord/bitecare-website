@@ -1,11 +1,11 @@
 "use client"
 
-import { BiteCareProductName } from "@/types/common/product"
+import { Product } from "@/payload/type-gen"
 import React, { createContext, useContext, useState } from "react"
 
 type ActiveProductContextType = {
-  activeProduct: BiteCareProductName
-  setActiveProduct: React.Dispatch<React.SetStateAction<BiteCareProductName>>
+  activeProduct: Product | undefined
+  setActiveProduct: React.Dispatch<React.SetStateAction<Product | undefined>>
 }
 
 export const ActiveProductContext =
@@ -17,7 +17,8 @@ const ActiveProductContextProvider = ({
   children: React.ReactNode
 }) => {
   const [activeProduct, setActiveProduct] =
-    useState<BiteCareProductName>("Skin Care")
+    // This is still hard-coded, needed to be changed to dynamic
+    useState<Product>()
 
   return (
     <ActiveProductContext.Provider

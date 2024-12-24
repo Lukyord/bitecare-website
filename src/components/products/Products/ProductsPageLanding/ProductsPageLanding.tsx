@@ -1,17 +1,19 @@
-import { getTranslations } from "next-intl/server"
+import { getLocale, getTranslations } from "next-intl/server"
 
 import ProductSwiper from "./ProductSwiper"
 import SecondaryButton from "../../../common/Button/SecondaryButton"
 import ProductsPageLandingBackground from "./ProductsPageLandingBackground"
 import ActiveProductContextProvider from "@/context/ActiveProductContextProvider"
 import ProductsPageLandingGradientBlur from "./ProductsPageLandingGradientBlur"
-import getProducts from "@/actions/getProducts"
+import { getAllProducts } from "@/payload/service"
+import { Locale } from "@/config/i18n.config"
 
 export default async function ProductsPageLanding() {
+  const locale = (await getLocale()) as Locale
   const tProductsLanding = await getTranslations("products-landing")
   const tButton = await getTranslations("button")
 
-  const BiteCareProducts = await getProducts()
+  const products = await getAllProducts({ locale })
 
   return (
     <div
@@ -51,11 +53,11 @@ export default async function ProductsPageLanding() {
           </div>
         </div>
 
-        <ProductsPageLandingBackground />
+        <ProductsPageLandingBackground products={products} />
         <ProductsPageLandingGradientBlur />
 
         <div className="relative ml-auto flex w-[90%] items-center xl:w-[45%]">
-          <ProductSwiper products={BiteCareProducts} />
+          <ProductSwiper products={products} />
         </div>
       </ActiveProductContextProvider>
     </div>

@@ -1,20 +1,19 @@
 import { getTranslations } from "next-intl/server"
 import React from "react"
 
-import { BiteCareProduct } from "@/types/common/product"
-
-import getProducts from "@/actions/getProducts"
 import ProductCard from "../ProductCard"
+import { getAllProducts } from "@/payload/service"
+import { Product } from "@/payload/type-gen"
 
 type ProductDetailSimilarProductsSectionProps = {
-  product: BiteCareProduct
+  product: Product
 }
 
 export default async function ProductDetailSimilarProductsSection({
   product,
 }: ProductDetailSimilarProductsSectionProps) {
   const tMiscellaneous = await getTranslations("miscellaneous")
-  const BiteCareProducts = await getProducts()
+  const products = await getAllProducts()
 
   return (
     <section className="my-24 w-full pl-[5vw]">
@@ -29,13 +28,13 @@ export default async function ProductDetailSimilarProductsSection({
                 pr-[5vw]
               "
       >
-        {BiteCareProducts.filter((p) => p.name !== product.name).map(
-          (product, index) => (
+        {products
+          .filter((p) => p.id !== product.id)
+          .map((product, index) => (
             <React.Fragment key={index}>
               <ProductCard product={product} />
             </React.Fragment>
-          )
-        )}
+          ))}
       </div>
     </section>
   )

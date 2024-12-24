@@ -7,23 +7,57 @@ import Image from "next/image"
 
 import "swiper/css"
 import "swiper/css/effect-coverflow"
-import { BiteCareProduct, ProductImage } from "@/types/common/product"
+import { ProductImage } from "@/types/common/product"
+import { Media, Product } from "@/payload/type-gen"
+import {
+  convertStringMediaToMedias,
+  convertStringMediaToStaticImageData,
+} from "@/lib/type-conversion"
 
 type ProductDetailImageGalleryMobileProps = {
-  product: BiteCareProduct
+  product: Product
 }
 
 export default function ProductDetailImageGalleryMobile({
   product,
 }: ProductDetailImageGalleryMobileProps) {
-  const productImages: ProductImage[] = [
-    { image: product.imageFront, slug: "front" },
-    { image: product.imageBack, slug: "back" },
-    { image: product.imageSummary, slug: "summary" },
-    { image: product.imageClinicTest, slug: "clinic-test" },
-    { image: product.imagePalatabilityTest, slug: "palatability-test" },
-    { image: product.imageRegistrationNumber, slug: "registration-number" },
-  ]
+  const productImages = convertStringMediaToMedias([
+    // product.front_img,
+    // product.back_img,
+    // product.summary_img,
+    // product.clinic_test_img,
+    // product.palatability_test_img,
+    product.registration_number_img,
+  ])
+  // const productImages: ProductImage[] = [
+  //   {
+  //     // image: convertStringMediaToStaticImageData(product.front_img),
+  //     image: convertStringMediaToStaticImageData(product.back_img),
+  //     slug: "front",
+  //   },
+  //   {
+  //     image: convertStringMediaToStaticImageData(product.back_img),
+  //     slug: "back",
+  //   },
+  //   {
+  //     image: convertStringMediaToStaticImageData(product.summary_img),
+  //     slug: "summary",
+  //   },
+  //   {
+  //     image: convertStringMediaToStaticImageData(product.clinic_test_img),
+  //     slug: "clinic-test",
+  //   },
+  //   {
+  //     image: convertStringMediaToStaticImageData(product.palatability_test_img),
+  //     slug: "palatability-test",
+  //   },
+  //   {
+  //     image: convertStringMediaToStaticImageData(
+  //       product.registration_number_img
+  //     ),
+  //     slug: "registration-number",
+  //   },
+  // ]
   const [slidesPerView, setSlidesPerView] = useState(0)
 
   useEffect(() => {
@@ -57,13 +91,7 @@ export default function ProductDetailImageGalleryMobile({
   return (
     <>
       <div
-        className={`
-                inset-x-[20%] inset-y-[5%] 
-                ${product.productCardBgColor} 
-                absolute -z-10 h-[90%] w-[60%] 
-                rounded-3xl md:inset-x-[25%] md:w-[50%]
-                lg:inset-x-[30%] lg:w-[40%]
-              `}
+        className={`inset-x-[20%] inset-y-[5%] bg-[${product.primary_color}]absolute md:w-[50%]lg:inset-x-[30%] -z-10 h-[90%] w-[60%] rounded-3xl md:inset-x-[25%] lg:w-[40%]`}
       />
       <Swiper
         loop={true}
@@ -87,19 +115,13 @@ export default function ProductDetailImageGalleryMobile({
       >
         {productImages.map((productImage, index) => (
           <SwiperSlide key={index}>
-            <div
-              className="
-                  flex h-[50vh] items-center justify-center
-                "
-            >
+            <div className="flex h-[50vh] items-center justify-center">
               <Image
-                alt={productImage.slug}
-                src={productImage.image}
-                className="
-                  h-fit max-h-full w-auto
-                  max-w-[50%] rounded-xl
-                  object-contain shadow-md
-                "
+                alt={productImage.alt}
+                src={productImage.url ?? ""}
+                height={productImage.height ?? 0}
+                width={productImage.width ?? 0}
+                className="h-fit max-h-full w-auto max-w-[50%] rounded-xl object-contain shadow-md"
                 priority
               />
             </div>

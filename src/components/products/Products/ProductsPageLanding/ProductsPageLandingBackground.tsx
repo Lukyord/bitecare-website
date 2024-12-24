@@ -1,46 +1,35 @@
 "use client"
 
 import { useLayoutEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { motion, Variants } from "framer-motion"
 
 import { useActiveProduct } from "@/context/ActiveProductContextProvider"
+import { Product } from "@/payload/type-gen"
 
-const Transitions = {
+const transition = {
   duration: 1.5,
   ease: [0.83, 0, 0.17, 1],
   backgroundColor: { duration: 0 },
 }
-const Width = ["10vw", "330vw"]
-const Height = ["10vw", "330vw"]
+const width = ["10vw", "330vw"]
+const height = ["10vw", "330vw"]
+const fallbackBgColor = "#86D2DF"
 
-const background = {
-  "Skin Care": {
-    width: Width,
-    height: Height,
-    backgroundColor: "#86D2DF",
-    transition: Transitions,
-  },
-  "Low Fat": {
-    width: Width,
-    height: Height,
-    backgroundColor: "#57BF9E",
-    transition: Transitions,
-  },
-  "Senior Care": {
-    width: Width,
-    height: Height,
-    backgroundColor: "#866DAF",
-    transition: Transitions,
-  },
-  "Renal Care": {
-    width: Width,
-    height: Height,
-    backgroundColor: "#EB7BAD",
-    transition: Transitions,
-  },
+type Props = {
+  products: Product[]
 }
 
-export default function ProductsPageLandingBackground() {
+export default function ProductsPageLandingBackground({ products }: Props) {
+  const variants = products.reduce((acc, product) => {
+    acc[product.slug] = {
+      width,
+      height,
+      transition,
+      backgroundColor: product.primary_color,
+    }
+    return acc
+  }, {} as Variants)
+
   const { activeProduct } = useActiveProduct()
   const [buttonPosition, setButtonPosition] = useState({ left: 0, top: 0 })
 
@@ -73,26 +62,24 @@ export default function ProductsPageLandingBackground() {
     <>
       <motion.div
         id="bg-motion-div"
-        initial={{ backgroundColor: background[activeProduct].backgroundColor }}
+        initial={{
+          backgroundColor: activeProduct?.primary_color ?? fallbackBgColor,
+        }}
         animate={{
-          backgroundColor: background[activeProduct].backgroundColor,
+          backgroundColor: activeProduct?.primary_color ?? fallbackBgColor,
           transition: { delay: 1 },
         }}
         style={{
           left: `${buttonPosition.left}px`,
           top: `${buttonPosition.top}px`,
         }}
-        className="
-              absolute -z-10 h-[330vw] w-[330vw] 
-              -translate-x-1/2 -translate-y-1/2 
-              rounded-full
-            "
+        className="absolute -z-10 h-[330vw] w-[330vw]  -translate-x-1/2 -translate-y-1/2  rounded-full"
       />
       {activeProduct && (
         <motion.div
-          key={activeProduct}
-          variants={background}
-          animate={activeProduct}
+          key={activeProduct.slug}
+          variants={variants}
+          animate={activeProduct.slug}
           style={{
             left: `${buttonPosition.left}px`,
             top: `${buttonPosition.top}px`,

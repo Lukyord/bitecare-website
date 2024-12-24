@@ -14,61 +14,94 @@ import ProductDetailSummarySection from "@/components/products/ProductDetail/Pro
 import FaqNavigateSection from "@/components/common/FaqNavigateSection"
 import ProductDetailSimilarProductsSection from "@/components/products/ProductDetail/ProductDetailSimilarProductsSection"
 import getProducts from "@/actions/getProducts"
+import { getPayloadClient } from "@/lib/payload"
+import { Metadata } from "next"
+import { getProductBySlug, resolveMediaRef } from "@/payload/service"
+import { allLocales, Locale } from "@/config/i18n.config"
+import { Media } from "@/payload/type-gen"
 
 export const dynamicParams = false
 
+type Parameters = {
+  locale: Locale
+  slug: string
+}
+
 export async function generateStaticParams() {
-  return ProductSlugs.map((product) => ({
-    slug: product,
-  }))
+  const payload = await getPayloadClient()
+
+  const res = await payload.find({
+    collection: "product",
+    select: {
+      slug: true,
+    },
+    pagination: false,
+  })
+
+  const mappedCombinations: Parameters[] = []
+
+  allLocales.forEach((locale) =>
+    res.docs.forEach(({ slug }) => {
+      mappedCombinations.push({
+        slug,
+        locale,
+      })
+    })
+  )
+
+  return mappedCombinations
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: BiteCareProductSlug }>
-}) {
-  const slug = (await params).slug
-  const productTitleMap: Record<BiteCareProductSlug, BiteCareProductName> = {
-    "skin-care": "Skin Care",
-    "low-fat": "Low Fat",
-    "senior-care": "Senior Care",
-    "renal-care": "Renal Care",
-  }
+  params: Promise<{ slug: BiteCareProductSlug; locale: Locale }>
+}): Promise<Metadata> {
+  const { locale, slug } = await params
 
-  const title: BiteCareProductName | undefined = productTitleMap[slug]
+  const product = await getProductBySlug(slug, {
+    select: {
+      label: true,
+      description: true,
+    },
+    locale,
+  })
 
-  if (!title) {
+  if (!product) {
     return {
       title: "Unknown Product",
+      description: "Unknown Product, please check back later",
     }
   }
 
+  const { label, description } = product
+
   return {
-    title,
+    title: label,
+    description: description,
   }
 }
 
 export default async function ProductDetailPage(props: {
   params: Promise<{ locale: string; slug: BiteCareProductSlug }>
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
   const { locale, slug } = await props.params
-  const searchParams = await props.searchParams
 
   setRequestLocale(locale)
 
-  const BiteCareProducts = await getProducts()
-  const product = BiteCareProducts.find((product) => product.slug === slug)
+  const product = await getProductBySlug(slug, {
+    depth: 5,
+  })
 
   if (!product) return notFound()
 
-  let selectedImage = searchParams.image as BiteCareProductImageSlug
-  if (!ProductsImage.includes(selectedImage)) selectedImage = "front"
+  const factSheetImg = await resolveMediaRef(product.fact_sheet_img)
+
+  console.log("factSheetImg", factSheetImg)
 
   return (
     <div className="flex flex-col">
-      <ProductDetailLanding product={product} selectedImage={selectedImage} />
+      <ProductDetailLanding product={product} />
 
       {/* Testimonial */}
       {/* <section className="mx-auto my-20 w-[70%] text-center xl:my-36 2xl:my-48">
@@ -83,8 +116,10 @@ export default async function ProductDetailPage(props: {
       {/* FactSheet */}
 
       <Image
-        alt={product.name + " Factsheet"}
-        src={product.imageFactSheet}
+        alt={factSheetImg.alt}
+        src={factSheetImg.url ?? ""}
+        height={factSheetImg.height ?? 3508}
+        width={factSheetImg.width ?? 2840}
         className="mx-auto my-24 h-auto w-[90%] rounded-3xl shadow-lg"
       />
 

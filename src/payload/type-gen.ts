@@ -13,6 +13,8 @@ export interface Config {
   collections: {
     media: Media;
     users: User;
+    product: Product;
+    'product-tag': ProductTag;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -21,6 +23,8 @@ export interface Config {
   collectionsSelect: {
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    product: ProductSelect<false> | ProductSelect<true>;
+    'product-tag': ProductTagSelect<false> | ProductTagSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -95,6 +99,55 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product".
+ */
+export interface Product {
+  id: string;
+  /**
+   * The name of the product. Will be displayed on the website.
+   */
+  label: string;
+  /**
+   * Must be unique and can only contain lowercase letters, numbers, and hyphens.
+   */
+  slug: string;
+  description: string;
+  compare_description_main: string;
+  compare_description_sub: string;
+  primary_color: string;
+  tags?: (string | ProductTag)[] | null;
+  facts: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  front_img: string | Media;
+  back_img: string | Media;
+  summary_img: string | Media;
+  clinic_test_img: string | Media;
+  palatability_test_img: string | Media;
+  registration_number_img: string | Media;
+  fact_sheet_img: string | Media;
+  dog_image: string | Media;
+  dog_image_cropped: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-tag".
+ */
+export interface ProductTag {
+  id: string;
+  label: string;
+  description: string;
+  icon_img: string | Media;
+  color?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -107,6 +160,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: string | User;
+      } | null)
+    | ({
+        relationTo: 'product';
+        value: string | Product;
+      } | null)
+    | ({
+        relationTo: 'product-tag';
+        value: string | ProductTag;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -182,6 +243,49 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product_select".
+ */
+export interface ProductSelect<T extends boolean = true> {
+  label?: T;
+  slug?: T;
+  description?: T;
+  compare_description_main?: T;
+  compare_description_sub?: T;
+  primary_color?: T;
+  tags?: T;
+  facts?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  front_img?: T;
+  back_img?: T;
+  summary_img?: T;
+  clinic_test_img?: T;
+  palatability_test_img?: T;
+  registration_number_img?: T;
+  fact_sheet_img?: T;
+  dog_image?: T;
+  dog_image_cropped?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-tag_select".
+ */
+export interface ProductTagSelect<T extends boolean = true> {
+  label?: T;
+  description?: T;
+  icon_img?: T;
+  color?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
