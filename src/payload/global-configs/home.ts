@@ -107,6 +107,19 @@ export const HomeConfig: GlobalConfig = {
           ],
         },
         {
+          name: "product_comparison",
+          label: "Product Comparison",
+          fields: [
+            {
+              name: "header",
+              label: "Header",
+              type: "text",
+              required: true,
+              localized: true,
+            },
+          ],
+        },
+        {
           name: "faq",
           label: "FAQ",
           fields: [

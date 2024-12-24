@@ -10,10 +10,10 @@ import {
 } from "@/components/ui/accordion"
 
 type FaqAccordionProps = {
-  Faqs: { question: string; answer: string[] }[]
+  faqs: { question: string; answer: string }[]
 }
 
-export default function FaqAccordions({ Faqs }: FaqAccordionProps) {
+export default function FaqAccordions({ faqs }: FaqAccordionProps) {
   return (
     <div
       className="
@@ -43,21 +43,14 @@ export default function FaqAccordions({ Faqs }: FaqAccordionProps) {
       />
 
       <Accordion type="single" collapsible>
-        {Faqs.map((faq, index) => (
+        {faqs.map((faq, index) => (
           <AccordionItem value={`item-${index}`} key={index}>
             <AccordionTrigger className="my-4 text-start text-paragraph lg:text-h3">
               {faq.question}
             </AccordionTrigger>
             <AccordionContent>
-              <div className="mb-4 mt-4 flex flex-col gap-6">
-                {faq.answer.map((answer, index) => (
-                  <p
-                    key={index}
-                    className="text-justify text-subtitle lg:text-paragraph"
-                  >
-                    {answer}
-                  </p>
-                ))}
+              <div className="mb-4 mt-4 flex flex-col gap-6 text-justify text-subtitle lg:text-paragraph">
+                {faq.answer}
               </div>
             </AccordionContent>
           </AccordionItem>

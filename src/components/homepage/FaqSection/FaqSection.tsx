@@ -1,82 +1,26 @@
-import { getTranslations } from "next-intl/server"
+import { getLocale, getTranslations } from "next-intl/server"
 
 import FaqAccordions from "./FaqAccordions"
 import { Images } from "@/constant/Images"
 import Image from "next/image"
+import { Locale } from "@/config/i18n.config"
+import { getHomeConfigs } from "@/payload/service"
 
 export default async function FaqSection() {
-  const tFaq = await getTranslations("faq")
+  const locale = (await getLocale()) as Locale
+  const { faq } = await getHomeConfigs({
+    select: {
+      faq: true,
+    },
+    locale,
+  })
 
-  const Faqs = [
-    {
-      question: tFaq("question-1"),
-      answer: [tFaq("answer-1")],
-    },
-    {
-      question: tFaq("question-2"),
-      answer: [tFaq("answer-2")],
-    },
-    {
-      question: tFaq("question-3"),
-      answer: [tFaq("answer-3"), tFaq("answer-3-2")],
-    },
-    {
-      question: tFaq("question-4"),
-      answer: [tFaq("answer-4")],
-    },
-    {
-      question: tFaq("question-5"),
-      answer: [tFaq("answer-5")],
-    },
-    {
-      question: tFaq("question-6"),
-      answer: [tFaq("answer-6")],
-    },
-    {
-      question: tFaq("question-7"),
-      answer: [tFaq("answer-7")],
-    },
-    {
-      question: tFaq("question-8"),
-      answer: [tFaq("answer-8")],
-    },
-    {
-      question: tFaq("question-9"),
-      answer: [tFaq("answer-9")],
-    },
-    {
-      question: tFaq("question-10"),
-      answer: [tFaq("answer-10")],
-    },
-    {
-      question: tFaq("question-11"),
-      answer: [tFaq("answer-11"), tFaq("answer-11-2")],
-    },
-    {
-      question: tFaq("question-12"),
-      answer: [tFaq("answer-12")],
-    },
-    {
-      question: tFaq("question-13"),
-      answer: [
-        tFaq("answer-13"),
-        tFaq("answer-13-2"),
-        tFaq("answer-13-3"),
-        tFaq("answer-13-4"),
-      ],
-    },
-    {
-      question: tFaq("question-14"),
-      answer: [
-        tFaq("answer-14"),
-        tFaq("answer-14-2"),
-        tFaq("answer-14-3"),
-        tFaq("answer-14-4"),
-        tFaq("answer-14-5"),
-        tFaq("answer-14-6"),
-      ],
-    },
-  ]
+  const faqs = (faq?.faq_list ?? []).map((faq) => {
+    return {
+      question: faq.question,
+      answer: faq.answer,
+    }
+  })
 
   return (
     <section
@@ -99,7 +43,7 @@ export default async function FaqSection() {
             "
       />
 
-      <FaqAccordions Faqs={Faqs} />
+      <FaqAccordions faqs={faqs} />
     </section>
   )
 }
