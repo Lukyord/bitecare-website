@@ -10,9 +10,10 @@ import { BiteCareProduct } from "@/types/common/product"
 import SwiperButtonNext from "./SwiperButtonNext"
 import ProductSwiperSlide from "./ProductSwiperSlide"
 import RotatingCircularSwiperButtonText from "./RotatingCircularSwiperButtonText"
+import { Product } from "@/payload/type-gen"
 
 type ProductSwiperProps = {
-  products: BiteCareProduct[]
+  products: Product[]
 }
 
 export default function ProductSwiper({ products }: ProductSwiperProps) {
@@ -47,21 +48,10 @@ export default function ProductSwiper({ products }: ProductSwiperProps) {
       loop
       modules={[Autoplay]}
       allowTouchMove={false}
-      className="
-              relative overflow-visible 
-              rounded-bl-3xl rounded-tl-3xl 
-              border-2 border-r-0
-              border-bc-black
-            "
+      className="relative overflow-visible  rounded-bl-3xl rounded-tl-3xl  border-2 border-r-0 border-bc-black"
     >
       <SwiperButtonNext
-        style="
-              absolute left-[65%] md:left-[70%] lg:left-[75%] xl:left-[55%] top-[10%]
-              z-10 flex items-center
-              justify-center rounded-full border-[3px] border-black
-              bg-bc-primary transition-all
-              [filter:drop-shadow(4px_4px_0px_#000)] active:scale-[0.9]
-            "
+        style="absolute left-[65%] md:left-[70%] lg:left-[75%] xl:left-[55%] top-[10%] z-10 flex items-center justify-center rounded-full border-[3px] border-black bg-bc-primary transition-all [filter:drop-shadow(4px_4px_0px_#000)] active:scale-[0.9]"
         id="swiper-button-next"
       >
         <RotatingCircularSwiperButtonText />

@@ -1,7 +1,10 @@
-import { NavigationMenu } from "@/types/common/navbar"
-import { getTranslations } from "next-intl/server"
+import { Locale } from "@/config/i18n.config"
+import { getAllProducts } from "@/payload/service"
+import { NavigationBreadcrumb, NavigationMenu } from "@/types/common/navbar"
+import { getLocale, getTranslations } from "next-intl/server"
 
 export default async function getNavigation() {
+  const locale = (await getLocale()) as Locale
   const tNavigationMenu = await getTranslations("navbar")
   const tNavigationProduct = await getTranslations("navbar-products-breadcrumb")
   const tNavigationWhereToBuy = await getTranslations(
@@ -9,37 +12,32 @@ export default async function getNavigation() {
   )
   const tNavigationSupport = await getTranslations("navbar-support-breadcrumb")
 
+  const products = await getAllProducts({
+    select: {
+      label: true,
+      slug: true,
+    },
+    locale,
+  })
+
+  const productBreadcrumb: NavigationBreadcrumb[] = [
+    ...products.map((product) => ({
+      title: product.label,
+      href: `/products/${product.slug}`,
+      description: "",
+    })),
+    {
+      title: tNavigationProduct("see-all"),
+      href: "/products",
+      description: tNavigationProduct("see-all-description"),
+    },
+  ]
+
   const NavigationMenus: NavigationMenu[] = [
     {
       label: tNavigationMenu("products"),
       slug: "products",
-      breadCrumbs: [
-        {
-          title: tNavigationProduct("skin-care"),
-          href: "/products/skin-care",
-          description: tNavigationProduct("skin-care-description"),
-        },
-        {
-          title: tNavigationProduct("low-fat"),
-          href: "/products/low-fat",
-          description: tNavigationProduct("low-fat-description"),
-        },
-        {
-          title: tNavigationProduct("senior-care"),
-          href: "/products/senior-care",
-          description: tNavigationProduct("senior-care-description"),
-        },
-        {
-          title: tNavigationProduct("renal-care"),
-          href: "/products/renal-care",
-          description: tNavigationProduct("renal-care-description"),
-        },
-        {
-          title: tNavigationProduct("see-all"),
-          href: "/products",
-          description: tNavigationProduct("see-all-description"),
-        },
-      ],
+      breadCrumbs: productBreadcrumb,
     },
     {
       label: tNavigationMenu("where-to-buy"),

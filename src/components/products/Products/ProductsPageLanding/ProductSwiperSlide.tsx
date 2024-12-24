@@ -3,12 +3,12 @@
 import Image from "next/image"
 import { useSwiperSlide } from "swiper/react"
 
-import { BiteCareProduct } from "@/types/common/product"
 import { useActiveProduct } from "@/context/ActiveProductContextProvider"
-import { useEffect, useLayoutEffect } from "react"
+import { useEffect } from "react"
+import { Media, Product } from "@/payload/type-gen"
 
 type ProductSwiperSlideProps = {
-  product: BiteCareProduct
+  product: Product
 }
 
 export default function ProductSwiperSlide({
@@ -18,23 +18,18 @@ export default function ProductSwiperSlide({
   const { setActiveProduct } = useActiveProduct()
 
   useEffect(() => {
-    if (swiperSlide.isActive) {
-      setActiveProduct(product.name)
-    }
-  }, [swiperSlide.isActive, product.name, setActiveProduct])
+    if (swiperSlide.isActive) setActiveProduct(product)
+  }, [swiperSlide.isActive, product, setActiveProduct])
+
+  const frontImg = product.front_img as Media
 
   return (
     <Image
-      alt="product-image"
-      src={product.imageFront}
-      width={1192}
-      height={2128}
-      className="
-                h-full max-h-[30vh] w-auto
-                border-r-2 
-                border-bc-black px-[10%]
-                py-[10%] sm:max-h-[600px] xl:max-h-[60vh] 2xl:max-h-full
-              "
+      alt={frontImg.alt}
+      src={frontImg.url ?? ""}
+      width={frontImg.width ?? 1192}
+      height={frontImg.height ?? 2128}
+      className="h-full max-h-[30vh] w-auto border-r-2  border-bc-black px-[10%] py-[10%] sm:max-h-[600px] xl:max-h-[60vh] 2xl:max-h-full"
       priority
     />
   )
