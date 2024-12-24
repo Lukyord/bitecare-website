@@ -6,8 +6,11 @@ import { buildConfig, Locale } from "payload"
 import type { Locale as DefinedLocale } from "@/config/i18n.config"
 import { ProductTag, Media, Product, Users } from "@/payload/collections"
 import path from "path"
-import { HomeConfig } from "@/payload/global-configs"
-import { CommonConfig } from "@/payload/global-configs/common"
+import {
+  AboutUsConfig,
+  CommonConfig,
+  HomeConfig,
+} from "@/payload/global-configs"
 
 export default buildConfig({
   editor: lexicalEditor(),
@@ -16,7 +19,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || "",
   }),
-  globals: [HomeConfig, CommonConfig],
+  globals: [HomeConfig, CommonConfig, AboutUsConfig],
   plugins: [
     gcsStorage({
       collections: {
