@@ -8,6 +8,7 @@ import { ProductComparison } from "@/types/common/product"
 
 import ProductTag from "@/components/common/ProductTag"
 import { Media, ProductTag as ProductTagType } from "@/payload/type-gen"
+import { getDividerColor } from "@/lib/color"
 
 type CompareCardProps = {
   selectedProduct: ProductComparison
@@ -30,8 +31,10 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        // TODO: Computed divider color
-        className={`relative h-[40vw] w-full  lg:h-[20vw] bg-[${selectedProduct.primary_color}] group overflow-hidden`}
+        className="group relative h-[40vw] w-full overflow-hidden lg:h-[20vw]"
+        style={{
+          backgroundColor: selectedProduct.primary_color,
+        }}
       >
         <Image
           alt={frontImg.alt}
@@ -66,8 +69,10 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
               key={animationKey}
               initial={{ width: 0 }}
               animate={{ width: "100%" }}
-              // TODO: computed divider color
-              className={`bg-[${selectedProduct.primary_color}] h-1 `}
+              className="h-1"
+              style={{
+                backgroundColor: getDividerColor(selectedProduct.primary_color),
+              }}
             />
           </div>
           <div className="h-20 w-full">
