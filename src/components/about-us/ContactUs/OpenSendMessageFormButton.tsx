@@ -18,13 +18,19 @@ import { toast } from "@/components/ui/use-toast"
 import FormFields from "./FormFields"
 import { sendEmail } from "@/actions/sendEmail"
 import { zodErrorMessage } from "@/lib/zodErrorMessage"
+import { AboutUs, Common } from "@/payload/type-gen"
 
-export default function OpenSendMessageFormButton() {
+type Props = {
+  msg: {
+    contactUs: AboutUs["contact_us"]
+    contactUsToast: AboutUs["contact_us_toast"]
+    button: Common["button"]
+  }
+}
+
+export default function OpenSendMessageFormButton({ msg }: Props) {
   const status = useFormStatus()
   const { formOpen, setFormOpen } = useOpenContactUsForm()
-  const tContactUs = useTranslations("contact-us")
-  const tButton = useTranslations("button")
-  const tContactUsToast = useTranslations("contact-us-toast")
 
   const form = useForm<z.infer<typeof ContactUsFormSchema>>({
     resolver: zodResolver(ContactUsFormSchema),
@@ -52,7 +58,7 @@ export default function OpenSendMessageFormButton() {
       <ContactUsForm>
         <OpenFormButton />
         <h2 className="flex h-[20%] items-center justify-between text-h3 xl:text-h2">
-          {tContactUs("lets-collaborate")}
+          {msg.contactUs.header}
           <span onClick={() => setFormOpen(false)} className="cursor-pointer">
             <FaChevronLeft size={30} className="rotate-180" />
           </span>
@@ -91,7 +97,7 @@ export default function OpenSendMessageFormButton() {
                 if (!result.success) {
                   toast({
                     variant: "destructive",
-                    title: tContactUsToast("something-went-wrong"),
+                    title: msg.contactUsToast.something_went_wrong,
                     description: zodErrorMessage(result.error.issues),
                   })
                   return
@@ -102,7 +108,7 @@ export default function OpenSendMessageFormButton() {
                 if (error) {
                   toast({
                     variant: "destructive",
-                    title: tContactUsToast("something-went-wrong"),
+                    title: msg.contactUsToast.something_went_wrong,
                     description: error,
                   })
                   return
@@ -110,8 +116,8 @@ export default function OpenSendMessageFormButton() {
                 setFormOpen(false)
 
                 toast({
-                  title: tContactUsToast("success"),
-                  description: tContactUsToast("message-sent"),
+                  title: msg.contactUsToast.success,
+                  description: msg.contactUsToast.message_sent,
                 })
 
                 form.reset()
@@ -121,7 +127,12 @@ export default function OpenSendMessageFormButton() {
                 id="contact-us-form-fields"
                 className="flex h-[90%] w-full flex-col gap-6 overflow-y-auto pr-4"
               >
-                <FormFields form={form} />
+                <FormFields
+                  form={form}
+                  msg={{
+                    contactUs: msg.contactUs,
+                  }}
+                />
               </div>
               <div className="h-[10%] w-full">
                 <button
@@ -136,7 +147,7 @@ export default function OpenSendMessageFormButton() {
                     </>
                   ) : (
                     <>
-                      <p>{tButton("send-message")}</p>
+                      <p>{msg.button.send_message}</p>
                       <FaPaperPlane className="text-xs opacity-70 transition-all group-hover:-translate-y-1 group-hover:translate-x-1" />
                     </>
                   )}

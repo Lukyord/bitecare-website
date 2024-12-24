@@ -35,10 +35,12 @@ export interface Config {
   globals: {
     home: Home;
     common: Common;
+    'about-us': AboutUs;
   };
   globalsSelect: {
     home: HomeSelect<false> | HomeSelect<true>;
     common: CommonSelect<false> | CommonSelect<true>;
+    'about-us': AboutUsSelect<false> | AboutUsSelect<true>;
   };
   locale: 'en' | 'th';
   user: User & {
@@ -412,6 +414,56 @@ export interface Common {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us".
+ */
+export interface AboutUs {
+  id: string;
+  landing: {
+    welcome_to: string;
+    landing_description: string;
+    landing_quote: string;
+  };
+  bitecare_difference: {
+    header: string;
+    tailored_nutrition: string;
+    tailored_nutrition_description: string;
+    tailored_nutrition_quote?: string | null;
+    premium_ingredients: string;
+    premium_ingredients_description: string;
+    premium_ingredients_quote?: string | null;
+    rigorous_testing: string;
+    rigorous_testing_description: string;
+    rigorous_testing_quote?: string | null;
+    bitecare_community_header: string;
+    bitecare_community_description: string;
+    bitecare_thanks: string;
+  };
+  contact_us: {
+    header: string;
+    email: string;
+    send_us_a_message: string;
+    phone_number: string;
+    contact_hours: string;
+    monday_sun: string;
+    social: string;
+    lets_collaborate: string;
+    first_name: string;
+    last_name: string;
+    company_name: string;
+    company_name_description: string;
+    message: string;
+    message_place_holder: string;
+  };
+  contact_us_toast: {
+    something_went_wrong: string;
+    success: string;
+    message_sent: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home_select".
  */
 export interface HomeSelect<T extends boolean = true> {
@@ -509,6 +561,64 @@ export interface CommonSelect<T extends boolean = true> {
         page_not_found_description?: T;
         error?: T;
         error_description?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us_select".
+ */
+export interface AboutUsSelect<T extends boolean = true> {
+  landing?:
+    | T
+    | {
+        welcome_to?: T;
+        landing_description?: T;
+        landing_quote?: T;
+      };
+  bitecare_difference?:
+    | T
+    | {
+        header?: T;
+        tailored_nutrition?: T;
+        tailored_nutrition_description?: T;
+        tailored_nutrition_quote?: T;
+        premium_ingredients?: T;
+        premium_ingredients_description?: T;
+        premium_ingredients_quote?: T;
+        rigorous_testing?: T;
+        rigorous_testing_description?: T;
+        rigorous_testing_quote?: T;
+        bitecare_community_header?: T;
+        bitecare_community_description?: T;
+        bitecare_thanks?: T;
+      };
+  contact_us?:
+    | T
+    | {
+        header?: T;
+        email?: T;
+        send_us_a_message?: T;
+        phone_number?: T;
+        contact_hours?: T;
+        monday_sun?: T;
+        social?: T;
+        lets_collaborate?: T;
+        first_name?: T;
+        last_name?: T;
+        company_name?: T;
+        company_name_description?: T;
+        message?: T;
+        message_place_holder?: T;
+      };
+  contact_us_toast?:
+    | T
+    | {
+        something_went_wrong?: T;
+        success?: T;
+        message_sent?: T;
       };
   updatedAt?: T;
   createdAt?: T;

@@ -1,13 +1,22 @@
-import { getTranslations } from "next-intl/server"
+import { getLocale, getTranslations } from "next-intl/server"
 import Image from "next/image"
 
 import { Images } from "@/constant/Images"
 
 import TranslateYOnScroll from "../animations/TranslateYOnScroll"
 import TranslateXOnScroll from "../animations/TranslateXOnScroll"
+import { Locale } from "@/config/i18n.config"
+import { getAboutUsConfigs } from "@/payload/service/globals/about-us"
 
 export default async function WelcomeToBiteCare() {
-  const tLanding = await getTranslations("landing")
+  const locale = (await getLocale()) as Locale
+
+  const { landing } = await getAboutUsConfigs({
+    select: {
+      landing: true,
+    },
+    locale,
+  })
 
   const AboutUsImages = [
     Images.AboutUsGalleryImage_1,
@@ -32,7 +41,7 @@ export default async function WelcomeToBiteCare() {
                 "
       >
         <h1 className="text-center text-h2 lg:text-h2 2xl:text-h1">
-          {tLanding("welcome-to")}
+          {landing.welcome_to}
           <Image
             alt="bitecare logo"
             src={Images.BiteCareLogoNew}
@@ -51,14 +60,14 @@ export default async function WelcomeToBiteCare() {
                   "
         >
           <p className="px-[10%] text-paragraph">
-            {tLanding("landing-description-1")}
+            {landing.landing_description}
           </p>
           <h2 className="text-center text-h3 xl:whitespace-nowrap">
-            {tLanding("landing-quote")}
+            {landing.landing_quote}
           </h2>
-          <p className="px-[10%] text-paragraph">
+          {/* <p className="px-[10%] text-paragraph">
             {tLanding("landing-description-2")}
-          </p>
+          </p> */}
         </div>
       </div>
       <div className="hidden h-full w-[40%] xl:block">

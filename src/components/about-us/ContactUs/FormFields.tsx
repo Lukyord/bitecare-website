@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/form"
 import ContactUsInput from "./ContactUsInput"
 import { Textarea } from "@/components/ui/textarea"
+import { AboutUs } from "@/payload/type-gen"
 
 type FormFieldsProps = {
   form: UseFormReturn<
@@ -23,11 +24,12 @@ type FormFieldsProps = {
     any,
     undefined
   >
+  msg: {
+    contactUs: AboutUs["contact_us"]
+  }
 }
 
-export default function FormFields({ form }: FormFieldsProps) {
-  const tContactUs = useTranslations("contact-us")
-
+export default function FormFields({ form, msg }: FormFieldsProps) {
   return (
     <>
       <div className="flex w-full gap-[5%]">
@@ -36,8 +38,8 @@ export default function FormFields({ form }: FormFieldsProps) {
           name="firstName"
           render={({ field }) => (
             <ContactUsInput
-              label={tContactUs("first-name")}
-              placeholder={tContactUs("first-name")}
+              label={msg.contactUs.first_name}
+              placeholder={msg.contactUs.first_name}
               field={field}
             />
           )}
@@ -48,8 +50,8 @@ export default function FormFields({ form }: FormFieldsProps) {
           name="lastName"
           render={({ field }) => (
             <ContactUsInput
-              label={tContactUs("first-name")}
-              placeholder={tContactUs("first-name")}
+              label={msg.contactUs.last_name}
+              placeholder={msg.contactUs.first_name}
               field={field}
             />
           )}
@@ -61,10 +63,10 @@ export default function FormFields({ form }: FormFieldsProps) {
         name="companyName"
         render={({ field }) => (
           <ContactUsInput
-            label={tContactUs("company-name")}
-            placeholder={tContactUs("company-name")}
+            label={msg.contactUs.company_name}
+            placeholder={msg.contactUs.company_name}
             field={field}
-            description={tContactUs("company-name-description")}
+            description={msg.contactUs.company_name_description}
           />
         )}
       />
@@ -74,8 +76,8 @@ export default function FormFields({ form }: FormFieldsProps) {
         name="email"
         render={({ field }) => (
           <ContactUsInput
-            label={tContactUs("email")}
-            placeholder={tContactUs("email")}
+            label={msg.contactUs.email}
+            placeholder={msg.contactUs.email}
             field={field}
           />
         )}
@@ -86,7 +88,7 @@ export default function FormFields({ form }: FormFieldsProps) {
         name="phoneNumber"
         render={({ field }) => (
           <ContactUsInput
-            label={tContactUs("phone-number")}
+            label={msg.contactUs.phone_number}
             placeholder={"096930XXXX"}
             field={field}
             maxLength={10}
@@ -100,14 +102,14 @@ export default function FormFields({ form }: FormFieldsProps) {
         render={({ field }) => (
           <FormItem className="w-full">
             <FormLabel className="text-paragraph">
-              {tContactUs("message")}
+              {msg.contactUs.message}
             </FormLabel>
             <FormControl>
               <Textarea
                 transparent
                 notoThin
                 bottomBorder
-                placeholder={tContactUs("message-place-holder")}
+                placeholder={msg.contactUs.message_place_holder}
                 {...field}
                 className={`${field.value ? "opacity-100" : "opacity-30"}`}
               />
