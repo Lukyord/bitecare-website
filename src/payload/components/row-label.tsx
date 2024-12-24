@@ -42,7 +42,7 @@ const RowLabel = ({
     generated = generated?.[segment]
   }
 
-  if (generated) return generated
+  if (generated) return `${(rowNumber ?? 0) + 1}) ${generated}`
 
   return `${getTranslation(defaultLabel, i18n)} ${String(rowNumber ?? 0 + 1).padStart(2, "0")}`
 }

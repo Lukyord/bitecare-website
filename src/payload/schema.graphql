@@ -25,6 +25,10 @@ type Query {
   PayloadPreferences(draft: Boolean, where: PayloadPreference_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, pagination: Boolean, sort: String): PayloadPreferences
   countPayloadPreferences(draft: Boolean, where: PayloadPreference_where, locale: LocaleInputType): countPayloadPreferences
   docAccessPayloadPreference(id: String!): payload_preferencesDocAccess
+  Home(draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Home
+  docAccessHome: homeDocAccess
+  Common(draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Common
+  docAccessCommon: commonDocAccess
   Access: Access
 }
 
@@ -821,8 +825,8 @@ type Product {
   label: String
   slug: String!
   description: String
-  compare_description_main(depth: Int): JSON
-  compare_description_sub(depth: Int): JSON!
+  compare_description_main: String
+  compare_description_sub: String
   primary_color: String!
   tags(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [ProductTag!]
   facts: [Product_Facts!]!
@@ -834,14 +838,10 @@ type Product {
   registration_number_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
   fact_sheet_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
   dog_image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
+  dog_image_cropped(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
   updatedAt: DateTime
   createdAt: DateTime
 }
-
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 type ProductTag {
   id: String!
@@ -892,6 +892,7 @@ input Product_where {
   registration_number_img: Product_registration_number_img_operator
   fact_sheet_img: Product_fact_sheet_img_operator
   dog_image: Product_dog_image_operator
+  dog_image_cropped: Product_dog_image_cropped_operator
   updatedAt: Product_updatedAt_operator
   createdAt: Product_createdAt_operator
   id: Product_id_operator
@@ -927,17 +928,17 @@ input Product_description_operator {
 }
 
 input Product_compare_description_main_operator {
-  equals: JSON
-  not_equals: JSON
-  like: JSON
-  contains: JSON
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
 }
 
 input Product_compare_description_sub_operator {
-  equals: JSON
-  not_equals: JSON
-  like: JSON
-  contains: JSON
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
 }
 
 input Product_primary_color_operator {
@@ -958,6 +959,11 @@ input Product_tags_operator {
   all: [JSON]
   exists: Boolean
 }
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 input Product_facts__title_operator {
   equals: String
@@ -1054,6 +1060,14 @@ input Product_dog_image_operator {
   all: [JSON]
 }
 
+input Product_dog_image_cropped_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
 input Product_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -1106,6 +1120,7 @@ input Product_where_and {
   registration_number_img: Product_registration_number_img_operator
   fact_sheet_img: Product_fact_sheet_img_operator
   dog_image: Product_dog_image_operator
+  dog_image_cropped: Product_dog_image_cropped_operator
   updatedAt: Product_updatedAt_operator
   createdAt: Product_createdAt_operator
   id: Product_id_operator
@@ -1132,6 +1147,7 @@ input Product_where_or {
   registration_number_img: Product_registration_number_img_operator
   fact_sheet_img: Product_fact_sheet_img_operator
   dog_image: Product_dog_image_operator
+  dog_image_cropped: Product_dog_image_cropped_operator
   updatedAt: Product_updatedAt_operator
   createdAt: Product_createdAt_operator
   id: Product_id_operator
@@ -1168,6 +1184,7 @@ type ProductDocAccessFields {
   registration_number_img: ProductDocAccessFields_registration_number_img
   fact_sheet_img: ProductDocAccessFields_fact_sheet_img
   dog_image: ProductDocAccessFields_dog_image
+  dog_image_cropped: ProductDocAccessFields_dog_image_cropped
   updatedAt: ProductDocAccessFields_updatedAt
   createdAt: ProductDocAccessFields_createdAt
 }
@@ -1613,6 +1630,29 @@ type ProductDocAccessFields_dog_image_Update {
 }
 
 type ProductDocAccessFields_dog_image_Delete {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_dog_image_cropped {
+  create: ProductDocAccessFields_dog_image_cropped_Create
+  read: ProductDocAccessFields_dog_image_cropped_Read
+  update: ProductDocAccessFields_dog_image_cropped_Update
+  delete: ProductDocAccessFields_dog_image_cropped_Delete
+}
+
+type ProductDocAccessFields_dog_image_cropped_Create {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_dog_image_cropped_Read {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_dog_image_cropped_Update {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_dog_image_cropped_Delete {
   permission: Boolean!
 }
 
@@ -2566,6 +2606,1231 @@ type PayloadPreferencesDeleteDocAccess {
   where: JSONObject
 }
 
+type Home {
+  hero: Home_Hero
+  principle: Home_Principle
+  slogan: Home_Slogan
+  faq: Home_Faq
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type Home_Hero {
+  header_text: String
+  subheader_text: String
+  cta_text: String
+}
+
+type Home_Principle {
+  principle_header: String
+  principle_subheader: String
+  principles: [Home_Principle_Principles!]!
+}
+
+type Home_Principle_Principles {
+  title: String
+  icon(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  id: String
+}
+
+type Home_Slogan {
+  slogan_header: String
+  slogan_description: String
+}
+
+type Home_Faq {
+  faq_list: [Home_Faq_Faq_list!]
+}
+
+type Home_Faq_Faq_list {
+  question: String
+  answer: String
+  id: String
+}
+
+type homeDocAccess {
+  fields: HomeDocAccessFields
+  read: HomeReadDocAccess
+  update: HomeUpdateDocAccess
+}
+
+type HomeDocAccessFields {
+  header_text: HomeDocAccessFields_header_text
+  subheader_text: HomeDocAccessFields_subheader_text
+  cta_text: HomeDocAccessFields_cta_text
+  principle_header: HomeDocAccessFields_principle_header
+  principle_subheader: HomeDocAccessFields_principle_subheader
+  principles: HomeDocAccessFields_principles
+  slogan_header: HomeDocAccessFields_slogan_header
+  slogan_description: HomeDocAccessFields_slogan_description
+  faq_list: HomeDocAccessFields_faq_list
+  updatedAt: HomeDocAccessFields_updatedAt
+  createdAt: HomeDocAccessFields_createdAt
+}
+
+type HomeDocAccessFields_header_text {
+  create: HomeDocAccessFields_header_text_Create
+  read: HomeDocAccessFields_header_text_Read
+  update: HomeDocAccessFields_header_text_Update
+  delete: HomeDocAccessFields_header_text_Delete
+}
+
+type HomeDocAccessFields_header_text_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_header_text_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_header_text_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_header_text_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_subheader_text {
+  create: HomeDocAccessFields_subheader_text_Create
+  read: HomeDocAccessFields_subheader_text_Read
+  update: HomeDocAccessFields_subheader_text_Update
+  delete: HomeDocAccessFields_subheader_text_Delete
+}
+
+type HomeDocAccessFields_subheader_text_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_subheader_text_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_subheader_text_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_subheader_text_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_cta_text {
+  create: HomeDocAccessFields_cta_text_Create
+  read: HomeDocAccessFields_cta_text_Read
+  update: HomeDocAccessFields_cta_text_Update
+  delete: HomeDocAccessFields_cta_text_Delete
+}
+
+type HomeDocAccessFields_cta_text_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_cta_text_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_cta_text_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_cta_text_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principle_header {
+  create: HomeDocAccessFields_principle_header_Create
+  read: HomeDocAccessFields_principle_header_Read
+  update: HomeDocAccessFields_principle_header_Update
+  delete: HomeDocAccessFields_principle_header_Delete
+}
+
+type HomeDocAccessFields_principle_header_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principle_header_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principle_header_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principle_header_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principle_subheader {
+  create: HomeDocAccessFields_principle_subheader_Create
+  read: HomeDocAccessFields_principle_subheader_Read
+  update: HomeDocAccessFields_principle_subheader_Update
+  delete: HomeDocAccessFields_principle_subheader_Delete
+}
+
+type HomeDocAccessFields_principle_subheader_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principle_subheader_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principle_subheader_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principle_subheader_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles {
+  create: HomeDocAccessFields_principles_Create
+  read: HomeDocAccessFields_principles_Read
+  update: HomeDocAccessFields_principles_Update
+  delete: HomeDocAccessFields_principles_Delete
+  fields: HomeDocAccessFields_principles_Fields
+}
+
+type HomeDocAccessFields_principles_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_Fields {
+  title: HomeDocAccessFields_principles_title
+  icon: HomeDocAccessFields_principles_icon
+  id: HomeDocAccessFields_principles_id
+}
+
+type HomeDocAccessFields_principles_title {
+  create: HomeDocAccessFields_principles_title_Create
+  read: HomeDocAccessFields_principles_title_Read
+  update: HomeDocAccessFields_principles_title_Update
+  delete: HomeDocAccessFields_principles_title_Delete
+}
+
+type HomeDocAccessFields_principles_title_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_title_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_title_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_title_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_icon {
+  create: HomeDocAccessFields_principles_icon_Create
+  read: HomeDocAccessFields_principles_icon_Read
+  update: HomeDocAccessFields_principles_icon_Update
+  delete: HomeDocAccessFields_principles_icon_Delete
+}
+
+type HomeDocAccessFields_principles_icon_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_icon_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_icon_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_icon_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_id {
+  create: HomeDocAccessFields_principles_id_Create
+  read: HomeDocAccessFields_principles_id_Read
+  update: HomeDocAccessFields_principles_id_Update
+  delete: HomeDocAccessFields_principles_id_Delete
+}
+
+type HomeDocAccessFields_principles_id_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_id_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_id_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_principles_id_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_slogan_header {
+  create: HomeDocAccessFields_slogan_header_Create
+  read: HomeDocAccessFields_slogan_header_Read
+  update: HomeDocAccessFields_slogan_header_Update
+  delete: HomeDocAccessFields_slogan_header_Delete
+}
+
+type HomeDocAccessFields_slogan_header_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_slogan_header_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_slogan_header_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_slogan_header_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_slogan_description {
+  create: HomeDocAccessFields_slogan_description_Create
+  read: HomeDocAccessFields_slogan_description_Read
+  update: HomeDocAccessFields_slogan_description_Update
+  delete: HomeDocAccessFields_slogan_description_Delete
+}
+
+type HomeDocAccessFields_slogan_description_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_slogan_description_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_slogan_description_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_slogan_description_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list {
+  create: HomeDocAccessFields_faq_list_Create
+  read: HomeDocAccessFields_faq_list_Read
+  update: HomeDocAccessFields_faq_list_Update
+  delete: HomeDocAccessFields_faq_list_Delete
+  fields: HomeDocAccessFields_faq_list_Fields
+}
+
+type HomeDocAccessFields_faq_list_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_Fields {
+  question: HomeDocAccessFields_faq_list_question
+  answer: HomeDocAccessFields_faq_list_answer
+  id: HomeDocAccessFields_faq_list_id
+}
+
+type HomeDocAccessFields_faq_list_question {
+  create: HomeDocAccessFields_faq_list_question_Create
+  read: HomeDocAccessFields_faq_list_question_Read
+  update: HomeDocAccessFields_faq_list_question_Update
+  delete: HomeDocAccessFields_faq_list_question_Delete
+}
+
+type HomeDocAccessFields_faq_list_question_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_question_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_question_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_question_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_answer {
+  create: HomeDocAccessFields_faq_list_answer_Create
+  read: HomeDocAccessFields_faq_list_answer_Read
+  update: HomeDocAccessFields_faq_list_answer_Update
+  delete: HomeDocAccessFields_faq_list_answer_Delete
+}
+
+type HomeDocAccessFields_faq_list_answer_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_answer_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_answer_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_answer_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_id {
+  create: HomeDocAccessFields_faq_list_id_Create
+  read: HomeDocAccessFields_faq_list_id_Read
+  update: HomeDocAccessFields_faq_list_id_Update
+  delete: HomeDocAccessFields_faq_list_id_Delete
+}
+
+type HomeDocAccessFields_faq_list_id_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_id_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_id_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_faq_list_id_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_updatedAt {
+  create: HomeDocAccessFields_updatedAt_Create
+  read: HomeDocAccessFields_updatedAt_Read
+  update: HomeDocAccessFields_updatedAt_Update
+  delete: HomeDocAccessFields_updatedAt_Delete
+}
+
+type HomeDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_createdAt {
+  create: HomeDocAccessFields_createdAt_Create
+  read: HomeDocAccessFields_createdAt_Read
+  update: HomeDocAccessFields_createdAt_Update
+  delete: HomeDocAccessFields_createdAt_Delete
+}
+
+type HomeDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type HomeReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type HomeUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type Common {
+  button: Common_Button
+  footer: Common_Footer
+  error: Common_Error
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type Common_Button {
+  meet_bite_care: String
+  tell_a_friend: String
+  see_our_products: String
+  view_more: String
+  faq: String
+  get_our_product: String
+  more_info: String
+  search: String
+  find_me: String
+  view_on_google_map: String
+  send_message: String
+  get_to_know_us: String
+  back_to_homepage: String
+  contact_us: String
+  retry: String
+}
+
+type Common_Footer {
+  tagline: Common_Footer_Tagline
+  legal: Common_Footer_Legal
+}
+
+type Common_Footer_Tagline {
+  tagline_header: String
+  tagline_description: String
+}
+
+type Common_Footer_Legal {
+  copyright: String
+  privacy_policy: String
+  terms_and_conditions: String
+}
+
+type Common_Error {
+  page_not_found: String
+  page_not_found_description: String
+  error: String
+  error_description: String
+}
+
+type commonDocAccess {
+  fields: CommonDocAccessFields
+  read: CommonReadDocAccess
+  update: CommonUpdateDocAccess
+}
+
+type CommonDocAccessFields {
+  meet_bite_care: CommonDocAccessFields_meet_bite_care
+  tell_a_friend: CommonDocAccessFields_tell_a_friend
+  see_our_products: CommonDocAccessFields_see_our_products
+  view_more: CommonDocAccessFields_view_more
+  faq: CommonDocAccessFields_faq
+  get_our_product: CommonDocAccessFields_get_our_product
+  more_info: CommonDocAccessFields_more_info
+  search: CommonDocAccessFields_search
+  find_me: CommonDocAccessFields_find_me
+  view_on_google_map: CommonDocAccessFields_view_on_google_map
+  send_message: CommonDocAccessFields_send_message
+  get_to_know_us: CommonDocAccessFields_get_to_know_us
+  back_to_homepage: CommonDocAccessFields_back_to_homepage
+  contact_us: CommonDocAccessFields_contact_us
+  retry: CommonDocAccessFields_retry
+  tagline: CommonDocAccessFields_tagline
+  legal: CommonDocAccessFields_legal
+  page_not_found: CommonDocAccessFields_page_not_found
+  page_not_found_description: CommonDocAccessFields_page_not_found_description
+  error: CommonDocAccessFields_error
+  error_description: CommonDocAccessFields_error_description
+  updatedAt: CommonDocAccessFields_updatedAt
+  createdAt: CommonDocAccessFields_createdAt
+}
+
+type CommonDocAccessFields_meet_bite_care {
+  create: CommonDocAccessFields_meet_bite_care_Create
+  read: CommonDocAccessFields_meet_bite_care_Read
+  update: CommonDocAccessFields_meet_bite_care_Update
+  delete: CommonDocAccessFields_meet_bite_care_Delete
+}
+
+type CommonDocAccessFields_meet_bite_care_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_meet_bite_care_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_meet_bite_care_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_meet_bite_care_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tell_a_friend {
+  create: CommonDocAccessFields_tell_a_friend_Create
+  read: CommonDocAccessFields_tell_a_friend_Read
+  update: CommonDocAccessFields_tell_a_friend_Update
+  delete: CommonDocAccessFields_tell_a_friend_Delete
+}
+
+type CommonDocAccessFields_tell_a_friend_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tell_a_friend_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tell_a_friend_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tell_a_friend_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_see_our_products {
+  create: CommonDocAccessFields_see_our_products_Create
+  read: CommonDocAccessFields_see_our_products_Read
+  update: CommonDocAccessFields_see_our_products_Update
+  delete: CommonDocAccessFields_see_our_products_Delete
+}
+
+type CommonDocAccessFields_see_our_products_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_see_our_products_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_see_our_products_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_see_our_products_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_view_more {
+  create: CommonDocAccessFields_view_more_Create
+  read: CommonDocAccessFields_view_more_Read
+  update: CommonDocAccessFields_view_more_Update
+  delete: CommonDocAccessFields_view_more_Delete
+}
+
+type CommonDocAccessFields_view_more_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_view_more_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_view_more_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_view_more_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_faq {
+  create: CommonDocAccessFields_faq_Create
+  read: CommonDocAccessFields_faq_Read
+  update: CommonDocAccessFields_faq_Update
+  delete: CommonDocAccessFields_faq_Delete
+}
+
+type CommonDocAccessFields_faq_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_faq_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_faq_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_faq_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_get_our_product {
+  create: CommonDocAccessFields_get_our_product_Create
+  read: CommonDocAccessFields_get_our_product_Read
+  update: CommonDocAccessFields_get_our_product_Update
+  delete: CommonDocAccessFields_get_our_product_Delete
+}
+
+type CommonDocAccessFields_get_our_product_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_get_our_product_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_get_our_product_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_get_our_product_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_more_info {
+  create: CommonDocAccessFields_more_info_Create
+  read: CommonDocAccessFields_more_info_Read
+  update: CommonDocAccessFields_more_info_Update
+  delete: CommonDocAccessFields_more_info_Delete
+}
+
+type CommonDocAccessFields_more_info_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_more_info_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_more_info_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_more_info_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_search {
+  create: CommonDocAccessFields_search_Create
+  read: CommonDocAccessFields_search_Read
+  update: CommonDocAccessFields_search_Update
+  delete: CommonDocAccessFields_search_Delete
+}
+
+type CommonDocAccessFields_search_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_search_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_search_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_search_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_find_me {
+  create: CommonDocAccessFields_find_me_Create
+  read: CommonDocAccessFields_find_me_Read
+  update: CommonDocAccessFields_find_me_Update
+  delete: CommonDocAccessFields_find_me_Delete
+}
+
+type CommonDocAccessFields_find_me_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_find_me_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_find_me_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_find_me_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_view_on_google_map {
+  create: CommonDocAccessFields_view_on_google_map_Create
+  read: CommonDocAccessFields_view_on_google_map_Read
+  update: CommonDocAccessFields_view_on_google_map_Update
+  delete: CommonDocAccessFields_view_on_google_map_Delete
+}
+
+type CommonDocAccessFields_view_on_google_map_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_view_on_google_map_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_view_on_google_map_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_view_on_google_map_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_send_message {
+  create: CommonDocAccessFields_send_message_Create
+  read: CommonDocAccessFields_send_message_Read
+  update: CommonDocAccessFields_send_message_Update
+  delete: CommonDocAccessFields_send_message_Delete
+}
+
+type CommonDocAccessFields_send_message_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_send_message_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_send_message_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_send_message_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_get_to_know_us {
+  create: CommonDocAccessFields_get_to_know_us_Create
+  read: CommonDocAccessFields_get_to_know_us_Read
+  update: CommonDocAccessFields_get_to_know_us_Update
+  delete: CommonDocAccessFields_get_to_know_us_Delete
+}
+
+type CommonDocAccessFields_get_to_know_us_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_get_to_know_us_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_get_to_know_us_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_get_to_know_us_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_back_to_homepage {
+  create: CommonDocAccessFields_back_to_homepage_Create
+  read: CommonDocAccessFields_back_to_homepage_Read
+  update: CommonDocAccessFields_back_to_homepage_Update
+  delete: CommonDocAccessFields_back_to_homepage_Delete
+}
+
+type CommonDocAccessFields_back_to_homepage_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_back_to_homepage_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_back_to_homepage_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_back_to_homepage_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_contact_us {
+  create: CommonDocAccessFields_contact_us_Create
+  read: CommonDocAccessFields_contact_us_Read
+  update: CommonDocAccessFields_contact_us_Update
+  delete: CommonDocAccessFields_contact_us_Delete
+}
+
+type CommonDocAccessFields_contact_us_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_contact_us_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_contact_us_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_contact_us_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_retry {
+  create: CommonDocAccessFields_retry_Create
+  read: CommonDocAccessFields_retry_Read
+  update: CommonDocAccessFields_retry_Update
+  delete: CommonDocAccessFields_retry_Delete
+}
+
+type CommonDocAccessFields_retry_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_retry_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_retry_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_retry_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tagline {
+  create: CommonDocAccessFields_tagline_Create
+  read: CommonDocAccessFields_tagline_Read
+  update: CommonDocAccessFields_tagline_Update
+  delete: CommonDocAccessFields_tagline_Delete
+  fields: CommonDocAccessFields_tagline_Fields
+}
+
+type CommonDocAccessFields_tagline_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tagline_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tagline_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tagline_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tagline_Fields {
+  tagline_header: CommonDocAccessFields_tagline_tagline_header
+  tagline_description: CommonDocAccessFields_tagline_tagline_description
+}
+
+type CommonDocAccessFields_tagline_tagline_header {
+  create: CommonDocAccessFields_tagline_tagline_header_Create
+  read: CommonDocAccessFields_tagline_tagline_header_Read
+  update: CommonDocAccessFields_tagline_tagline_header_Update
+  delete: CommonDocAccessFields_tagline_tagline_header_Delete
+}
+
+type CommonDocAccessFields_tagline_tagline_header_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tagline_tagline_header_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tagline_tagline_header_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tagline_tagline_header_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tagline_tagline_description {
+  create: CommonDocAccessFields_tagline_tagline_description_Create
+  read: CommonDocAccessFields_tagline_tagline_description_Read
+  update: CommonDocAccessFields_tagline_tagline_description_Update
+  delete: CommonDocAccessFields_tagline_tagline_description_Delete
+}
+
+type CommonDocAccessFields_tagline_tagline_description_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tagline_tagline_description_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tagline_tagline_description_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_tagline_tagline_description_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal {
+  create: CommonDocAccessFields_legal_Create
+  read: CommonDocAccessFields_legal_Read
+  update: CommonDocAccessFields_legal_Update
+  delete: CommonDocAccessFields_legal_Delete
+  fields: CommonDocAccessFields_legal_Fields
+}
+
+type CommonDocAccessFields_legal_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_Fields {
+  copyright: CommonDocAccessFields_legal_copyright
+  privacy_policy: CommonDocAccessFields_legal_privacy_policy
+  terms_and_conditions: CommonDocAccessFields_legal_terms_and_conditions
+}
+
+type CommonDocAccessFields_legal_copyright {
+  create: CommonDocAccessFields_legal_copyright_Create
+  read: CommonDocAccessFields_legal_copyright_Read
+  update: CommonDocAccessFields_legal_copyright_Update
+  delete: CommonDocAccessFields_legal_copyright_Delete
+}
+
+type CommonDocAccessFields_legal_copyright_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_copyright_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_copyright_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_copyright_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_privacy_policy {
+  create: CommonDocAccessFields_legal_privacy_policy_Create
+  read: CommonDocAccessFields_legal_privacy_policy_Read
+  update: CommonDocAccessFields_legal_privacy_policy_Update
+  delete: CommonDocAccessFields_legal_privacy_policy_Delete
+}
+
+type CommonDocAccessFields_legal_privacy_policy_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_privacy_policy_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_privacy_policy_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_privacy_policy_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_terms_and_conditions {
+  create: CommonDocAccessFields_legal_terms_and_conditions_Create
+  read: CommonDocAccessFields_legal_terms_and_conditions_Read
+  update: CommonDocAccessFields_legal_terms_and_conditions_Update
+  delete: CommonDocAccessFields_legal_terms_and_conditions_Delete
+}
+
+type CommonDocAccessFields_legal_terms_and_conditions_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_terms_and_conditions_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_terms_and_conditions_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_legal_terms_and_conditions_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_page_not_found {
+  create: CommonDocAccessFields_page_not_found_Create
+  read: CommonDocAccessFields_page_not_found_Read
+  update: CommonDocAccessFields_page_not_found_Update
+  delete: CommonDocAccessFields_page_not_found_Delete
+}
+
+type CommonDocAccessFields_page_not_found_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_page_not_found_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_page_not_found_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_page_not_found_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_page_not_found_description {
+  create: CommonDocAccessFields_page_not_found_description_Create
+  read: CommonDocAccessFields_page_not_found_description_Read
+  update: CommonDocAccessFields_page_not_found_description_Update
+  delete: CommonDocAccessFields_page_not_found_description_Delete
+}
+
+type CommonDocAccessFields_page_not_found_description_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_page_not_found_description_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_page_not_found_description_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_page_not_found_description_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_error {
+  create: CommonDocAccessFields_error_Create
+  read: CommonDocAccessFields_error_Read
+  update: CommonDocAccessFields_error_Update
+  delete: CommonDocAccessFields_error_Delete
+}
+
+type CommonDocAccessFields_error_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_error_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_error_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_error_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_error_description {
+  create: CommonDocAccessFields_error_description_Create
+  read: CommonDocAccessFields_error_description_Read
+  update: CommonDocAccessFields_error_description_Update
+  delete: CommonDocAccessFields_error_description_Delete
+}
+
+type CommonDocAccessFields_error_description_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_error_description_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_error_description_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_error_description_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_updatedAt {
+  create: CommonDocAccessFields_updatedAt_Create
+  read: CommonDocAccessFields_updatedAt_Read
+  update: CommonDocAccessFields_updatedAt_Update
+  delete: CommonDocAccessFields_updatedAt_Delete
+}
+
+type CommonDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_createdAt {
+  create: CommonDocAccessFields_createdAt_Create
+  read: CommonDocAccessFields_createdAt_Read
+  update: CommonDocAccessFields_createdAt_Update
+  delete: CommonDocAccessFields_createdAt_Delete
+}
+
+type CommonDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type CommonDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type CommonReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type CommonUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type Access {
   canAccessAdmin: Boolean!
   media: mediaAccess
@@ -2574,6 +3839,8 @@ type Access {
   product_tag: product_tagAccess
   payload_locked_documents: payload_locked_documentsAccess
   payload_preferences: payload_preferencesAccess
+  home: homeAccess
+  common: commonAccess
 }
 
 type mediaAccess {
@@ -3029,6 +4296,7 @@ type ProductFields {
   registration_number_img: ProductFields_registration_number_img
   fact_sheet_img: ProductFields_fact_sheet_img
   dog_image: ProductFields_dog_image
+  dog_image_cropped: ProductFields_dog_image_cropped
   updatedAt: ProductFields_updatedAt
   createdAt: ProductFields_createdAt
 }
@@ -3474,6 +4742,29 @@ type ProductFields_dog_image_Update {
 }
 
 type ProductFields_dog_image_Delete {
+  permission: Boolean!
+}
+
+type ProductFields_dog_image_cropped {
+  create: ProductFields_dog_image_cropped_Create
+  read: ProductFields_dog_image_cropped_Read
+  update: ProductFields_dog_image_cropped_Update
+  delete: ProductFields_dog_image_cropped_Delete
+}
+
+type ProductFields_dog_image_cropped_Create {
+  permission: Boolean!
+}
+
+type ProductFields_dog_image_cropped_Read {
+  permission: Boolean!
+}
+
+type ProductFields_dog_image_cropped_Update {
+  permission: Boolean!
+}
+
+type ProductFields_dog_image_cropped_Delete {
   permission: Boolean!
 }
 
@@ -4020,6 +5311,1140 @@ type PayloadPreferencesDeleteAccess {
   where: JSONObject
 }
 
+type homeAccess {
+  fields: HomeFields
+  read: HomeReadAccess
+  update: HomeUpdateAccess
+}
+
+type HomeFields {
+  header_text: HomeFields_header_text
+  subheader_text: HomeFields_subheader_text
+  cta_text: HomeFields_cta_text
+  principle_header: HomeFields_principle_header
+  principle_subheader: HomeFields_principle_subheader
+  principles: HomeFields_principles
+  slogan_header: HomeFields_slogan_header
+  slogan_description: HomeFields_slogan_description
+  faq_list: HomeFields_faq_list
+  updatedAt: HomeFields_updatedAt
+  createdAt: HomeFields_createdAt
+}
+
+type HomeFields_header_text {
+  create: HomeFields_header_text_Create
+  read: HomeFields_header_text_Read
+  update: HomeFields_header_text_Update
+  delete: HomeFields_header_text_Delete
+}
+
+type HomeFields_header_text_Create {
+  permission: Boolean!
+}
+
+type HomeFields_header_text_Read {
+  permission: Boolean!
+}
+
+type HomeFields_header_text_Update {
+  permission: Boolean!
+}
+
+type HomeFields_header_text_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_subheader_text {
+  create: HomeFields_subheader_text_Create
+  read: HomeFields_subheader_text_Read
+  update: HomeFields_subheader_text_Update
+  delete: HomeFields_subheader_text_Delete
+}
+
+type HomeFields_subheader_text_Create {
+  permission: Boolean!
+}
+
+type HomeFields_subheader_text_Read {
+  permission: Boolean!
+}
+
+type HomeFields_subheader_text_Update {
+  permission: Boolean!
+}
+
+type HomeFields_subheader_text_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_cta_text {
+  create: HomeFields_cta_text_Create
+  read: HomeFields_cta_text_Read
+  update: HomeFields_cta_text_Update
+  delete: HomeFields_cta_text_Delete
+}
+
+type HomeFields_cta_text_Create {
+  permission: Boolean!
+}
+
+type HomeFields_cta_text_Read {
+  permission: Boolean!
+}
+
+type HomeFields_cta_text_Update {
+  permission: Boolean!
+}
+
+type HomeFields_cta_text_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_principle_header {
+  create: HomeFields_principle_header_Create
+  read: HomeFields_principle_header_Read
+  update: HomeFields_principle_header_Update
+  delete: HomeFields_principle_header_Delete
+}
+
+type HomeFields_principle_header_Create {
+  permission: Boolean!
+}
+
+type HomeFields_principle_header_Read {
+  permission: Boolean!
+}
+
+type HomeFields_principle_header_Update {
+  permission: Boolean!
+}
+
+type HomeFields_principle_header_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_principle_subheader {
+  create: HomeFields_principle_subheader_Create
+  read: HomeFields_principle_subheader_Read
+  update: HomeFields_principle_subheader_Update
+  delete: HomeFields_principle_subheader_Delete
+}
+
+type HomeFields_principle_subheader_Create {
+  permission: Boolean!
+}
+
+type HomeFields_principle_subheader_Read {
+  permission: Boolean!
+}
+
+type HomeFields_principle_subheader_Update {
+  permission: Boolean!
+}
+
+type HomeFields_principle_subheader_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_principles {
+  create: HomeFields_principles_Create
+  read: HomeFields_principles_Read
+  update: HomeFields_principles_Update
+  delete: HomeFields_principles_Delete
+  fields: HomeFields_principles_Fields
+}
+
+type HomeFields_principles_Create {
+  permission: Boolean!
+}
+
+type HomeFields_principles_Read {
+  permission: Boolean!
+}
+
+type HomeFields_principles_Update {
+  permission: Boolean!
+}
+
+type HomeFields_principles_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_principles_Fields {
+  title: HomeFields_principles_title
+  icon: HomeFields_principles_icon
+  id: HomeFields_principles_id
+}
+
+type HomeFields_principles_title {
+  create: HomeFields_principles_title_Create
+  read: HomeFields_principles_title_Read
+  update: HomeFields_principles_title_Update
+  delete: HomeFields_principles_title_Delete
+}
+
+type HomeFields_principles_title_Create {
+  permission: Boolean!
+}
+
+type HomeFields_principles_title_Read {
+  permission: Boolean!
+}
+
+type HomeFields_principles_title_Update {
+  permission: Boolean!
+}
+
+type HomeFields_principles_title_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_principles_icon {
+  create: HomeFields_principles_icon_Create
+  read: HomeFields_principles_icon_Read
+  update: HomeFields_principles_icon_Update
+  delete: HomeFields_principles_icon_Delete
+}
+
+type HomeFields_principles_icon_Create {
+  permission: Boolean!
+}
+
+type HomeFields_principles_icon_Read {
+  permission: Boolean!
+}
+
+type HomeFields_principles_icon_Update {
+  permission: Boolean!
+}
+
+type HomeFields_principles_icon_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_principles_id {
+  create: HomeFields_principles_id_Create
+  read: HomeFields_principles_id_Read
+  update: HomeFields_principles_id_Update
+  delete: HomeFields_principles_id_Delete
+}
+
+type HomeFields_principles_id_Create {
+  permission: Boolean!
+}
+
+type HomeFields_principles_id_Read {
+  permission: Boolean!
+}
+
+type HomeFields_principles_id_Update {
+  permission: Boolean!
+}
+
+type HomeFields_principles_id_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_slogan_header {
+  create: HomeFields_slogan_header_Create
+  read: HomeFields_slogan_header_Read
+  update: HomeFields_slogan_header_Update
+  delete: HomeFields_slogan_header_Delete
+}
+
+type HomeFields_slogan_header_Create {
+  permission: Boolean!
+}
+
+type HomeFields_slogan_header_Read {
+  permission: Boolean!
+}
+
+type HomeFields_slogan_header_Update {
+  permission: Boolean!
+}
+
+type HomeFields_slogan_header_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_slogan_description {
+  create: HomeFields_slogan_description_Create
+  read: HomeFields_slogan_description_Read
+  update: HomeFields_slogan_description_Update
+  delete: HomeFields_slogan_description_Delete
+}
+
+type HomeFields_slogan_description_Create {
+  permission: Boolean!
+}
+
+type HomeFields_slogan_description_Read {
+  permission: Boolean!
+}
+
+type HomeFields_slogan_description_Update {
+  permission: Boolean!
+}
+
+type HomeFields_slogan_description_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list {
+  create: HomeFields_faq_list_Create
+  read: HomeFields_faq_list_Read
+  update: HomeFields_faq_list_Update
+  delete: HomeFields_faq_list_Delete
+  fields: HomeFields_faq_list_Fields
+}
+
+type HomeFields_faq_list_Create {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_Read {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_Update {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_Fields {
+  question: HomeFields_faq_list_question
+  answer: HomeFields_faq_list_answer
+  id: HomeFields_faq_list_id
+}
+
+type HomeFields_faq_list_question {
+  create: HomeFields_faq_list_question_Create
+  read: HomeFields_faq_list_question_Read
+  update: HomeFields_faq_list_question_Update
+  delete: HomeFields_faq_list_question_Delete
+}
+
+type HomeFields_faq_list_question_Create {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_question_Read {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_question_Update {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_question_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_answer {
+  create: HomeFields_faq_list_answer_Create
+  read: HomeFields_faq_list_answer_Read
+  update: HomeFields_faq_list_answer_Update
+  delete: HomeFields_faq_list_answer_Delete
+}
+
+type HomeFields_faq_list_answer_Create {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_answer_Read {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_answer_Update {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_answer_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_id {
+  create: HomeFields_faq_list_id_Create
+  read: HomeFields_faq_list_id_Read
+  update: HomeFields_faq_list_id_Update
+  delete: HomeFields_faq_list_id_Delete
+}
+
+type HomeFields_faq_list_id_Create {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_id_Read {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_id_Update {
+  permission: Boolean!
+}
+
+type HomeFields_faq_list_id_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_updatedAt {
+  create: HomeFields_updatedAt_Create
+  read: HomeFields_updatedAt_Read
+  update: HomeFields_updatedAt_Update
+  delete: HomeFields_updatedAt_Delete
+}
+
+type HomeFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type HomeFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type HomeFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type HomeFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_createdAt {
+  create: HomeFields_createdAt_Create
+  read: HomeFields_createdAt_Read
+  update: HomeFields_createdAt_Update
+  delete: HomeFields_createdAt_Delete
+}
+
+type HomeFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type HomeFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type HomeFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type HomeFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type HomeReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type HomeUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type commonAccess {
+  fields: CommonFields
+  read: CommonReadAccess
+  update: CommonUpdateAccess
+}
+
+type CommonFields {
+  meet_bite_care: CommonFields_meet_bite_care
+  tell_a_friend: CommonFields_tell_a_friend
+  see_our_products: CommonFields_see_our_products
+  view_more: CommonFields_view_more
+  faq: CommonFields_faq
+  get_our_product: CommonFields_get_our_product
+  more_info: CommonFields_more_info
+  search: CommonFields_search
+  find_me: CommonFields_find_me
+  view_on_google_map: CommonFields_view_on_google_map
+  send_message: CommonFields_send_message
+  get_to_know_us: CommonFields_get_to_know_us
+  back_to_homepage: CommonFields_back_to_homepage
+  contact_us: CommonFields_contact_us
+  retry: CommonFields_retry
+  tagline: CommonFields_tagline
+  legal: CommonFields_legal
+  page_not_found: CommonFields_page_not_found
+  page_not_found_description: CommonFields_page_not_found_description
+  error: CommonFields_error
+  error_description: CommonFields_error_description
+  updatedAt: CommonFields_updatedAt
+  createdAt: CommonFields_createdAt
+}
+
+type CommonFields_meet_bite_care {
+  create: CommonFields_meet_bite_care_Create
+  read: CommonFields_meet_bite_care_Read
+  update: CommonFields_meet_bite_care_Update
+  delete: CommonFields_meet_bite_care_Delete
+}
+
+type CommonFields_meet_bite_care_Create {
+  permission: Boolean!
+}
+
+type CommonFields_meet_bite_care_Read {
+  permission: Boolean!
+}
+
+type CommonFields_meet_bite_care_Update {
+  permission: Boolean!
+}
+
+type CommonFields_meet_bite_care_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_tell_a_friend {
+  create: CommonFields_tell_a_friend_Create
+  read: CommonFields_tell_a_friend_Read
+  update: CommonFields_tell_a_friend_Update
+  delete: CommonFields_tell_a_friend_Delete
+}
+
+type CommonFields_tell_a_friend_Create {
+  permission: Boolean!
+}
+
+type CommonFields_tell_a_friend_Read {
+  permission: Boolean!
+}
+
+type CommonFields_tell_a_friend_Update {
+  permission: Boolean!
+}
+
+type CommonFields_tell_a_friend_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_see_our_products {
+  create: CommonFields_see_our_products_Create
+  read: CommonFields_see_our_products_Read
+  update: CommonFields_see_our_products_Update
+  delete: CommonFields_see_our_products_Delete
+}
+
+type CommonFields_see_our_products_Create {
+  permission: Boolean!
+}
+
+type CommonFields_see_our_products_Read {
+  permission: Boolean!
+}
+
+type CommonFields_see_our_products_Update {
+  permission: Boolean!
+}
+
+type CommonFields_see_our_products_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_view_more {
+  create: CommonFields_view_more_Create
+  read: CommonFields_view_more_Read
+  update: CommonFields_view_more_Update
+  delete: CommonFields_view_more_Delete
+}
+
+type CommonFields_view_more_Create {
+  permission: Boolean!
+}
+
+type CommonFields_view_more_Read {
+  permission: Boolean!
+}
+
+type CommonFields_view_more_Update {
+  permission: Boolean!
+}
+
+type CommonFields_view_more_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_faq {
+  create: CommonFields_faq_Create
+  read: CommonFields_faq_Read
+  update: CommonFields_faq_Update
+  delete: CommonFields_faq_Delete
+}
+
+type CommonFields_faq_Create {
+  permission: Boolean!
+}
+
+type CommonFields_faq_Read {
+  permission: Boolean!
+}
+
+type CommonFields_faq_Update {
+  permission: Boolean!
+}
+
+type CommonFields_faq_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_get_our_product {
+  create: CommonFields_get_our_product_Create
+  read: CommonFields_get_our_product_Read
+  update: CommonFields_get_our_product_Update
+  delete: CommonFields_get_our_product_Delete
+}
+
+type CommonFields_get_our_product_Create {
+  permission: Boolean!
+}
+
+type CommonFields_get_our_product_Read {
+  permission: Boolean!
+}
+
+type CommonFields_get_our_product_Update {
+  permission: Boolean!
+}
+
+type CommonFields_get_our_product_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_more_info {
+  create: CommonFields_more_info_Create
+  read: CommonFields_more_info_Read
+  update: CommonFields_more_info_Update
+  delete: CommonFields_more_info_Delete
+}
+
+type CommonFields_more_info_Create {
+  permission: Boolean!
+}
+
+type CommonFields_more_info_Read {
+  permission: Boolean!
+}
+
+type CommonFields_more_info_Update {
+  permission: Boolean!
+}
+
+type CommonFields_more_info_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_search {
+  create: CommonFields_search_Create
+  read: CommonFields_search_Read
+  update: CommonFields_search_Update
+  delete: CommonFields_search_Delete
+}
+
+type CommonFields_search_Create {
+  permission: Boolean!
+}
+
+type CommonFields_search_Read {
+  permission: Boolean!
+}
+
+type CommonFields_search_Update {
+  permission: Boolean!
+}
+
+type CommonFields_search_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_find_me {
+  create: CommonFields_find_me_Create
+  read: CommonFields_find_me_Read
+  update: CommonFields_find_me_Update
+  delete: CommonFields_find_me_Delete
+}
+
+type CommonFields_find_me_Create {
+  permission: Boolean!
+}
+
+type CommonFields_find_me_Read {
+  permission: Boolean!
+}
+
+type CommonFields_find_me_Update {
+  permission: Boolean!
+}
+
+type CommonFields_find_me_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_view_on_google_map {
+  create: CommonFields_view_on_google_map_Create
+  read: CommonFields_view_on_google_map_Read
+  update: CommonFields_view_on_google_map_Update
+  delete: CommonFields_view_on_google_map_Delete
+}
+
+type CommonFields_view_on_google_map_Create {
+  permission: Boolean!
+}
+
+type CommonFields_view_on_google_map_Read {
+  permission: Boolean!
+}
+
+type CommonFields_view_on_google_map_Update {
+  permission: Boolean!
+}
+
+type CommonFields_view_on_google_map_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_send_message {
+  create: CommonFields_send_message_Create
+  read: CommonFields_send_message_Read
+  update: CommonFields_send_message_Update
+  delete: CommonFields_send_message_Delete
+}
+
+type CommonFields_send_message_Create {
+  permission: Boolean!
+}
+
+type CommonFields_send_message_Read {
+  permission: Boolean!
+}
+
+type CommonFields_send_message_Update {
+  permission: Boolean!
+}
+
+type CommonFields_send_message_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_get_to_know_us {
+  create: CommonFields_get_to_know_us_Create
+  read: CommonFields_get_to_know_us_Read
+  update: CommonFields_get_to_know_us_Update
+  delete: CommonFields_get_to_know_us_Delete
+}
+
+type CommonFields_get_to_know_us_Create {
+  permission: Boolean!
+}
+
+type CommonFields_get_to_know_us_Read {
+  permission: Boolean!
+}
+
+type CommonFields_get_to_know_us_Update {
+  permission: Boolean!
+}
+
+type CommonFields_get_to_know_us_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_back_to_homepage {
+  create: CommonFields_back_to_homepage_Create
+  read: CommonFields_back_to_homepage_Read
+  update: CommonFields_back_to_homepage_Update
+  delete: CommonFields_back_to_homepage_Delete
+}
+
+type CommonFields_back_to_homepage_Create {
+  permission: Boolean!
+}
+
+type CommonFields_back_to_homepage_Read {
+  permission: Boolean!
+}
+
+type CommonFields_back_to_homepage_Update {
+  permission: Boolean!
+}
+
+type CommonFields_back_to_homepage_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_contact_us {
+  create: CommonFields_contact_us_Create
+  read: CommonFields_contact_us_Read
+  update: CommonFields_contact_us_Update
+  delete: CommonFields_contact_us_Delete
+}
+
+type CommonFields_contact_us_Create {
+  permission: Boolean!
+}
+
+type CommonFields_contact_us_Read {
+  permission: Boolean!
+}
+
+type CommonFields_contact_us_Update {
+  permission: Boolean!
+}
+
+type CommonFields_contact_us_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_retry {
+  create: CommonFields_retry_Create
+  read: CommonFields_retry_Read
+  update: CommonFields_retry_Update
+  delete: CommonFields_retry_Delete
+}
+
+type CommonFields_retry_Create {
+  permission: Boolean!
+}
+
+type CommonFields_retry_Read {
+  permission: Boolean!
+}
+
+type CommonFields_retry_Update {
+  permission: Boolean!
+}
+
+type CommonFields_retry_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_tagline {
+  create: CommonFields_tagline_Create
+  read: CommonFields_tagline_Read
+  update: CommonFields_tagline_Update
+  delete: CommonFields_tagline_Delete
+  fields: CommonFields_tagline_Fields
+}
+
+type CommonFields_tagline_Create {
+  permission: Boolean!
+}
+
+type CommonFields_tagline_Read {
+  permission: Boolean!
+}
+
+type CommonFields_tagline_Update {
+  permission: Boolean!
+}
+
+type CommonFields_tagline_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_tagline_Fields {
+  tagline_header: CommonFields_tagline_tagline_header
+  tagline_description: CommonFields_tagline_tagline_description
+}
+
+type CommonFields_tagline_tagline_header {
+  create: CommonFields_tagline_tagline_header_Create
+  read: CommonFields_tagline_tagline_header_Read
+  update: CommonFields_tagline_tagline_header_Update
+  delete: CommonFields_tagline_tagline_header_Delete
+}
+
+type CommonFields_tagline_tagline_header_Create {
+  permission: Boolean!
+}
+
+type CommonFields_tagline_tagline_header_Read {
+  permission: Boolean!
+}
+
+type CommonFields_tagline_tagline_header_Update {
+  permission: Boolean!
+}
+
+type CommonFields_tagline_tagline_header_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_tagline_tagline_description {
+  create: CommonFields_tagline_tagline_description_Create
+  read: CommonFields_tagline_tagline_description_Read
+  update: CommonFields_tagline_tagline_description_Update
+  delete: CommonFields_tagline_tagline_description_Delete
+}
+
+type CommonFields_tagline_tagline_description_Create {
+  permission: Boolean!
+}
+
+type CommonFields_tagline_tagline_description_Read {
+  permission: Boolean!
+}
+
+type CommonFields_tagline_tagline_description_Update {
+  permission: Boolean!
+}
+
+type CommonFields_tagline_tagline_description_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_legal {
+  create: CommonFields_legal_Create
+  read: CommonFields_legal_Read
+  update: CommonFields_legal_Update
+  delete: CommonFields_legal_Delete
+  fields: CommonFields_legal_Fields
+}
+
+type CommonFields_legal_Create {
+  permission: Boolean!
+}
+
+type CommonFields_legal_Read {
+  permission: Boolean!
+}
+
+type CommonFields_legal_Update {
+  permission: Boolean!
+}
+
+type CommonFields_legal_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_legal_Fields {
+  copyright: CommonFields_legal_copyright
+  privacy_policy: CommonFields_legal_privacy_policy
+  terms_and_conditions: CommonFields_legal_terms_and_conditions
+}
+
+type CommonFields_legal_copyright {
+  create: CommonFields_legal_copyright_Create
+  read: CommonFields_legal_copyright_Read
+  update: CommonFields_legal_copyright_Update
+  delete: CommonFields_legal_copyright_Delete
+}
+
+type CommonFields_legal_copyright_Create {
+  permission: Boolean!
+}
+
+type CommonFields_legal_copyright_Read {
+  permission: Boolean!
+}
+
+type CommonFields_legal_copyright_Update {
+  permission: Boolean!
+}
+
+type CommonFields_legal_copyright_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_legal_privacy_policy {
+  create: CommonFields_legal_privacy_policy_Create
+  read: CommonFields_legal_privacy_policy_Read
+  update: CommonFields_legal_privacy_policy_Update
+  delete: CommonFields_legal_privacy_policy_Delete
+}
+
+type CommonFields_legal_privacy_policy_Create {
+  permission: Boolean!
+}
+
+type CommonFields_legal_privacy_policy_Read {
+  permission: Boolean!
+}
+
+type CommonFields_legal_privacy_policy_Update {
+  permission: Boolean!
+}
+
+type CommonFields_legal_privacy_policy_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_legal_terms_and_conditions {
+  create: CommonFields_legal_terms_and_conditions_Create
+  read: CommonFields_legal_terms_and_conditions_Read
+  update: CommonFields_legal_terms_and_conditions_Update
+  delete: CommonFields_legal_terms_and_conditions_Delete
+}
+
+type CommonFields_legal_terms_and_conditions_Create {
+  permission: Boolean!
+}
+
+type CommonFields_legal_terms_and_conditions_Read {
+  permission: Boolean!
+}
+
+type CommonFields_legal_terms_and_conditions_Update {
+  permission: Boolean!
+}
+
+type CommonFields_legal_terms_and_conditions_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_page_not_found {
+  create: CommonFields_page_not_found_Create
+  read: CommonFields_page_not_found_Read
+  update: CommonFields_page_not_found_Update
+  delete: CommonFields_page_not_found_Delete
+}
+
+type CommonFields_page_not_found_Create {
+  permission: Boolean!
+}
+
+type CommonFields_page_not_found_Read {
+  permission: Boolean!
+}
+
+type CommonFields_page_not_found_Update {
+  permission: Boolean!
+}
+
+type CommonFields_page_not_found_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_page_not_found_description {
+  create: CommonFields_page_not_found_description_Create
+  read: CommonFields_page_not_found_description_Read
+  update: CommonFields_page_not_found_description_Update
+  delete: CommonFields_page_not_found_description_Delete
+}
+
+type CommonFields_page_not_found_description_Create {
+  permission: Boolean!
+}
+
+type CommonFields_page_not_found_description_Read {
+  permission: Boolean!
+}
+
+type CommonFields_page_not_found_description_Update {
+  permission: Boolean!
+}
+
+type CommonFields_page_not_found_description_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_error {
+  create: CommonFields_error_Create
+  read: CommonFields_error_Read
+  update: CommonFields_error_Update
+  delete: CommonFields_error_Delete
+}
+
+type CommonFields_error_Create {
+  permission: Boolean!
+}
+
+type CommonFields_error_Read {
+  permission: Boolean!
+}
+
+type CommonFields_error_Update {
+  permission: Boolean!
+}
+
+type CommonFields_error_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_error_description {
+  create: CommonFields_error_description_Create
+  read: CommonFields_error_description_Read
+  update: CommonFields_error_description_Update
+  delete: CommonFields_error_description_Delete
+}
+
+type CommonFields_error_description_Create {
+  permission: Boolean!
+}
+
+type CommonFields_error_description_Read {
+  permission: Boolean!
+}
+
+type CommonFields_error_description_Update {
+  permission: Boolean!
+}
+
+type CommonFields_error_description_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_updatedAt {
+  create: CommonFields_updatedAt_Create
+  read: CommonFields_updatedAt_Read
+  update: CommonFields_updatedAt_Update
+  delete: CommonFields_updatedAt_Delete
+}
+
+type CommonFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type CommonFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type CommonFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type CommonFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type CommonFields_createdAt {
+  create: CommonFields_createdAt_Create
+  read: CommonFields_createdAt_Read
+  update: CommonFields_createdAt_Update
+  delete: CommonFields_createdAt_Delete
+}
+
+type CommonFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type CommonFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type CommonFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type CommonFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type CommonReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type CommonUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type Mutation {
   createMedia(data: mutationMediaInput!, draft: Boolean, locale: LocaleInputType): Media
   updateMedia(id: String!, autosave: Boolean, data: mutationMediaUpdateInput!, draft: Boolean, locale: LocaleInputType): Media
@@ -4051,6 +6476,8 @@ type Mutation {
   updatePayloadPreference(id: String!, autosave: Boolean, data: mutationPayloadPreferenceUpdateInput!, draft: Boolean, locale: LocaleInputType): PayloadPreference
   deletePayloadPreference(id: String!): PayloadPreference
   duplicatePayloadPreference(id: String!, data: mutationPayloadPreferenceInput!): PayloadPreference
+  updateHome(data: mutationHomeInput!, draft: Boolean, locale: LocaleInputType): Home
+  updateCommon(data: mutationCommonInput!, draft: Boolean, locale: LocaleInputType): Common
 }
 
 input mutationMediaInput {
@@ -4136,8 +6563,8 @@ input mutationProductInput {
   label: String
   slug: String!
   description: String
-  compare_description_main: JSON
-  compare_description_sub: JSON!
+  compare_description_main: String
+  compare_description_sub: String
   primary_color: String!
   tags: [String]
   facts: [mutationProduct_FactsInput!]
@@ -4149,6 +6576,7 @@ input mutationProductInput {
   registration_number_img: String
   fact_sheet_img: String
   dog_image: String
+  dog_image_cropped: String
   updatedAt: String
   createdAt: String
 }
@@ -4163,8 +6591,8 @@ input mutationProductUpdateInput {
   label: String
   slug: String
   description: String
-  compare_description_main: JSON
-  compare_description_sub: JSON
+  compare_description_main: String
+  compare_description_sub: String
   primary_color: String
   tags: [String]
   facts: [mutationProductUpdate_FactsInput]
@@ -4176,6 +6604,7 @@ input mutationProductUpdateInput {
   registration_number_img: String
   fact_sheet_img: String
   dog_image: String
+  dog_image_cropped: String
   updatedAt: String
   createdAt: String
 }
@@ -4294,4 +6723,95 @@ input PayloadPreferenceUpdate_UserRelationshipInput {
 
 enum PayloadPreferenceUpdate_UserRelationshipInputRelationTo {
   users
+}
+
+input mutationHomeInput {
+  hero: mutationHome_HeroInput
+  principle: mutationHome_PrincipleInput
+  slogan: mutationHome_SloganInput
+  faq: mutationHome_FaqInput
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationHome_HeroInput {
+  header_text: String
+  subheader_text: String
+  cta_text: String
+}
+
+input mutationHome_PrincipleInput {
+  principle_header: String
+  principle_subheader: String
+  principles: [mutationHome_Principle_PrinciplesInput!]
+}
+
+input mutationHome_Principle_PrinciplesInput {
+  title: String
+  icon: String
+  id: String
+}
+
+input mutationHome_SloganInput {
+  slogan_header: String
+  slogan_description: String
+}
+
+input mutationHome_FaqInput {
+  faq_list: [mutationHome_Faq_Faq_listInput]
+}
+
+input mutationHome_Faq_Faq_listInput {
+  question: String
+  answer: String
+  id: String
+}
+
+input mutationCommonInput {
+  button: mutationCommon_ButtonInput
+  footer: mutationCommon_FooterInput
+  error: mutationCommon_ErrorInput
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationCommon_ButtonInput {
+  meet_bite_care: String
+  tell_a_friend: String
+  see_our_products: String
+  view_more: String
+  faq: String
+  get_our_product: String
+  more_info: String
+  search: String
+  find_me: String
+  view_on_google_map: String
+  send_message: String
+  get_to_know_us: String
+  back_to_homepage: String
+  contact_us: String
+  retry: String
+}
+
+input mutationCommon_FooterInput {
+  tagline: mutationCommon_Footer_TaglineInput!
+  legal: mutationCommon_Footer_LegalInput!
+}
+
+input mutationCommon_Footer_TaglineInput {
+  tagline_header: String
+  tagline_description: String
+}
+
+input mutationCommon_Footer_LegalInput {
+  copyright: String
+  privacy_policy: String
+  terms_and_conditions: String
+}
+
+input mutationCommon_ErrorInput {
+  page_not_found: String
+  page_not_found_description: String
+  error: String
+  error_description: String
 }

@@ -1,10 +1,12 @@
-import { getTranslations } from "next-intl/server"
+import { getLocale, getTranslations } from "next-intl/server"
 import TextRevealFromBottom from "../../animations/TextRevealFromBottom"
 import WhiteTextBox from "./WhiteTextBox"
 import Image from "next/image"
 import { Images } from "@/constant/Images"
 import BlobBackground_1 from "./BlobBackground_1"
 import BlobBackground_2 from "./BlobBackground_2"
+import { getAboutUsConfigs } from "@/payload/service/globals/about-us"
+import { Locale } from "@/config/i18n.config"
 
 // "bitecare-difference": {
 //   "header": "The BiteCare Difference",
@@ -41,7 +43,14 @@ import BlobBackground_2 from "./BlobBackground_2"
 // },
 
 export default async function BiteCareDifference() {
-  const tBiteCareDifference = await getTranslations("bitecare-difference")
+  const locale = (await getLocale()) as Locale
+
+  const { bitecare_difference } = await getAboutUsConfigs({
+    select: {
+      bitecare_difference: true,
+    },
+    locale,
+  })
 
   return (
     <section
@@ -55,7 +64,7 @@ export default async function BiteCareDifference() {
       <div className="relative w-fit">
         <TextRevealFromBottom duration={0.9} delay={0.5}>
           <h1 className="relative text-h2 lg:text-h1">
-            {tBiteCareDifference("header")}
+            {bitecare_difference.header}
           </h1>
         </TextRevealFromBottom>
         <BlobBackground_1 />
@@ -78,41 +87,41 @@ export default async function BiteCareDifference() {
                   "
         >
           <TextRevealFromBottom duration={1} delay={0.65}>
-            <WhiteTextBox header={tBiteCareDifference("tailored-nutrition")}>
+            <WhiteTextBox header={bitecare_difference.tailored_nutrition}>
               <p className="hidden xl:block">
-                {tBiteCareDifference("tailored-nutrition-description-1")}
+                {bitecare_difference.tailored_nutrition_description}
               </p>
               <h2 className="text-center text-h3">
-                {tBiteCareDifference("tailored-nutrition-quote")}
+                {bitecare_difference.tailored_nutrition_quote}
               </h2>
-              <p className="hidden xl:block">
+              {/* <p className="hidden xl:block">
                 {tBiteCareDifference("tailored-nutrition-description-2")}
-              </p>
+              </p> */}
             </WhiteTextBox>
           </TextRevealFromBottom>
           <TextRevealFromBottom duration={1} delay={0.65}>
-            <WhiteTextBox header={tBiteCareDifference("premium-ingredients")}>
+            <WhiteTextBox header={bitecare_difference.premium_ingredients}>
               <p className="hidden xl:block">
-                {tBiteCareDifference("premium-ingredients-description-1")}
+                {bitecare_difference.premium_ingredients_description}
               </p>
-              <p className="hidden xl:block">
+              {/* <p className="hidden xl:block">
                 {tBiteCareDifference("premium-ingredients-description-2")}
-              </p>
+              </p> */}
               <h2 className="text-center text-h3">
-                {tBiteCareDifference("premium-ingredients-quote")}
+                {bitecare_difference.premium_ingredients_quote}
               </h2>
             </WhiteTextBox>
           </TextRevealFromBottom>
           <TextRevealFromBottom duration={1} delay={0.65}>
-            <WhiteTextBox header={tBiteCareDifference("rigorous-testing")}>
+            <WhiteTextBox header={bitecare_difference.rigorous_testing}>
               <p className="hidden xl:block">
-                {tBiteCareDifference("rigorous-testing-description-1")}
+                {bitecare_difference.rigorous_testing_description}
               </p>
-              <p className="hidden xl:block">
+              {/* <p className="hidden xl:block">
                 {tBiteCareDifference("rigorous-testing-description-2")}
-              </p>
+              </p> */}
               <h2 className="text-center text-h3">
-                {tBiteCareDifference("rigorous-testing-quote")}
+                {bitecare_difference.rigorous_testing_quote}
               </h2>
             </WhiteTextBox>
           </TextRevealFromBottom>
@@ -148,12 +157,12 @@ export default async function BiteCareDifference() {
           <div className="flex flex-col gap-14 text-justify text-paragraph xl:w-[25%]">
             <TextRevealFromBottom duration={0.5} delay={0.25}>
               <h3 className="mb-4 text-3xl">
-                {tBiteCareDifference("bitecare-community-header")}
+                {bitecare_difference.bitecare_community_header}
               </h3>
-              <p>{tBiteCareDifference("bitecare-community-description")}</p>
+              <p>{bitecare_difference.bitecare_community_description}</p>
             </TextRevealFromBottom>
             <TextRevealFromBottom duration={0.5} delay={0.5}>
-              <p>{tBiteCareDifference("bitecare-thanks")}</p>
+              <p>{bitecare_difference.bitecare_thanks}</p>
             </TextRevealFromBottom>
           </div>
         </div>

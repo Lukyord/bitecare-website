@@ -1,29 +1,39 @@
-import { getTranslations } from "next-intl/server"
+import { getLocale, getTranslations } from "next-intl/server"
 import Image from "next/image"
 
 import { Images } from "@/constant/Images"
 
 import PrimaryButton from "@/components/common/Button/PrimaryButton"
 import SloganBoxImages from "./SloganBoxImages"
+import { getCommonConfigs, getHomeConfigs } from "@/payload/service"
+import { Locale } from "@/config/i18n.config"
+import { Media } from "@/payload/type-gen"
 
 export default async function PrinciplesSection() {
-  const tPrinciples = await getTranslations("principles")
-  const tButton = await getTranslations("button")
+  const locale = (await getLocale()) as Locale
 
-  const Principles = [
-    {
-      icon: Images.NutritionBlack,
-      description: tPrinciples("principle-1-description"),
-    },
-    {
-      icon: Images.TopQualityIngredientsBlack,
-      description: tPrinciples("principle-2-description"),
-    },
-    {
-      icon: Images.ClinicTestBlack,
-      description: tPrinciples("principle-3-description"),
-    },
-  ]
+  const [{ principle, slogan }, { button }] = await Promise.all([
+    getHomeConfigs({
+      select: {
+        principle: true,
+        slogan: true,
+      },
+      locale,
+    }),
+    getCommonConfigs({
+      select: {
+        button: {
+          see_our_products: true,
+        },
+      },
+      locale,
+    }),
+  ])
+
+  const principles = principle.principles.map((principle) => ({
+    icon: principle.icon as Media,
+    description: principle.title,
+  }))
 
   return (
     <section
@@ -36,8 +46,8 @@ export default async function PrinciplesSection() {
       {/* Principles */}
       <div className="flex flex-col items-center gap-16">
         <div className="w-[80%] sm:w-[50%]">
-          <h1 className="text-h3 lg:text-h2">{tPrinciples("header")}</h1>
-          <p className="text-paragraph">{tPrinciples("description")}</p>
+          <h1 className="text-h3 lg:text-h2">{principle.principle_header}</h1>
+          <p className="text-paragraph">{principle.principle_subheader}</p>
         </div>
 
         <div
@@ -48,7 +58,7 @@ export default async function PrinciplesSection() {
                   lg:justify-between
                 "
         >
-          {Principles.map((principle, index) => (
+          {principles.map((principle, index) => (
             <div
               key={index}
               className="
@@ -58,8 +68,10 @@ export default async function PrinciplesSection() {
             >
               <div className="h-32 lg:h-40">
                 <Image
-                  alt="principle icon"
-                  src={principle.icon}
+                  alt={principle.icon.alt}
+                  src={principle.icon.url ?? ""}
+                  height={principle.icon.height ?? 120}
+                  width={principle.icon.width ?? 120}
                   className="h-auto w-[100px] lg:w-[120px]"
                 />
               </div>
@@ -80,14 +92,14 @@ export default async function PrinciplesSection() {
       >
         <div>
           <h1 className="text-h3 md:text-h2 lg:text-h1">
-            {tPrinciples("slogan")}
+            {slogan.slogan_header}
           </h1>
           <h3 className="mt-3 text-subtitle md:text-paragraph lg:mt-6 lg:text-h3">
-            {tPrinciples("slogan-description")}
+            {slogan.slogan_description}
           </h3>
         </div>
 
-        <PrimaryButton text={tButton("see-our-products")} href="/products" />
+        <PrimaryButton text={button.see_our_products} href="/products" />
 
         <SloganBoxImages />
       </div>

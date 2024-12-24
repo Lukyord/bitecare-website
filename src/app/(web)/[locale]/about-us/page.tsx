@@ -34,7 +34,7 @@ export default async function AboutUs({
         <AboutUsLandingNoAnim />
         <WelcomeToBiteCare />
         <BiteCareDifference />
-        <ContactUs locale={locale} />
+        <ContactUs />
       </HorizontalScrollSection>
     </div>
   )

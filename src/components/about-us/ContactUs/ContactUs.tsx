@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { getMessages, getTranslations } from "next-intl/server"
+import { getLocale, getMessages, getTranslations } from "next-intl/server"
 
 import { Images } from "@/constant/Images"
 import { Link } from "@/lib/navigation"
@@ -10,14 +10,28 @@ import OpenSendMessageFormButton from "./OpenSendMessageFormButton"
 import ContactUsFormContextProvider from "@/context/ContactUsFormContextProvider"
 import { NextIntlClientProvider } from "next-intl"
 import { pick } from "lodash"
+import { getAboutUsConfigs } from "@/payload/service/globals/about-us"
+import { Locale } from "@/config/i18n.config"
+import { getCommonConfigs } from "@/payload/service"
 
-type ConactUsProps = {
-  locale: string
-}
+export default async function ContactUs() {
+  const locale = (await getLocale()) as Locale
 
-export default async function ContactUs({ locale }: ConactUsProps) {
-  const messages = await getMessages()
-  const tContactUs = await getTranslations("contact-us")
+  const [{ contact_us, contact_us_toast }, { button }] = await Promise.all([
+    getAboutUsConfigs({
+      select: {
+        contact_us: true,
+        contact_us_toast: true,
+      },
+      locale,
+    }),
+    getCommonConfigs({
+      select: {
+        button: true,
+      },
+      locale,
+    }),
+  ])
 
   const labelStyle = "text-paragraph mb-2 sm:mb-4"
   const textStyle = `${
@@ -35,11 +49,13 @@ export default async function ContactUs({ locale }: ConactUsProps) {
           "
     >
       <ContactUsFormContextProvider>
-        <NextIntlClientProvider
-          messages={pick(messages, "contact-us", "button", "contact-us-toast")}
-        >
-          <OpenSendMessageFormButton />
-        </NextIntlClientProvider>
+        <OpenSendMessageFormButton
+          msg={{
+            contactUs: contact_us,
+            contactUsToast: contact_us_toast,
+            button,
+          }}
+        />
         <div className="relative h-full w-fit">
           <Image
             alt="contact us dog"
@@ -56,7 +72,7 @@ export default async function ContactUs({ locale }: ConactUsProps) {
                   sm:text-h1 xl:bottom-[20%]
                 "
           >
-            {tContactUs("header")}
+            {contact_us.header}
           </h2>
         </div>
 
@@ -68,28 +84,28 @@ export default async function ContactUs({ locale }: ConactUsProps) {
                   "
           >
             <div>
-              <h3 className={`${labelStyle}`}>{tContactUs("email")}</h3>
+              <h3 className={`${labelStyle}`}>{contact_us.email}</h3>
               <SendMessageButton>
                 <h4
-                  title={tContactUs("send-us-a-message")}
+                  title={contact_us.send_us_a_message}
                   className={`${textStyle}
               underline decoration-[1px] underline-offset-4
               `}
                 >
-                  {tContactUs("send-us-a-message")}
+                  {contact_us.send_us_a_message}
                 </h4>
               </SendMessageButton>
             </div>
             <div>
-              <h3 className={`${labelStyle}`}>{tContactUs("phone-number")}</h3>
+              <h3 className={`${labelStyle}`}>{contact_us.phone_number}</h3>
               <h4 className={`${textStyle}`}>+66-2-9600429</h4>
             </div>
             <div>
-              <h3 className={`${labelStyle}`}>{tContactUs("contact-hours")}</h3>
-              <h4 className={`${textStyle}`}>{tContactUs("monday-sun")}</h4>
+              <h3 className={`${labelStyle}`}>{contact_us.contact_hours}</h3>
+              <h4 className={`${textStyle}`}>{contact_us.monday_sun}</h4>
             </div>
             <div>
-              <h3 className={`${labelStyle}`}>{tContactUs("social")}</h3>
+              <h3 className={`${labelStyle}`}>{contact_us.social}</h3>
               <div className="flex flex-row gap-3">
                 {SocialMediaList.map((social) => (
                   <Link

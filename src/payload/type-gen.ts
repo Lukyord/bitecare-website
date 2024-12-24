@@ -32,8 +32,16 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    home: Home;
+    common: Common;
+    'about-us': AboutUs;
+  };
+  globalsSelect: {
+    home: HomeSelect<false> | HomeSelect<true>;
+    common: CommonSelect<false> | CommonSelect<true>;
+    'about-us': AboutUsSelect<false> | AboutUsSelect<true>;
+  };
   locale: 'en' | 'th';
   user: User & {
     collection: 'users';
@@ -318,6 +326,303 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: string;
+  hero: {
+    header_text: string;
+    subheader_text: string;
+    cta_text: string;
+  };
+  principle: {
+    principle_header: string;
+    principle_subheader: string;
+    /**
+     * Principles needs to be exactly 3
+     */
+    principles: {
+      title: string;
+      icon: string | Media;
+      id?: string | null;
+    }[];
+  };
+  slogan: {
+    slogan_header: string;
+    slogan_description: string;
+  };
+  product_comparison: {
+    header: string;
+  };
+  faq?: {
+    faq_list?:
+      | {
+          question: string;
+          answer: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "common".
+ */
+export interface Common {
+  id: string;
+  button: {
+    meet_bite_care: string;
+    tell_a_friend: string;
+    see_our_products: string;
+    view_more: string;
+    faq: string;
+    get_our_product: string;
+    more_info: string;
+    search: string;
+    find_me: string;
+    view_on_google_map: string;
+    send_message: string;
+    get_to_know_us: string;
+    back_to_homepage: string;
+    contact_us: string;
+    retry: string;
+  };
+  footer: {
+    tagline: {
+      tagline_header: string;
+      tagline_description: string;
+    };
+    legal: {
+      copyright: string;
+      privacy_policy: string;
+      terms_and_conditions: string;
+    };
+  };
+  error: {
+    page_not_found: string;
+    page_not_found_description: string;
+    error: string;
+    error_description: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us".
+ */
+export interface AboutUs {
+  id: string;
+  landing: {
+    welcome_to: string;
+    landing_description: string;
+    landing_quote: string;
+  };
+  bitecare_difference: {
+    header: string;
+    tailored_nutrition: string;
+    tailored_nutrition_description: string;
+    tailored_nutrition_quote?: string | null;
+    premium_ingredients: string;
+    premium_ingredients_description: string;
+    premium_ingredients_quote?: string | null;
+    rigorous_testing: string;
+    rigorous_testing_description: string;
+    rigorous_testing_quote?: string | null;
+    bitecare_community_header: string;
+    bitecare_community_description: string;
+    bitecare_thanks: string;
+  };
+  contact_us: {
+    header: string;
+    email: string;
+    send_us_a_message: string;
+    phone_number: string;
+    contact_hours: string;
+    monday_sun: string;
+    social: string;
+    lets_collaborate: string;
+    first_name: string;
+    last_name: string;
+    company_name: string;
+    company_name_description: string;
+    message: string;
+    message_place_holder: string;
+  };
+  contact_us_toast: {
+    something_went_wrong: string;
+    success: string;
+    message_sent: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        header_text?: T;
+        subheader_text?: T;
+        cta_text?: T;
+      };
+  principle?:
+    | T
+    | {
+        principle_header?: T;
+        principle_subheader?: T;
+        principles?:
+          | T
+          | {
+              title?: T;
+              icon?: T;
+              id?: T;
+            };
+      };
+  slogan?:
+    | T
+    | {
+        slogan_header?: T;
+        slogan_description?: T;
+      };
+  product_comparison?:
+    | T
+    | {
+        header?: T;
+      };
+  faq?:
+    | T
+    | {
+        faq_list?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "common_select".
+ */
+export interface CommonSelect<T extends boolean = true> {
+  button?:
+    | T
+    | {
+        meet_bite_care?: T;
+        tell_a_friend?: T;
+        see_our_products?: T;
+        view_more?: T;
+        faq?: T;
+        get_our_product?: T;
+        more_info?: T;
+        search?: T;
+        find_me?: T;
+        view_on_google_map?: T;
+        send_message?: T;
+        get_to_know_us?: T;
+        back_to_homepage?: T;
+        contact_us?: T;
+        retry?: T;
+      };
+  footer?:
+    | T
+    | {
+        tagline?:
+          | T
+          | {
+              tagline_header?: T;
+              tagline_description?: T;
+            };
+        legal?:
+          | T
+          | {
+              copyright?: T;
+              privacy_policy?: T;
+              terms_and_conditions?: T;
+            };
+      };
+  error?:
+    | T
+    | {
+        page_not_found?: T;
+        page_not_found_description?: T;
+        error?: T;
+        error_description?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us_select".
+ */
+export interface AboutUsSelect<T extends boolean = true> {
+  landing?:
+    | T
+    | {
+        welcome_to?: T;
+        landing_description?: T;
+        landing_quote?: T;
+      };
+  bitecare_difference?:
+    | T
+    | {
+        header?: T;
+        tailored_nutrition?: T;
+        tailored_nutrition_description?: T;
+        tailored_nutrition_quote?: T;
+        premium_ingredients?: T;
+        premium_ingredients_description?: T;
+        premium_ingredients_quote?: T;
+        rigorous_testing?: T;
+        rigorous_testing_description?: T;
+        rigorous_testing_quote?: T;
+        bitecare_community_header?: T;
+        bitecare_community_description?: T;
+        bitecare_thanks?: T;
+      };
+  contact_us?:
+    | T
+    | {
+        header?: T;
+        email?: T;
+        send_us_a_message?: T;
+        phone_number?: T;
+        contact_hours?: T;
+        monday_sun?: T;
+        social?: T;
+        lets_collaborate?: T;
+        first_name?: T;
+        last_name?: T;
+        company_name?: T;
+        company_name_description?: T;
+        message?: T;
+        message_place_holder?: T;
+      };
+  contact_us_toast?:
+    | T
+    | {
+        something_went_wrong?: T;
+        success?: T;
+        message_sent?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
