@@ -14,6 +14,7 @@ import ProductTag from "@/components/common/ProductTag"
 import SecondaryButton from "@/components/common/Button/SecondaryButton"
 import SwiperButtonNext from "../../Products/ProductsPageLanding/SwiperButtonNext"
 import { Product, ProductTag as ProductTagType } from "@/payload/type-gen"
+import { getDividerColor } from "@/lib/color"
 
 type ProductDetailInfoMobileProps = {
   product: Product
@@ -57,8 +58,12 @@ export default function ProductDetailInfoMobile({
           <div className="mx-auto flex h-full w-[90%] flex-col justify-center">
             <div className="flex flex-col gap-4">
               <h1 className="text-h3">{product.label}</h1>
-              {/* Todo: Change to divider color */}
-              <div className={`${product.primary_color} h-1 w-[60%]`} />
+              <div
+                className="h-1 w-[60%]"
+                style={{
+                  backgroundColor: getDividerColor(product.primary_color),
+                }}
+              />
               <div className="flex flex-wrap gap-1">
                 {product.tags?.map((tag, index) => (
                   <React.Fragment key={index}>

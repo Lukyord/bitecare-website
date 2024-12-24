@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { getDividerColor } from "@/lib/color"
 import type { Product, ProductTag as ProductTagType } from "@/payload/type-gen"
 import { BiteCareProduct } from "@/types/common/product"
 import { getTranslations } from "next-intl/server"
@@ -25,8 +26,10 @@ export default async function ProductDetailInfo({
       {/* Header */}
       <div className="flex flex-col gap-4">
         <h1 className="text-h2">{product.label}</h1>
-        {/* TODO: Specific divider color? */}
-        <div className={`${product.primary_color} h-1 w-[60%]`} />
+        <div
+          className="h-1 w-[60%]"
+          style={{ backgroundColor: getDividerColor(product.primary_color) }}
+        />
         <div className="flex gap-1">
           {product.tags?.map((tag, index) => (
             <React.Fragment key={index}>
