@@ -4,15 +4,18 @@ import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 
-import { BiteCareProduct } from "@/types/common/product"
+import { ProductComparison } from "@/types/common/product"
 
 import ProductTag from "@/components/common/ProductTag"
+import { Media, ProductTag as ProductTagType } from "@/payload/type-gen"
 
 type CompareCardProps = {
-  selectedProduct: BiteCareProduct
+  selectedProduct: ProductComparison
 }
 
 export default function CompareCard({ selectedProduct }: CompareCardProps) {
+  const frontImg = selectedProduct.front_img as Media
+  const dogImg = selectedProduct.dog_image_cropped as Media
   const [animationKey, setAnimationKey] = useState(0)
 
   useEffect(() => {
@@ -20,51 +23,30 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
   }, [selectedProduct])
 
   return (
-    <div
-      className="
-                group flex h-full
-                cursor-pointer flex-col
-                overflow-hidden rounded-2xl
-                bg-white text-left
-                transition-all duration-300
-                ease-in-out hover:shadow-2xl
-              "
-    >
+    <div className="group flex h-full select-none flex-col overflow-hidden rounded-2xl bg-white text-left transition-all duration-300 ease-in-out hover:shadow-2xl">
       {/* Product Image */}
       <motion.div
         key={animationKey}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className={`
-                relative h-[40vw] w-full 
-                lg:h-[20vw] ${selectedProduct.compareBgColor} 
-                group overflow-hidden
-              `}
+        // TODO: Computed divider color
+        className={`relative h-[40vw] w-full  lg:h-[20vw] bg-[${selectedProduct.primary_color}] group overflow-hidden`}
       >
         <Image
-          alt="product front"
-          src={selectedProduct.imageFront}
-          width={1192}
-          height={2128}
-          className="
-                  absolute bottom-[-5%] right-1/2 
-                  h-full w-auto translate-x-[50%] 
-                  transition-all duration-300
-                  ease-in-out  group-hover:scale-110 lg:right-[2.5%]
-                  lg:translate-x-0
-                "
+          alt={frontImg.alt}
+          src={frontImg.url ?? ""}
+          width={frontImg.width ?? 1192}
+          height={frontImg.height ?? 2128}
+          className="absolute bottom-[-5%] right-1/2 h-full w-auto translate-x-[50%] transition-all duration-300 ease-in-out group-hover:scale-110  lg:right-[2.5%] lg:translate-x-0"
           priority
         />
         <Image
-          alt="product dog"
-          src={selectedProduct.imageDog}
-          className="
-                  absolute bottom-0 left-0 
-                  hidden h-full w-auto transition-all
-                  duration-300  ease-in-out group-hover:scale-110
-                  lg:block
-                "
+          alt={dogImg.alt}
+          src={dogImg.url ?? ""}
+          height={dogImg.height ?? 326}
+          width={dogImg.width ?? 521}
+          className="absolute bottom-0 left-0  hidden h-full w-auto transition-all duration-300  ease-in-out group-hover:scale-110 lg:block"
         />
       </motion.div>
 
@@ -77,28 +59,22 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
             animate={{ y: 0, opacity: 1 }}
             className="text-paragraph lg:text-h3"
           >
-            {selectedProduct.name}
+            {selectedProduct.label}
           </motion.h3>
-          <div
-            className="
-                  w-[60px] transition-all duration-300 ease-in-out 
-                  group-hover:w-[160px] xs:w-[80px]
-                "
-          >
+          <div className="w-[60px] transition-all duration-300 ease-in-out  group-hover:w-[160px] xs:w-[80px]">
             <motion.div
               key={animationKey}
               initial={{ width: 0 }}
               animate={{ width: "100%" }}
-              className={`
-                  ${selectedProduct.compareDividerColor} h-1 
-                `}
+              // TODO: computed divider color
+              className={`bg-[${selectedProduct.primary_color}] h-1 `}
             />
           </div>
           <div className="h-20 w-full">
             <div className="flex flex-wrap gap-1">
-              {selectedProduct.tags.map((tag, index) => (
+              {selectedProduct.tags?.map((tag, index) => (
                 <React.Fragment key={index}>
-                  <ProductTag tag={tag} size="small" />
+                  <ProductTag tag={tag as ProductTagType} size="small" />
                 </React.Fragment>
               ))}
             </div>
@@ -112,7 +88,7 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
           animate={{ opacity: 1 }}
           className="mt-3 text-subtitle xs:mt-6 md:mt-0 lg:text-paragraph"
         >
-          {selectedProduct.productInfo.compareDescription1}
+          {selectedProduct.compare_description_main}
         </motion.article>
 
         <motion.article
@@ -121,7 +97,7 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
           animate={{ opacity: 1 }}
           className="mt-6 text-justify text-subtitle lg:text-paragraph"
         >
-          {selectedProduct.productInfo.compareDescription2}
+          {selectedProduct.compare_description_sub}
         </motion.article>
       </div>
     </div>

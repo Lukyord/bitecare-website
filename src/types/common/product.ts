@@ -1,4 +1,5 @@
 import { ProductTags } from "@/constant/Products"
+import { Product } from "@/payload/type-gen"
 import { StaticImageData } from "next/image"
 
 export type BiteCareProductName =
@@ -43,6 +44,19 @@ export type BiteCareProduct = {
   productCardBgColor: string
   href: string
 }
+
+export type ProductComparison = Pick<
+  Product,
+  | "id"
+  | "slug"
+  | "label"
+  | "front_img"
+  | "dog_image_cropped"
+  | "primary_color"
+  | "tags"
+  | "compare_description_main"
+  | "compare_description_sub"
+>
 
 export type ProductInfo = {
   compareDescription1: string
