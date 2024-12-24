@@ -1,14 +1,22 @@
 import Image from "next/image"
 import { Images } from "@/constant/Images"
-import { getTranslations } from "next-intl/server"
+import { getLocale } from "next-intl/server"
 import PrimaryButton from "../../common/Button/PrimaryButton"
 import ProductShowcase from "./ProductShowcase"
 import OnlinePlatforms from "./OnlinePlatforms"
+import { getHomeConfigs } from "@/payload/service"
+import { Locale } from "@/config/i18n.config"
 
 type HeroSectionProps = {}
 
 export default async function HeroSection({}: HeroSectionProps) {
-  const tHero = await getTranslations("hero")
+  const locale = (await getLocale()) as Locale
+  const { hero } = await getHomeConfigs({
+    select: {
+      hero: true,
+    },
+    locale,
+  })
 
   return (
     <section className="over mt-[2.5vh] h-full w-screen">
@@ -22,12 +30,10 @@ export default async function HeroSection({}: HeroSectionProps) {
             height={295}
           />
 
-          <p className="mb-4 text-center text-paragraph">
-            {tHero("hero-description")}
-          </p>
+          <p className="mb-4 text-center text-paragraph">{hero.header_text}</p>
 
-          <PrimaryButton text={tHero("cta-button-text")} href="/about-us" />
-          <p className="mt-4 text-subtitle">{tHero("cta-subtitle")}</p>
+          <PrimaryButton text={hero.cta_text} href="/about-us" />
+          <p className="mt-4 text-subtitle">{hero.subheader_text}</p>
         </div>
         <div className="relative -z-10 -mb-[15%] lg:mb-0">
           <Image

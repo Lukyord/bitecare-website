@@ -352,6 +352,9 @@ export interface Home {
     slogan_header: string;
     slogan_description: string;
   };
+  product_comparison: {
+    header: string;
+  };
   faq?: {
     faq_list?:
       | {
@@ -437,6 +440,11 @@ export interface HomeSelect<T extends boolean = true> {
     | {
         slogan_header?: T;
         slogan_description?: T;
+      };
+  product_comparison?:
+    | T
+    | {
+        header?: T;
       };
   faq?:
     | T

@@ -4,3 +4,5 @@
 export * from "./products"
 export * from "./media"
 export * from "./product-tags"
+export * from "./globals/home"
+export * from "./globals/common"
