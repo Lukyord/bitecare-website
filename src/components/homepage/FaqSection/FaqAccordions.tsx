@@ -8,9 +8,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { RichText } from "@payloadcms/richtext-lexical/react"
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical"
 
 type FaqAccordionProps = {
-  faqs: { question: string; answer: string }[]
+  faqs: { question: string; answer: SerializedEditorState }[]
 }
 
 export default function FaqAccordions({ faqs }: FaqAccordionProps) {
@@ -49,9 +51,10 @@ export default function FaqAccordions({ faqs }: FaqAccordionProps) {
               {faq.question}
             </AccordionTrigger>
             <AccordionContent>
-              <div className="mb-4 mt-4 flex flex-col gap-6 text-justify text-subtitle lg:text-paragraph">
-                {faq.answer}
-              </div>
+              <RichText
+                className="mb-4 mt-4 flex flex-col gap-6 text-justify text-subtitle lg:text-paragraph"
+                data={faq.answer}
+              />
             </AccordionContent>
           </AccordionItem>
         ))}
