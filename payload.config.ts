@@ -4,7 +4,13 @@ import { mongooseAdapter } from "@payloadcms/db-mongodb"
 import { gcsStorage } from "@payloadcms/storage-gcs"
 import { buildConfig, Locale } from "payload"
 import type { Locale as DefinedLocale } from "@/config/i18n.config"
-import { ProductTag, Media, Product, Users } from "@/payload/collections"
+import {
+  ProductTag,
+  Media,
+  Product,
+  Users,
+  Stores,
+} from "@/payload/collections"
 import { seoPlugin } from "@payloadcms/plugin-seo"
 import { OverviewField } from "@payloadcms/plugin-seo/fields"
 import path from "path"
@@ -16,7 +22,7 @@ import {
 
 export default buildConfig({
   editor: lexicalEditor(),
-  collections: [Media, Users, Product, ProductTag],
+  collections: [Media, Users, Product, ProductTag, Stores],
   secret: process.env.PAYLOAD_SECRET || "",
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || "",

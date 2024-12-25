@@ -15,6 +15,7 @@ export interface Config {
     users: User;
     product: Product;
     'product-tag': ProductTag;
+    store: Store;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -25,6 +26,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     product: ProductSelect<false> | ProductSelect<true>;
     'product-tag': ProductTagSelect<false> | ProductTagSelect<true>;
+    store: StoreSelect<false> | StoreSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -166,6 +168,44 @@ export interface ProductTag {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "store".
+ */
+export interface Store {
+  id: string;
+  /**
+   * The name of the store. Will be displayed on the website.
+   */
+  name: string;
+  /**
+   * Customer name (Company name), will not be shown on the website but may required for legal purposes.
+   */
+  'customer-name': string;
+  address: string;
+  'sub-district': string;
+  district: string;
+  province: string;
+  /**
+   * Phone number with the format of 02-1234-5678
+   */
+  phone?: string | null;
+  /**
+   * Postal code with the format of 12345
+   */
+  'postal-code': string;
+  link: string;
+  /**
+   * Store latitude will be used for Map API display, please provide 7 decimal places
+   */
+  'Store Latitude': string;
+  /**
+   * Store longtitude will be used for Map API display, please provide 7 decimal places
+   */
+  'Store Longitude': string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -186,6 +226,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'product-tag';
         value: string | ProductTag;
+      } | null)
+    | ({
+        relationTo: 'store';
+        value: string | Store;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -311,6 +355,25 @@ export interface ProductTagSelect<T extends boolean = true> {
   description?: T;
   icon_img?: T;
   color?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "store_select".
+ */
+export interface StoreSelect<T extends boolean = true> {
+  name?: T;
+  'customer-name'?: T;
+  address?: T;
+  'sub-district'?: T;
+  district?: T;
+  province?: T;
+  phone?: T;
+  'postal-code'?: T;
+  link?: T;
+  'Store Latitude'?: T;
+  'Store Longitude'?: T;
   updatedAt?: T;
   createdAt?: T;
 }
