@@ -29,6 +29,8 @@ type Query {
   docAccessHome: homeDocAccess
   Common(draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Common
   docAccessCommon: commonDocAccess
+  AboutUs(draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): AboutUs
+  docAccessAboutUs: about_usDocAccess
   Access: Access
 }
 
@@ -2610,6 +2612,7 @@ type Home {
   hero: Home_Hero
   principle: Home_Principle
   slogan: Home_Slogan
+  product_comparison: Home_Product_comparison
   faq: Home_Faq
   updatedAt: DateTime
   createdAt: DateTime
@@ -2638,13 +2641,17 @@ type Home_Slogan {
   slogan_description: String
 }
 
+type Home_Product_comparison {
+  header: String
+}
+
 type Home_Faq {
   faq_list: [Home_Faq_Faq_list!]
 }
 
 type Home_Faq_Faq_list {
   question: String
-  answer: String
+  answer(depth: Int): JSON
   id: String
 }
 
@@ -2663,6 +2670,7 @@ type HomeDocAccessFields {
   principles: HomeDocAccessFields_principles
   slogan_header: HomeDocAccessFields_slogan_header
   slogan_description: HomeDocAccessFields_slogan_description
+  header: HomeDocAccessFields_header
   faq_list: HomeDocAccessFields_faq_list
   updatedAt: HomeDocAccessFields_updatedAt
   createdAt: HomeDocAccessFields_createdAt
@@ -2925,6 +2933,29 @@ type HomeDocAccessFields_slogan_description_Update {
 }
 
 type HomeDocAccessFields_slogan_description_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_header {
+  create: HomeDocAccessFields_header_Create
+  read: HomeDocAccessFields_header_Read
+  update: HomeDocAccessFields_header_Update
+  delete: HomeDocAccessFields_header_Delete
+}
+
+type HomeDocAccessFields_header_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_header_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_header_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_header_Delete {
   permission: Boolean!
 }
 
@@ -3831,6 +3862,895 @@ type CommonUpdateDocAccess {
   where: JSONObject
 }
 
+type AboutUs {
+  landing: AboutUs_Landing
+  bitecare_difference: AboutUs_Bitecare_difference
+  contact_us: AboutUs_Contact_us
+  contact_us_toast: AboutUs_Contact_us_toast
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type AboutUs_Landing {
+  welcome_to: String
+  landing_description: String
+  landing_quote: String
+}
+
+type AboutUs_Bitecare_difference {
+  header: String
+  tailored_nutrition: String
+  tailored_nutrition_description: String
+  tailored_nutrition_quote: String
+  premium_ingredients: String
+  premium_ingredients_description: String
+  premium_ingredients_quote: String
+  rigorous_testing: String
+  rigorous_testing_description: String
+  rigorous_testing_quote: String
+  bitecare_community_header: String
+  bitecare_community_description: String
+  bitecare_thanks: String
+}
+
+type AboutUs_Contact_us {
+  header: String
+  email: String
+  send_us_a_message: String
+  phone_number: String
+  contact_hours: String
+  monday_sun: String
+  social: String
+  lets_collaborate: String
+  first_name: String
+  last_name: String
+  company_name: String
+  company_name_description: String
+  message: String
+  message_place_holder: String
+}
+
+type AboutUs_Contact_us_toast {
+  something_went_wrong: String
+  success: String
+  message_sent: String
+}
+
+type about_usDocAccess {
+  fields: AboutUsDocAccessFields
+  read: AboutUsReadDocAccess
+  update: AboutUsUpdateDocAccess
+}
+
+type AboutUsDocAccessFields {
+  welcome_to: AboutUsDocAccessFields_welcome_to
+  landing_description: AboutUsDocAccessFields_landing_description
+  landing_quote: AboutUsDocAccessFields_landing_quote
+  header: AboutUsDocAccessFields_header
+  tailored_nutrition: AboutUsDocAccessFields_tailored_nutrition
+  tailored_nutrition_description: AboutUsDocAccessFields_tailored_nutrition_description
+  tailored_nutrition_quote: AboutUsDocAccessFields_tailored_nutrition_quote
+  premium_ingredients: AboutUsDocAccessFields_premium_ingredients
+  premium_ingredients_description: AboutUsDocAccessFields_premium_ingredients_description
+  premium_ingredients_quote: AboutUsDocAccessFields_premium_ingredients_quote
+  rigorous_testing: AboutUsDocAccessFields_rigorous_testing
+  rigorous_testing_description: AboutUsDocAccessFields_rigorous_testing_description
+  rigorous_testing_quote: AboutUsDocAccessFields_rigorous_testing_quote
+  bitecare_community_header: AboutUsDocAccessFields_bitecare_community_header
+  bitecare_community_description: AboutUsDocAccessFields_bitecare_community_description
+  bitecare_thanks: AboutUsDocAccessFields_bitecare_thanks
+  email: AboutUsDocAccessFields_email
+  send_us_a_message: AboutUsDocAccessFields_send_us_a_message
+  phone_number: AboutUsDocAccessFields_phone_number
+  contact_hours: AboutUsDocAccessFields_contact_hours
+  monday_sun: AboutUsDocAccessFields_monday_sun
+  social: AboutUsDocAccessFields_social
+  lets_collaborate: AboutUsDocAccessFields_lets_collaborate
+  first_name: AboutUsDocAccessFields_first_name
+  last_name: AboutUsDocAccessFields_last_name
+  company_name: AboutUsDocAccessFields_company_name
+  company_name_description: AboutUsDocAccessFields_company_name_description
+  message: AboutUsDocAccessFields_message
+  message_place_holder: AboutUsDocAccessFields_message_place_holder
+  something_went_wrong: AboutUsDocAccessFields_something_went_wrong
+  success: AboutUsDocAccessFields_success
+  message_sent: AboutUsDocAccessFields_message_sent
+  updatedAt: AboutUsDocAccessFields_updatedAt
+  createdAt: AboutUsDocAccessFields_createdAt
+}
+
+type AboutUsDocAccessFields_welcome_to {
+  create: AboutUsDocAccessFields_welcome_to_Create
+  read: AboutUsDocAccessFields_welcome_to_Read
+  update: AboutUsDocAccessFields_welcome_to_Update
+  delete: AboutUsDocAccessFields_welcome_to_Delete
+}
+
+type AboutUsDocAccessFields_welcome_to_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_welcome_to_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_welcome_to_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_welcome_to_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_landing_description {
+  create: AboutUsDocAccessFields_landing_description_Create
+  read: AboutUsDocAccessFields_landing_description_Read
+  update: AboutUsDocAccessFields_landing_description_Update
+  delete: AboutUsDocAccessFields_landing_description_Delete
+}
+
+type AboutUsDocAccessFields_landing_description_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_landing_description_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_landing_description_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_landing_description_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_landing_quote {
+  create: AboutUsDocAccessFields_landing_quote_Create
+  read: AboutUsDocAccessFields_landing_quote_Read
+  update: AboutUsDocAccessFields_landing_quote_Update
+  delete: AboutUsDocAccessFields_landing_quote_Delete
+}
+
+type AboutUsDocAccessFields_landing_quote_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_landing_quote_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_landing_quote_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_landing_quote_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_header {
+  create: AboutUsDocAccessFields_header_Create
+  read: AboutUsDocAccessFields_header_Read
+  update: AboutUsDocAccessFields_header_Update
+  delete: AboutUsDocAccessFields_header_Delete
+}
+
+type AboutUsDocAccessFields_header_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_header_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_header_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_header_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_tailored_nutrition {
+  create: AboutUsDocAccessFields_tailored_nutrition_Create
+  read: AboutUsDocAccessFields_tailored_nutrition_Read
+  update: AboutUsDocAccessFields_tailored_nutrition_Update
+  delete: AboutUsDocAccessFields_tailored_nutrition_Delete
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_description {
+  create: AboutUsDocAccessFields_tailored_nutrition_description_Create
+  read: AboutUsDocAccessFields_tailored_nutrition_description_Read
+  update: AboutUsDocAccessFields_tailored_nutrition_description_Update
+  delete: AboutUsDocAccessFields_tailored_nutrition_description_Delete
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_description_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_description_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_description_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_description_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_quote {
+  create: AboutUsDocAccessFields_tailored_nutrition_quote_Create
+  read: AboutUsDocAccessFields_tailored_nutrition_quote_Read
+  update: AboutUsDocAccessFields_tailored_nutrition_quote_Update
+  delete: AboutUsDocAccessFields_tailored_nutrition_quote_Delete
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_quote_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_quote_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_quote_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_tailored_nutrition_quote_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_premium_ingredients {
+  create: AboutUsDocAccessFields_premium_ingredients_Create
+  read: AboutUsDocAccessFields_premium_ingredients_Read
+  update: AboutUsDocAccessFields_premium_ingredients_Update
+  delete: AboutUsDocAccessFields_premium_ingredients_Delete
+}
+
+type AboutUsDocAccessFields_premium_ingredients_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_premium_ingredients_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_premium_ingredients_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_premium_ingredients_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_premium_ingredients_description {
+  create: AboutUsDocAccessFields_premium_ingredients_description_Create
+  read: AboutUsDocAccessFields_premium_ingredients_description_Read
+  update: AboutUsDocAccessFields_premium_ingredients_description_Update
+  delete: AboutUsDocAccessFields_premium_ingredients_description_Delete
+}
+
+type AboutUsDocAccessFields_premium_ingredients_description_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_premium_ingredients_description_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_premium_ingredients_description_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_premium_ingredients_description_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_premium_ingredients_quote {
+  create: AboutUsDocAccessFields_premium_ingredients_quote_Create
+  read: AboutUsDocAccessFields_premium_ingredients_quote_Read
+  update: AboutUsDocAccessFields_premium_ingredients_quote_Update
+  delete: AboutUsDocAccessFields_premium_ingredients_quote_Delete
+}
+
+type AboutUsDocAccessFields_premium_ingredients_quote_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_premium_ingredients_quote_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_premium_ingredients_quote_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_premium_ingredients_quote_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_rigorous_testing {
+  create: AboutUsDocAccessFields_rigorous_testing_Create
+  read: AboutUsDocAccessFields_rigorous_testing_Read
+  update: AboutUsDocAccessFields_rigorous_testing_Update
+  delete: AboutUsDocAccessFields_rigorous_testing_Delete
+}
+
+type AboutUsDocAccessFields_rigorous_testing_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_rigorous_testing_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_rigorous_testing_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_rigorous_testing_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_rigorous_testing_description {
+  create: AboutUsDocAccessFields_rigorous_testing_description_Create
+  read: AboutUsDocAccessFields_rigorous_testing_description_Read
+  update: AboutUsDocAccessFields_rigorous_testing_description_Update
+  delete: AboutUsDocAccessFields_rigorous_testing_description_Delete
+}
+
+type AboutUsDocAccessFields_rigorous_testing_description_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_rigorous_testing_description_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_rigorous_testing_description_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_rigorous_testing_description_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_rigorous_testing_quote {
+  create: AboutUsDocAccessFields_rigorous_testing_quote_Create
+  read: AboutUsDocAccessFields_rigorous_testing_quote_Read
+  update: AboutUsDocAccessFields_rigorous_testing_quote_Update
+  delete: AboutUsDocAccessFields_rigorous_testing_quote_Delete
+}
+
+type AboutUsDocAccessFields_rigorous_testing_quote_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_rigorous_testing_quote_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_rigorous_testing_quote_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_rigorous_testing_quote_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_bitecare_community_header {
+  create: AboutUsDocAccessFields_bitecare_community_header_Create
+  read: AboutUsDocAccessFields_bitecare_community_header_Read
+  update: AboutUsDocAccessFields_bitecare_community_header_Update
+  delete: AboutUsDocAccessFields_bitecare_community_header_Delete
+}
+
+type AboutUsDocAccessFields_bitecare_community_header_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_bitecare_community_header_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_bitecare_community_header_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_bitecare_community_header_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_bitecare_community_description {
+  create: AboutUsDocAccessFields_bitecare_community_description_Create
+  read: AboutUsDocAccessFields_bitecare_community_description_Read
+  update: AboutUsDocAccessFields_bitecare_community_description_Update
+  delete: AboutUsDocAccessFields_bitecare_community_description_Delete
+}
+
+type AboutUsDocAccessFields_bitecare_community_description_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_bitecare_community_description_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_bitecare_community_description_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_bitecare_community_description_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_bitecare_thanks {
+  create: AboutUsDocAccessFields_bitecare_thanks_Create
+  read: AboutUsDocAccessFields_bitecare_thanks_Read
+  update: AboutUsDocAccessFields_bitecare_thanks_Update
+  delete: AboutUsDocAccessFields_bitecare_thanks_Delete
+}
+
+type AboutUsDocAccessFields_bitecare_thanks_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_bitecare_thanks_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_bitecare_thanks_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_bitecare_thanks_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_email {
+  create: AboutUsDocAccessFields_email_Create
+  read: AboutUsDocAccessFields_email_Read
+  update: AboutUsDocAccessFields_email_Update
+  delete: AboutUsDocAccessFields_email_Delete
+}
+
+type AboutUsDocAccessFields_email_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_email_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_email_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_email_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_send_us_a_message {
+  create: AboutUsDocAccessFields_send_us_a_message_Create
+  read: AboutUsDocAccessFields_send_us_a_message_Read
+  update: AboutUsDocAccessFields_send_us_a_message_Update
+  delete: AboutUsDocAccessFields_send_us_a_message_Delete
+}
+
+type AboutUsDocAccessFields_send_us_a_message_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_send_us_a_message_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_send_us_a_message_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_send_us_a_message_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_phone_number {
+  create: AboutUsDocAccessFields_phone_number_Create
+  read: AboutUsDocAccessFields_phone_number_Read
+  update: AboutUsDocAccessFields_phone_number_Update
+  delete: AboutUsDocAccessFields_phone_number_Delete
+}
+
+type AboutUsDocAccessFields_phone_number_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_phone_number_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_phone_number_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_phone_number_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_contact_hours {
+  create: AboutUsDocAccessFields_contact_hours_Create
+  read: AboutUsDocAccessFields_contact_hours_Read
+  update: AboutUsDocAccessFields_contact_hours_Update
+  delete: AboutUsDocAccessFields_contact_hours_Delete
+}
+
+type AboutUsDocAccessFields_contact_hours_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_contact_hours_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_contact_hours_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_contact_hours_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_monday_sun {
+  create: AboutUsDocAccessFields_monday_sun_Create
+  read: AboutUsDocAccessFields_monday_sun_Read
+  update: AboutUsDocAccessFields_monday_sun_Update
+  delete: AboutUsDocAccessFields_monday_sun_Delete
+}
+
+type AboutUsDocAccessFields_monday_sun_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_monday_sun_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_monday_sun_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_monday_sun_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_social {
+  create: AboutUsDocAccessFields_social_Create
+  read: AboutUsDocAccessFields_social_Read
+  update: AboutUsDocAccessFields_social_Update
+  delete: AboutUsDocAccessFields_social_Delete
+}
+
+type AboutUsDocAccessFields_social_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_social_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_social_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_social_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_lets_collaborate {
+  create: AboutUsDocAccessFields_lets_collaborate_Create
+  read: AboutUsDocAccessFields_lets_collaborate_Read
+  update: AboutUsDocAccessFields_lets_collaborate_Update
+  delete: AboutUsDocAccessFields_lets_collaborate_Delete
+}
+
+type AboutUsDocAccessFields_lets_collaborate_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_lets_collaborate_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_lets_collaborate_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_lets_collaborate_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_first_name {
+  create: AboutUsDocAccessFields_first_name_Create
+  read: AboutUsDocAccessFields_first_name_Read
+  update: AboutUsDocAccessFields_first_name_Update
+  delete: AboutUsDocAccessFields_first_name_Delete
+}
+
+type AboutUsDocAccessFields_first_name_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_first_name_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_first_name_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_first_name_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_last_name {
+  create: AboutUsDocAccessFields_last_name_Create
+  read: AboutUsDocAccessFields_last_name_Read
+  update: AboutUsDocAccessFields_last_name_Update
+  delete: AboutUsDocAccessFields_last_name_Delete
+}
+
+type AboutUsDocAccessFields_last_name_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_last_name_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_last_name_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_last_name_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_company_name {
+  create: AboutUsDocAccessFields_company_name_Create
+  read: AboutUsDocAccessFields_company_name_Read
+  update: AboutUsDocAccessFields_company_name_Update
+  delete: AboutUsDocAccessFields_company_name_Delete
+}
+
+type AboutUsDocAccessFields_company_name_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_company_name_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_company_name_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_company_name_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_company_name_description {
+  create: AboutUsDocAccessFields_company_name_description_Create
+  read: AboutUsDocAccessFields_company_name_description_Read
+  update: AboutUsDocAccessFields_company_name_description_Update
+  delete: AboutUsDocAccessFields_company_name_description_Delete
+}
+
+type AboutUsDocAccessFields_company_name_description_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_company_name_description_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_company_name_description_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_company_name_description_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_message {
+  create: AboutUsDocAccessFields_message_Create
+  read: AboutUsDocAccessFields_message_Read
+  update: AboutUsDocAccessFields_message_Update
+  delete: AboutUsDocAccessFields_message_Delete
+}
+
+type AboutUsDocAccessFields_message_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_message_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_message_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_message_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_message_place_holder {
+  create: AboutUsDocAccessFields_message_place_holder_Create
+  read: AboutUsDocAccessFields_message_place_holder_Read
+  update: AboutUsDocAccessFields_message_place_holder_Update
+  delete: AboutUsDocAccessFields_message_place_holder_Delete
+}
+
+type AboutUsDocAccessFields_message_place_holder_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_message_place_holder_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_message_place_holder_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_message_place_holder_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_something_went_wrong {
+  create: AboutUsDocAccessFields_something_went_wrong_Create
+  read: AboutUsDocAccessFields_something_went_wrong_Read
+  update: AboutUsDocAccessFields_something_went_wrong_Update
+  delete: AboutUsDocAccessFields_something_went_wrong_Delete
+}
+
+type AboutUsDocAccessFields_something_went_wrong_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_something_went_wrong_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_something_went_wrong_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_something_went_wrong_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_success {
+  create: AboutUsDocAccessFields_success_Create
+  read: AboutUsDocAccessFields_success_Read
+  update: AboutUsDocAccessFields_success_Update
+  delete: AboutUsDocAccessFields_success_Delete
+}
+
+type AboutUsDocAccessFields_success_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_success_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_success_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_success_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_message_sent {
+  create: AboutUsDocAccessFields_message_sent_Create
+  read: AboutUsDocAccessFields_message_sent_Read
+  update: AboutUsDocAccessFields_message_sent_Update
+  delete: AboutUsDocAccessFields_message_sent_Delete
+}
+
+type AboutUsDocAccessFields_message_sent_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_message_sent_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_message_sent_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_message_sent_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_updatedAt {
+  create: AboutUsDocAccessFields_updatedAt_Create
+  read: AboutUsDocAccessFields_updatedAt_Read
+  update: AboutUsDocAccessFields_updatedAt_Update
+  delete: AboutUsDocAccessFields_updatedAt_Delete
+}
+
+type AboutUsDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_createdAt {
+  create: AboutUsDocAccessFields_createdAt_Create
+  read: AboutUsDocAccessFields_createdAt_Read
+  update: AboutUsDocAccessFields_createdAt_Update
+  delete: AboutUsDocAccessFields_createdAt_Delete
+}
+
+type AboutUsDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type AboutUsDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type AboutUsReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type AboutUsUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type Access {
   canAccessAdmin: Boolean!
   media: mediaAccess
@@ -3841,6 +4761,7 @@ type Access {
   payload_preferences: payload_preferencesAccess
   home: homeAccess
   common: commonAccess
+  about_us: about_usAccess
 }
 
 type mediaAccess {
@@ -5326,6 +6247,7 @@ type HomeFields {
   principles: HomeFields_principles
   slogan_header: HomeFields_slogan_header
   slogan_description: HomeFields_slogan_description
+  header: HomeFields_header
   faq_list: HomeFields_faq_list
   updatedAt: HomeFields_updatedAt
   createdAt: HomeFields_createdAt
@@ -5588,6 +6510,29 @@ type HomeFields_slogan_description_Update {
 }
 
 type HomeFields_slogan_description_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_header {
+  create: HomeFields_header_Create
+  read: HomeFields_header_Read
+  update: HomeFields_header_Update
+  delete: HomeFields_header_Delete
+}
+
+type HomeFields_header_Create {
+  permission: Boolean!
+}
+
+type HomeFields_header_Read {
+  permission: Boolean!
+}
+
+type HomeFields_header_Update {
+  permission: Boolean!
+}
+
+type HomeFields_header_Delete {
   permission: Boolean!
 }
 
@@ -6445,6 +7390,841 @@ type CommonUpdateAccess {
   where: JSONObject
 }
 
+type about_usAccess {
+  fields: AboutUsFields
+  read: AboutUsReadAccess
+  update: AboutUsUpdateAccess
+}
+
+type AboutUsFields {
+  welcome_to: AboutUsFields_welcome_to
+  landing_description: AboutUsFields_landing_description
+  landing_quote: AboutUsFields_landing_quote
+  header: AboutUsFields_header
+  tailored_nutrition: AboutUsFields_tailored_nutrition
+  tailored_nutrition_description: AboutUsFields_tailored_nutrition_description
+  tailored_nutrition_quote: AboutUsFields_tailored_nutrition_quote
+  premium_ingredients: AboutUsFields_premium_ingredients
+  premium_ingredients_description: AboutUsFields_premium_ingredients_description
+  premium_ingredients_quote: AboutUsFields_premium_ingredients_quote
+  rigorous_testing: AboutUsFields_rigorous_testing
+  rigorous_testing_description: AboutUsFields_rigorous_testing_description
+  rigorous_testing_quote: AboutUsFields_rigorous_testing_quote
+  bitecare_community_header: AboutUsFields_bitecare_community_header
+  bitecare_community_description: AboutUsFields_bitecare_community_description
+  bitecare_thanks: AboutUsFields_bitecare_thanks
+  email: AboutUsFields_email
+  send_us_a_message: AboutUsFields_send_us_a_message
+  phone_number: AboutUsFields_phone_number
+  contact_hours: AboutUsFields_contact_hours
+  monday_sun: AboutUsFields_monday_sun
+  social: AboutUsFields_social
+  lets_collaborate: AboutUsFields_lets_collaborate
+  first_name: AboutUsFields_first_name
+  last_name: AboutUsFields_last_name
+  company_name: AboutUsFields_company_name
+  company_name_description: AboutUsFields_company_name_description
+  message: AboutUsFields_message
+  message_place_holder: AboutUsFields_message_place_holder
+  something_went_wrong: AboutUsFields_something_went_wrong
+  success: AboutUsFields_success
+  message_sent: AboutUsFields_message_sent
+  updatedAt: AboutUsFields_updatedAt
+  createdAt: AboutUsFields_createdAt
+}
+
+type AboutUsFields_welcome_to {
+  create: AboutUsFields_welcome_to_Create
+  read: AboutUsFields_welcome_to_Read
+  update: AboutUsFields_welcome_to_Update
+  delete: AboutUsFields_welcome_to_Delete
+}
+
+type AboutUsFields_welcome_to_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_welcome_to_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_welcome_to_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_welcome_to_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_landing_description {
+  create: AboutUsFields_landing_description_Create
+  read: AboutUsFields_landing_description_Read
+  update: AboutUsFields_landing_description_Update
+  delete: AboutUsFields_landing_description_Delete
+}
+
+type AboutUsFields_landing_description_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_landing_description_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_landing_description_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_landing_description_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_landing_quote {
+  create: AboutUsFields_landing_quote_Create
+  read: AboutUsFields_landing_quote_Read
+  update: AboutUsFields_landing_quote_Update
+  delete: AboutUsFields_landing_quote_Delete
+}
+
+type AboutUsFields_landing_quote_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_landing_quote_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_landing_quote_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_landing_quote_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_header {
+  create: AboutUsFields_header_Create
+  read: AboutUsFields_header_Read
+  update: AboutUsFields_header_Update
+  delete: AboutUsFields_header_Delete
+}
+
+type AboutUsFields_header_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_header_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_header_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_header_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_tailored_nutrition {
+  create: AboutUsFields_tailored_nutrition_Create
+  read: AboutUsFields_tailored_nutrition_Read
+  update: AboutUsFields_tailored_nutrition_Update
+  delete: AboutUsFields_tailored_nutrition_Delete
+}
+
+type AboutUsFields_tailored_nutrition_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_tailored_nutrition_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_tailored_nutrition_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_tailored_nutrition_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_tailored_nutrition_description {
+  create: AboutUsFields_tailored_nutrition_description_Create
+  read: AboutUsFields_tailored_nutrition_description_Read
+  update: AboutUsFields_tailored_nutrition_description_Update
+  delete: AboutUsFields_tailored_nutrition_description_Delete
+}
+
+type AboutUsFields_tailored_nutrition_description_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_tailored_nutrition_description_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_tailored_nutrition_description_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_tailored_nutrition_description_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_tailored_nutrition_quote {
+  create: AboutUsFields_tailored_nutrition_quote_Create
+  read: AboutUsFields_tailored_nutrition_quote_Read
+  update: AboutUsFields_tailored_nutrition_quote_Update
+  delete: AboutUsFields_tailored_nutrition_quote_Delete
+}
+
+type AboutUsFields_tailored_nutrition_quote_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_tailored_nutrition_quote_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_tailored_nutrition_quote_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_tailored_nutrition_quote_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_premium_ingredients {
+  create: AboutUsFields_premium_ingredients_Create
+  read: AboutUsFields_premium_ingredients_Read
+  update: AboutUsFields_premium_ingredients_Update
+  delete: AboutUsFields_premium_ingredients_Delete
+}
+
+type AboutUsFields_premium_ingredients_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_premium_ingredients_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_premium_ingredients_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_premium_ingredients_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_premium_ingredients_description {
+  create: AboutUsFields_premium_ingredients_description_Create
+  read: AboutUsFields_premium_ingredients_description_Read
+  update: AboutUsFields_premium_ingredients_description_Update
+  delete: AboutUsFields_premium_ingredients_description_Delete
+}
+
+type AboutUsFields_premium_ingredients_description_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_premium_ingredients_description_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_premium_ingredients_description_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_premium_ingredients_description_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_premium_ingredients_quote {
+  create: AboutUsFields_premium_ingredients_quote_Create
+  read: AboutUsFields_premium_ingredients_quote_Read
+  update: AboutUsFields_premium_ingredients_quote_Update
+  delete: AboutUsFields_premium_ingredients_quote_Delete
+}
+
+type AboutUsFields_premium_ingredients_quote_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_premium_ingredients_quote_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_premium_ingredients_quote_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_premium_ingredients_quote_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_rigorous_testing {
+  create: AboutUsFields_rigorous_testing_Create
+  read: AboutUsFields_rigorous_testing_Read
+  update: AboutUsFields_rigorous_testing_Update
+  delete: AboutUsFields_rigorous_testing_Delete
+}
+
+type AboutUsFields_rigorous_testing_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_rigorous_testing_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_rigorous_testing_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_rigorous_testing_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_rigorous_testing_description {
+  create: AboutUsFields_rigorous_testing_description_Create
+  read: AboutUsFields_rigorous_testing_description_Read
+  update: AboutUsFields_rigorous_testing_description_Update
+  delete: AboutUsFields_rigorous_testing_description_Delete
+}
+
+type AboutUsFields_rigorous_testing_description_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_rigorous_testing_description_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_rigorous_testing_description_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_rigorous_testing_description_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_rigorous_testing_quote {
+  create: AboutUsFields_rigorous_testing_quote_Create
+  read: AboutUsFields_rigorous_testing_quote_Read
+  update: AboutUsFields_rigorous_testing_quote_Update
+  delete: AboutUsFields_rigorous_testing_quote_Delete
+}
+
+type AboutUsFields_rigorous_testing_quote_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_rigorous_testing_quote_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_rigorous_testing_quote_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_rigorous_testing_quote_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_bitecare_community_header {
+  create: AboutUsFields_bitecare_community_header_Create
+  read: AboutUsFields_bitecare_community_header_Read
+  update: AboutUsFields_bitecare_community_header_Update
+  delete: AboutUsFields_bitecare_community_header_Delete
+}
+
+type AboutUsFields_bitecare_community_header_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_bitecare_community_header_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_bitecare_community_header_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_bitecare_community_header_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_bitecare_community_description {
+  create: AboutUsFields_bitecare_community_description_Create
+  read: AboutUsFields_bitecare_community_description_Read
+  update: AboutUsFields_bitecare_community_description_Update
+  delete: AboutUsFields_bitecare_community_description_Delete
+}
+
+type AboutUsFields_bitecare_community_description_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_bitecare_community_description_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_bitecare_community_description_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_bitecare_community_description_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_bitecare_thanks {
+  create: AboutUsFields_bitecare_thanks_Create
+  read: AboutUsFields_bitecare_thanks_Read
+  update: AboutUsFields_bitecare_thanks_Update
+  delete: AboutUsFields_bitecare_thanks_Delete
+}
+
+type AboutUsFields_bitecare_thanks_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_bitecare_thanks_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_bitecare_thanks_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_bitecare_thanks_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_email {
+  create: AboutUsFields_email_Create
+  read: AboutUsFields_email_Read
+  update: AboutUsFields_email_Update
+  delete: AboutUsFields_email_Delete
+}
+
+type AboutUsFields_email_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_email_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_email_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_email_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_send_us_a_message {
+  create: AboutUsFields_send_us_a_message_Create
+  read: AboutUsFields_send_us_a_message_Read
+  update: AboutUsFields_send_us_a_message_Update
+  delete: AboutUsFields_send_us_a_message_Delete
+}
+
+type AboutUsFields_send_us_a_message_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_send_us_a_message_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_send_us_a_message_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_send_us_a_message_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_phone_number {
+  create: AboutUsFields_phone_number_Create
+  read: AboutUsFields_phone_number_Read
+  update: AboutUsFields_phone_number_Update
+  delete: AboutUsFields_phone_number_Delete
+}
+
+type AboutUsFields_phone_number_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_phone_number_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_phone_number_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_phone_number_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_contact_hours {
+  create: AboutUsFields_contact_hours_Create
+  read: AboutUsFields_contact_hours_Read
+  update: AboutUsFields_contact_hours_Update
+  delete: AboutUsFields_contact_hours_Delete
+}
+
+type AboutUsFields_contact_hours_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_contact_hours_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_contact_hours_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_contact_hours_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_monday_sun {
+  create: AboutUsFields_monday_sun_Create
+  read: AboutUsFields_monday_sun_Read
+  update: AboutUsFields_monday_sun_Update
+  delete: AboutUsFields_monday_sun_Delete
+}
+
+type AboutUsFields_monday_sun_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_monday_sun_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_monday_sun_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_monday_sun_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_social {
+  create: AboutUsFields_social_Create
+  read: AboutUsFields_social_Read
+  update: AboutUsFields_social_Update
+  delete: AboutUsFields_social_Delete
+}
+
+type AboutUsFields_social_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_social_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_social_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_social_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_lets_collaborate {
+  create: AboutUsFields_lets_collaborate_Create
+  read: AboutUsFields_lets_collaborate_Read
+  update: AboutUsFields_lets_collaborate_Update
+  delete: AboutUsFields_lets_collaborate_Delete
+}
+
+type AboutUsFields_lets_collaborate_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_lets_collaborate_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_lets_collaborate_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_lets_collaborate_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_first_name {
+  create: AboutUsFields_first_name_Create
+  read: AboutUsFields_first_name_Read
+  update: AboutUsFields_first_name_Update
+  delete: AboutUsFields_first_name_Delete
+}
+
+type AboutUsFields_first_name_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_first_name_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_first_name_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_first_name_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_last_name {
+  create: AboutUsFields_last_name_Create
+  read: AboutUsFields_last_name_Read
+  update: AboutUsFields_last_name_Update
+  delete: AboutUsFields_last_name_Delete
+}
+
+type AboutUsFields_last_name_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_last_name_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_last_name_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_last_name_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_company_name {
+  create: AboutUsFields_company_name_Create
+  read: AboutUsFields_company_name_Read
+  update: AboutUsFields_company_name_Update
+  delete: AboutUsFields_company_name_Delete
+}
+
+type AboutUsFields_company_name_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_company_name_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_company_name_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_company_name_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_company_name_description {
+  create: AboutUsFields_company_name_description_Create
+  read: AboutUsFields_company_name_description_Read
+  update: AboutUsFields_company_name_description_Update
+  delete: AboutUsFields_company_name_description_Delete
+}
+
+type AboutUsFields_company_name_description_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_company_name_description_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_company_name_description_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_company_name_description_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_message {
+  create: AboutUsFields_message_Create
+  read: AboutUsFields_message_Read
+  update: AboutUsFields_message_Update
+  delete: AboutUsFields_message_Delete
+}
+
+type AboutUsFields_message_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_message_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_message_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_message_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_message_place_holder {
+  create: AboutUsFields_message_place_holder_Create
+  read: AboutUsFields_message_place_holder_Read
+  update: AboutUsFields_message_place_holder_Update
+  delete: AboutUsFields_message_place_holder_Delete
+}
+
+type AboutUsFields_message_place_holder_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_message_place_holder_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_message_place_holder_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_message_place_holder_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_something_went_wrong {
+  create: AboutUsFields_something_went_wrong_Create
+  read: AboutUsFields_something_went_wrong_Read
+  update: AboutUsFields_something_went_wrong_Update
+  delete: AboutUsFields_something_went_wrong_Delete
+}
+
+type AboutUsFields_something_went_wrong_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_something_went_wrong_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_something_went_wrong_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_something_went_wrong_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_success {
+  create: AboutUsFields_success_Create
+  read: AboutUsFields_success_Read
+  update: AboutUsFields_success_Update
+  delete: AboutUsFields_success_Delete
+}
+
+type AboutUsFields_success_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_success_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_success_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_success_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_message_sent {
+  create: AboutUsFields_message_sent_Create
+  read: AboutUsFields_message_sent_Read
+  update: AboutUsFields_message_sent_Update
+  delete: AboutUsFields_message_sent_Delete
+}
+
+type AboutUsFields_message_sent_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_message_sent_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_message_sent_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_message_sent_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_updatedAt {
+  create: AboutUsFields_updatedAt_Create
+  read: AboutUsFields_updatedAt_Read
+  update: AboutUsFields_updatedAt_Update
+  delete: AboutUsFields_updatedAt_Delete
+}
+
+type AboutUsFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type AboutUsFields_createdAt {
+  create: AboutUsFields_createdAt_Create
+  read: AboutUsFields_createdAt_Read
+  update: AboutUsFields_createdAt_Update
+  delete: AboutUsFields_createdAt_Delete
+}
+
+type AboutUsFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type AboutUsFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type AboutUsFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type AboutUsFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type AboutUsReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type AboutUsUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type Mutation {
   createMedia(data: mutationMediaInput!, draft: Boolean, locale: LocaleInputType): Media
   updateMedia(id: String!, autosave: Boolean, data: mutationMediaUpdateInput!, draft: Boolean, locale: LocaleInputType): Media
@@ -6478,6 +8258,7 @@ type Mutation {
   duplicatePayloadPreference(id: String!, data: mutationPayloadPreferenceInput!): PayloadPreference
   updateHome(data: mutationHomeInput!, draft: Boolean, locale: LocaleInputType): Home
   updateCommon(data: mutationCommonInput!, draft: Boolean, locale: LocaleInputType): Common
+  updateAboutUs(data: mutationAboutUsInput!, draft: Boolean, locale: LocaleInputType): AboutUs
 }
 
 input mutationMediaInput {
@@ -6729,6 +8510,7 @@ input mutationHomeInput {
   hero: mutationHome_HeroInput
   principle: mutationHome_PrincipleInput
   slogan: mutationHome_SloganInput
+  product_comparison: mutationHome_Product_comparisonInput
   faq: mutationHome_FaqInput
   updatedAt: String
   createdAt: String
@@ -6757,13 +8539,17 @@ input mutationHome_SloganInput {
   slogan_description: String
 }
 
+input mutationHome_Product_comparisonInput {
+  header: String
+}
+
 input mutationHome_FaqInput {
   faq_list: [mutationHome_Faq_Faq_listInput]
 }
 
 input mutationHome_Faq_Faq_listInput {
   question: String
-  answer: String
+  answer: JSON
   id: String
 }
 
@@ -6814,4 +8600,58 @@ input mutationCommon_ErrorInput {
   page_not_found_description: String
   error: String
   error_description: String
+}
+
+input mutationAboutUsInput {
+  landing: mutationAboutUs_LandingInput
+  bitecare_difference: mutationAboutUs_Bitecare_differenceInput
+  contact_us: mutationAboutUs_Contact_usInput
+  contact_us_toast: mutationAboutUs_Contact_us_toastInput
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationAboutUs_LandingInput {
+  welcome_to: String
+  landing_description: String
+  landing_quote: String
+}
+
+input mutationAboutUs_Bitecare_differenceInput {
+  header: String
+  tailored_nutrition: String
+  tailored_nutrition_description: String
+  tailored_nutrition_quote: String
+  premium_ingredients: String
+  premium_ingredients_description: String
+  premium_ingredients_quote: String
+  rigorous_testing: String
+  rigorous_testing_description: String
+  rigorous_testing_quote: String
+  bitecare_community_header: String
+  bitecare_community_description: String
+  bitecare_thanks: String
+}
+
+input mutationAboutUs_Contact_usInput {
+  header: String
+  email: String
+  send_us_a_message: String
+  phone_number: String
+  contact_hours: String
+  monday_sun: String
+  social: String
+  lets_collaborate: String
+  first_name: String
+  last_name: String
+  company_name: String
+  company_name_description: String
+  message: String
+  message_place_holder: String
+}
+
+input mutationAboutUs_Contact_us_toastInput {
+  something_went_wrong: String
+  success: String
+  message_sent: String
 }

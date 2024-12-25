@@ -144,7 +144,7 @@ export const HomeConfig: GlobalConfig = {
                 },
                 {
                   name: "answer",
-                  type: "textarea",
+                  type: "richText",
                   required: true,
                   localized: true,
                 },
