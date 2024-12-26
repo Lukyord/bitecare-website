@@ -47,11 +47,15 @@ export const Stores: CollectionConfig = {
       localized: true,
     },
     {
-      name: "sub-district",
-      label: "Sub District",
+      name: "province",
+      label: "Province",
       type: "text",
       required: true,
-      localized: true,
+      admin: {
+        components: {
+          Field: "@/payload/components/province-picker",
+        },
+      },
     },
     {
       name: "district",
@@ -61,8 +65,8 @@ export const Stores: CollectionConfig = {
       localized: true,
     },
     {
-      name: "province",
-      label: "Province",
+      name: "sub-district",
+      label: "Sub District",
       type: "text",
       required: true,
       localized: true,
@@ -106,13 +110,10 @@ export const Stores: CollectionConfig = {
       type: "text",
       required: true,
       validate: (value: any) => {
-        const googleMapsRegex =
-          /^(https:\/\/(?:www\.)?google\.com\/maps\/.+|https:\/\/goo\.gl\/maps\/.+)$/
-
-        if (!googleMapsRegex.test(value)) {
-          return "Invalid Google Map link. Please provide a valid Google Map URL."
+        const googleMapLinkRegex = /^https:\/\/goo\.gl\/maps\/[a-zA-Z0-9]+$/
+        if (!googleMapLinkRegex.test(value)) {
+          return "Invalid Google Map link. Please provide a valid Google Map link."
         }
-
         return true
       },
     },
@@ -122,18 +123,16 @@ export const Stores: CollectionConfig = {
       type: "text",
       required: true,
       validate: (value: any) => {
-        const latitudeRegex =
-          /^-?(180(\.0{1,7})?|((1[0-7]\d)|([1-9]?\d))(\.\d{1,7})?)$/
+        const latitudeRegex = /^-?([1-8]?\d(\.\d+)?|90(\.0+)?)$/
 
         if (!latitudeRegex.test(value)) {
-          return "Invalid latitude. Please provide a valid value between -180 and 180 with up to 7 decimal places."
+          return "Invalid latitude. Please provide a valid value between -90 and 90."
         }
         return true
       },
       admin: {
-        description:
-          "Store latitude will be used for Map API display, please provide 7 decimal places",
-        placeholder: "123.1234567",
+        description: "Store latitude will be used for Map API display",
+        placeholder: "123.123456789",
       },
     },
     {
@@ -143,17 +142,16 @@ export const Stores: CollectionConfig = {
       required: true,
       validate: (value: any) => {
         const longitudeRegex =
-          /^-?(180(\.0{1,7})?|((1[0-7]\d)|([1-9]?\d))(\.\d{1,7})?)$/
+          /^-?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/
 
         if (!longitudeRegex.test(value)) {
-          return "Invalid longitude. Please provide a valid value between -180 and 180 with up to 7 decimal places."
+          return "Invalid longitude. Please provide a valid value between -180 and 180."
         }
         return true
       },
       admin: {
-        description:
-          "Store longtitude will be used for Map API display, please provide 7 decimal places",
-        placeholder: "123.1234567",
+        description: "Store longitude will be used for Map API display",
+        placeholder: "123.123456789",
       },
     },
   ],

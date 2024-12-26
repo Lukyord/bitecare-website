@@ -181,9 +181,9 @@ export interface Store {
    */
   'customer-name': string;
   address: string;
-  'sub-district': string;
-  district: string;
   province: string;
+  district: string;
+  'sub-district': string;
   /**
    * Phone number with the format of 02-1234-5678
    */
@@ -194,11 +194,11 @@ export interface Store {
   'postal-code': string;
   link: string;
   /**
-   * Store latitude will be used for Map API display, please provide 7 decimal places
+   * Store latitude will be used for Map API display
    */
   'Store Latitude': string;
   /**
-   * Store longtitude will be used for Map API display, please provide 7 decimal places
+   * Store longitude will be used for Map API display
    */
   'Store Longitude': string;
   updatedAt: string;
@@ -366,9 +366,9 @@ export interface StoreSelect<T extends boolean = true> {
   name?: T;
   'customer-name'?: T;
   address?: T;
-  'sub-district'?: T;
-  district?: T;
   province?: T;
+  district?: T;
+  'sub-district'?: T;
   phone?: T;
   'postal-code'?: T;
   link?: T;
