@@ -8,6 +8,13 @@ export const Product: CollectionConfig = {
     useAsTitle: "label",
     defaultColumns: ["label", "description", "updatedAt"],
   },
+  versions: {
+    drafts: true,
+    maxPerDoc: 10,
+  },
+  // hooks: {
+  //   beforeChange: [generateSlugHook("label", "slug")],
+  // },
   fields: [
     {
       type: "tabs",
@@ -43,6 +50,7 @@ export const Product: CollectionConfig = {
                       "Must be unique and can only contain lowercase letters, numbers, and hyphens.",
                     placeholder: "some-product-id",
                     width: "50%",
+                    components: {},
                   },
                   validate: (value: any) => {
                     if (!/^[a-z0-9-]+$/.test(value)) {
@@ -52,6 +60,14 @@ export const Product: CollectionConfig = {
                   },
                 },
               ],
+            },
+            {
+              name: "short_description",
+              type: "text",
+              label: "Short description",
+              maxLength: 150,
+              required: true,
+              localized: true,
             },
             {
               name: "description",

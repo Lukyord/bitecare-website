@@ -13,6 +13,8 @@ type Query {
   Products(draft: Boolean, where: Product_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, pagination: Boolean, sort: String): Products
   countProducts(draft: Boolean, where: Product_where, locale: LocaleInputType): countProducts
   docAccessProduct(id: String!): productDocAccess
+  versionProduct(id: String, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): ProductVersion
+  versionsProducts(where: versionsProduct_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, pagination: Boolean, sort: String): versionsProducts
   ProductTag(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): ProductTag
   ProductTags(draft: Boolean, where: ProductTag_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, pagination: Boolean, sort: String): ProductTags
   countProductTags(draft: Boolean, where: ProductTag_where, locale: LocaleInputType): countProductTags
@@ -825,24 +827,27 @@ type usersMe {
 type Product {
   id: String!
   label: String
-  slug: String!
+  slug: String
+  short_description: String
   description: String
   compare_description_main: String
   compare_description_sub: String
-  primary_color: String!
+  primary_color: String
   tags(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [ProductTag!]
   facts: [Product_Facts!]!
-  front_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
-  back_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
-  summary_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
-  clinic_test_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
-  palatability_test_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
-  registration_number_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
-  fact_sheet_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
-  dog_image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
-  dog_image_cropped(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
+  front_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  back_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  summary_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  clinic_test_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  palatability_test_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  registration_number_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  fact_sheet_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  dog_image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  dog_image_cropped(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  meta: Product_Meta
   updatedAt: DateTime
   createdAt: DateTime
+  _status: Product__status
 }
 
 type ProductTag {
@@ -859,6 +864,17 @@ type Product_Facts {
   title: String
   description: String
   id: String
+}
+
+type Product_Meta {
+  title: String
+  description: String
+  image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+}
+
+enum Product__status {
+  draft
+  published
 }
 
 type Products {
@@ -878,6 +894,7 @@ type Products {
 input Product_where {
   label: Product_label_operator
   slug: Product_slug_operator
+  short_description: Product_short_description_operator
   description: Product_description_operator
   compare_description_main: Product_compare_description_main_operator
   compare_description_sub: Product_compare_description_sub_operator
@@ -895,8 +912,12 @@ input Product_where {
   fact_sheet_img: Product_fact_sheet_img_operator
   dog_image: Product_dog_image_operator
   dog_image_cropped: Product_dog_image_cropped_operator
+  meta__title: Product_meta__title_operator
+  meta__description: Product_meta__description_operator
+  meta__image: Product_meta__image_operator
   updatedAt: Product_updatedAt_operator
   createdAt: Product_createdAt_operator
+  _status: Product__status_operator
   id: Product_id_operator
   AND: [Product_where_and]
   OR: [Product_where_or]
@@ -913,6 +934,16 @@ input Product_label_operator {
 }
 
 input Product_slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Product_short_description_operator {
   equals: String
   not_equals: String
   like: String
@@ -1070,6 +1101,34 @@ input Product_dog_image_cropped_operator {
   all: [JSON]
 }
 
+input Product_meta__title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Product_meta__description_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  exists: Boolean
+}
+
+input Product_meta__image_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
 input Product_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -1092,6 +1151,20 @@ input Product_createdAt_operator {
   exists: Boolean
 }
 
+input Product__status_operator {
+  equals: Product__status_Input
+  not_equals: Product__status_Input
+  in: [Product__status_Input]
+  not_in: [Product__status_Input]
+  all: [Product__status_Input]
+  exists: Boolean
+}
+
+enum Product__status_Input {
+  draft
+  published
+}
+
 input Product_id_operator {
   equals: String
   not_equals: String
@@ -1106,6 +1179,7 @@ input Product_id_operator {
 input Product_where_and {
   label: Product_label_operator
   slug: Product_slug_operator
+  short_description: Product_short_description_operator
   description: Product_description_operator
   compare_description_main: Product_compare_description_main_operator
   compare_description_sub: Product_compare_description_sub_operator
@@ -1123,8 +1197,12 @@ input Product_where_and {
   fact_sheet_img: Product_fact_sheet_img_operator
   dog_image: Product_dog_image_operator
   dog_image_cropped: Product_dog_image_cropped_operator
+  meta__title: Product_meta__title_operator
+  meta__description: Product_meta__description_operator
+  meta__image: Product_meta__image_operator
   updatedAt: Product_updatedAt_operator
   createdAt: Product_createdAt_operator
+  _status: Product__status_operator
   id: Product_id_operator
   AND: [Product_where_and]
   OR: [Product_where_or]
@@ -1133,6 +1211,7 @@ input Product_where_and {
 input Product_where_or {
   label: Product_label_operator
   slug: Product_slug_operator
+  short_description: Product_short_description_operator
   description: Product_description_operator
   compare_description_main: Product_compare_description_main_operator
   compare_description_sub: Product_compare_description_sub_operator
@@ -1150,8 +1229,12 @@ input Product_where_or {
   fact_sheet_img: Product_fact_sheet_img_operator
   dog_image: Product_dog_image_operator
   dog_image_cropped: Product_dog_image_cropped_operator
+  meta__title: Product_meta__title_operator
+  meta__description: Product_meta__description_operator
+  meta__image: Product_meta__image_operator
   updatedAt: Product_updatedAt_operator
   createdAt: Product_createdAt_operator
+  _status: Product__status_operator
   id: Product_id_operator
   AND: [Product_where_and]
   OR: [Product_where_or]
@@ -1167,11 +1250,13 @@ type productDocAccess {
   read: ProductReadDocAccess
   update: ProductUpdateDocAccess
   delete: ProductDeleteDocAccess
+  readVersions: ProductReadVersionsDocAccess
 }
 
 type ProductDocAccessFields {
   label: ProductDocAccessFields_label
   slug: ProductDocAccessFields_slug
+  short_description: ProductDocAccessFields_short_description
   description: ProductDocAccessFields_description
   compare_description_main: ProductDocAccessFields_compare_description_main
   compare_description_sub: ProductDocAccessFields_compare_description_sub
@@ -1187,8 +1272,10 @@ type ProductDocAccessFields {
   fact_sheet_img: ProductDocAccessFields_fact_sheet_img
   dog_image: ProductDocAccessFields_dog_image
   dog_image_cropped: ProductDocAccessFields_dog_image_cropped
+  meta: ProductDocAccessFields_meta
   updatedAt: ProductDocAccessFields_updatedAt
   createdAt: ProductDocAccessFields_createdAt
+  _status: ProductDocAccessFields__status
 }
 
 type ProductDocAccessFields_label {
@@ -1234,6 +1321,29 @@ type ProductDocAccessFields_slug_Update {
 }
 
 type ProductDocAccessFields_slug_Delete {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_short_description {
+  create: ProductDocAccessFields_short_description_Create
+  read: ProductDocAccessFields_short_description_Read
+  update: ProductDocAccessFields_short_description_Update
+  delete: ProductDocAccessFields_short_description_Delete
+}
+
+type ProductDocAccessFields_short_description_Create {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_short_description_Read {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_short_description_Update {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_short_description_Delete {
   permission: Boolean!
 }
 
@@ -1658,6 +1768,105 @@ type ProductDocAccessFields_dog_image_cropped_Delete {
   permission: Boolean!
 }
 
+type ProductDocAccessFields_meta {
+  create: ProductDocAccessFields_meta_Create
+  read: ProductDocAccessFields_meta_Read
+  update: ProductDocAccessFields_meta_Update
+  delete: ProductDocAccessFields_meta_Delete
+  fields: ProductDocAccessFields_meta_Fields
+}
+
+type ProductDocAccessFields_meta_Create {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_Read {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_Update {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_Delete {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_Fields {
+  title: ProductDocAccessFields_meta_title
+  description: ProductDocAccessFields_meta_description
+  image: ProductDocAccessFields_meta_image
+}
+
+type ProductDocAccessFields_meta_title {
+  create: ProductDocAccessFields_meta_title_Create
+  read: ProductDocAccessFields_meta_title_Read
+  update: ProductDocAccessFields_meta_title_Update
+  delete: ProductDocAccessFields_meta_title_Delete
+}
+
+type ProductDocAccessFields_meta_title_Create {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_title_Read {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_title_Update {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_title_Delete {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_description {
+  create: ProductDocAccessFields_meta_description_Create
+  read: ProductDocAccessFields_meta_description_Read
+  update: ProductDocAccessFields_meta_description_Update
+  delete: ProductDocAccessFields_meta_description_Delete
+}
+
+type ProductDocAccessFields_meta_description_Create {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_description_Read {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_description_Update {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_description_Delete {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_image {
+  create: ProductDocAccessFields_meta_image_Create
+  read: ProductDocAccessFields_meta_image_Read
+  update: ProductDocAccessFields_meta_image_Update
+  delete: ProductDocAccessFields_meta_image_Delete
+}
+
+type ProductDocAccessFields_meta_image_Create {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_image_Read {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_image_Update {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_meta_image_Delete {
+  permission: Boolean!
+}
+
 type ProductDocAccessFields_updatedAt {
   create: ProductDocAccessFields_updatedAt_Create
   read: ProductDocAccessFields_updatedAt_Read
@@ -1704,6 +1913,29 @@ type ProductDocAccessFields_createdAt_Delete {
   permission: Boolean!
 }
 
+type ProductDocAccessFields__status {
+  create: ProductDocAccessFields__status_Create
+  read: ProductDocAccessFields__status_Read
+  update: ProductDocAccessFields__status_Update
+  delete: ProductDocAccessFields__status_Delete
+}
+
+type ProductDocAccessFields__status_Create {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields__status_Read {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields__status_Update {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields__status_Delete {
+  permission: Boolean!
+}
+
 type ProductCreateDocAccess {
   permission: Boolean!
   where: JSONObject
@@ -1722,6 +1954,502 @@ type ProductUpdateDocAccess {
 type ProductDeleteDocAccess {
   permission: Boolean!
   where: JSONObject
+}
+
+type ProductReadVersionsDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductVersion {
+  parent(draft: Boolean, locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Product
+  version: ProductVersion_Version
+  createdAt: DateTime
+  updatedAt: DateTime
+  snapshot: Boolean
+  publishedLocale: ProductVersion_publishedLocale
+  latest: Boolean
+  id: String
+}
+
+type ProductVersion_Version {
+  label: String
+  slug: String
+  short_description: String
+  description: String
+  compare_description_main: String
+  compare_description_sub: String
+  primary_color: String
+  tags(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): [ProductTag!]
+  facts: [ProductVersion_Version_Facts!]!
+  front_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  back_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  summary_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  clinic_test_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  palatability_test_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  registration_number_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  fact_sheet_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  dog_image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  dog_image_cropped(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  meta: ProductVersion_Version_Meta
+  updatedAt: DateTime
+  createdAt: DateTime
+  _status: ProductVersion_Version__status
+}
+
+type ProductVersion_Version_Facts {
+  title: String
+  description: String
+  id: String
+}
+
+type ProductVersion_Version_Meta {
+  title: String
+  description: String
+  image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+}
+
+enum ProductVersion_Version__status {
+  draft
+  published
+}
+
+enum ProductVersion_publishedLocale {
+  en
+  th
+}
+
+type versionsProducts {
+  docs: [ProductVersion]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input versionsProduct_where {
+  parent: versionsProduct_parent_operator
+  version__label: versionsProduct_version__label_operator
+  version__slug: versionsProduct_version__slug_operator
+  version__short_description: versionsProduct_version__short_description_operator
+  version__description: versionsProduct_version__description_operator
+  version__compare_description_main: versionsProduct_version__compare_description_main_operator
+  version__compare_description_sub: versionsProduct_version__compare_description_sub_operator
+  version__primary_color: versionsProduct_version__primary_color_operator
+  version__tags: versionsProduct_version__tags_operator
+  version__facts__title: versionsProduct_version__facts__title_operator
+  version__facts__description: versionsProduct_version__facts__description_operator
+  version__facts__id: versionsProduct_version__facts__id_operator
+  version__front_img: versionsProduct_version__front_img_operator
+  version__back_img: versionsProduct_version__back_img_operator
+  version__summary_img: versionsProduct_version__summary_img_operator
+  version__clinic_test_img: versionsProduct_version__clinic_test_img_operator
+  version__palatability_test_img: versionsProduct_version__palatability_test_img_operator
+  version__registration_number_img: versionsProduct_version__registration_number_img_operator
+  version__fact_sheet_img: versionsProduct_version__fact_sheet_img_operator
+  version__dog_image: versionsProduct_version__dog_image_operator
+  version__dog_image_cropped: versionsProduct_version__dog_image_cropped_operator
+  version__meta__title: versionsProduct_version__meta__title_operator
+  version__meta__description: versionsProduct_version__meta__description_operator
+  version__meta__image: versionsProduct_version__meta__image_operator
+  version__updatedAt: versionsProduct_version__updatedAt_operator
+  version__createdAt: versionsProduct_version__createdAt_operator
+  version___status: versionsProduct_version___status_operator
+  createdAt: versionsProduct_createdAt_operator
+  updatedAt: versionsProduct_updatedAt_operator
+  snapshot: versionsProduct_snapshot_operator
+  publishedLocale: versionsProduct_publishedLocale_operator
+  latest: versionsProduct_latest_operator
+  id: versionsProduct_id_operator
+  AND: [versionsProduct_where_and]
+  OR: [versionsProduct_where_or]
+}
+
+input versionsProduct_parent_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input versionsProduct_version__label_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsProduct_version__slug_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsProduct_version__short_description_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsProduct_version__description_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+}
+
+input versionsProduct_version__compare_description_main_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+}
+
+input versionsProduct_version__compare_description_sub_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+}
+
+input versionsProduct_version__primary_color_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsProduct_version__tags_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input versionsProduct_version__facts__title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsProduct_version__facts__description_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input versionsProduct_version__facts__id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsProduct_version__front_img_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
+input versionsProduct_version__back_img_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
+input versionsProduct_version__summary_img_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
+input versionsProduct_version__clinic_test_img_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
+input versionsProduct_version__palatability_test_img_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
+input versionsProduct_version__registration_number_img_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
+input versionsProduct_version__fact_sheet_img_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
+input versionsProduct_version__dog_image_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
+input versionsProduct_version__dog_image_cropped_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
+input versionsProduct_version__meta__title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsProduct_version__meta__description_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  exists: Boolean
+}
+
+input versionsProduct_version__meta__image_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+  exists: Boolean
+}
+
+input versionsProduct_version__updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsProduct_version__createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsProduct_version___status_operator {
+  equals: versionsProduct_version___status_Input
+  not_equals: versionsProduct_version___status_Input
+  in: [versionsProduct_version___status_Input]
+  not_in: [versionsProduct_version___status_Input]
+  all: [versionsProduct_version___status_Input]
+  exists: Boolean
+}
+
+enum versionsProduct_version___status_Input {
+  draft
+  published
+}
+
+input versionsProduct_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsProduct_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input versionsProduct_snapshot_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
+input versionsProduct_publishedLocale_operator {
+  equals: versionsProduct_publishedLocale_Input
+  not_equals: versionsProduct_publishedLocale_Input
+  in: [versionsProduct_publishedLocale_Input]
+  not_in: [versionsProduct_publishedLocale_Input]
+  all: [versionsProduct_publishedLocale_Input]
+  exists: Boolean
+}
+
+enum versionsProduct_publishedLocale_Input {
+  en
+  th
+}
+
+input versionsProduct_latest_operator {
+  equals: Boolean
+  not_equals: Boolean
+  exists: Boolean
+}
+
+input versionsProduct_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsProduct_where_and {
+  parent: versionsProduct_parent_operator
+  version__label: versionsProduct_version__label_operator
+  version__slug: versionsProduct_version__slug_operator
+  version__short_description: versionsProduct_version__short_description_operator
+  version__description: versionsProduct_version__description_operator
+  version__compare_description_main: versionsProduct_version__compare_description_main_operator
+  version__compare_description_sub: versionsProduct_version__compare_description_sub_operator
+  version__primary_color: versionsProduct_version__primary_color_operator
+  version__tags: versionsProduct_version__tags_operator
+  version__facts__title: versionsProduct_version__facts__title_operator
+  version__facts__description: versionsProduct_version__facts__description_operator
+  version__facts__id: versionsProduct_version__facts__id_operator
+  version__front_img: versionsProduct_version__front_img_operator
+  version__back_img: versionsProduct_version__back_img_operator
+  version__summary_img: versionsProduct_version__summary_img_operator
+  version__clinic_test_img: versionsProduct_version__clinic_test_img_operator
+  version__palatability_test_img: versionsProduct_version__palatability_test_img_operator
+  version__registration_number_img: versionsProduct_version__registration_number_img_operator
+  version__fact_sheet_img: versionsProduct_version__fact_sheet_img_operator
+  version__dog_image: versionsProduct_version__dog_image_operator
+  version__dog_image_cropped: versionsProduct_version__dog_image_cropped_operator
+  version__meta__title: versionsProduct_version__meta__title_operator
+  version__meta__description: versionsProduct_version__meta__description_operator
+  version__meta__image: versionsProduct_version__meta__image_operator
+  version__updatedAt: versionsProduct_version__updatedAt_operator
+  version__createdAt: versionsProduct_version__createdAt_operator
+  version___status: versionsProduct_version___status_operator
+  createdAt: versionsProduct_createdAt_operator
+  updatedAt: versionsProduct_updatedAt_operator
+  snapshot: versionsProduct_snapshot_operator
+  publishedLocale: versionsProduct_publishedLocale_operator
+  latest: versionsProduct_latest_operator
+  id: versionsProduct_id_operator
+  AND: [versionsProduct_where_and]
+  OR: [versionsProduct_where_or]
+}
+
+input versionsProduct_where_or {
+  parent: versionsProduct_parent_operator
+  version__label: versionsProduct_version__label_operator
+  version__slug: versionsProduct_version__slug_operator
+  version__short_description: versionsProduct_version__short_description_operator
+  version__description: versionsProduct_version__description_operator
+  version__compare_description_main: versionsProduct_version__compare_description_main_operator
+  version__compare_description_sub: versionsProduct_version__compare_description_sub_operator
+  version__primary_color: versionsProduct_version__primary_color_operator
+  version__tags: versionsProduct_version__tags_operator
+  version__facts__title: versionsProduct_version__facts__title_operator
+  version__facts__description: versionsProduct_version__facts__description_operator
+  version__facts__id: versionsProduct_version__facts__id_operator
+  version__front_img: versionsProduct_version__front_img_operator
+  version__back_img: versionsProduct_version__back_img_operator
+  version__summary_img: versionsProduct_version__summary_img_operator
+  version__clinic_test_img: versionsProduct_version__clinic_test_img_operator
+  version__palatability_test_img: versionsProduct_version__palatability_test_img_operator
+  version__registration_number_img: versionsProduct_version__registration_number_img_operator
+  version__fact_sheet_img: versionsProduct_version__fact_sheet_img_operator
+  version__dog_image: versionsProduct_version__dog_image_operator
+  version__dog_image_cropped: versionsProduct_version__dog_image_cropped_operator
+  version__meta__title: versionsProduct_version__meta__title_operator
+  version__meta__description: versionsProduct_version__meta__description_operator
+  version__meta__image: versionsProduct_version__meta__image_operator
+  version__updatedAt: versionsProduct_version__updatedAt_operator
+  version__createdAt: versionsProduct_version__createdAt_operator
+  version___status: versionsProduct_version___status_operator
+  createdAt: versionsProduct_createdAt_operator
+  updatedAt: versionsProduct_updatedAt_operator
+  snapshot: versionsProduct_snapshot_operator
+  publishedLocale: versionsProduct_publishedLocale_operator
+  latest: versionsProduct_latest_operator
+  id: versionsProduct_id_operator
+  AND: [versionsProduct_where_and]
+  OR: [versionsProduct_where_or]
 }
 
 type ProductTags {
@@ -2024,7 +2752,7 @@ type ProductTagDeleteDocAccess {
 
 type PayloadLockedDocument {
   id: String!
-  document(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): PayloadLockedDocument_Document_Relationship
+  document(draft: Boolean, locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): PayloadLockedDocument_Document_Relationship
   globalSlug: String
   user(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): PayloadLockedDocument_User_Relationship!
   updatedAt: DateTime
@@ -5198,11 +5926,13 @@ type productAccess {
   read: ProductReadAccess
   update: ProductUpdateAccess
   delete: ProductDeleteAccess
+  readVersions: ProductReadVersionsAccess
 }
 
 type ProductFields {
   label: ProductFields_label
   slug: ProductFields_slug
+  short_description: ProductFields_short_description
   description: ProductFields_description
   compare_description_main: ProductFields_compare_description_main
   compare_description_sub: ProductFields_compare_description_sub
@@ -5218,8 +5948,10 @@ type ProductFields {
   fact_sheet_img: ProductFields_fact_sheet_img
   dog_image: ProductFields_dog_image
   dog_image_cropped: ProductFields_dog_image_cropped
+  meta: ProductFields_meta
   updatedAt: ProductFields_updatedAt
   createdAt: ProductFields_createdAt
+  _status: ProductFields__status
 }
 
 type ProductFields_label {
@@ -5265,6 +5997,29 @@ type ProductFields_slug_Update {
 }
 
 type ProductFields_slug_Delete {
+  permission: Boolean!
+}
+
+type ProductFields_short_description {
+  create: ProductFields_short_description_Create
+  read: ProductFields_short_description_Read
+  update: ProductFields_short_description_Update
+  delete: ProductFields_short_description_Delete
+}
+
+type ProductFields_short_description_Create {
+  permission: Boolean!
+}
+
+type ProductFields_short_description_Read {
+  permission: Boolean!
+}
+
+type ProductFields_short_description_Update {
+  permission: Boolean!
+}
+
+type ProductFields_short_description_Delete {
   permission: Boolean!
 }
 
@@ -5689,6 +6444,105 @@ type ProductFields_dog_image_cropped_Delete {
   permission: Boolean!
 }
 
+type ProductFields_meta {
+  create: ProductFields_meta_Create
+  read: ProductFields_meta_Read
+  update: ProductFields_meta_Update
+  delete: ProductFields_meta_Delete
+  fields: ProductFields_meta_Fields
+}
+
+type ProductFields_meta_Create {
+  permission: Boolean!
+}
+
+type ProductFields_meta_Read {
+  permission: Boolean!
+}
+
+type ProductFields_meta_Update {
+  permission: Boolean!
+}
+
+type ProductFields_meta_Delete {
+  permission: Boolean!
+}
+
+type ProductFields_meta_Fields {
+  title: ProductFields_meta_title
+  description: ProductFields_meta_description
+  image: ProductFields_meta_image
+}
+
+type ProductFields_meta_title {
+  create: ProductFields_meta_title_Create
+  read: ProductFields_meta_title_Read
+  update: ProductFields_meta_title_Update
+  delete: ProductFields_meta_title_Delete
+}
+
+type ProductFields_meta_title_Create {
+  permission: Boolean!
+}
+
+type ProductFields_meta_title_Read {
+  permission: Boolean!
+}
+
+type ProductFields_meta_title_Update {
+  permission: Boolean!
+}
+
+type ProductFields_meta_title_Delete {
+  permission: Boolean!
+}
+
+type ProductFields_meta_description {
+  create: ProductFields_meta_description_Create
+  read: ProductFields_meta_description_Read
+  update: ProductFields_meta_description_Update
+  delete: ProductFields_meta_description_Delete
+}
+
+type ProductFields_meta_description_Create {
+  permission: Boolean!
+}
+
+type ProductFields_meta_description_Read {
+  permission: Boolean!
+}
+
+type ProductFields_meta_description_Update {
+  permission: Boolean!
+}
+
+type ProductFields_meta_description_Delete {
+  permission: Boolean!
+}
+
+type ProductFields_meta_image {
+  create: ProductFields_meta_image_Create
+  read: ProductFields_meta_image_Read
+  update: ProductFields_meta_image_Update
+  delete: ProductFields_meta_image_Delete
+}
+
+type ProductFields_meta_image_Create {
+  permission: Boolean!
+}
+
+type ProductFields_meta_image_Read {
+  permission: Boolean!
+}
+
+type ProductFields_meta_image_Update {
+  permission: Boolean!
+}
+
+type ProductFields_meta_image_Delete {
+  permission: Boolean!
+}
+
 type ProductFields_updatedAt {
   create: ProductFields_updatedAt_Create
   read: ProductFields_updatedAt_Read
@@ -5735,6 +6589,29 @@ type ProductFields_createdAt_Delete {
   permission: Boolean!
 }
 
+type ProductFields__status {
+  create: ProductFields__status_Create
+  read: ProductFields__status_Read
+  update: ProductFields__status_Update
+  delete: ProductFields__status_Delete
+}
+
+type ProductFields__status_Create {
+  permission: Boolean!
+}
+
+type ProductFields__status_Read {
+  permission: Boolean!
+}
+
+type ProductFields__status_Update {
+  permission: Boolean!
+}
+
+type ProductFields__status_Delete {
+  permission: Boolean!
+}
+
 type ProductCreateAccess {
   permission: Boolean!
   where: JSONObject
@@ -5751,6 +6628,11 @@ type ProductUpdateAccess {
 }
 
 type ProductDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductReadVersionsAccess {
   permission: Boolean!
   where: JSONObject
 }
@@ -8244,6 +9126,7 @@ type Mutation {
   updateProduct(id: String!, autosave: Boolean, data: mutationProductUpdateInput!, draft: Boolean, locale: LocaleInputType): Product
   deleteProduct(id: String!): Product
   duplicateProduct(id: String!, data: mutationProductInput!): Product
+  restoreVersionProduct(id: String, draft: Boolean): Product
   createProductTag(data: mutationProductTagInput!, draft: Boolean, locale: LocaleInputType): ProductTag
   updateProductTag(id: String!, autosave: Boolean, data: mutationProductTagUpdateInput!, draft: Boolean, locale: LocaleInputType): ProductTag
   deleteProductTag(id: String!): ProductTag
@@ -8343,6 +9226,7 @@ type usersResetPassword {
 input mutationProductInput {
   label: String
   slug: String!
+  short_description: String
   description: String
   compare_description_main: String
   compare_description_sub: String
@@ -8358,8 +9242,10 @@ input mutationProductInput {
   fact_sheet_img: String
   dog_image: String
   dog_image_cropped: String
+  meta: mutationProduct_MetaInput
   updatedAt: String
   createdAt: String
+  _status: Product__status_MutationInput
 }
 
 input mutationProduct_FactsInput {
@@ -8368,9 +9254,21 @@ input mutationProduct_FactsInput {
   id: String
 }
 
+input mutationProduct_MetaInput {
+  title: String
+  description: String
+  image: String
+}
+
+enum Product__status_MutationInput {
+  draft
+  published
+}
+
 input mutationProductUpdateInput {
   label: String
   slug: String
+  short_description: String
   description: String
   compare_description_main: String
   compare_description_sub: String
@@ -8386,14 +9284,27 @@ input mutationProductUpdateInput {
   fact_sheet_img: String
   dog_image: String
   dog_image_cropped: String
+  meta: mutationProductUpdate_MetaInput
   updatedAt: String
   createdAt: String
+  _status: ProductUpdate__status_MutationInput
 }
 
 input mutationProductUpdate_FactsInput {
   title: String
   description: String
   id: String
+}
+
+input mutationProductUpdate_MetaInput {
+  title: String
+  description: String
+  image: String
+}
+
+enum ProductUpdate__status_MutationInput {
+  draft
+  published
 }
 
 input mutationProductTagInput {
