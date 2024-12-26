@@ -119,6 +119,7 @@ export interface Product {
    * Must be unique and can only contain lowercase letters, numbers, and hyphens.
    */
   slug: string;
+  short_description: string;
   description: string;
   compare_description_main: string;
   compare_description_sub: string;
@@ -138,8 +139,17 @@ export interface Product {
   fact_sheet_img: string | Media;
   dog_image: string | Media;
   dog_image_cropped: string | Media;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+  };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -259,6 +269,7 @@ export interface UsersSelect<T extends boolean = true> {
 export interface ProductSelect<T extends boolean = true> {
   label?: T;
   slug?: T;
+  short_description?: T;
   description?: T;
   compare_description_main?: T;
   compare_description_sub?: T;
@@ -280,8 +291,16 @@ export interface ProductSelect<T extends boolean = true> {
   fact_sheet_img?: T;
   dog_image?: T;
   dog_image_cropped?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

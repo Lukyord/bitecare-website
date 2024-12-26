@@ -21,6 +21,7 @@
     "@hookform/resolvers": "^3.3.3",
     "@payloadcms/db-mongodb": "^3.11.0",
     "@payloadcms/next": "^3.11.0",
+    "@payloadcms/plugin-seo": "^3.11.0",
     "@payloadcms/richtext-lexical": "^3.11.0",
     "@payloadcms/storage-gcs": "^3.11.0",
     "@payloadcms/translations": "^3.11.0",
