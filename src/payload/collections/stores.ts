@@ -116,10 +116,20 @@ export const Stores: CollectionConfig = {
       name: "phone",
       label: "Phone",
       type: "text",
-      minLength: 10,
-      maxLength: 10,
+      validate: (value: any) => {
+        if (!value) {
+          return true
+        }
+
+        const phoneRegex = /^0\d{9}$/
+        if (!phoneRegex.test(value)) {
+          return "Please enter a valid 10-digit phone number"
+        }
+
+        return true
+      },
       admin: {
-        description: "Phone number with the format of 09xxxxxxxx",
+        description: "Phone number, can be left empty",
         placeholder: "0961234567",
       },
     },

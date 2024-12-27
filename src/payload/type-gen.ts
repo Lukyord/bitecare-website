@@ -194,7 +194,7 @@ export interface Store {
    */
   subdistrict: string;
   /**
-   * Phone number with the format of 09xxxxxxxx
+   * Phone number, can be left empty
    */
   phone?: string | null;
   /**
