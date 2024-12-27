@@ -1,0 +1,31 @@
+.location-row {
+  --gap: 16px;
+  --column: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  align-items: center;
+}
+
+.location-row > * {
+  width: calc((100% - (var(--gap) * (var(--column) - 1))) / var(--column));
+  flex-grow: 1;
+}
+.location-row .react-select .rs__control {
+  height: 40px;
+}
+
+.location-row .clear-indicator {
+  pointer-events: none;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .location-row {
+    --column: 2;
+  }
+
+  .location-row > *:first-child {
+    width: 100%;
+  }
+}

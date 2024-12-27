@@ -57,11 +57,19 @@ export const Stores: CollectionConfig = {
       label: "Province",
       type: "text",
       required: true,
+      defaultValue: "Select a value",
       admin: {
         description: "Province will be stored as ID for further reference",
         components: {
           Field: "@/payload/components/province-picker",
         },
+      },
+      validate: (value: any) => {
+        if (isNaN(value)) {
+          return "Please select a valid province."
+        }
+
+        return true
       },
     },
     {
@@ -69,12 +77,19 @@ export const Stores: CollectionConfig = {
       label: "District",
       type: "text",
       required: true,
+      defaultValue: "Select a value",
       admin: {
-        condition: (_, siblingData) => !!siblingData.province,
         description: "District will be stored as ID for further reference",
         components: {
           Field: "@/payload/components/district-picker",
         },
+      },
+      validate: (value: any) => {
+        if (isNaN(value)) {
+          return "Please select a valid district."
+        }
+
+        return true
       },
     },
     {
@@ -82,12 +97,19 @@ export const Stores: CollectionConfig = {
       label: "Subdistrict",
       type: "text",
       required: true,
+      defaultValue: "Select a value",
       admin: {
-        condition: (_, siblingData) => !!siblingData.district,
         description: "Subdistrict will be stored as ID for further reference",
         components: {
           Field: "@/payload/components/subdistrict-picker",
         },
+      },
+      validate: (value: any) => {
+        if (isNaN(value)) {
+          return "Please select a valid subdistrict."
+        }
+
+        return true
       },
     },
     {

@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import { useField, SelectInput } from "@payloadcms/ui"
 import type { Location } from "../collections"
 
+import "./location-picker.css"
+
 const ProvincePicker = ({
   field: { label, required = true, admin },
   path,
@@ -71,23 +73,41 @@ const ProvincePicker = ({
 
   return (
     <div className="field-type">
-      <label className="field-label">{label || "Location Select"}</label>
-      <SelectInput
-        path={path}
-        name={path}
-        options={options}
-        value={value}
-        onChange={handleSelectionChange}
-        required={required}
-      />
+      <div className="location-row">
+        <label className="field-label">{label || "Location Select"}</label>
+        {selectedLocation && (
+          <>
+            <label className="field-label">TH Name</label>
+            <label className="field-label">EN Name</label>
+          </>
+        )}
+      </div>
+      <div className="location-row">
+        <SelectInput
+          path={path}
+          name={path}
+          options={options}
+          value={value}
+          onChange={handleSelectionChange}
+          required={required}
+        />
+        {selectedLocation?.id && (
+          <>
+            <div className="react-select">
+              <div className="rs__control">
+                <span className="en-name">{selectedLocation.name_th}</span>
+              </div>
+            </div>
+            <div className="react-select">
+              <div className="rs__control">
+                <div className="th-name">{selectedLocation.name_en}</div>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
       {admin?.description && (
         <p className="field-description">{admin?.description}</p>
-      )}
-      {selectedLocation && (
-        <div className="selected-location-info">
-          <p>TH: {selectedLocation.name_th}</p>
-          <p>EN: {selectedLocation.name_en}</p>
-        </div>
       )}
     </div>
   )

@@ -188,11 +188,11 @@ export interface Store {
   /**
    * District will be stored as ID for further reference
    */
-  district?: string | null;
+  district: string;
   /**
    * Subdistrict will be stored as ID for further reference
    */
-  subdistrict?: string | null;
+  subdistrict: string;
   /**
    * Phone number with the format of 09xxxxxxxx
    */
