@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useField, SelectInput, useFormFields } from "@payloadcms/ui"
+import { useField, SelectInput, useFormFields, useLocale } from "@payloadcms/ui"
 import type { Location } from "../collections"
 
 const SubdistrictPicker = ({
@@ -18,6 +18,7 @@ const SubdistrictPicker = ({
   }
   path: string
 }) => {
+  const locale = useLocale()
   const { value, setValue } = useField<string>({ path })
   const [allData, setAllData] = useState<any[]>([])
   const [options, setOptions] = useState<any[]>([])
@@ -93,10 +94,7 @@ const SubdistrictPicker = ({
       <div className="location-row">
         <label className="field-label">{label || "Location Select"}</label>
         {selectedLocation && (
-          <>
-            <label className="field-label">TH Name</label>
-            <label className="field-label">EN Name</label>
-          </>
+          <label className="field-label">{locale.label as string} Name</label>
         )}
       </div>
       <div className="location-row">
@@ -109,18 +107,15 @@ const SubdistrictPicker = ({
           required={required}
         />
         {selectedLocation?.id && (
-          <>
-            <div className="react-select">
-              <div className="rs__control">
-                <span className="en-name">{selectedLocation.name_th}</span>
-              </div>
+          <div className="react-select">
+            <div className="rs__control">
+              <span className="en-name">
+                {locale.code === "th"
+                  ? selectedLocation.name_th
+                  : selectedLocation.name_en}
+              </span>
             </div>
-            <div className="react-select">
-              <div className="rs__control">
-                <div className="th-name">{selectedLocation.name_en}</div>
-              </div>
-            </div>
-          </>
+          </div>
         )}
       </div>
       {admin?.description && (

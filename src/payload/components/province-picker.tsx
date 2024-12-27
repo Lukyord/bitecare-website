@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useField, SelectInput } from "@payloadcms/ui"
+import { useField, SelectInput, useLocale } from "@payloadcms/ui"
+
 import type { Location } from "../collections"
 
 import "./location-picker.css"
@@ -20,6 +21,7 @@ const ProvincePicker = ({
   }
   path: string
 }) => {
+  const locale = useLocale()
   const { value, setValue } = useField<string>({ path })
   const [options, setOptions] = useState<any[]>([])
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(
@@ -76,10 +78,7 @@ const ProvincePicker = ({
       <div className="location-row">
         <label className="field-label">{label || "Location Select"}</label>
         {selectedLocation && (
-          <>
-            <label className="field-label">TH Name</label>
-            <label className="field-label">EN Name</label>
-          </>
+          <label className="field-label">{locale.label as string} Name</label>
         )}
       </div>
       <div className="location-row">
@@ -92,18 +91,15 @@ const ProvincePicker = ({
           required={required}
         />
         {selectedLocation?.id && (
-          <>
-            <div className="react-select">
-              <div className="rs__control">
-                <span className="en-name">{selectedLocation.name_th}</span>
-              </div>
+          <div className="react-select">
+            <div className="rs__control">
+              <span className="en-name">
+                {locale.code === "th"
+                  ? selectedLocation.name_th
+                  : selectedLocation.name_en}
+              </span>
             </div>
-            <div className="react-select">
-              <div className="rs__control">
-                <div className="th-name">{selectedLocation.name_en}</div>
-              </div>
-            </div>
-          </>
+          </div>
         )}
       </div>
       {admin?.description && (
