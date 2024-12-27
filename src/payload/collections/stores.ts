@@ -24,14 +24,14 @@ export const Stores: CollectionConfig = {
           required: true,
           localized: true,
           admin: {
-            placeholder: "Store Name",
+            placeholder: "Store name",
             description:
               "The name of the store. Will be displayed on the website.",
             width: "50%",
           },
         },
         {
-          name: "customer-name",
+          name: "customer_name",
           label: "Customer Name",
           type: "text",
           required: true,
@@ -39,7 +39,7 @@ export const Stores: CollectionConfig = {
           admin: {
             description:
               "Customer name (Company name), will not be shown on the website but may required for legal purposes.",
-            placeholder: "customer-name",
+            placeholder: "Customer name",
             width: "50%",
           },
         },
@@ -134,7 +134,7 @@ export const Stores: CollectionConfig = {
       },
     },
     {
-      name: "postal-code",
+      name: "postal_code",
       label: "Postal Code",
       type: "text",
       required: true,

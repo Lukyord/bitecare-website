@@ -179,7 +179,7 @@ export interface Store {
   /**
    * Customer name (Company name), will not be shown on the website but may required for legal purposes.
    */
-  'customer-name': string;
+  customer_name: string;
   address: string;
   /**
    * Province will be stored as ID for further reference
@@ -200,7 +200,7 @@ export interface Store {
   /**
    * Postal code with the format of 12345
    */
-  'postal-code': string;
+  postal_code: string;
   link: string;
   /**
    * Store latitude will be used for Map API display
@@ -373,13 +373,13 @@ export interface ProductTagSelect<T extends boolean = true> {
  */
 export interface StoreSelect<T extends boolean = true> {
   name?: T;
-  'customer-name'?: T;
+  customer_name?: T;
   address?: T;
   province?: T;
   district?: T;
   subdistrict?: T;
   phone?: T;
-  'postal-code'?: T;
+  postal_code?: T;
   link?: T;
   'Store Latitude'?: T;
   'Store Longitude'?: T;
