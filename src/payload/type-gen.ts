@@ -181,11 +181,20 @@ export interface Store {
    */
   'customer-name': string;
   address: string;
+  /**
+   * Province will be stored as ID for further reference
+   */
   province: string;
+  /**
+   * District will be stored as ID for further reference
+   */
   district: string;
+  /**
+   * Subdistrict will be stored as ID for further reference
+   */
   'sub-district': string;
   /**
-   * Phone number with the format of 02-1234-5678
+   * Phone number with the format of 09xxxxxxxx
    */
   phone?: string | null;
   /**

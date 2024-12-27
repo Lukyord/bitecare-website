@@ -1,5 +1,11 @@
 import type { CollectionConfig } from "payload"
 
+export type Location = {
+  id: string
+  name_th: string
+  name_en: string
+}
+
 export const Stores: CollectionConfig = {
   slug: "store",
   admin: {
@@ -52,8 +58,12 @@ export const Stores: CollectionConfig = {
       type: "text",
       required: true,
       admin: {
+        description: "Province will be stored as ID for further reference",
         components: {
-          Field: "@/payload/components/province-picker",
+          Field: "@/payload/components/location-picker",
+        },
+        custom: {
+          type: "province",
         },
       },
     },
@@ -62,29 +72,40 @@ export const Stores: CollectionConfig = {
       label: "District",
       type: "text",
       required: true,
-      localized: true,
+      admin: {
+        description: "District will be stored as ID for further reference",
+        components: {
+          Field: "@/payload/components/location-picker",
+        },
+        custom: {
+          type: "district",
+        },
+      },
     },
     {
       name: "sub-district",
-      label: "Sub District",
+      label: "Subdistrict",
       type: "text",
       required: true,
-      localized: true,
+      admin: {
+        description: "Subdistrict will be stored as ID for further reference",
+        components: {
+          Field: "@/payload/components/location-picker",
+        },
+        custom: {
+          type: "subdistrict",
+        },
+      },
     },
     {
       name: "phone",
       label: "Phone",
       type: "text",
-      validate: (value: any) => {
-        const phoneRegex = /^\d{2}-\d{4}-\d{4}$/
-        if (!phoneRegex.test(value)) {
-          return "Invalid phone number format. Please use the format 02-1234-5678."
-        }
-        return true
-      },
+      minLength: 10,
+      maxLength: 10,
       admin: {
-        description: "Phone number with the format of 02-1234-5678",
-        placeholder: "02-1234-5678",
+        description: "Phone number with the format of 09xxxxxxxx",
+        placeholder: "0961234567",
       },
     },
     {
@@ -93,7 +114,7 @@ export const Stores: CollectionConfig = {
       type: "text",
       required: true,
       validate: (value: any) => {
-        const postalCodeRegex = /^\d{5}$/ // Matches 12345
+        const postalCodeRegex = /^\d{5}$/
         if (!postalCodeRegex.test(value)) {
           return "Please enter a valid postal code with the format 12345."
         }
@@ -109,13 +130,6 @@ export const Stores: CollectionConfig = {
       label: "Google Map Link",
       type: "text",
       required: true,
-      validate: (value: any) => {
-        const googleMapLinkRegex = /^https:\/\/goo\.gl\/maps\/[a-zA-Z0-9]+$/
-        if (!googleMapLinkRegex.test(value)) {
-          return "Invalid Google Map link. Please provide a valid Google Map link."
-        }
-        return true
-      },
     },
     {
       label: "lat",
