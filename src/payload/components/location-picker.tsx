@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useField, SelectInput } from "@payloadcms/ui"
+import { useField, SelectInput, useFormFields } from "@payloadcms/ui"
 import type { Location } from "../collections"
 
 const LocationPicker = ({
@@ -11,12 +11,17 @@ const LocationPicker = ({
   field: {
     label: string
     required?: boolean
-    admin?: { description?: string; custom?: { type: string } }
+    admin?: {
+      description?: string
+      custom?: { type: string }
+    }
   }
   path: string
 }) => {
   const { value, setValue } = useField<string>({ path })
   const [options, setOptions] = useState([])
+  const provinceId = useFormFields(([fields, dispatch]) => fields.province)
+  const districtId = useFormFields(([fields, dispatch]) => fields.district)
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(
     null
   )
@@ -42,7 +47,21 @@ const LocationPicker = ({
         const response = await fetch(url)
         const data = await response.json()
 
-        const locationOptions = data
+        let filteredData = data
+
+        if (type === "district" && provinceId.value) {
+          filteredData = data.filter(
+            (location: any) =>
+              location.province_id.toString() == provinceId.value
+          )
+        } else if (type === "subdistrict" && districtId.value) {
+          filteredData = data.filter(
+            (location: any) =>
+              location.amphure_id.toString() == districtId.value
+          )
+        }
+
+        const locationOptions = filteredData
           .map((location: any) => {
             return {
               label: location.name_th,
@@ -61,7 +80,7 @@ const LocationPicker = ({
           const selectedLocation = locationOptions.find(
             (option: any) => option.value.id === value
           )
-          setSelectedLocation(selectedLocation.value)
+          setSelectedLocation(selectedLocation.value || null)
         }
       } catch (error) {
         console.error("Error fetching data:", error)
@@ -69,7 +88,7 @@ const LocationPicker = ({
     }
 
     fetchOptions()
-  }, [])
+  }, [provinceId, districtId, value])
 
   const handleSelectionChange = (selectedOption: any) => {
     const selectedValue = selectedOption.value

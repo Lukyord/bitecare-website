@@ -73,6 +73,7 @@ export const Stores: CollectionConfig = {
       type: "text",
       required: true,
       admin: {
+        condition: (_, siblingData) => !!siblingData.province,
         description: "District will be stored as ID for further reference",
         components: {
           Field: "@/payload/components/location-picker",
@@ -88,6 +89,7 @@ export const Stores: CollectionConfig = {
       type: "text",
       required: true,
       admin: {
+        condition: (_, siblingData) => !!siblingData.district,
         description: "Subdistrict will be stored as ID for further reference",
         components: {
           Field: "@/payload/components/location-picker",
