@@ -192,7 +192,7 @@ export interface Store {
   /**
    * Subdistrict will be stored as ID for further reference
    */
-  'sub-district'?: string | null;
+  subdistrict?: string | null;
   /**
    * Phone number with the format of 09xxxxxxxx
    */
@@ -377,7 +377,7 @@ export interface StoreSelect<T extends boolean = true> {
   address?: T;
   province?: T;
   district?: T;
-  'sub-district'?: T;
+  subdistrict?: T;
   phone?: T;
   'postal-code'?: T;
   link?: T;

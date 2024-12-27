@@ -60,10 +60,7 @@ export const Stores: CollectionConfig = {
       admin: {
         description: "Province will be stored as ID for further reference",
         components: {
-          Field: "@/payload/components/location-picker",
-        },
-        custom: {
-          type: "province",
+          Field: "@/payload/components/province-picker",
         },
       },
     },
@@ -76,15 +73,12 @@ export const Stores: CollectionConfig = {
         condition: (_, siblingData) => !!siblingData.province,
         description: "District will be stored as ID for further reference",
         components: {
-          Field: "@/payload/components/location-picker",
-        },
-        custom: {
-          type: "district",
+          Field: "@/payload/components/district-picker",
         },
       },
     },
     {
-      name: "sub-district",
+      name: "subdistrict",
       label: "Subdistrict",
       type: "text",
       required: true,
@@ -92,10 +86,7 @@ export const Stores: CollectionConfig = {
         condition: (_, siblingData) => !!siblingData.district,
         description: "Subdistrict will be stored as ID for further reference",
         components: {
-          Field: "@/payload/components/location-picker",
-        },
-        custom: {
-          type: "subdistrict",
+          Field: "@/payload/components/subdistrict-picker",
         },
       },
     },

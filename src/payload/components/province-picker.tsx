@@ -1,10 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useField, SelectInput, useFormFields } from "@payloadcms/ui"
+import { useField, SelectInput } from "@payloadcms/ui"
 import type { Location } from "../collections"
 
-const LocationPicker = ({
+const ProvincePicker = ({
   field: { label, required = true, admin },
   path,
 }: {
@@ -19,49 +19,20 @@ const LocationPicker = ({
   path: string
 }) => {
   const { value, setValue } = useField<string>({ path })
-  const [options, setOptions] = useState([])
-  const provinceId = useFormFields(([fields, dispatch]) => fields.province)
-  const districtId = useFormFields(([fields, dispatch]) => fields.district)
+  const [options, setOptions] = useState<any[]>([])
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(
     null
   )
 
   useEffect(() => {
-    const fetchOptions = async () => {
+    const fetchData = async () => {
       try {
-        const type = admin?.custom?.type || "province"
-        const url = {
-          province:
-            "https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json",
-          district:
-            "https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_amphure.json",
-          subdistrict:
-            "https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_tambon.json",
-        }[type]
-
-        if (!url) {
-          console.error("Invalid type")
-          return
-        }
-
-        const response = await fetch(url)
+        const response = await fetch(
+          "https://raw.githubusercontent.com/kongvut/thai-province-data/master/api_province.json"
+        )
         const data = await response.json()
 
-        let filteredData = data
-
-        if (type === "district" && provinceId.value) {
-          filteredData = data.filter(
-            (location: any) =>
-              location.province_id.toString() == provinceId.value
-          )
-        } else if (type === "subdistrict" && districtId.value) {
-          filteredData = data.filter(
-            (location: any) =>
-              location.amphure_id.toString() == districtId.value
-          )
-        }
-
-        const locationOptions = filteredData
+        const locationOptions = data
           .map((location: any) => {
             return {
               label: location.name_th,
@@ -75,20 +46,22 @@ const LocationPicker = ({
           .sort((a: any, b: any) => a.label.localeCompare(b.label))
 
         setOptions(locationOptions)
-
-        if (value) {
-          const selectedLocation = locationOptions.find(
-            (option: any) => option.value.id === value
-          )
-          setSelectedLocation(selectedLocation.value || null)
-        }
       } catch (error) {
         console.error("Error fetching data:", error)
       }
     }
 
-    fetchOptions()
-  }, [provinceId, districtId, value])
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    if (value) {
+      const selectedLocation = options.find(
+        (option: any) => option.value.id.toString() === value
+      )
+      setSelectedLocation(selectedLocation?.value || null)
+    }
+  }, [value, options])
 
   const handleSelectionChange = (selectedOption: any) => {
     const selectedValue = selectedOption.value
@@ -120,4 +93,4 @@ const LocationPicker = ({
   )
 }
 
-export default LocationPicker
+export default ProvincePicker
