@@ -59,7 +59,6 @@ export const Stores: CollectionConfig = {
       required: true,
       defaultValue: "Select a value",
       admin: {
-        description: "Province will be stored as ID for further reference",
         components: {
           Field: "@/payload/components/province-picker",
         },
@@ -79,7 +78,6 @@ export const Stores: CollectionConfig = {
       required: true,
       defaultValue: "Select a value",
       admin: {
-        description: "District will be stored as ID for further reference",
         components: {
           Field: "@/payload/components/district-picker",
         },
@@ -99,7 +97,6 @@ export const Stores: CollectionConfig = {
       required: true,
       defaultValue: "Select a value",
       admin: {
-        description: "Subdistrict will be stored as ID for further reference",
         components: {
           Field: "@/payload/components/subdistrict-picker",
         },

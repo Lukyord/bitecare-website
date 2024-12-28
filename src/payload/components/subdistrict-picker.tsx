@@ -62,12 +62,8 @@ const SubdistrictPicker = ({
     const locationOptions = filteredData
       .map((location: any) => {
         return {
-          label: location.name_th,
-          value: {
-            id: location.id.toString(),
-            name_th: location.name_th,
-            name_en: location.name_en,
-          },
+          label: locale.code == "th" ? location.name_th : location.name_en,
+          value: location.id.toString(),
         }
       })
       .sort((a: any, b: any) => a.label.localeCompare(b.label))
@@ -76,7 +72,7 @@ const SubdistrictPicker = ({
 
     if (value) {
       const selectedLocation = locationOptions.find(
-        (option: any) => option.value.id.toString() === value
+        (option: any) => option.value === value
       )
 
       setSelectedLocation(selectedLocation?.value || null)
@@ -85,43 +81,22 @@ const SubdistrictPicker = ({
 
   const handleSelectionChange = (selectedOption: any) => {
     const selectedValue = selectedOption.value
-    setValue(selectedValue.id.toString())
+    setValue(selectedValue)
     setSelectedLocation(selectedValue)
   }
 
   return (
-    <div className="field-type">
-      <div className="location-row">
-        <label className="field-label">{label || "Location Select"}</label>
-        {selectedLocation && (
-          <label className="field-label">{locale.label as string} Name</label>
-        )}
-      </div>
-      <div className="location-row">
-        <SelectInput
-          path={path}
-          name={path}
-          options={options}
-          value={value}
-          onChange={handleSelectionChange}
-          required={required}
-        />
-        {selectedLocation?.id && (
-          <div className="react-select">
-            <div className="rs__control">
-              <span className="en-name">
-                {locale.code === "th"
-                  ? selectedLocation.name_th
-                  : selectedLocation.name_en}
-              </span>
-            </div>
-          </div>
-        )}
-      </div>
-      {admin?.description && (
-        <p className="field-description">{admin?.description}</p>
-      )}
-    </div>
+    <SelectInput
+      path={path}
+      name={path}
+      options={options}
+      value={value}
+      label={label || "Subdistrict Select"}
+      readOnly={options.length === 0}
+      onChange={handleSelectionChange}
+      required={required}
+      description={admin?.description}
+    />
   )
 }
 

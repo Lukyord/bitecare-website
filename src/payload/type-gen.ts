@@ -181,17 +181,8 @@ export interface Store {
    */
   customer_name: string;
   address: string;
-  /**
-   * Province will be stored as ID for further reference
-   */
   province: string;
-  /**
-   * District will be stored as ID for further reference
-   */
   district: string;
-  /**
-   * Subdistrict will be stored as ID for further reference
-   */
   subdistrict: string;
   /**
    * Phone number, can be left empty
