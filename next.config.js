@@ -19,7 +19,8 @@ const nextConfig = withPayload(
       return [
         {
           source: "/api/media/file/:path*",
-          destination: "https://storage.googleapis.com/bitecare/:path*",
+          destination:
+            "https://storage.googleapis.com/bitecare/payload-uploads/:path*",
           permanent: true,
         },
       ]
