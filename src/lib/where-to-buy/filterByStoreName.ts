@@ -14,21 +14,23 @@ export function filterByStoreName(
   // 4) If all filters are specified, return stores in the specified province, district, and subdistrict.
 
   const All_Stores_In_Sub_District =
-    searchFilter.province === ""
+    searchFilter.province.value === ""
       ? Stores
-      : searchFilter.district === ""
-        ? Stores.filter((store) => store.province === searchFilter.province)
-        : searchFilter.subDistrict === ""
+      : searchFilter.district.value === ""
+        ? Stores.filter(
+            (store) => store.province === searchFilter.province.value
+          )
+        : searchFilter.subDistrict.value === ""
           ? Stores.filter(
               (store) =>
-                store.province === searchFilter.province &&
-                store.district === searchFilter.district
+                store.province === searchFilter.province.value &&
+                store.district === searchFilter.district.value
             )
           : Stores.filter(
               (store) =>
-                store.province === searchFilter.province &&
-                store.district === searchFilter.district &&
-                store["sub-district"] === searchFilter.subDistrict
+                store.province === searchFilter.province.value &&
+                store.district === searchFilter.district.value &&
+                store["sub-district"] === searchFilter.subDistrict.value
             )
 
   const All_Store_Names_In_Sub_District = Array.from(

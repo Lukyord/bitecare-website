@@ -4,14 +4,10 @@ import { useTranslations } from "next-intl"
 import { useEffect, useState } from "react"
 
 import {
+  ComboBoxChoice,
   PhysicalStore,
   SearchFilter,
 } from "@/types/where-to-buy/physical-store"
-import { provinces } from "@/constant/addresses"
-import {
-  filterDistrictByProvince,
-  filterSubDistrictByDistrict,
-} from "@/lib/where-to-buy/filterByAddress"
 import { filterByStoreName } from "@/lib/where-to-buy/filterByStoreName"
 
 import {
@@ -26,13 +22,38 @@ import SearchButton from "./SearchButton"
 import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
 import { useSearchParams } from "next/navigation"
 import { filterResult } from "@/lib/where-to-buy/filterResult"
+import {
+  getDistrict,
+  getProvince,
+  getSubdistrict,
+} from "@/payload/service/location/gcs"
+import { useLocale } from "next-intl"
 
 export default function LocationFilter() {
+  const locale = useLocale()
+
+  const [provincesChoices, setProvincesChoices] = useState<ComboBoxChoice[]>([])
+  const [districtChoices, setDistrictChoices] = useState<ComboBoxChoice[]>([])
+  const [subdistrictChoices, setSubdistrictChoices] = useState<
+    ComboBoxChoice[]
+  >([])
   const [searchFilter, setSearchFilter] = useState<SearchFilter>({
-    province: "",
-    district: "",
-    subDistrict: "",
-    storeName: "",
+    province: {
+      value: "",
+      label: "",
+    },
+    district: {
+      value: "",
+      label: "",
+    },
+    subDistrict: {
+      value: "",
+      label: "",
+    },
+    storeName: {
+      value: "",
+      label: "",
+    },
   })
   const searchParams = useSearchParams()
 
@@ -40,8 +61,63 @@ export default function LocationFilter() {
     usePhysicalStoreSearch()
   const tPhysicalStore = useTranslations("physical-store")
 
-  useEffect(() => {}, [])
+  // Get Province Data
+  useEffect(() => {
+    const getProvinceData = async () => {
+      const provinceData = await getProvince()
+      if (provinceData) {
+        setProvincesChoices(
+          provinceData.map((province: any) => ({
+            label: locale === "en" ? province.name_en : province.name_th,
+            value: province.id,
+          }))
+        )
+      }
+    }
+    getProvinceData()
+  }, [])
 
+  // Get District Data
+  useEffect(() => {
+    const getDistrictData = async () => {
+      const districtData = await getDistrict(searchFilter.province.value)
+
+      if (districtData) {
+        setDistrictChoices(
+          districtData.map((district: any) => ({
+            label: locale === "en" ? district.name_en : district.name_th,
+            value: district.id,
+          }))
+        )
+      }
+    }
+
+    if (searchFilter.province.value !== "") {
+      getDistrictData()
+    }
+  }, [searchFilter.province.value])
+
+  // Get Subdistrict Data
+  useEffect(() => {
+    const getSubDistrictData = async () => {
+      const subDistrictData = await getSubdistrict(searchFilter.district.value)
+
+      if (subDistrictData) {
+        setSubdistrictChoices(
+          subDistrictData.map((subDistrict: any) => ({
+            label: locale === "en" ? subDistrict.name_en : subDistrict.name_th,
+            value: subDistrict.id,
+          }))
+        )
+      }
+    }
+
+    if (searchFilter.district.value !== "") {
+      getSubDistrictData()
+    }
+  }, [searchFilter.district.value])
+
+  // Set Filter Accordion Value from URL search params
   useEffect(() => {
     const urlProvince = searchParams.get("province")
     const urlDistrict = searchParams.get("district")
@@ -51,17 +127,51 @@ export default function LocationFilter() {
     if (urlProvince || urlDistrict || urlSubDistrict || urlStoreName) {
       setFilterAccordionValue("")
       setSearchFilter({
-        province: urlProvince || "",
-        district: urlDistrict || "",
-        subDistrict: urlSubDistrict || "",
-        storeName: urlStoreName || "",
+        province: {
+          value: urlProvince || "",
+          label:
+            provincesChoices.find((province) => province.value === urlProvince)
+              ?.label || "",
+        },
+        district: {
+          value: urlDistrict || "",
+          label:
+            provincesChoices.find((province) => province.value === urlDistrict)
+              ?.label || "",
+        },
+        subDistrict: {
+          value: urlSubDistrict || "",
+          label:
+            provincesChoices.find(
+              (province) => province.value === urlSubDistrict
+            )?.label || "",
+        },
+        storeName: { value: urlStoreName || "", label: urlStoreName || "" },
       })
       setResult(
         filterResult({
-          province: urlProvince || "",
-          district: urlDistrict || "",
-          subDistrict: urlSubDistrict || "",
-          storeName: urlStoreName || "",
+          province: {
+            value: urlProvince || "",
+            label:
+              provincesChoices.find(
+                (province) => province.value === urlProvince
+              )?.label || "",
+          },
+          district: {
+            value: urlDistrict || "",
+            label:
+              provincesChoices.find(
+                (province) => province.value === urlDistrict
+              )?.label || "",
+          },
+          subDistrict: {
+            value: urlSubDistrict || "",
+            label:
+              provincesChoices.find(
+                (province) => province.value === urlSubDistrict
+              )?.label || "",
+          },
+          storeName: { value: urlStoreName || "", label: urlStoreName || "" },
         })
       )
     }
@@ -92,24 +202,24 @@ export default function LocationFilter() {
             <h3 className="font-psl text-h3">{tPhysicalStore("location")}</h3>
             <div className="flex flex-col gap-1">
               <AddressComboBox
-                addressChoices={provinces}
+                addressChoices={provincesChoices}
                 setSearchFilter={setSearchFilter}
                 addressKey="province"
-                value={searchFilter.province}
+                choice={searchFilter.province}
               />
               <AddressComboBox
-                addressChoices={filterDistrictByProvince(searchFilter)}
+                addressChoices={districtChoices}
                 setSearchFilter={setSearchFilter}
                 addressKey="district"
-                disabled={searchFilter.province === ""}
-                value={searchFilter.district}
+                disabled={searchFilter.province.value === ""}
+                choice={searchFilter.district}
               />
               <AddressComboBox
-                addressChoices={filterSubDistrictByDistrict(searchFilter)}
+                addressChoices={subdistrictChoices}
                 setSearchFilter={setSearchFilter}
                 addressKey="subDistrict"
-                disabled={searchFilter.district === ""}
-                value={searchFilter.subDistrict}
+                disabled={searchFilter.district.value === ""}
+                choice={searchFilter.subDistrict}
               />
             </div>
             <h3 className="font-psl text-h3">{tPhysicalStore("store-name")}</h3>
@@ -117,7 +227,7 @@ export default function LocationFilter() {
               addressChoices={filterByStoreName(searchFilter)}
               setSearchFilter={setSearchFilter}
               addressKey="storeName"
-              value={searchFilter.storeName}
+              choice={searchFilter.storeName}
             />
           </div>
 

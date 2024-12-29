@@ -36,6 +36,7 @@ export default async function WhereToBuyPage(props: {
           "online-platform",
           "button"
         )}
+        locale={locale}
       >
         <h1 className="mb-8 mt-0 text-center text-h3 md:mt-8 lg:text-h2 sub-desktop:my-20 sub-desktop:text-h1">
           {tWhereToBuy("where-to-get-bite-care")}

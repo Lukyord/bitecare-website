@@ -21,10 +21,22 @@ export default function MapFitBoundOnSearch() {
     if (focus && !result) {
       setResult(
         filterResult({
-          province: "",
-          district: "",
-          subDistrict: "",
-          storeName: focus,
+          province: {
+            value: "",
+            label: "",
+          },
+          district: {
+            value: "",
+            label: "",
+          },
+          subDistrict: {
+            value: "",
+            label: "",
+          },
+          storeName: {
+            value: focus,
+            label: focus,
+          },
         })
       )
     }

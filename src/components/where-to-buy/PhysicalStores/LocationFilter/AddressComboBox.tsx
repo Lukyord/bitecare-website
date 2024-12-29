@@ -28,7 +28,7 @@ type PostCodeFilterProps = {
   setSearchFilter: React.Dispatch<React.SetStateAction<SearchFilter>>
   addressKey: keyof SearchFilter
   disabled?: boolean
-  value: string
+  choice: ComboBoxChoice
 }
 
 export default function AddressComboBox({
@@ -36,7 +36,7 @@ export default function AddressComboBox({
   setSearchFilter,
   addressKey,
   disabled,
-  value,
+  choice,
 }: PostCodeFilterProps) {
   const [open, setOpen] = useState(false)
   const tPhysicalStore = useTranslations("physical-store")
@@ -54,26 +54,56 @@ export default function AddressComboBox({
     setOpen(false)
     if (addressKey === "province") {
       setSearchFilter((prev) => ({
-        province: currentValue === prev.province ? "" : currentValue,
-        district: "",
-        subDistrict: "",
-        storeName: "",
+        province: {
+          value: currentValue === prev.province.value ? "" : currentValue,
+          label:
+            addressChoices.find((address) => address.value === currentValue)
+              ?.label || "",
+        },
+        district: {
+          value: "",
+          label: "",
+        },
+        subDistrict: {
+          value: "",
+          label: "",
+        },
+        storeName: {
+          value: "",
+          label: "",
+        },
       }))
     } else if (addressKey === "district") {
       setSearchFilter((prev) => ({
         ...prev,
-        district: currentValue === prev.district ? "" : currentValue,
-        subDistrict: "",
+        district: {
+          value: currentValue === prev.district.value ? "" : currentValue,
+          label:
+            addressChoices.find((address) => address.value === currentValue)
+              ?.label || "",
+        },
+        subDistrict: {
+          value: "",
+          label: "",
+        },
       }))
     } else if (addressKey === "subDistrict") {
       setSearchFilter((prev) => ({
         ...prev,
-        subDistrict: currentValue === prev.subDistrict ? "" : currentValue,
+        subDistrict: {
+          value: currentValue === prev.subDistrict.value ? "" : currentValue,
+          label:
+            addressChoices.find((address) => address.value === currentValue)
+              ?.label || "",
+        },
       }))
     } else {
       setSearchFilter((prev) => ({
         ...prev,
-        storeName: currentValue === prev.storeName ? "" : currentValue,
+        storeName: {
+          value: currentValue === prev.storeName.value ? "" : currentValue,
+          label: currentValue === prev.storeName.value ? "" : currentValue,
+        },
       }))
     }
   }
@@ -91,7 +121,7 @@ export default function AddressComboBox({
           aria-expanded={open}
           className="w-full justify-between px-4"
         >
-          {value ? value : placeholder}
+          {choice.value ? choice.label : placeholder}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -119,7 +149,9 @@ export default function AddressComboBox({
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === address.value ? "opacity-100" : "opacity-0"
+                      choice.value === address.value
+                        ? "opacity-100"
+                        : "opacity-0"
                     )}
                   />
                   {address.label}

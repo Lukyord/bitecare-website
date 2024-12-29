@@ -6,34 +6,34 @@ import {
 
 export function filterResult(searchFilter: SearchFilter): PhysicalStore[] {
   const result =
-    searchFilter.district === ""
-      ? Stores.filter((store) => store.province === searchFilter.province)
-      : searchFilter.subDistrict === ""
+    searchFilter.district.value === ""
+      ? Stores.filter((store) => store.province === searchFilter.province.value)
+      : searchFilter.subDistrict.value === ""
         ? Stores.filter(
             (store) =>
-              store.province === searchFilter.province &&
-              store.district === searchFilter.district
+              store.province === searchFilter.province.value &&
+              store.district === searchFilter.district.value
           )
         : Stores.filter(
             (store) =>
-              store.province === searchFilter.province &&
-              store.district === searchFilter.district &&
-              store["sub-district"] === searchFilter.subDistrict
+              store.province === searchFilter.province.value &&
+              store.district === searchFilter.district.value &&
+              store["sub-district"] === searchFilter.subDistrict.value
           )
 
   const resultByStoreName =
-    searchFilter.storeName === ""
+    searchFilter.storeName.value === ""
       ? result
-      : searchFilter.province === ""
+      : searchFilter.province.value === ""
         ? Stores.filter(
             (store) =>
-              store.name.includes(searchFilter.storeName) ||
-              store["customer-name"].includes(searchFilter.storeName)
+              store.name.includes(searchFilter.storeName.value) ||
+              store["customer-name"].includes(searchFilter.storeName.value)
           )
         : result.filter(
             (store) =>
-              store.name.includes(searchFilter.storeName) ||
-              store["customer-name"].includes(searchFilter.storeName)
+              store.name.includes(searchFilter.storeName.value) ||
+              store["customer-name"].includes(searchFilter.storeName.value)
           )
 
   return resultByStoreName
