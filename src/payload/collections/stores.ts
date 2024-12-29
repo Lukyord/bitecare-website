@@ -118,9 +118,9 @@ export const Stores: CollectionConfig = {
           return true
         }
 
-        const phoneRegex = /^0\d{9}$/
+        const phoneRegex = /^0\d{8,9}$/
         if (!phoneRegex.test(value)) {
-          return "Please enter a valid 10-digit phone number"
+          return "Please enter a valid phone number (9-10 digits)"
         }
 
         return true

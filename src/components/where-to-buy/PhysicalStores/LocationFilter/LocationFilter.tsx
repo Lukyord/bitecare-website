@@ -40,6 +40,8 @@ export default function LocationFilter() {
     usePhysicalStoreSearch()
   const tPhysicalStore = useTranslations("physical-store")
 
+  useEffect(() => {}, [])
+
   useEffect(() => {
     const urlProvince = searchParams.get("province")
     const urlDistrict = searchParams.get("district")
