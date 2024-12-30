@@ -28,8 +28,13 @@ import {
   getSubdistrict,
 } from "@/payload/service/location/gcs"
 import { useLocale } from "next-intl"
+import { Store } from "@/payload/type-gen"
 
-export default function LocationFilter() {
+type LocationFilterProps = {
+  stores: Store[]
+}
+
+export default function LocationFilter({ stores }: LocationFilterProps) {
   const locale = useLocale()
 
   const [provincesChoices, setProvincesChoices] = useState<ComboBoxChoice[]>([])
@@ -37,6 +42,7 @@ export default function LocationFilter() {
   const [subdistrictChoices, setSubdistrictChoices] = useState<
     ComboBoxChoice[]
   >([])
+  const [storeNameChoices, setStoreNameChoices] = useState<ComboBoxChoice[]>([])
   const [searchFilter, setSearchFilter] = useState<SearchFilter>({
     province: {
       value: "",
@@ -74,6 +80,7 @@ export default function LocationFilter() {
         )
       }
     }
+
     getProvinceData()
   }, [])
 

@@ -12,8 +12,15 @@ import PostCodeFilter from "./PostCodeFilter"
 import DistanceFilter from "./DistanceFilter"
 import { useToast } from "@/components/ui/use-toast"
 import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
+import { Store } from "@/payload/type-gen"
 
-export default function PostCodeOrCurrentLocationFilter() {
+type PostCodeOrCurrentLocationFilterProps = {
+  stores: Store[]
+}
+
+export default function PostCodeOrCurrentLocationFilter({
+  stores,
+}: PostCodeOrCurrentLocationFilterProps) {
   const map = useMap()
   const router = useRouter()
   const { toast } = useToast()

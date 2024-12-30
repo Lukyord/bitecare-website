@@ -8,11 +8,6 @@ type Options<T extends TypedCollectionSelect["store"]> = {
   locale?: Locale
   depth?: number
   page?: number
-  provinceId?: string
-  districtId?: string
-  postalCode?: string
-  lat?: number
-  lng?: number
 }
 
 export const getAllStores = async <T extends TypedCollectionSelect["store"]>(
