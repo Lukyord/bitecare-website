@@ -1,4 +1,4 @@
-import { Stores } from "@/constant/stores"
+import { Store } from "@/payload/type-gen"
 
 function degToRad(degrees: number) {
   return degrees * (Math.PI / 180)
@@ -7,11 +7,12 @@ function degToRad(degrees: number) {
 export function filterByDistanceLatLong(
   lat: number,
   long: number,
-  distance: number
+  distance: number,
+  stores: Store[]
 ) {
-  const filteredStores = Stores.filter((store) => {
-    const storeLat = store.lat
-    const storeLong = store.long
+  const filteredStores = stores.filter((store) => {
+    const storeLat = parseFloat(store.lat)
+    const storeLong = parseFloat(store.long)
 
     const radiusOfEarth = 6371 // Earth's radius in kilometers
 

@@ -7,7 +7,6 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { Store } from "@/payload/type-gen"
 import { useEffect, useState } from "react"
-import { set } from "lodash"
 
 const tabs = {
   physicalStore: "physical-store",
@@ -23,7 +22,7 @@ export default function WhereToBuyTabs({ stores }: WhereToBuyTabsProps) {
   const searchParams = useSearchParams()
   const tWhereToBuy = useTranslations("where-to-buy-landing")
   const defaultTab = searchParams.get("type") || "physical-store"
-  const [tabValue, setTabValue] = useState("physical-store")
+  const [tabValue, setTabValue] = useState(defaultTab)
 
   const handleTabChange = () => {
     if (defaultTab === tabs.physicalStore) {
@@ -36,21 +35,12 @@ export default function WhereToBuyTabs({ stores }: WhereToBuyTabsProps) {
   }
 
   useEffect(() => {
-    const tabType = searchParams.get("type")
-
-    console.log(tabType)
-
-    if (tabType) {
-      console.log(tabType, tabs.physicalStore)
-      if (tabType === tabs.physicalStore) {
-        setTabValue(tabs.physicalStore)
-        console.log("physical")
-      } else {
-        setTabValue(tabs.onlinePlatform)
-        console.log("online")
-      }
+    if (defaultTab === tabs.physicalStore) {
+      setTabValue(tabs.physicalStore)
+    } else {
+      setTabValue(tabs.onlinePlatform)
     }
-  }, [])
+  }, [defaultTab])
 
   return (
     <Tabs

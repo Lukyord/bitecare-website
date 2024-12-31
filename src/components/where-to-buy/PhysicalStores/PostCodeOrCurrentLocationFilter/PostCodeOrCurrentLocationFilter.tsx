@@ -32,19 +32,22 @@ export default function PostCodeOrCurrentLocationFilter({
   const tPhysicalStoreToast = useTranslations("physical-store-toast")
 
   const filterByDistance = useCallback(() => {
-    map.locate().on("locationfound", function (e) {
-      map.flyTo(e.latlng, map.getZoom())
+    map
+      .locate({ setView: true, maxZoom: 16 })
+      .on("locationfound", function (e) {
+        map.flyTo(e.latlng, map.getZoom())
 
-      setFilterAccordionValue("")
-      setRadiusCenter([e.latlng.lat, e.latlng.lng])
-      setResult(
-        filterByDistanceLatLong(
-          e.latlng.lat,
-          e.latlng.lng,
-          parseInt(urlDistance || "15")
+        setFilterAccordionValue("")
+        setRadiusCenter([e.latlng.lat, e.latlng.lng])
+        setResult(
+          filterByDistanceLatLong(
+            e.latlng.lat,
+            e.latlng.lng,
+            parseInt(urlDistance || "15"),
+            stores
+          )
         )
-      )
-    })
+      })
 
     map.locate().on("locationerror", function (e) {
       toast({
