@@ -31,8 +31,11 @@ export default buildConfig({
   plugins: [
     gcsStorage({
       collections: {
-        media: true,
+        media: {
+          prefix: "payload-uploads",
+        },
       },
+
       bucket: process.env.GCS_BUCKET || "",
       options: {
         apiEndpoint: process.env.GCS_ENDPOINT,
