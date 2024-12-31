@@ -69,7 +69,7 @@ export default function PostCodeFilter({ stores }: PostCodeFilterProps) {
   return (
     <form
       action={clientAction}
-      className="flex items-center rounded-xl bg-white p-2 shadow-lg lg:p-4"
+      className="flex items-center gap-4 rounded-xl bg-white p-2 shadow-lg lg:p-4"
     >
       <p className="hidden font-hel_rounded text-h3 lg:block">
         {tPhysicalStore("where-do-you-live")}

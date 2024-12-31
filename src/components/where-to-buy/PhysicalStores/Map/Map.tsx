@@ -56,7 +56,7 @@ export default function Map({ children, setMapReady }: MapProps) {
       {result?.map((store, index) => (
         <React.Fragment key={index}>
           <Marker
-            position={[store.lat, store.long]}
+            position={[parseFloat(store.lat), parseFloat(store.long)]}
             eventHandlers={{
               click: () => {
                 const queryParams = new URLSearchParams({

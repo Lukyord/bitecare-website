@@ -6,7 +6,7 @@ export type Location = {
   name_en: string
 }
 
-export const Stores: CollectionConfig = {
+export const Store: CollectionConfig = {
   slug: "store",
   admin: {
     useAsTitle: "name",

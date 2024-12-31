@@ -46,7 +46,7 @@ export default function PhysicalStores({ stores }: PhysicalStoresProps) {
       {!mapReady && <MapLoadingSkeleton />}
       <PhysicalStoreSearchContextProvider>
         <DynamicMap setMapReady={setMapReady}>
-          <DynamicMapFitBoundOnSearch />
+          <DynamicMapFitBoundOnSearch stores={stores} />
           <div
             className="
                     absolute left-[2vw] top-[16px] 

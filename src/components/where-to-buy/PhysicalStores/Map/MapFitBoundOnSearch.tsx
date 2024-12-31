@@ -8,8 +8,15 @@ import { Circle, useMap } from "react-leaflet"
 import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
 import { Stores } from "@/constant/stores"
 import { filterResult } from "@/lib/where-to-buy/filterResult"
+import { Store } from "@/payload/type-gen"
 
-export default function MapFitBoundOnSearch() {
+type MapFitBoundOnSearchProps = {
+  stores: Store[]
+}
+
+export default function MapFitBoundOnSearch({
+  stores,
+}: MapFitBoundOnSearchProps) {
   const map = useMap()
   const { result, setResult, setFilterAccordionValue } =
     usePhysicalStoreSearch()
@@ -20,30 +27,33 @@ export default function MapFitBoundOnSearch() {
   useEffect(() => {
     if (focus && !result) {
       setResult(
-        filterResult({
-          province: {
-            value: "",
-            label: "",
+        filterResult(
+          {
+            province: {
+              value: "",
+              label: "",
+            },
+            district: {
+              value: "",
+              label: "",
+            },
+            subDistrict: {
+              value: "",
+              label: "",
+            },
+            storeName: {
+              value: focus,
+              label: focus,
+            },
           },
-          district: {
-            value: "",
-            label: "",
-          },
-          subDistrict: {
-            value: "",
-            label: "",
-          },
-          storeName: {
-            value: focus,
-            label: focus,
-          },
-        })
+          stores
+        )
       )
     }
 
     if (result && result.length > 0 && typeof window !== "undefined") {
-      const latitudes = result.map((item) => item.lat)
-      const longitudes = result.map((item) => item.long)
+      const latitudes = result.map((item) => parseFloat(item.lat))
+      const longitudes = result.map((item) => parseFloat(item.long))
       const smallScreen = window.innerWidth <= 1024
 
       let bounds: LatLngBoundsLiteral

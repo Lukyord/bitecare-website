@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 import { useSearchParams } from "next/navigation"
 
-import { PhysicalStore } from "@/types/where-to-buy/physical-store"
+import { Store } from "@/payload/type-gen"
 import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa"
 
 import { Button } from "@/components/ui/button"
@@ -11,7 +11,7 @@ import { Link } from "@/lib/navigation"
 import { cn } from "@/lib/utils"
 
 type ResultCardProps = {
-  physicalStore: PhysicalStore
+  physicalStore: Store
 }
 
 export default function ResultCard({ physicalStore }: ResultCardProps) {
