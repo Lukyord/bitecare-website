@@ -13,8 +13,13 @@ import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
 import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
 import { filterByPostCode } from "@/lib/where-to-buy/filterByPostCode"
+import { Store } from "@/payload/type-gen"
 
-export default function PostCodeFilter() {
+type PostCodeFilterProps = {
+  stores: Store[]
+}
+
+export default function PostCodeFilter({ stores }: PostCodeFilterProps) {
   const { toast } = useToast()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -40,7 +45,7 @@ export default function PostCodeFilter() {
       return
     }
 
-    postCode && setResult(filterByPostCode(postCode.toString()))
+    postCode && setResult(filterByPostCode(postCode.toString(), stores))
     setFilterAccordionValue("")
 
     router.replace(
@@ -51,7 +56,7 @@ export default function PostCodeFilter() {
 
   useEffect(() => {
     if (urlPostCode) {
-      setResult(filterByPostCode(urlPostCode))
+      setResult(filterByPostCode(urlPostCode, stores))
       setFilterAccordionValue("")
       const input = document.getElementById("post-code")
 

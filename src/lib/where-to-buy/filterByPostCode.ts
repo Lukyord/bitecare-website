@@ -1,8 +1,8 @@
-import { Stores } from "@/constant/stores"
+import { Store } from "@/payload/type-gen"
 
-export function filterByPostCode(postCode: string) {
-  const result = Stores.filter(
-    (store) => store["post-code"].toString() === postCode
+export function filterByPostCode(postCode: string, stores: Store[]) {
+  const result = stores.filter(
+    (store) => store.postal_code.toString() === postCode
   )
 
   return result

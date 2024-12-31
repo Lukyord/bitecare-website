@@ -73,7 +73,7 @@ export default function PostCodeOrCurrentLocationFilter({
   return (
     <div className="relative">
       <div className="absolute left-0">
-        <PostCodeFilter />
+        <PostCodeFilter stores={stores} />
       </div>
 
       {/* Find me & DistanceFilter */}
