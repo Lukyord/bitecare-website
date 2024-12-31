@@ -42,7 +42,6 @@ export default function LocationFilter({ stores }: LocationFilterProps) {
   const [subdistrictChoices, setSubdistrictChoices] = useState<
     ComboBoxChoice[]
   >([])
-  const [storeNameChoices, setStoreNameChoices] = useState<ComboBoxChoice[]>([])
   const [searchFilter, setSearchFilter] = useState<SearchFilter>({
     province: {
       value: "",
@@ -71,11 +70,12 @@ export default function LocationFilter({ stores }: LocationFilterProps) {
   useEffect(() => {
     const getProvinceData = async () => {
       const provinceData = await getProvince()
+
       if (provinceData) {
         setProvincesChoices(
           provinceData.map((province: any) => ({
             label: locale === "en" ? province.name_en : province.name_th,
-            value: province.id,
+            value: province.id.toString(),
           }))
         )
       }
@@ -93,7 +93,7 @@ export default function LocationFilter({ stores }: LocationFilterProps) {
         setDistrictChoices(
           districtData.map((district: any) => ({
             label: locale === "en" ? district.name_en : district.name_th,
-            value: district.id,
+            value: district.id.toString(),
           }))
         )
       }
@@ -113,7 +113,7 @@ export default function LocationFilter({ stores }: LocationFilterProps) {
         setSubdistrictChoices(
           subDistrictData.map((subDistrict: any) => ({
             label: locale === "en" ? subDistrict.name_en : subDistrict.name_th,
-            value: subDistrict.id,
+            value: subDistrict.id.toString(),
           }))
         )
       }
@@ -156,30 +156,33 @@ export default function LocationFilter({ stores }: LocationFilterProps) {
         storeName: { value: urlStoreName || "", label: urlStoreName || "" },
       })
       setResult(
-        filterResult({
-          province: {
-            value: urlProvince || "",
-            label:
-              provincesChoices.find(
-                (province) => province.value === urlProvince
-              )?.label || "",
+        filterResult(
+          {
+            province: {
+              value: urlProvince || "",
+              label:
+                provincesChoices.find(
+                  (province) => province.value === urlProvince
+                )?.label || "",
+            },
+            district: {
+              value: urlDistrict || "",
+              label:
+                provincesChoices.find(
+                  (province) => province.value === urlDistrict
+                )?.label || "",
+            },
+            subDistrict: {
+              value: urlSubDistrict || "",
+              label:
+                provincesChoices.find(
+                  (province) => province.value === urlSubDistrict
+                )?.label || "",
+            },
+            storeName: { value: urlStoreName || "", label: urlStoreName || "" },
           },
-          district: {
-            value: urlDistrict || "",
-            label:
-              provincesChoices.find(
-                (province) => province.value === urlDistrict
-              )?.label || "",
-          },
-          subDistrict: {
-            value: urlSubDistrict || "",
-            label:
-              provincesChoices.find(
-                (province) => province.value === urlSubDistrict
-              )?.label || "",
-          },
-          storeName: { value: urlStoreName || "", label: urlStoreName || "" },
-        })
+          stores
+        )
       )
     }
   }, [searchParams, setResult, setFilterAccordionValue])
@@ -231,14 +234,14 @@ export default function LocationFilter({ stores }: LocationFilterProps) {
             </div>
             <h3 className="font-psl text-h3">{tPhysicalStore("store-name")}</h3>
             <AddressComboBox
-              addressChoices={filterByStoreName(searchFilter)}
+              addressChoices={filterByStoreName(searchFilter, stores)}
               setSearchFilter={setSearchFilter}
               addressKey="storeName"
               choice={searchFilter.storeName}
             />
           </div>
 
-          <SearchButton searchFilter={searchFilter} />
+          <SearchButton searchFilter={searchFilter} stores={stores} />
         </AccordionContent>
       </AccordionItem>
     </Accordion>

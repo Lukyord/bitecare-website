@@ -154,8 +154,8 @@ export const Stores: CollectionConfig = {
       required: true,
     },
     {
-      label: "lat",
-      name: "Store Latitude",
+      name: "lat",
+      label: "Store Latitude",
       type: "text",
       required: true,
       validate: (value: any) => {
@@ -172,8 +172,8 @@ export const Stores: CollectionConfig = {
       },
     },
     {
-      label: "long",
-      name: "Store Longitude",
+      name: "long",
+      label: "Store Longitude",
       type: "text",
       required: true,
       validate: (value: any) => {

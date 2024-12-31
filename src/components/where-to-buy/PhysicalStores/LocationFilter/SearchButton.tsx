@@ -7,12 +7,17 @@ import { SearchFilter } from "@/types/where-to-buy/physical-store"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
 import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
+import { Store } from "@/payload/type-gen"
 
 type SearchButtonProps = {
   searchFilter: SearchFilter
+  stores: Store[]
 }
 
-export default function SearchButton({ searchFilter }: SearchButtonProps) {
+export default function SearchButton({
+  searchFilter,
+  stores,
+}: SearchButtonProps) {
   const { toast } = useToast()
   const tButton = useTranslations("button")
 
@@ -48,7 +53,7 @@ export default function SearchButton({ searchFilter }: SearchButtonProps) {
           })
         }
 
-        const newResult = await filterResult(searchFilter)
+        const newResult = await filterResult(searchFilter, stores)
         setResult(newResult)
         setFilterAccordionValue("")
       }}

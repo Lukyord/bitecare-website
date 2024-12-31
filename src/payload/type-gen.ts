@@ -197,11 +197,11 @@ export interface Store {
   /**
    * Store latitude will be used for Map API display
    */
-  'Store Latitude': string;
+  lat: string;
   /**
    * Store longitude will be used for Map API display
    */
-  'Store Longitude': string;
+  long: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -374,8 +374,8 @@ export interface StoreSelect<T extends boolean = true> {
   phone?: T;
   postal_code?: T;
   link?: T;
-  'Store Latitude'?: T;
-  'Store Longitude'?: T;
+  lat?: T;
+  long?: T;
   updatedAt?: T;
   createdAt?: T;
 }

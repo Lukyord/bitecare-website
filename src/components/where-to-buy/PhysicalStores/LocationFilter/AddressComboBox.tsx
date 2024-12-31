@@ -141,7 +141,7 @@ export default function AddressComboBox({
                 <CommandItem
                   className="text-[24px]"
                   key={index}
-                  value={address.value}
+                  value={address.label}
                   onSelect={() => {
                     handleSelectItem(address.value)
                   }}
