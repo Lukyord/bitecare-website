@@ -30,7 +30,7 @@ export default function SearchButton({
       href={{
         pathname: "/where-to-buy",
         query: {
-          type: "physical-stores",
+          type: "physical-store",
           province: searchFilter.province.value || "",
           district: searchFilter.district.value || "",
           subDistrict: searchFilter.subDistrict.value || "",
