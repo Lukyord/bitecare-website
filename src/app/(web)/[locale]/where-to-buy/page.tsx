@@ -9,7 +9,7 @@ import {
   setRequestLocale,
 } from "next-intl/server"
 import { Suspense } from "react"
-import { getAllStores } from "@/payload/service/location"
+import { getAllOnlineStores, getAllStores } from "@/payload/service/location"
 import { Locale } from "@/config/i18n.config"
 
 export const metadata: Metadata = {
@@ -28,6 +28,7 @@ export default async function WhereToBuyPage(props: {
   const messages = await getMessages()
   const tWhereToBuy = await getTranslations("where-to-buy-landing")
   const stores = await getAllStores({ locale: locale as Locale })
+  const onlineStores = await getAllOnlineStores({ locale: locale as Locale })
 
   return (
     <div className="pt-36">
@@ -46,7 +47,7 @@ export default async function WhereToBuyPage(props: {
         </h1>
         {/* https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout */}
         <Suspense>
-          <WhereToBuyTabs stores={stores} />
+          <WhereToBuyTabs stores={stores} onlineStores={onlineStores} />
         </Suspense>
       </NextIntlClientProvider>
     </div>

@@ -1,24 +1,28 @@
-import { SocialMediaList } from "@/constant/Links"
 import PlatformCard from "./PlatformCard"
 import { useTranslations } from "next-intl"
+import { Media, OnlineStore } from "@/payload/type-gen"
 
-export default function OnlineStores() {
+type PlatformCardProps = {
+  onlineStores: OnlineStore[]
+}
+
+export default function OnlineStores({ onlineStores }: PlatformCardProps) {
   const tOnlineStores = useTranslations("online-platform")
 
   return (
     <>
       <div className="flex min-h-[52rem] justify-center bg-bc-inverse-primary md:min-h-[60rem]">
-        <div className="justify-left sub-desktop:w-[1400px] sub-desktop:max-w-screen-2xl my-10 w-screen flex-col px-7 md:my-20 lg:max-w-screen-lg">
+        <div className="justify-left my-10 w-screen flex-col px-7 md:my-20 lg:max-w-screen-lg sub-desktop:w-[1400px] sub-desktop:max-w-screen-2xl">
           <h1 className="text-paragraph md:px-7 lg:text-h3">
-            {tOnlineStores("platforms")} ({SocialMediaList.length})
+            {tOnlineStores("platforms")} ({onlineStores.length})
           </h1>
           <div className="flex flex-wrap">
-            {SocialMediaList.map((social, index) => (
+            {onlineStores.map((store, index) => (
               <PlatformCard
-                label={social.label}
-                href={social.href}
-                platformLogo={social.platformLogo}
-                platformColor={social.platformColor}
+                label={store.name}
+                href={store.url}
+                platformLogo={(store.logo as Media).url ?? ""}
+                platformColor={store.platform_color}
                 key={index}
               />
             ))}

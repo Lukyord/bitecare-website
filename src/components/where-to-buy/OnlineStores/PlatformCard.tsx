@@ -5,7 +5,7 @@ import Link from "next/link"
 type PlatformCardProps = {
   label: string
   href: string
-  platformLogo: StaticImport
+  platformLogo: string
   platformColor: string
 }
 
@@ -24,10 +24,12 @@ export default function PlatformCard({
         target="_blank"
       >
         <Image
-          className="absolute inset-x-0 bottom-0 max-h-[86px] w-auto p-4 sub-desktop:max-h-[100px]"
+          className="absolute bottom-0 left-0 max-h-[86px] w-auto p-4 sub-desktop:max-h-[100px]"
           src={platformLogo}
           alt={label}
           style={{ filter: "brightness(0) invert(1)" }}
+          width={86}
+          height={86}
         />
       </Link>
     </>

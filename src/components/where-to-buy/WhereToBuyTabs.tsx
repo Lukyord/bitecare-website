@@ -5,7 +5,7 @@ import PhysicalStores from "@/components/where-to-buy/PhysicalStores/PhysicalSto
 import OnlineStores from "@/components/where-to-buy/OnlineStores/OnlineStores"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useTranslations } from "next-intl"
-import { Store } from "@/payload/type-gen"
+import { OnlineStore, Store } from "@/payload/type-gen"
 import { useEffect, useState } from "react"
 
 const tabs = {
@@ -15,9 +15,13 @@ const tabs = {
 
 type WhereToBuyTabsProps = {
   stores: Store[]
+  onlineStores: OnlineStore[]
 }
 
-export default function WhereToBuyTabs({ stores }: WhereToBuyTabsProps) {
+export default function WhereToBuyTabs({
+  stores,
+  onlineStores,
+}: WhereToBuyTabsProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const tWhereToBuy = useTranslations("where-to-buy-landing")
@@ -74,7 +78,7 @@ export default function WhereToBuyTabs({ stores }: WhereToBuyTabsProps) {
         value={tabs.onlinePlatform}
         className="my-10 w-full sub-desktop:my-20"
       >
-        <OnlineStores />
+        <OnlineStores onlineStores={onlineStores} />
       </TabsContent>
     </Tabs>
   )
