@@ -1,39 +1,43 @@
-import { Stores } from "@/constant/stores"
-import {
-  PhysicalStore,
-  SearchFilter,
-} from "@/types/where-to-buy/physical-store"
+import { Store } from "@/payload/type-gen"
+import { SearchFilter } from "@/types/where-to-buy/physical-store"
 
-export function filterResult(searchFilter: SearchFilter): PhysicalStore[] {
+export function filterResult(
+  searchFilter: SearchFilter,
+  stores: Store[]
+): Store[] {
   const result =
-    searchFilter.district === ""
-      ? Stores.filter((store) => store.province === searchFilter.province)
-      : searchFilter.subDistrict === ""
-        ? Stores.filter(
-            (store) =>
-              store.province === searchFilter.province &&
-              store.district === searchFilter.district
+    searchFilter.province.value === ""
+      ? stores
+      : searchFilter.district.value === ""
+        ? stores.filter(
+            (store) => store.province === searchFilter.province.value
           )
-        : Stores.filter(
-            (store) =>
-              store.province === searchFilter.province &&
-              store.district === searchFilter.district &&
-              store["sub-district"] === searchFilter.subDistrict
-          )
+        : searchFilter.subDistrict.value === ""
+          ? stores.filter(
+              (store) =>
+                store.province === searchFilter.province.value &&
+                store.district === searchFilter.district.value
+            )
+          : stores.filter(
+              (store) =>
+                store.province === searchFilter.province.value &&
+                store.district === searchFilter.district.value &&
+                store.subdistrict === searchFilter.subDistrict.value
+            )
 
   const resultByStoreName =
-    searchFilter.storeName === ""
+    searchFilter.storeName.value === ""
       ? result
-      : searchFilter.province === ""
-        ? Stores.filter(
+      : searchFilter.province.value === ""
+        ? stores.filter(
             (store) =>
-              store.name.includes(searchFilter.storeName) ||
-              store["customer-name"].includes(searchFilter.storeName)
+              store.name.includes(searchFilter.storeName.value) ||
+              store.customer_name.includes(searchFilter.storeName.value)
           )
         : result.filter(
             (store) =>
-              store.name.includes(searchFilter.storeName) ||
-              store["customer-name"].includes(searchFilter.storeName)
+              store.name.includes(searchFilter.storeName.value) ||
+              store.customer_name.includes(searchFilter.storeName.value)
           )
 
   return resultByStoreName

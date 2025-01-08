@@ -7,6 +7,7 @@ import MapLoadingSkeleton from "./Map/MapLoadingSkeleton"
 import LocationFilter from "./LocationFilter/LocationFilter"
 import Result from "./Result/Result"
 import PhysicalStoreSearchContextProvider from "@/context/PhysicalStoreSearchContextProvider"
+import { Store } from "@/payload/type-gen"
 
 const DynamicMap = dynamic(
   () => import("@/components/where-to-buy/PhysicalStores/Map/Map"),
@@ -33,9 +34,11 @@ const DynamicPostCodeOrCurrentLocationFilter = dynamic(
   }
 )
 
-type PhysicalStoresProps = {}
+type PhysicalStoresProps = {
+  stores: Store[]
+}
 
-export default function PhysicalStores({}: PhysicalStoresProps) {
+export default function PhysicalStores({ stores }: PhysicalStoresProps) {
   const [mapReady, setMapReady] = useState(false)
 
   return (
@@ -43,14 +46,14 @@ export default function PhysicalStores({}: PhysicalStoresProps) {
       {!mapReady && <MapLoadingSkeleton />}
       <PhysicalStoreSearchContextProvider>
         <DynamicMap setMapReady={setMapReady}>
-          <DynamicMapFitBoundOnSearch />
+          <DynamicMapFitBoundOnSearch stores={stores} />
           <div
             className="
                     absolute left-[2vw] top-[16px] 
                     z-[999] w-[96vw]
                   "
           >
-            <DynamicPostCodeOrCurrentLocationFilter />
+            <DynamicPostCodeOrCurrentLocationFilter stores={stores} />
           </div>
           <div
             className="
@@ -59,12 +62,12 @@ export default function PhysicalStores({}: PhysicalStoresProps) {
                       lg:flex         
                     "
           >
-            <LocationFilter />
+            <LocationFilter stores={stores} />
             <Result />
           </div>
         </DynamicMap>
         <div className="mx-[2vw] my-4 flex flex-col gap-4 lg:hidden">
-          <LocationFilter />
+          <LocationFilter stores={stores} />
           <Result />
         </div>
       </PhysicalStoreSearchContextProvider>

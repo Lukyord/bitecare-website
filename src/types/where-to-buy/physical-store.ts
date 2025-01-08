@@ -18,8 +18,8 @@ export type ComboBoxChoice = {
 }
 
 export type SearchFilter = {
-  province: string
-  district: string
-  subDistrict: string
-  storeName: string
+  province: ComboBoxChoice
+  district: ComboBoxChoice
+  subDistrict: ComboBoxChoice
+  storeName: ComboBoxChoice
 }

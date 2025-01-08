@@ -6,7 +6,7 @@ export type Location = {
   name_en: string
 }
 
-export const Stores: CollectionConfig = {
+export const Store: CollectionConfig = {
   slug: "store",
   admin: {
     useAsTitle: "name",
@@ -118,9 +118,9 @@ export const Stores: CollectionConfig = {
           return true
         }
 
-        const phoneRegex = /^0\d{9}$/
+        const phoneRegex = /^0\d{8,9}$/
         if (!phoneRegex.test(value)) {
-          return "Please enter a valid 10-digit phone number"
+          return "Please enter a valid phone number (9-10 digits)"
         }
 
         return true
@@ -154,8 +154,8 @@ export const Stores: CollectionConfig = {
       required: true,
     },
     {
-      label: "lat",
-      name: "Store Latitude",
+      name: "lat",
+      label: "Store Latitude",
       type: "text",
       required: true,
       validate: (value: any) => {
@@ -172,8 +172,8 @@ export const Stores: CollectionConfig = {
       },
     },
     {
-      label: "long",
-      name: "Store Longitude",
+      name: "long",
+      label: "Store Longitude",
       type: "text",
       required: true,
       validate: (value: any) => {

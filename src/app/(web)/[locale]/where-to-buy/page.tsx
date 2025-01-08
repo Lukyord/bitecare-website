@@ -3,11 +3,14 @@ import WhereToBuyTabs from "@/components/where-to-buy/WhereToBuyTabs"
 import { pick } from "lodash"
 import { NextIntlClientProvider } from "next-intl"
 import {
+  getLocale,
   getMessages,
   getTranslations,
   setRequestLocale,
 } from "next-intl/server"
 import { Suspense } from "react"
+import { getAllOnlineStores, getAllStores } from "@/payload/service/location"
+import { Locale } from "@/config/i18n.config"
 
 export const metadata: Metadata = {
   title: "Where To Buy",
@@ -24,6 +27,8 @@ export default async function WhereToBuyPage(props: {
 
   const messages = await getMessages()
   const tWhereToBuy = await getTranslations("where-to-buy-landing")
+  const stores = await getAllStores({ locale: locale as Locale })
+  const onlineStores = await getAllOnlineStores({ locale: locale as Locale })
 
   return (
     <div className="pt-36">
@@ -42,7 +47,7 @@ export default async function WhereToBuyPage(props: {
         </h1>
         {/* https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout */}
         <Suspense>
-          <WhereToBuyTabs />
+          <WhereToBuyTabs stores={stores} onlineStores={onlineStores} />
         </Suspense>
       </NextIntlClientProvider>
     </div>

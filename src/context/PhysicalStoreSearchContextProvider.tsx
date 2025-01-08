@@ -1,11 +1,12 @@
 "use client"
 
+import { Store } from "@/payload/type-gen"
 import { PhysicalStore } from "@/types/where-to-buy/physical-store"
 import { createContext, useContext, useState } from "react"
 
 type PhysicalStoreSearchContextType = {
-  result: PhysicalStore[] | null
-  setResult: React.Dispatch<React.SetStateAction<PhysicalStore[] | null>>
+  result: Store[] | null
+  setResult: React.Dispatch<React.SetStateAction<Store[] | null>>
   filterAccordionValue: string
   setFilterAccordionValue: React.Dispatch<React.SetStateAction<string>>
 }
@@ -18,7 +19,7 @@ export function PhysicalStoreSearchContextProvider({
 }: {
   children: React.ReactNode
 }) {
-  const [result, setResult] = useState<PhysicalStore[] | null>(null)
+  const [result, setResult] = useState<Store[] | null>(null)
   const [filterAccordionValue, setFilterAccordionValue] =
     useState("location filter")
 

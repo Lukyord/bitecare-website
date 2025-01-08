@@ -12,8 +12,15 @@ import PostCodeFilter from "./PostCodeFilter"
 import DistanceFilter from "./DistanceFilter"
 import { useToast } from "@/components/ui/use-toast"
 import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
+import { Store } from "@/payload/type-gen"
 
-export default function PostCodeOrCurrentLocationFilter() {
+type PostCodeOrCurrentLocationFilterProps = {
+  stores: Store[]
+}
+
+export default function PostCodeOrCurrentLocationFilter({
+  stores,
+}: PostCodeOrCurrentLocationFilterProps) {
   const map = useMap()
   const router = useRouter()
   const { toast } = useToast()
@@ -25,19 +32,22 @@ export default function PostCodeOrCurrentLocationFilter() {
   const tPhysicalStoreToast = useTranslations("physical-store-toast")
 
   const filterByDistance = useCallback(() => {
-    map.locate().on("locationfound", function (e) {
-      map.flyTo(e.latlng, map.getZoom())
+    map
+      .locate({ setView: true, maxZoom: 16 })
+      .on("locationfound", function (e) {
+        map.flyTo(e.latlng, map.getZoom())
 
-      setFilterAccordionValue("")
-      setRadiusCenter([e.latlng.lat, e.latlng.lng])
-      setResult(
-        filterByDistanceLatLong(
-          e.latlng.lat,
-          e.latlng.lng,
-          parseInt(urlDistance || "15")
+        setFilterAccordionValue("")
+        setRadiusCenter([e.latlng.lat, e.latlng.lng])
+        setResult(
+          filterByDistanceLatLong(
+            e.latlng.lat,
+            e.latlng.lng,
+            parseInt(urlDistance || "15"),
+            stores
+          )
         )
-      )
-    })
+      })
 
     map.locate().on("locationerror", function (e) {
       toast({
@@ -63,7 +73,7 @@ export default function PostCodeOrCurrentLocationFilter() {
   return (
     <div className="relative">
       <div className="absolute left-0">
-        <PostCodeFilter />
+        <PostCodeFilter stores={stores} />
       </div>
 
       {/* Find me & DistanceFilter */}

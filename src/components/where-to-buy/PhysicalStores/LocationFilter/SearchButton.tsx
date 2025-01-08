@@ -7,12 +7,17 @@ import { SearchFilter } from "@/types/where-to-buy/physical-store"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
 import { usePhysicalStoreSearch } from "@/context/PhysicalStoreSearchContextProvider"
+import { Store } from "@/payload/type-gen"
 
 type SearchButtonProps = {
   searchFilter: SearchFilter
+  stores: Store[]
 }
 
-export default function SearchButton({ searchFilter }: SearchButtonProps) {
+export default function SearchButton({
+  searchFilter,
+  stores,
+}: SearchButtonProps) {
   const { toast } = useToast()
   const tButton = useTranslations("button")
 
@@ -25,11 +30,11 @@ export default function SearchButton({ searchFilter }: SearchButtonProps) {
       href={{
         pathname: "/where-to-buy",
         query: {
-          type: "physical-stores",
-          province: searchFilter.province || "",
-          district: searchFilter.district || "",
-          subDistrict: searchFilter.subDistrict || "",
-          storeName: searchFilter.storeName || "",
+          type: "physical-store",
+          province: searchFilter.province.value || "",
+          district: searchFilter.district.value || "",
+          subDistrict: searchFilter.subDistrict.value || "",
+          storeName: searchFilter.storeName.value || "",
           distance: "",
           postCode: "",
           focus: "",
@@ -48,7 +53,7 @@ export default function SearchButton({ searchFilter }: SearchButtonProps) {
           })
         }
 
-        const newResult = await filterResult(searchFilter)
+        const newResult = await filterResult(searchFilter, stores)
         setResult(newResult)
         setFilterAccordionValue("")
       }}

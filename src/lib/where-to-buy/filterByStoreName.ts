@@ -1,11 +1,12 @@
-import { Stores } from "@/constant/stores"
+import { Store } from "@/payload/type-gen"
 import {
   ComboBoxChoice,
   SearchFilter,
 } from "@/types/where-to-buy/physical-store"
 
 export function filterByStoreName(
-  searchFilter: SearchFilter
+  searchFilter: SearchFilter,
+  stores: Store[]
 ): ComboBoxChoice[] {
   // Filter cases:
   // 1) If province is empty, return all stores.
@@ -14,21 +15,23 @@ export function filterByStoreName(
   // 4) If all filters are specified, return stores in the specified province, district, and subdistrict.
 
   const All_Stores_In_Sub_District =
-    searchFilter.province === ""
-      ? Stores
-      : searchFilter.district === ""
-        ? Stores.filter((store) => store.province === searchFilter.province)
-        : searchFilter.subDistrict === ""
-          ? Stores.filter(
+    searchFilter.province.value === ""
+      ? stores
+      : searchFilter.district.value === ""
+        ? stores.filter(
+            (store) => store.province === searchFilter.province.value
+          )
+        : searchFilter.subDistrict.value === ""
+          ? stores.filter(
               (store) =>
-                store.province === searchFilter.province &&
-                store.district === searchFilter.district
+                store.province === searchFilter.province.value &&
+                store.district === searchFilter.district.value
             )
-          : Stores.filter(
+          : stores.filter(
               (store) =>
-                store.province === searchFilter.province &&
-                store.district === searchFilter.district &&
-                store["sub-district"] === searchFilter.subDistrict
+                store.province === searchFilter.province.value &&
+                store.district === searchFilter.district.value &&
+                store.subdistrict === searchFilter.subDistrict.value
             )
 
   const All_Store_Names_In_Sub_District = Array.from(

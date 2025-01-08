@@ -16,6 +16,7 @@ export interface Config {
     product: Product;
     'product-tag': ProductTag;
     store: Store;
+    'online-store': OnlineStore;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -27,6 +28,7 @@ export interface Config {
     product: ProductSelect<false> | ProductSelect<true>;
     'product-tag': ProductTagSelect<false> | ProductTagSelect<true>;
     store: StoreSelect<false> | StoreSelect<true>;
+    'online-store': OnlineStoreSelect<false> | OnlineStoreSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -197,11 +199,24 @@ export interface Store {
   /**
    * Store latitude will be used for Map API display
    */
-  'Store Latitude': string;
+  lat: string;
   /**
    * Store longitude will be used for Map API display
    */
-  'Store Longitude': string;
+  long: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "online-store".
+ */
+export interface OnlineStore {
+  id: string;
+  name: string;
+  url: string;
+  logo: string | Media;
+  platform_color: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -231,6 +246,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'store';
         value: string | Store;
+      } | null)
+    | ({
+        relationTo: 'online-store';
+        value: string | OnlineStore;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -374,8 +393,20 @@ export interface StoreSelect<T extends boolean = true> {
   phone?: T;
   postal_code?: T;
   link?: T;
-  'Store Latitude'?: T;
-  'Store Longitude'?: T;
+  lat?: T;
+  long?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "online-store_select".
+ */
+export interface OnlineStoreSelect<T extends boolean = true> {
+  name?: T;
+  url?: T;
+  logo?: T;
+  platform_color?: T;
   updatedAt?: T;
   createdAt?: T;
 }
