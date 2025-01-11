@@ -55,6 +55,8 @@ import GinkgoExtractBlack from "@public/assets/illustrations/products/ginkgo-ext
 import GlutenFreeBlack from "@public/assets/illustrations/products/gluten-free-black.svg"
 // H
 import HashtagBcPrimary from "@public/assets/illustrations/homepage/hashtag-bc-primary.svg"
+import HomepageCat_1 from "@public/assets/homepage/homepage-cat-1.png"
+import HomepageCat_1_Mb from "@public/assets/homepage/homepage-cat-1-mb.png"
 import HomepageDog_1 from "@public/assets/homepage/homepage-dog-1.png"
 import HomepageDog_2 from "@public/assets/homepage/homepage-dog-2.png"
 import HomepageDog_3_4 from "@public/assets/homepage/homepage-dog-3-4.png"
@@ -192,6 +194,8 @@ export const Images = {
   GlutenFreeBlack,
   // H
   HashtagBcPrimary,
+  HomepageCat_1,
+  HomepageCat_1_Mb,
   HomepageDog_1,
   HomepageDog_2,
   HomepageDog_3_4,
