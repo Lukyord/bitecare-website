@@ -23,6 +23,13 @@ export const Product: CollectionConfig = {
           label: "General",
           fields: [
             {
+              name: "product_type",
+              label: "Product Type",
+              type: "relationship",
+              relationTo: "product-type",
+              required: true,
+            },
+            {
               type: "row",
               fields: [
                 {

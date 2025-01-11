@@ -11,6 +11,7 @@ import {
   Users,
   Store,
   OnlineStore,
+  ProductType,
 } from "@/payload/collections"
 import { seoPlugin } from "@payloadcms/plugin-seo"
 import { OverviewField } from "@payloadcms/plugin-seo/fields"
@@ -23,7 +24,15 @@ import {
 
 export default buildConfig({
   editor: lexicalEditor(),
-  collections: [Media, Users, Product, ProductTag, Store, OnlineStore],
+  collections: [
+    Media,
+    Users,
+    ProductType,
+    Product,
+    ProductTag,
+    Store,
+    OnlineStore,
+  ],
   secret: process.env.PAYLOAD_SECRET || "",
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || "",
