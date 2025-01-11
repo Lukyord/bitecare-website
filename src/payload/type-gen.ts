@@ -13,6 +13,7 @@ export interface Config {
   collections: {
     media: Media;
     users: User;
+    'product-type': ProductType;
     product: Product;
     'product-tag': ProductTag;
     store: Store;
@@ -25,6 +26,7 @@ export interface Config {
   collectionsSelect: {
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    'product-type': ProductTypeSelect<false> | ProductTypeSelect<true>;
     product: ProductSelect<false> | ProductSelect<true>;
     'product-tag': ProductTagSelect<false> | ProductTagSelect<true>;
     store: StoreSelect<false> | StoreSelect<true>;
@@ -112,10 +114,21 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-type".
+ */
+export interface ProductType {
+  id: string;
+  label: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product".
  */
 export interface Product {
   id: string;
+  product_type: string | ProductType;
   /**
    * The name of the product. Will be displayed on the website.
    */
@@ -236,6 +249,10 @@ export interface PayloadLockedDocument {
         value: string | User;
       } | null)
     | ({
+        relationTo: 'product-type';
+        value: string | ProductType;
+      } | null)
+    | ({
         relationTo: 'product';
         value: string | Product;
       } | null)
@@ -329,9 +346,19 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-type_select".
+ */
+export interface ProductTypeSelect<T extends boolean = true> {
+  label?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product_select".
  */
 export interface ProductSelect<T extends boolean = true> {
+  product_type?: T;
   label?: T;
   slug?: T;
   short_description?: T;
