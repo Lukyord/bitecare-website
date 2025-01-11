@@ -472,7 +472,7 @@ export interface Home {
   product_comparison: {
     header: string;
   };
-  faq?: {
+  faq: {
     faq_list?:
       | {
           question: string;
@@ -494,6 +494,10 @@ export interface Home {
           id?: string | null;
         }[]
       | null;
+    ask_doctor: {
+      ask_doctor_text: string;
+      ask_doctor_link: string;
+    };
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -636,6 +640,12 @@ export interface HomeSelect<T extends boolean = true> {
               question?: T;
               answer?: T;
               id?: T;
+            };
+        ask_doctor?:
+          | T
+          | {
+              ask_doctor_text?: T;
+              ask_doctor_link?: T;
             };
       };
   updatedAt?: T;

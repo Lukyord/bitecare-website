@@ -1,5 +1,6 @@
 import { GlobalConfig } from "payload"
 import { createRowLabel } from "../utils/create-row-label"
+import { text } from "stream/consumers"
 
 export const HomeConfig: GlobalConfig = {
   slug: "home",
@@ -147,6 +148,26 @@ export const HomeConfig: GlobalConfig = {
                   type: "richText",
                   required: true,
                   localized: true,
+                },
+              ],
+            },
+            {
+              name: "ask_doctor",
+              label: "Ask Doctor",
+              type: "group",
+              fields: [
+                {
+                  name: "ask_doctor_text",
+                  label: "Ask Doctor Text",
+                  type: "text",
+                  required: true,
+                  localized: true,
+                },
+                {
+                  name: "ask_doctor_link",
+                  label: "Ask Doctor Link",
+                  type: "text",
+                  required: true,
                 },
               ],
             },

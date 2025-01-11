@@ -10,12 +10,18 @@ import {
 } from "@/components/ui/accordion"
 import { RichText } from "@payloadcms/richtext-lexical/react"
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical"
+import Link from "next/link"
+import { Home } from "@/payload/type-gen"
 
 type FaqAccordionProps = {
   faqs: { question: string; answer: SerializedEditorState }[]
+  faq_ask_doctor: Home["faq"]["ask_doctor"]
 }
 
-export default function FaqAccordions({ faqs }: FaqAccordionProps) {
+export default function FaqAccordions({
+  faqs,
+  faq_ask_doctor,
+}: FaqAccordionProps) {
   return (
     <div
       className="
@@ -58,6 +64,16 @@ export default function FaqAccordions({ faqs }: FaqAccordionProps) {
             </AccordionContent>
           </AccordionItem>
         ))}
+        <AccordionItem value={faq_ask_doctor.ask_doctor_text}>
+          <Link
+            href={faq_ask_doctor.ask_doctor_link}
+            className="hover:underline"
+          >
+            <p className="my-4 py-4 text-start text-paragraph lg:text-h3">
+              {faq_ask_doctor.ask_doctor_text}
+            </p>
+          </Link>
+        </AccordionItem>
       </Accordion>
     </div>
   )
