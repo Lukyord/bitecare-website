@@ -125,7 +125,7 @@ export interface ProductType {
   /**
    * Must be unique and can only contain lowercase letters, numbers, and hyphens.
    */
-  product_type?: string | null;
+  product_type: string;
   updatedAt: string;
   createdAt: string;
 }
