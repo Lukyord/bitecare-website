@@ -20,7 +20,8 @@ export default async function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
       href={`/products/${product.slug}`}
-      className={`relative flex h-[275px] w-[325px] flex-col justify-between rounded-3xl  p-5 bg-[${product.primary_color}] group flex-shrink-0 overflow-hidden transition-all duration-300 hover:shadow-xl xl:h-[500px] xl:w-[600px] xl:px-10 xl:py-14`}
+      style={{ backgroundColor: product.primary_color }}
+      className={`group relative flex aspect-[1.2] w-[100%] flex-shrink-0 flex-col  justify-between overflow-hidden rounded-3xl p-5 transition-all duration-300 hover:shadow-xl xl:px-10 xl:py-14`}
     >
       <h2 className="w-[52.5%] text-h3 text-white xl:text-h2">
         {product.label}
