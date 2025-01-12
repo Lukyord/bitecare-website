@@ -51,7 +51,7 @@ export type ProductComparison = Pick<
   | "slug"
   | "label"
   | "front_img"
-  | "dog_image_cropped"
+  | "pet_image_cropped"
   | "primary_color"
   | "tags"
   | "compare_description_main"

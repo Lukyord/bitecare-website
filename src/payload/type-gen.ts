@@ -162,8 +162,8 @@ export interface Product {
   palatability_test_img: string | Media;
   registration_number_img: string | Media;
   fact_sheet_img: string | Media;
-  dog_image: string | Media;
-  dog_image_cropped: string | Media;
+  pet_image: string | Media;
+  pet_image_cropped: string | Media;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -389,8 +389,8 @@ export interface ProductSelect<T extends boolean = true> {
   palatability_test_img?: T;
   registration_number_img?: T;
   fact_sheet_img?: T;
-  dog_image?: T;
-  dog_image_cropped?: T;
+  pet_image?: T;
+  pet_image_cropped?: T;
   meta?:
     | T
     | {
