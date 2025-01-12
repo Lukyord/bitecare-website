@@ -204,15 +204,15 @@ export const Product: CollectionConfig = {
           label: "Assets",
           fields: [
             {
-              name: "dog_image",
-              label: "Dog Image",
+              name: "pet_image",
+              label: "Pet Image",
               type: "upload",
               relationTo: "media",
               required: true,
             },
             {
-              name: "dog_image_cropped",
-              label: "Dog Image Cropped",
+              name: "pet_image_cropped",
+              label: "Pet Image Cropped",
               type: "upload",
               relationTo: "media",
               required: true,

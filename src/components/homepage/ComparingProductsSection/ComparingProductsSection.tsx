@@ -23,7 +23,7 @@ export default async function ComparingProductsSection() {
         product_type: true,
         label: true,
         front_img: true,
-        dog_image_cropped: true,
+        pet_image_cropped: true,
         primary_color: true,
         tags: true,
         compare_description_main: true,
