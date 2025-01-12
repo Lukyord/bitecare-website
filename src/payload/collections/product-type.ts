@@ -20,6 +20,18 @@ export const ProductType: CollectionConfig = {
       },
     },
     {
+      name: "description",
+      label: "Product Type Description",
+      type: "text",
+      required: true,
+      localized: true,
+      admin: {
+        placeholder: "A short description of the product type",
+        description:
+          "A short description of the product type. Will be displayed on the website.",
+      },
+    },
+    {
       name: "product_type",
       label: "Product Type",
       type: "text",

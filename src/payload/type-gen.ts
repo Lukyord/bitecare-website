@@ -123,6 +123,10 @@ export interface ProductType {
    */
   label: string;
   /**
+   * A short description of the product type. Will be displayed on the website.
+   */
+  description: string;
+  /**
    * Must be unique and can only contain lowercase letters, numbers, and hyphens.
    */
   product_type: string;
@@ -357,6 +361,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface ProductTypeSelect<T extends boolean = true> {
   label?: T;
+  description?: T;
   product_type?: T;
   updatedAt?: T;
   createdAt?: T;
