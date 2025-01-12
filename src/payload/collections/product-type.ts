@@ -24,6 +24,7 @@ export const ProductType: CollectionConfig = {
       label: "Product Type",
       type: "text",
       unique: true,
+      required: true,
       admin: {
         description:
           "Must be unique and can only contain lowercase letters, numbers, and hyphens.",
