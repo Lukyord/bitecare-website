@@ -4,6 +4,7 @@ import CompareCards from "./CompareCards"
 import { getAllProducts } from "@/payload/service"
 import { getLocale } from "next-intl/server"
 import { getHomeConfigs } from "@/payload/service"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default async function ComparingProductsSection() {
   const locale = (await getLocale()) as Locale
@@ -43,6 +44,7 @@ export default async function ComparingProductsSection() {
 
       <h1 className="text-h3 lg:text-h2">{product_comparison.header}</h1>
 
+      <CompareCards products={products} />
       <CompareCards products={products} />
 
       <div className="absolute top-[99%] -z-10">

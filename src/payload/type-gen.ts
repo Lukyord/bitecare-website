@@ -118,7 +118,14 @@ export interface User {
  */
 export interface ProductType {
   id: string;
+  /**
+   * The name of the product type. Will be displayed on the website.
+   */
   label: string;
+  /**
+   * Must be unique and can only contain lowercase letters, numbers, and hyphens.
+   */
+  product_type?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -350,6 +357,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface ProductTypeSelect<T extends boolean = true> {
   label?: T;
+  product_type?: T;
   updatedAt?: T;
   createdAt?: T;
 }
