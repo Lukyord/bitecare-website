@@ -13,6 +13,7 @@ export interface Config {
   collections: {
     media: Media;
     users: User;
+    'product-type': ProductType;
     product: Product;
     'product-tag': ProductTag;
     store: Store;
@@ -25,6 +26,7 @@ export interface Config {
   collectionsSelect: {
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    'product-type': ProductTypeSelect<false> | ProductTypeSelect<true>;
     product: ProductSelect<false> | ProductSelect<true>;
     'product-tag': ProductTagSelect<false> | ProductTagSelect<true>;
     store: StoreSelect<false> | StoreSelect<true>;
@@ -112,10 +114,32 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-type".
+ */
+export interface ProductType {
+  id: string;
+  /**
+   * The name of the product type. Will be displayed on the website.
+   */
+  label: string;
+  /**
+   * A short description of the product type. Will be displayed on the website.
+   */
+  description: string;
+  /**
+   * Must be unique and can only contain lowercase letters, numbers, and hyphens.
+   */
+  product_type: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product".
  */
 export interface Product {
   id: string;
+  product_type: string | ProductType;
   /**
    * The name of the product. Will be displayed on the website.
    */
@@ -142,8 +166,8 @@ export interface Product {
   palatability_test_img: string | Media;
   registration_number_img: string | Media;
   fact_sheet_img: string | Media;
-  dog_image: string | Media;
-  dog_image_cropped: string | Media;
+  pet_image: string | Media;
+  pet_image_cropped: string | Media;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -234,6 +258,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: string | User;
+      } | null)
+    | ({
+        relationTo: 'product-type';
+        value: string | ProductType;
       } | null)
     | ({
         relationTo: 'product';
@@ -329,9 +357,21 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-type_select".
+ */
+export interface ProductTypeSelect<T extends boolean = true> {
+  label?: T;
+  description?: T;
+  product_type?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product_select".
  */
 export interface ProductSelect<T extends boolean = true> {
+  product_type?: T;
   label?: T;
   slug?: T;
   short_description?: T;
@@ -354,8 +394,8 @@ export interface ProductSelect<T extends boolean = true> {
   palatability_test_img?: T;
   registration_number_img?: T;
   fact_sheet_img?: T;
-  dog_image?: T;
-  dog_image_cropped?: T;
+  pet_image?: T;
+  pet_image_cropped?: T;
   meta?:
     | T
     | {
@@ -472,7 +512,7 @@ export interface Home {
   product_comparison: {
     header: string;
   };
-  faq?: {
+  faq: {
     faq_list?:
       | {
           question: string;
@@ -494,6 +534,10 @@ export interface Home {
           id?: string | null;
         }[]
       | null;
+    ask_doctor: {
+      ask_doctor_text: string;
+      ask_doctor_link: string;
+    };
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -636,6 +680,12 @@ export interface HomeSelect<T extends boolean = true> {
               question?: T;
               answer?: T;
               id?: T;
+            };
+        ask_doctor?:
+          | T
+          | {
+              ask_doctor_text?: T;
+              ask_doctor_link?: T;
             };
       };
   updatedAt?: T;

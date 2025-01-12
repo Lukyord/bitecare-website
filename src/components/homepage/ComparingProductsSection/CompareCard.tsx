@@ -16,7 +16,7 @@ type CompareCardProps = {
 
 export default function CompareCard({ selectedProduct }: CompareCardProps) {
   const frontImg = selectedProduct.front_img as Media
-  const dogImg = selectedProduct.dog_image_cropped as Media
+  const petImg = selectedProduct.pet_image_cropped as Media
   const [animationKey, setAnimationKey] = useState(0)
 
   useEffect(() => {
@@ -45,10 +45,10 @@ export default function CompareCard({ selectedProduct }: CompareCardProps) {
           priority
         />
         <Image
-          alt={dogImg.alt}
-          src={dogImg.url ?? ""}
-          height={dogImg.height ?? 326}
-          width={dogImg.width ?? 521}
+          alt={petImg.alt}
+          src={petImg.url ?? ""}
+          height={petImg.height ?? 326}
+          width={petImg.width ?? 521}
           className="absolute bottom-0 left-0  hidden h-full w-auto transition-all duration-300  ease-in-out group-hover:scale-110 lg:block"
         />
       </motion.div>

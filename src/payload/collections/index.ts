@@ -1,5 +1,6 @@
 export * from "./media"
 export * from "./users"
+export * from "./product-type"
 export * from "./product"
 export * from "./product-tag"
 export * from "./store"

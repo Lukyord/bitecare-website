@@ -33,7 +33,7 @@ export default function CompareCards({ products }: CompareCardProps) {
   }, [])
 
   return (
-    <div className="grid w-[95%] grid-cols-2 gap-4 rounded-3xl bg-bc-primary-container p-4 lg:grid-cols-3 lg:gap-8 lg:p-8">
+    <div className="mx-auto grid w-[95%] grid-cols-2 gap-4 rounded-3xl bg-bc-primary-container p-4 lg:grid-cols-3 lg:gap-8 lg:p-8">
       {selectedProduct.slice(0, sliceIndex).map((product, index) => (
         <div className="flex flex-col gap-4" key={index}>
           <Selector

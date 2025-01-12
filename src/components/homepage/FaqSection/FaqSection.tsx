@@ -22,6 +22,8 @@ export default async function FaqSection() {
     }
   })
 
+  const faq_ask_doctor = faq?.ask_doctor
+
   return (
     <section
       className="
@@ -43,7 +45,7 @@ export default async function FaqSection() {
             "
       />
 
-      <FaqAccordions faqs={faqs} />
+      <FaqAccordions faqs={faqs} faq_ask_doctor={faq_ask_doctor} />
     </section>
   )
 }

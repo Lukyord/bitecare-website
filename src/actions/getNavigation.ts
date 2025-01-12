@@ -1,5 +1,6 @@
 import { Locale } from "@/config/i18n.config"
 import { getAllProducts } from "@/payload/service"
+import { getProductType } from "@/payload/service/product-type"
 import { NavigationBreadcrumb, NavigationMenu } from "@/types/common/navbar"
 import { getLocale, getTranslations } from "next-intl/server"
 
@@ -19,12 +20,25 @@ export default async function getNavigation() {
     },
     locale,
   })
+  const ProductTypes = await getProductType({
+    select: {
+      label: true,
+      description: true,
+      product_type: true,
+    },
+    locale,
+  })
 
   const productBreadcrumb: NavigationBreadcrumb[] = [
-    ...products.map((product) => ({
-      title: product.label,
-      href: `/products/${product.slug}`,
-      description: "",
+    // ...products.map((product) => ({
+    //   title: product.label,
+    //   href: `/products/${product.slug}`,
+    //   description: "",
+    // })),
+    ...ProductTypes.map((productType) => ({
+      title: productType.label,
+      href: `/products#${productType.product_type}`,
+      description: productType.description,
     })),
     {
       title: tNavigationProduct("see-all"),
