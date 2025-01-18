@@ -492,6 +492,14 @@ export interface Home {
     header_text: string;
     subheader_text: string;
     cta_text: string;
+    hero_slides?:
+      | {
+          slide_image: string | Media;
+          slide_title: string;
+          slide_description: string;
+          id?: string | null;
+        }[]
+      | null;
   };
   principle: {
     principle_header: string;
@@ -646,6 +654,14 @@ export interface HomeSelect<T extends boolean = true> {
         header_text?: T;
         subheader_text?: T;
         cta_text?: T;
+        hero_slides?:
+          | T
+          | {
+              slide_image?: T;
+              slide_title?: T;
+              slide_description?: T;
+              id?: T;
+            };
       };
   principle?:
     | T

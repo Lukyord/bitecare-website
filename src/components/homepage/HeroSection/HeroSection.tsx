@@ -6,6 +6,7 @@ import ProductShowcase from "./ProductShowcase"
 import OnlinePlatforms from "./OnlinePlatforms"
 import { getHomeConfigs } from "@/payload/service"
 import { Locale } from "@/config/i18n.config"
+import SlideShowcase from "./SlideShowcase"
 
 type HeroSectionProps = {}
 
@@ -71,7 +72,9 @@ export default async function HeroSection({}: HeroSectionProps) {
         className="absolute right-0 -z-20 hidden aspect-[0.738] w-[27.5vw] md:top-[11%] lg:top-[5%] lg:block xl:top-[0%]"
       />
 
-      <ProductShowcase />
+      {/* <ProductShowcase /> */}
+
+      <SlideShowcase />
 
       <OnlinePlatforms />
     </section>

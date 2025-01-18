@@ -33,6 +33,38 @@ export const HomeConfig: GlobalConfig = {
               required: true,
               localized: true,
             },
+            {
+              label: "Hero Slides",
+              name: "hero_slides",
+              type: "array",
+              labels: {
+                singular: "Slide",
+                plural: "Slides",
+              },
+              fields: [
+                {
+                  label: "Slide Image",
+                  name: "slide_image",
+                  type: "upload",
+                  relationTo: "media",
+                  required: true,
+                },
+                {
+                  label: "Slide Title",
+                  name: "slide_title",
+                  type: "text",
+                  required: true,
+                  localized: true,
+                },
+                {
+                  label: "Slide Description",
+                  name: "slide_description",
+                  type: "text",
+                  required: true,
+                  localized: true,
+                },
+              ],
+            },
           ],
         },
         {
