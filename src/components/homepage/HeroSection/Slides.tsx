@@ -26,7 +26,24 @@ export default function Slides({ slides }: SlidesProps) {
   const swiper = useSwiper()
 
   return (
-    <>
+    <div className="relative">
+      <Image
+        alt="dog paw"
+        src={Images.DogPawBcInversePrimary}
+        className="absolute left-0 top-[-5%] z-20 h-auto w-[10vw] rotate-[15deg] sm:left-[5%] sm:top-[-10%]"
+      />
+
+      <Image
+        alt="heart"
+        src={Images.HeartBcPrimary_1}
+        className="absolute bottom-[30%] left-0 z-20 h-auto w-[15vw] sm:bottom-[-5%]"
+      />
+
+      <Image
+        alt="heart"
+        src={Images.HeartBcPrimary_2}
+        className="absolute bottom-[35%] right-0 z-20 h-auto w-[15vw] sm:bottom-[2%] sm:right-[5%]"
+      />
       <Swiper
         slidesPerView={1}
         effect="fade"
@@ -39,8 +56,8 @@ export default function Slides({ slides }: SlidesProps) {
       >
         {slides?.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="relative mx-auto w-[90%]">
-              <div className="relative aspect-[1.777] w-[90%] overflow-hidden">
+            <div className="relative mx-auto flex w-[90%] flex-col items-center">
+              <div className="relative aspect-[1.5] w-full overflow-hidden lg:aspect-[1.777] lg:w-[90%]">
                 <Image
                   alt={slide.slide_title}
                   src={(slide.slide_image as Media).url ?? ""}
@@ -49,9 +66,13 @@ export default function Slides({ slides }: SlidesProps) {
                 />
               </div>
 
-              <div className="absolute right-0 top-[50%] flex justify-center w-[30vw] flex-col gap-4 bg-bc-primary-container p-10 text-center translate-y-[-50%]">
-                <h3 className="lg:text-h3">{slide.slide_title}</h3>
-                <p className="lg:text-paragraph">{slide.slide_description}</p>
+              <div className="right-0 top-[50%] z-20 -mt-10 flex w-[80%] flex-col justify-center gap-2 bg-bc-primary-container p-4 text-center lg:absolute lg:mt-0 lg:w-[30vw] lg:translate-y-[-50%] lg:gap-8 lg:p-10">
+                <h3 className="text-paragraph lg:text-h3">
+                  {slide.slide_title}
+                </h3>
+                <p className="text-subtitle lg:text-paragraph">
+                  {slide.slide_description}
+                </p>
               </div>
             </div>
           </SwiperSlide>
@@ -83,6 +104,6 @@ export default function Slides({ slides }: SlidesProps) {
           </button>
         </div>
       </div>
-    </>
+    </div>
   )
 }

@@ -8,6 +8,7 @@
 // A
 import ArrowCurveUpWhite from "@public/assets/illustrations/common/arrow-curve-up-white.svg"
 import AboutUsBcDifferenceDog from "@public/assets/about-us/about-us-bc-difference-dog.png"
+import AboutUsCat_1 from "@public/assets/about-us/about-us-cat-1.png"
 import AboutUsContactUsDog from "@public/assets/about-us/about-us-contact-us-dog.png"
 import AboutUsDog_1 from "@public/assets/about-us/about-us-dog-1.png"
 import AboutUsDog_2 from "@public/assets/about-us/about-us-dog-2.png"
@@ -149,6 +150,7 @@ export const Images = {
   // A
   ArrowCurveUpWhite,
   AboutUsBcDifferenceDog,
+  AboutUsCat_1,
   AboutUsContactUsDog,
   AboutUsDog_1,
   AboutUsDog_2,

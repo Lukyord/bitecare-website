@@ -47,7 +47,7 @@ export default async function WelcomeToBiteCare() {
             src={Images.BiteCareLogoNew}
             width={373}
             height={180}
-            className="mx-auto mt-[-5%] h-auto w-[70%] lg:ml-[25%] lg:mr-0"
+            className="mx-auto mt-[-5%] h-auto w-[70%] xl:ml-[25%] xl:mr-0"
           />
         </h1>
 
