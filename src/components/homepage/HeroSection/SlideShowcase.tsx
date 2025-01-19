@@ -30,19 +30,30 @@ export default async function SlideShowcase() {
       <Image
         alt="dog paw"
         src={Images.DogPawBcInversePrimary}
-        className="
-                    absolute -top-[5%] right-[20%]
-                    h-auto w-[10vw] rotate-[15deg] 
-                    opacity-80
-                  "
+        className="absolute right-[20%] top-[-15%] h-auto w-[10vw] rotate-[15deg] opacity-80"
       />
       <Image
         alt="dog paw"
         src={Images.DogPawBcInversePrimary}
-        className="
-                    absolute bottom-[-5%] left-[30%] 
-                    z-0 h-auto w-[15vw] rotate-[15deg]
-                  "
+        className="absolute bottom-[-5%] left-[30%] z-0 h-auto w-[15vw] rotate-[15deg]"
+      />
+
+      <Image
+        alt="dog paw"
+        src={Images.DogPawBcInversePrimary}
+        className="absolute left-0 top-[-10%] z-20 h-auto w-[10vw] rotate-[15deg]"
+      />
+
+      <Image
+        alt="heart"
+        src={Images.HeartBcPrimary_1}
+        className="absolute bottom-[-5%] left-0 z-20 h-auto w-[15vw]"
+      />
+
+      <Image
+        alt="heart"
+        src={Images.HeartBcPrimary_2}
+        className="absolute bottom-[2%] right-[10%] z-20 h-auto w-[15vw]"
       />
 
       <Slides slides={hero.hero_slides} />

@@ -1,10 +1,19 @@
-.embla {
-  overflow: hidden;
+.swiper-fade .swiper-slide {
+  opacity: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease-in-out;
 }
-.embla__container {
-  display: flex;
+.swiper-fade .swiper-slide-active {
+  opacity: 1 !important;
+  z-index: 1 !important;
+  pointer-events: auto !important;
 }
-.embla__slide {
-  flex: 0 0 100%;
-  min-width: 0;
+
+.swiper.default.fade .swiper-slide {
+  width: 100% !important;
+  height: auto !important;
+}
+.swiper.default.fade .swiper-slide > * {
+  height: 100%;
 }
