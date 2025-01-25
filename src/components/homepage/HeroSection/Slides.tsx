@@ -4,7 +4,7 @@ import { Images } from "@/constant/Images"
 import Image from "next/image"
 import { useRef } from "react"
 
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react"
+import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, EffectFade } from "swiper/modules"
 import { Swiper as SwiperType } from "swiper/types"
 
@@ -23,7 +23,6 @@ type SlidesProps = {
 
 export default function Slides({ slides }: SlidesProps) {
   const swiperRef = useRef<SwiperType>(null)
-  const swiper = useSwiper()
 
   return (
     <div className="relative">

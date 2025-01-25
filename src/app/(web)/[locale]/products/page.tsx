@@ -19,6 +19,7 @@ export default async function ProductsPage({
   return (
     <div className="overflow-x-hidden">
       <ProductsPageLanding />
+      <div id="all-products"></div>
       <ProductsListSection />
       <FaqNavigateSection />
     </div>

@@ -29,7 +29,7 @@ export default function ProductSwiperSlide({
       src={frontImg.url ?? ""}
       width={frontImg.width ?? 1192}
       height={frontImg.height ?? 2128}
-      className="h-full max-h-[30vh] w-auto border-r-2  border-bc-black px-[10%] py-[10%] sm:max-h-[600px] xl:max-h-[60vh] 2xl:max-h-full"
+      className="h-auto w-full px-[10%] xl:h-full xl:max-h-[700px] xl:w-auto"
       priority
     />
   )

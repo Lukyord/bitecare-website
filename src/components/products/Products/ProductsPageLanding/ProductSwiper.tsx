@@ -1,11 +1,13 @@
 "use client"
 
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay } from "swiper/modules"
-import { useLayoutEffect, useState } from "react"
+import { Autoplay, EffectFade } from "swiper/modules"
+import { Swiper as SwiperType } from "swiper/types"
+
+import { useRef } from "react"
 
 import "swiper/css"
-import { BiteCareProduct } from "@/types/common/product"
+import "swiper/css/effect-fade"
 
 import SwiperButtonNext from "./SwiperButtonNext"
 import ProductSwiperSlide from "./ProductSwiperSlide"
@@ -17,42 +19,25 @@ type ProductSwiperProps = {
 }
 
 export default function ProductSwiper({ products }: ProductSwiperProps) {
-  const [slidesPerView, setSlidesPerView] = useState(2.5)
-
-  useLayoutEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleResize = () => {
-        if (window.innerWidth < 1280) {
-          setSlidesPerView(2.5)
-        } else {
-          setSlidesPerView(1.5)
-        }
-      }
-
-      window.addEventListener("resize", handleResize)
-      handleResize()
-
-      return () => {
-        window.removeEventListener("resize", handleResize)
-      }
-    }
-  }, [])
+  const swiperRef = useRef<SwiperType>(null)
 
   return (
     <Swiper
-      slidesPerView={slidesPerView}
+      onSwiper={(swiper) => (swiperRef.current = swiper)}
+      slidesPerView={1}
       speed={1200}
+      effect="fade"
       autoplay={{
         delay: 5000,
       }}
-      loop
-      modules={[Autoplay]}
-      allowTouchMove={false}
-      className="relative overflow-visible  rounded-bl-3xl rounded-tl-3xl  border-2 border-r-0 border-bc-black"
+      loop={true}
+      modules={[Autoplay, EffectFade]}
+      className="relative"
     >
       <SwiperButtonNext
-        style="absolute left-[65%] md:left-[70%] lg:left-[75%] xl:left-[55%] top-[10%] z-10 flex items-center justify-center rounded-full border-[3px] border-black bg-bc-primary transition-all [filter:drop-shadow(4px_4px_0px_#000)] active:scale-[0.9]"
+        style="absolute right-[1vw] top-[3%] 2xl:right-auto 2xl:left-[430px] lg:right-[3vw] lg:top-[10%] z-10 flex items-center justify-center rounded-full border-[3px] border-black bg-bc-primary transition-all [filter:drop-shadow(4px_4px_0px_#000)] active:scale-[0.9]"
         id="swiper-button-next"
+        swiperRef={swiperRef}
       >
         <RotatingCircularSwiperButtonText />
       </SwiperButtonNext>

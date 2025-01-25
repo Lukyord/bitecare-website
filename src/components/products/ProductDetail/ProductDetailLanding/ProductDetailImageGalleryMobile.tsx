@@ -22,11 +22,11 @@ export default function ProductDetailImageGalleryMobile({
   product,
 }: ProductDetailImageGalleryMobileProps) {
   const productImages = convertStringMediaToMedias([
-    // product.front_img,
-    // product.back_img,
-    // product.summary_img,
-    // product.clinic_test_img,
-    // product.palatability_test_img,
+    product.front_img,
+    product.back_img,
+    product.summary_img,
+    product.clinic_test_img,
+    product.palatability_test_img,
     product.registration_number_img,
   ])
   // const productImages: ProductImage[] = [
@@ -91,7 +91,8 @@ export default function ProductDetailImageGalleryMobile({
   return (
     <>
       <div
-        className={`inset-x-[20%] inset-y-[5%] bg-[${product.primary_color}]absolute md:w-[50%]lg:inset-x-[30%] -z-10 h-[90%] w-[60%] rounded-3xl md:inset-x-[25%] lg:w-[40%]`}
+        style={{ backgroundColor: product.primary_color }}
+        className={`inset-x-[20%] inset-y-[5%] bg-[${product.primary_color}] md:w-[50%]lg:inset-x-[30%] absolute -z-10 h-[90%] w-[60%] rounded-3xl md:inset-x-[25%] lg:w-[40%]`}
       />
       <Swiper
         loop={true}
