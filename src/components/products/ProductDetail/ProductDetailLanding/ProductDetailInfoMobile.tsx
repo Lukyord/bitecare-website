@@ -1,8 +1,9 @@
 "use client"
 
-import React from "react"
+import React, { useRef } from "react"
 import { useTranslations } from "next-intl"
 import { Swiper, SwiperSlide } from "swiper/react"
+import { Swiper as SwiperType } from "swiper/types"
 
 import "swiper/css"
 import "swiper/css/pagination"
@@ -23,6 +24,8 @@ type ProductDetailInfoMobileProps = {
 export default function ProductDetailInfoMobile({
   product,
 }: ProductDetailInfoMobileProps) {
+  const swiperRef = useRef<SwiperType>(null)
+
   const tButton = useTranslations("button")
 
   return (
@@ -43,10 +46,12 @@ export default function ProductDetailInfoMobile({
         }}
         modules={[EffectCards]}
         className="mx-auto h-full w-[80%]"
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
       >
         <SwiperButtonNext
           style="absolute w-24 h-24 rounded-full  bg-bc-inverse-primary  top-[-10%] right-[5%] z-10"
           id="product-info-next"
+          swiperRef={swiperRef}
         >
           <p className="whitespace-normal text-paragraph text-white">
             {tButton("more-info")}

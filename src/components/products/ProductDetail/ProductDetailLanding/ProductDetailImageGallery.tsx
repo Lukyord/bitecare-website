@@ -53,7 +53,8 @@ export default function ProductDetailImageGallery({
       {/* Selected Image */}
       <div className="relative flex w-[70%] items-center justify-center">
         <div
-          className={`${product.primary_color} absolute -z-10 h-[90%] w-[90%] rounded-3xl`}
+          style={{ backgroundColor: product.primary_color }}
+          className={`bg-[${product.primary_color}] absolute -z-10 h-[90%] w-[90%] rounded-3xl`}
         />
         <Image
           alt={productImages[selectedImageIndex]?.alt}

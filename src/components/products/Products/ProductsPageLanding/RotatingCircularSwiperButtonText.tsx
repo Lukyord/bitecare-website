@@ -1,6 +1,6 @@
 export default function RotatingCircularSwiperButtonText() {
   return (
-    <div className="relative h-[20vw]   w-[20vw]  font-bold text-white  lg:h-[10vw] lg:w-[10vw]">
+    <div className="relative h-[20vw] max-h-[200px] w-[20vw] max-w-[200px] font-bold text-white lg:h-[10vw] lg:w-[10vw]">
       <svg viewBox="0 0 100 100" className="animate-full-rotate">
         <path
           id="textPath"

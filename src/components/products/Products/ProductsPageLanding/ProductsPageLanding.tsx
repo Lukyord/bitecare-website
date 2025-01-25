@@ -21,13 +21,13 @@ export default async function ProductsPageLanding() {
       className="
               relative flex w-screen 
               flex-col gap-12 overflow-hidden
-              pb-14 pl-[5vw] pt-28 sm:gap-24
-              sm:py-28 xl:h-[115vh] 
-              xl:flex-row xl:gap-0 xl:pl-[10vw]
+              px-[5vw] pb-14 pt-28 sm:gap-24
+              sm:py-28 lg:h-[115vh] 
+              lg:flex-row lg:gap-0 lg:pl-[10vw]
             "
     >
       <ActiveProductContextProvider>
-        <div className="flex flex-col justify-center gap-6 lg:gap-10 xl:w-[55%]">
+        <div className="flex flex-col justify-center gap-6 lg:w-[55%] lg:gap-10">
           <div className="flex w-[85%] flex-col gap-4">
             <h1 className="text-h3 lg:text-h2 2xl:text-h1">
               {tProductsLanding("header")}
@@ -35,28 +35,28 @@ export default async function ProductsPageLanding() {
             <p className="text-paragraph">{tProductsLanding("description")}</p>
           </div>
 
-          <div className="block xl:hidden">
+          <div className="block lg:hidden">
             <SecondaryButton
               text={tButton("view-more")}
               size="paragraph"
               specificWidth="w-[162px]"
-              href="/products#all-products"
+              scrollToId="all-products"
             />
           </div>
-          <div className="hidden xl:block">
+          <div className="hidden lg:block">
             <SecondaryButton
               text={tButton("view-more")}
               size="h3"
               specificWidth="w-[311px]"
-              href="/products#all-products"
+              scrollToId="all-products"
             />
           </div>
         </div>
 
         <ProductsPageLandingBackground products={products} />
-        <ProductsPageLandingGradientBlur />
+        <ProductsPageLandingGradientBlur products={products} />
 
-        <div className="relative ml-auto flex w-[90%] items-center xl:w-[45%]">
+        <div className="relative ml-auto mr-auto flex w-[65%] items-center lg:w-[45%]">
           <ProductSwiper products={products} />
         </div>
       </ActiveProductContextProvider>

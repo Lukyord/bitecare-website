@@ -13,7 +13,6 @@ const transition = {
 }
 const width = ["10vw", "330vw"]
 const height = ["10vw", "330vw"]
-const fallbackBgColor = "#86D2DF"
 
 type Props = {
   products: Product[]
@@ -30,6 +29,7 @@ export default function ProductsPageLandingBackground({ products }: Props) {
     return acc
   }, {} as Variants)
 
+  const fallbackBgColor = products[0].primary_color || "#86D2DF"
   const { activeProduct } = useActiveProduct()
   const [buttonPosition, setButtonPosition] = useState({ left: 0, top: 0 })
 

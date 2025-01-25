@@ -8,6 +8,7 @@
 // A
 import ArrowCurveUpWhite from "@public/assets/illustrations/common/arrow-curve-up-white.svg"
 import AboutUsBcDifferenceDog from "@public/assets/about-us/about-us-bc-difference-dog.png"
+import AboutUsCat_1 from "@public/assets/about-us/about-us-cat-1.png"
 import AboutUsContactUsDog from "@public/assets/about-us/about-us-contact-us-dog.png"
 import AboutUsDog_1 from "@public/assets/about-us/about-us-dog-1.png"
 import AboutUsDog_2 from "@public/assets/about-us/about-us-dog-2.png"
@@ -62,6 +63,8 @@ import HomepageDog_2 from "@public/assets/homepage/homepage-dog-2.png"
 import HomepageDog_3_4 from "@public/assets/homepage/homepage-dog-3-4.png"
 import HomepageDog_5 from "@public/assets/homepage/homepage-dog-5.png"
 import HighlightBlack_1 from "@public/assets/illustrations/homepage/highlight-1-black.svg"
+import HeartBcPrimary_1 from "@public/assets/illustrations/homepage/heart-bc-primary-1.svg"
+import HeartBcPrimary_2 from "@public/assets/illustrations/homepage/heart-bc-primary-2.svg"
 // I
 // J
 // K
@@ -147,6 +150,7 @@ export const Images = {
   // A
   ArrowCurveUpWhite,
   AboutUsBcDifferenceDog,
+  AboutUsCat_1,
   AboutUsContactUsDog,
   AboutUsDog_1,
   AboutUsDog_2,
@@ -201,6 +205,8 @@ export const Images = {
   HomepageDog_3_4,
   HomepageDog_5,
   HighlightBlack_1,
+  HeartBcPrimary_1,
+  HeartBcPrimary_2,
   // I
   // J
   // K

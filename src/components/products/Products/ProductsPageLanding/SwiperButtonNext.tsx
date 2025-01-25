@@ -7,21 +7,23 @@ type SwiperButtonNextProps = {
   children: React.ReactNode
   style: string
   id: string
+  swiperRef: React.MutableRefObject<any>
 }
 
 export default function SwiperButtonNext({
   children,
   id,
   style,
+  swiperRef,
 }: SwiperButtonNextProps) {
   const swiper = useSwiper()
   const [isButtonDisabled, setButtonDisabled] = useState(false)
 
   const handleClick = () => {
-    if (!isButtonDisabled) {
+    if (!isButtonDisabled && swiperRef.current) {
       setButtonDisabled(true)
 
-      swiper.slideNext()
+      swiperRef.current.slideNext()
 
       setTimeout(() => {
         setButtonDisabled(false)

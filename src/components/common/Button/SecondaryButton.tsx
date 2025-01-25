@@ -16,6 +16,7 @@ type SecondaryButtonProps = {
   href?: string
   onClick?: () => void
   disabled?: boolean
+  scrollToId?: string
 }
 
 export default function SecondaryButton({
@@ -26,6 +27,7 @@ export default function SecondaryButton({
   href,
   onClick,
   disabled = false,
+  scrollToId,
 }: SecondaryButtonProps) {
   const router = useRouter()
   const controls = useAnimation()
@@ -105,6 +107,10 @@ export default function SecondaryButton({
       onClick={() => {
         href && router.push(href)
         onClick && onClick()
+        scrollToId &&
+          document.getElementById(scrollToId)?.scrollIntoView({
+            behavior: "smooth",
+          })
       }}
     >
       <MovingText controls={controls} icon={icon} text={text} />

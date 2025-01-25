@@ -97,8 +97,6 @@ export default async function ProductDetailPage(props: {
 
   const factSheetImg = await resolveMediaRef(product.fact_sheet_img)
 
-  console.log("factSheetImg", factSheetImg)
-
   return (
     <div className="flex flex-col">
       <ProductDetailLanding product={product} />
