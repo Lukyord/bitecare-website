@@ -9,6 +9,10 @@ type Query {
   docAccessUser(id: String!): usersDocAccess
   meUser: usersMe
   initializedUser: Boolean
+  ProductType(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): ProductType
+  ProductTypes(draft: Boolean, where: ProductType_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, pagination: Boolean, sort: String): ProductTypes
+  countProductTypes(draft: Boolean, where: ProductType_where, locale: LocaleInputType): countProductTypes
+  docAccessProductType(id: String!): product_typeDocAccess
   Product(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Product
   Products(draft: Boolean, where: Product_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, pagination: Boolean, sort: String): Products
   countProducts(draft: Boolean, where: Product_where, locale: LocaleInputType): countProducts
@@ -19,6 +23,14 @@ type Query {
   ProductTags(draft: Boolean, where: ProductTag_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, pagination: Boolean, sort: String): ProductTags
   countProductTags(draft: Boolean, where: ProductTag_where, locale: LocaleInputType): countProductTags
   docAccessProductTag(id: String!): product_tagDocAccess
+  Store(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): Store
+  Stores(draft: Boolean, where: Store_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, pagination: Boolean, sort: String): Stores
+  countStores(draft: Boolean, where: Store_where, locale: LocaleInputType): countStores
+  docAccessStore(id: String!): storeDocAccess
+  OnlineStore(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): OnlineStore
+  OnlineStores(draft: Boolean, where: OnlineStore_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, pagination: Boolean, sort: String): OnlineStores
+  countOnlineStores(draft: Boolean, where: OnlineStore_where, locale: LocaleInputType): countOnlineStores
+  docAccessOnlineStore(id: String!): online_storeDocAccess
   PayloadLockedDocument(id: String!, draft: Boolean, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType): PayloadLockedDocument
   PayloadLockedDocuments(draft: Boolean, where: PayloadLockedDocument_where, fallbackLocale: FallbackLocaleInputType, locale: LocaleInputType, limit: Int, page: Int, pagination: Boolean, sort: String): PayloadLockedDocuments
   countPayloadLockedDocuments(draft: Boolean, where: PayloadLockedDocument_where, locale: LocaleInputType): countPayloadLockedDocuments
@@ -39,6 +51,7 @@ type Query {
 type Media {
   id: String!
   alt: String!
+  prefix: String
   updatedAt: DateTime
   createdAt: DateTime
   url: String
@@ -84,6 +97,7 @@ type allMedia {
 
 input Media_where {
   alt: Media_alt_operator
+  prefix: Media_prefix_operator
   updatedAt: Media_updatedAt_operator
   createdAt: Media_createdAt_operator
   url: Media_url_operator
@@ -108,6 +122,17 @@ input Media_alt_operator {
   in: [String]
   not_in: [String]
   all: [String]
+}
+
+input Media_prefix_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
 }
 
 input Media_updatedAt_operator {
@@ -239,6 +264,7 @@ input Media_id_operator {
 
 input Media_where_and {
   alt: Media_alt_operator
+  prefix: Media_prefix_operator
   updatedAt: Media_updatedAt_operator
   createdAt: Media_createdAt_operator
   url: Media_url_operator
@@ -257,6 +283,7 @@ input Media_where_and {
 
 input Media_where_or {
   alt: Media_alt_operator
+  prefix: Media_prefix_operator
   updatedAt: Media_updatedAt_operator
   createdAt: Media_createdAt_operator
   url: Media_url_operator
@@ -287,6 +314,7 @@ type mediaDocAccess {
 
 type MediaDocAccessFields {
   alt: MediaDocAccessFields_alt
+  prefix: MediaDocAccessFields_prefix
   updatedAt: MediaDocAccessFields_updatedAt
   createdAt: MediaDocAccessFields_createdAt
   url: MediaDocAccessFields_url
@@ -320,6 +348,29 @@ type MediaDocAccessFields_alt_Update {
 }
 
 type MediaDocAccessFields_alt_Delete {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_prefix {
+  create: MediaDocAccessFields_prefix_Create
+  read: MediaDocAccessFields_prefix_Read
+  update: MediaDocAccessFields_prefix_Update
+  delete: MediaDocAccessFields_prefix_Delete
+}
+
+type MediaDocAccessFields_prefix_Create {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_prefix_Read {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_prefix_Update {
+  permission: Boolean!
+}
+
+type MediaDocAccessFields_prefix_Delete {
   permission: Boolean!
 }
 
@@ -824,8 +875,283 @@ type usersMe {
   user: User
 }
 
+type ProductType {
+  id: String!
+  label: String
+  description: String
+  product_type: String!
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type ProductTypes {
+  docs: [ProductType]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input ProductType_where {
+  label: ProductType_label_operator
+  description: ProductType_description_operator
+  product_type: ProductType_product_type_operator
+  updatedAt: ProductType_updatedAt_operator
+  createdAt: ProductType_createdAt_operator
+  id: ProductType_id_operator
+  AND: [ProductType_where_and]
+  OR: [ProductType_where_or]
+}
+
+input ProductType_label_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input ProductType_description_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input ProductType_product_type_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input ProductType_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input ProductType_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input ProductType_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input ProductType_where_and {
+  label: ProductType_label_operator
+  description: ProductType_description_operator
+  product_type: ProductType_product_type_operator
+  updatedAt: ProductType_updatedAt_operator
+  createdAt: ProductType_createdAt_operator
+  id: ProductType_id_operator
+  AND: [ProductType_where_and]
+  OR: [ProductType_where_or]
+}
+
+input ProductType_where_or {
+  label: ProductType_label_operator
+  description: ProductType_description_operator
+  product_type: ProductType_product_type_operator
+  updatedAt: ProductType_updatedAt_operator
+  createdAt: ProductType_createdAt_operator
+  id: ProductType_id_operator
+  AND: [ProductType_where_and]
+  OR: [ProductType_where_or]
+}
+
+type countProductTypes {
+  totalDocs: Int
+}
+
+type product_typeDocAccess {
+  fields: ProductTypeDocAccessFields
+  create: ProductTypeCreateDocAccess
+  read: ProductTypeReadDocAccess
+  update: ProductTypeUpdateDocAccess
+  delete: ProductTypeDeleteDocAccess
+}
+
+type ProductTypeDocAccessFields {
+  label: ProductTypeDocAccessFields_label
+  description: ProductTypeDocAccessFields_description
+  product_type: ProductTypeDocAccessFields_product_type
+  updatedAt: ProductTypeDocAccessFields_updatedAt
+  createdAt: ProductTypeDocAccessFields_createdAt
+}
+
+type ProductTypeDocAccessFields_label {
+  create: ProductTypeDocAccessFields_label_Create
+  read: ProductTypeDocAccessFields_label_Read
+  update: ProductTypeDocAccessFields_label_Update
+  delete: ProductTypeDocAccessFields_label_Delete
+}
+
+type ProductTypeDocAccessFields_label_Create {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_label_Read {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_label_Update {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_label_Delete {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_description {
+  create: ProductTypeDocAccessFields_description_Create
+  read: ProductTypeDocAccessFields_description_Read
+  update: ProductTypeDocAccessFields_description_Update
+  delete: ProductTypeDocAccessFields_description_Delete
+}
+
+type ProductTypeDocAccessFields_description_Create {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_description_Read {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_description_Update {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_description_Delete {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_product_type {
+  create: ProductTypeDocAccessFields_product_type_Create
+  read: ProductTypeDocAccessFields_product_type_Read
+  update: ProductTypeDocAccessFields_product_type_Update
+  delete: ProductTypeDocAccessFields_product_type_Delete
+}
+
+type ProductTypeDocAccessFields_product_type_Create {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_product_type_Read {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_product_type_Update {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_product_type_Delete {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_updatedAt {
+  create: ProductTypeDocAccessFields_updatedAt_Create
+  read: ProductTypeDocAccessFields_updatedAt_Read
+  update: ProductTypeDocAccessFields_updatedAt_Update
+  delete: ProductTypeDocAccessFields_updatedAt_Delete
+}
+
+type ProductTypeDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_createdAt {
+  create: ProductTypeDocAccessFields_createdAt_Create
+  read: ProductTypeDocAccessFields_createdAt_Read
+  update: ProductTypeDocAccessFields_createdAt_Update
+  delete: ProductTypeDocAccessFields_createdAt_Delete
+}
+
+type ProductTypeDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type ProductTypeDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type ProductTypeCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductTypeReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductTypeUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductTypeDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type Product {
   id: String!
+  product_type(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): ProductType
   label: String
   slug: String
   short_description: String
@@ -842,8 +1168,8 @@ type Product {
   palatability_test_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   registration_number_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   fact_sheet_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
-  dog_image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
-  dog_image_cropped(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  pet_image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  pet_image_cropped(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   meta: Product_Meta
   updatedAt: DateTime
   createdAt: DateTime
@@ -892,6 +1218,7 @@ type Products {
 }
 
 input Product_where {
+  product_type: Product_product_type_operator
   label: Product_label_operator
   slug: Product_slug_operator
   short_description: Product_short_description_operator
@@ -910,8 +1237,8 @@ input Product_where {
   palatability_test_img: Product_palatability_test_img_operator
   registration_number_img: Product_registration_number_img_operator
   fact_sheet_img: Product_fact_sheet_img_operator
-  dog_image: Product_dog_image_operator
-  dog_image_cropped: Product_dog_image_cropped_operator
+  pet_image: Product_pet_image_operator
+  pet_image_cropped: Product_pet_image_cropped_operator
   meta__title: Product_meta__title_operator
   meta__description: Product_meta__description_operator
   meta__image: Product_meta__image_operator
@@ -922,6 +1249,19 @@ input Product_where {
   AND: [Product_where_and]
   OR: [Product_where_or]
 }
+
+input Product_product_type_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 input Product_label_operator {
   equals: String
@@ -992,11 +1332,6 @@ input Product_tags_operator {
   all: [JSON]
   exists: Boolean
 }
-
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 input Product_facts__title_operator {
   equals: String
@@ -1085,7 +1420,7 @@ input Product_fact_sheet_img_operator {
   all: [JSON]
 }
 
-input Product_dog_image_operator {
+input Product_pet_image_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -1093,7 +1428,7 @@ input Product_dog_image_operator {
   all: [JSON]
 }
 
-input Product_dog_image_cropped_operator {
+input Product_pet_image_cropped_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -1177,6 +1512,7 @@ input Product_id_operator {
 }
 
 input Product_where_and {
+  product_type: Product_product_type_operator
   label: Product_label_operator
   slug: Product_slug_operator
   short_description: Product_short_description_operator
@@ -1195,8 +1531,8 @@ input Product_where_and {
   palatability_test_img: Product_palatability_test_img_operator
   registration_number_img: Product_registration_number_img_operator
   fact_sheet_img: Product_fact_sheet_img_operator
-  dog_image: Product_dog_image_operator
-  dog_image_cropped: Product_dog_image_cropped_operator
+  pet_image: Product_pet_image_operator
+  pet_image_cropped: Product_pet_image_cropped_operator
   meta__title: Product_meta__title_operator
   meta__description: Product_meta__description_operator
   meta__image: Product_meta__image_operator
@@ -1209,6 +1545,7 @@ input Product_where_and {
 }
 
 input Product_where_or {
+  product_type: Product_product_type_operator
   label: Product_label_operator
   slug: Product_slug_operator
   short_description: Product_short_description_operator
@@ -1227,8 +1564,8 @@ input Product_where_or {
   palatability_test_img: Product_palatability_test_img_operator
   registration_number_img: Product_registration_number_img_operator
   fact_sheet_img: Product_fact_sheet_img_operator
-  dog_image: Product_dog_image_operator
-  dog_image_cropped: Product_dog_image_cropped_operator
+  pet_image: Product_pet_image_operator
+  pet_image_cropped: Product_pet_image_cropped_operator
   meta__title: Product_meta__title_operator
   meta__description: Product_meta__description_operator
   meta__image: Product_meta__image_operator
@@ -1254,6 +1591,7 @@ type productDocAccess {
 }
 
 type ProductDocAccessFields {
+  product_type: ProductDocAccessFields_product_type
   label: ProductDocAccessFields_label
   slug: ProductDocAccessFields_slug
   short_description: ProductDocAccessFields_short_description
@@ -1270,12 +1608,35 @@ type ProductDocAccessFields {
   palatability_test_img: ProductDocAccessFields_palatability_test_img
   registration_number_img: ProductDocAccessFields_registration_number_img
   fact_sheet_img: ProductDocAccessFields_fact_sheet_img
-  dog_image: ProductDocAccessFields_dog_image
-  dog_image_cropped: ProductDocAccessFields_dog_image_cropped
+  pet_image: ProductDocAccessFields_pet_image
+  pet_image_cropped: ProductDocAccessFields_pet_image_cropped
   meta: ProductDocAccessFields_meta
   updatedAt: ProductDocAccessFields_updatedAt
   createdAt: ProductDocAccessFields_createdAt
   _status: ProductDocAccessFields__status
+}
+
+type ProductDocAccessFields_product_type {
+  create: ProductDocAccessFields_product_type_Create
+  read: ProductDocAccessFields_product_type_Read
+  update: ProductDocAccessFields_product_type_Update
+  delete: ProductDocAccessFields_product_type_Delete
+}
+
+type ProductDocAccessFields_product_type_Create {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_product_type_Read {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_product_type_Update {
+  permission: Boolean!
+}
+
+type ProductDocAccessFields_product_type_Delete {
+  permission: Boolean!
 }
 
 type ProductDocAccessFields_label {
@@ -1722,49 +2083,49 @@ type ProductDocAccessFields_fact_sheet_img_Delete {
   permission: Boolean!
 }
 
-type ProductDocAccessFields_dog_image {
-  create: ProductDocAccessFields_dog_image_Create
-  read: ProductDocAccessFields_dog_image_Read
-  update: ProductDocAccessFields_dog_image_Update
-  delete: ProductDocAccessFields_dog_image_Delete
+type ProductDocAccessFields_pet_image {
+  create: ProductDocAccessFields_pet_image_Create
+  read: ProductDocAccessFields_pet_image_Read
+  update: ProductDocAccessFields_pet_image_Update
+  delete: ProductDocAccessFields_pet_image_Delete
 }
 
-type ProductDocAccessFields_dog_image_Create {
+type ProductDocAccessFields_pet_image_Create {
   permission: Boolean!
 }
 
-type ProductDocAccessFields_dog_image_Read {
+type ProductDocAccessFields_pet_image_Read {
   permission: Boolean!
 }
 
-type ProductDocAccessFields_dog_image_Update {
+type ProductDocAccessFields_pet_image_Update {
   permission: Boolean!
 }
 
-type ProductDocAccessFields_dog_image_Delete {
+type ProductDocAccessFields_pet_image_Delete {
   permission: Boolean!
 }
 
-type ProductDocAccessFields_dog_image_cropped {
-  create: ProductDocAccessFields_dog_image_cropped_Create
-  read: ProductDocAccessFields_dog_image_cropped_Read
-  update: ProductDocAccessFields_dog_image_cropped_Update
-  delete: ProductDocAccessFields_dog_image_cropped_Delete
+type ProductDocAccessFields_pet_image_cropped {
+  create: ProductDocAccessFields_pet_image_cropped_Create
+  read: ProductDocAccessFields_pet_image_cropped_Read
+  update: ProductDocAccessFields_pet_image_cropped_Update
+  delete: ProductDocAccessFields_pet_image_cropped_Delete
 }
 
-type ProductDocAccessFields_dog_image_cropped_Create {
+type ProductDocAccessFields_pet_image_cropped_Create {
   permission: Boolean!
 }
 
-type ProductDocAccessFields_dog_image_cropped_Read {
+type ProductDocAccessFields_pet_image_cropped_Read {
   permission: Boolean!
 }
 
-type ProductDocAccessFields_dog_image_cropped_Update {
+type ProductDocAccessFields_pet_image_cropped_Update {
   permission: Boolean!
 }
 
-type ProductDocAccessFields_dog_image_cropped_Delete {
+type ProductDocAccessFields_pet_image_cropped_Delete {
   permission: Boolean!
 }
 
@@ -1973,6 +2334,7 @@ type ProductVersion {
 }
 
 type ProductVersion_Version {
+  product_type(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): ProductType
   label: String
   slug: String
   short_description: String
@@ -1989,8 +2351,8 @@ type ProductVersion_Version {
   palatability_test_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   registration_number_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   fact_sheet_img(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
-  dog_image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
-  dog_image_cropped(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  pet_image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  pet_image_cropped(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
   meta: ProductVersion_Version_Meta
   updatedAt: DateTime
   createdAt: DateTime
@@ -2035,6 +2397,7 @@ type versionsProducts {
 
 input versionsProduct_where {
   parent: versionsProduct_parent_operator
+  version__product_type: versionsProduct_version__product_type_operator
   version__label: versionsProduct_version__label_operator
   version__slug: versionsProduct_version__slug_operator
   version__short_description: versionsProduct_version__short_description_operator
@@ -2053,8 +2416,8 @@ input versionsProduct_where {
   version__palatability_test_img: versionsProduct_version__palatability_test_img_operator
   version__registration_number_img: versionsProduct_version__registration_number_img_operator
   version__fact_sheet_img: versionsProduct_version__fact_sheet_img_operator
-  version__dog_image: versionsProduct_version__dog_image_operator
-  version__dog_image_cropped: versionsProduct_version__dog_image_cropped_operator
+  version__pet_image: versionsProduct_version__pet_image_operator
+  version__pet_image_cropped: versionsProduct_version__pet_image_cropped_operator
   version__meta__title: versionsProduct_version__meta__title_operator
   version__meta__description: versionsProduct_version__meta__description_operator
   version__meta__image: versionsProduct_version__meta__image_operator
@@ -2078,6 +2441,14 @@ input versionsProduct_parent_operator {
   not_in: [JSON]
   all: [JSON]
   exists: Boolean
+}
+
+input versionsProduct_version__product_type_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
 }
 
 input versionsProduct_version__label_operator {
@@ -2237,7 +2608,7 @@ input versionsProduct_version__fact_sheet_img_operator {
   all: [JSON]
 }
 
-input versionsProduct_version__dog_image_operator {
+input versionsProduct_version__pet_image_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -2245,7 +2616,7 @@ input versionsProduct_version__dog_image_operator {
   all: [JSON]
 }
 
-input versionsProduct_version__dog_image_cropped_operator {
+input versionsProduct_version__pet_image_cropped_operator {
   equals: JSON
   not_equals: JSON
   in: [JSON]
@@ -2378,6 +2749,7 @@ input versionsProduct_id_operator {
 
 input versionsProduct_where_and {
   parent: versionsProduct_parent_operator
+  version__product_type: versionsProduct_version__product_type_operator
   version__label: versionsProduct_version__label_operator
   version__slug: versionsProduct_version__slug_operator
   version__short_description: versionsProduct_version__short_description_operator
@@ -2396,8 +2768,8 @@ input versionsProduct_where_and {
   version__palatability_test_img: versionsProduct_version__palatability_test_img_operator
   version__registration_number_img: versionsProduct_version__registration_number_img_operator
   version__fact_sheet_img: versionsProduct_version__fact_sheet_img_operator
-  version__dog_image: versionsProduct_version__dog_image_operator
-  version__dog_image_cropped: versionsProduct_version__dog_image_cropped_operator
+  version__pet_image: versionsProduct_version__pet_image_operator
+  version__pet_image_cropped: versionsProduct_version__pet_image_cropped_operator
   version__meta__title: versionsProduct_version__meta__title_operator
   version__meta__description: versionsProduct_version__meta__description_operator
   version__meta__image: versionsProduct_version__meta__image_operator
@@ -2416,6 +2788,7 @@ input versionsProduct_where_and {
 
 input versionsProduct_where_or {
   parent: versionsProduct_parent_operator
+  version__product_type: versionsProduct_version__product_type_operator
   version__label: versionsProduct_version__label_operator
   version__slug: versionsProduct_version__slug_operator
   version__short_description: versionsProduct_version__short_description_operator
@@ -2434,8 +2807,8 @@ input versionsProduct_where_or {
   version__palatability_test_img: versionsProduct_version__palatability_test_img_operator
   version__registration_number_img: versionsProduct_version__registration_number_img_operator
   version__fact_sheet_img: versionsProduct_version__fact_sheet_img_operator
-  version__dog_image: versionsProduct_version__dog_image_operator
-  version__dog_image_cropped: versionsProduct_version__dog_image_cropped_operator
+  version__pet_image: versionsProduct_version__pet_image_operator
+  version__pet_image_cropped: versionsProduct_version__pet_image_cropped_operator
   version__meta__title: versionsProduct_version__meta__title_operator
   version__meta__description: versionsProduct_version__meta__description_operator
   version__meta__image: versionsProduct_version__meta__image_operator
@@ -2750,6 +3123,895 @@ type ProductTagDeleteDocAccess {
   where: JSONObject
 }
 
+type Store {
+  id: String!
+  name: String
+  customer_name: String
+  address: String
+  province: String!
+  district: String!
+  subdistrict: String!
+  phone: String
+  postal_code: String!
+  link: String!
+  lat: String!
+  long: String!
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type Stores {
+  docs: [Store]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input Store_where {
+  name: Store_name_operator
+  customer_name: Store_customer_name_operator
+  address: Store_address_operator
+  province: Store_province_operator
+  district: Store_district_operator
+  subdistrict: Store_subdistrict_operator
+  phone: Store_phone_operator
+  postal_code: Store_postal_code_operator
+  link: Store_link_operator
+  lat: Store_lat_operator
+  long: Store_long_operator
+  updatedAt: Store_updatedAt_operator
+  createdAt: Store_createdAt_operator
+  id: Store_id_operator
+  AND: [Store_where_and]
+  OR: [Store_where_or]
+}
+
+input Store_name_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Store_customer_name_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Store_address_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Store_province_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Store_district_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Store_subdistrict_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Store_phone_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Store_postal_code_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Store_link_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Store_lat_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Store_long_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Store_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Store_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Store_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Store_where_and {
+  name: Store_name_operator
+  customer_name: Store_customer_name_operator
+  address: Store_address_operator
+  province: Store_province_operator
+  district: Store_district_operator
+  subdistrict: Store_subdistrict_operator
+  phone: Store_phone_operator
+  postal_code: Store_postal_code_operator
+  link: Store_link_operator
+  lat: Store_lat_operator
+  long: Store_long_operator
+  updatedAt: Store_updatedAt_operator
+  createdAt: Store_createdAt_operator
+  id: Store_id_operator
+  AND: [Store_where_and]
+  OR: [Store_where_or]
+}
+
+input Store_where_or {
+  name: Store_name_operator
+  customer_name: Store_customer_name_operator
+  address: Store_address_operator
+  province: Store_province_operator
+  district: Store_district_operator
+  subdistrict: Store_subdistrict_operator
+  phone: Store_phone_operator
+  postal_code: Store_postal_code_operator
+  link: Store_link_operator
+  lat: Store_lat_operator
+  long: Store_long_operator
+  updatedAt: Store_updatedAt_operator
+  createdAt: Store_createdAt_operator
+  id: Store_id_operator
+  AND: [Store_where_and]
+  OR: [Store_where_or]
+}
+
+type countStores {
+  totalDocs: Int
+}
+
+type storeDocAccess {
+  fields: StoreDocAccessFields
+  create: StoreCreateDocAccess
+  read: StoreReadDocAccess
+  update: StoreUpdateDocAccess
+  delete: StoreDeleteDocAccess
+}
+
+type StoreDocAccessFields {
+  name: StoreDocAccessFields_name
+  customer_name: StoreDocAccessFields_customer_name
+  address: StoreDocAccessFields_address
+  province: StoreDocAccessFields_province
+  district: StoreDocAccessFields_district
+  subdistrict: StoreDocAccessFields_subdistrict
+  phone: StoreDocAccessFields_phone
+  postal_code: StoreDocAccessFields_postal_code
+  link: StoreDocAccessFields_link
+  lat: StoreDocAccessFields_lat
+  long: StoreDocAccessFields_long
+  updatedAt: StoreDocAccessFields_updatedAt
+  createdAt: StoreDocAccessFields_createdAt
+}
+
+type StoreDocAccessFields_name {
+  create: StoreDocAccessFields_name_Create
+  read: StoreDocAccessFields_name_Read
+  update: StoreDocAccessFields_name_Update
+  delete: StoreDocAccessFields_name_Delete
+}
+
+type StoreDocAccessFields_name_Create {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_name_Read {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_name_Update {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_customer_name {
+  create: StoreDocAccessFields_customer_name_Create
+  read: StoreDocAccessFields_customer_name_Read
+  update: StoreDocAccessFields_customer_name_Update
+  delete: StoreDocAccessFields_customer_name_Delete
+}
+
+type StoreDocAccessFields_customer_name_Create {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_customer_name_Read {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_customer_name_Update {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_customer_name_Delete {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_address {
+  create: StoreDocAccessFields_address_Create
+  read: StoreDocAccessFields_address_Read
+  update: StoreDocAccessFields_address_Update
+  delete: StoreDocAccessFields_address_Delete
+}
+
+type StoreDocAccessFields_address_Create {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_address_Read {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_address_Update {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_address_Delete {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_province {
+  create: StoreDocAccessFields_province_Create
+  read: StoreDocAccessFields_province_Read
+  update: StoreDocAccessFields_province_Update
+  delete: StoreDocAccessFields_province_Delete
+}
+
+type StoreDocAccessFields_province_Create {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_province_Read {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_province_Update {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_province_Delete {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_district {
+  create: StoreDocAccessFields_district_Create
+  read: StoreDocAccessFields_district_Read
+  update: StoreDocAccessFields_district_Update
+  delete: StoreDocAccessFields_district_Delete
+}
+
+type StoreDocAccessFields_district_Create {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_district_Read {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_district_Update {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_district_Delete {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_subdistrict {
+  create: StoreDocAccessFields_subdistrict_Create
+  read: StoreDocAccessFields_subdistrict_Read
+  update: StoreDocAccessFields_subdistrict_Update
+  delete: StoreDocAccessFields_subdistrict_Delete
+}
+
+type StoreDocAccessFields_subdistrict_Create {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_subdistrict_Read {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_subdistrict_Update {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_subdistrict_Delete {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_phone {
+  create: StoreDocAccessFields_phone_Create
+  read: StoreDocAccessFields_phone_Read
+  update: StoreDocAccessFields_phone_Update
+  delete: StoreDocAccessFields_phone_Delete
+}
+
+type StoreDocAccessFields_phone_Create {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_phone_Read {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_phone_Update {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_phone_Delete {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_postal_code {
+  create: StoreDocAccessFields_postal_code_Create
+  read: StoreDocAccessFields_postal_code_Read
+  update: StoreDocAccessFields_postal_code_Update
+  delete: StoreDocAccessFields_postal_code_Delete
+}
+
+type StoreDocAccessFields_postal_code_Create {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_postal_code_Read {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_postal_code_Update {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_postal_code_Delete {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_link {
+  create: StoreDocAccessFields_link_Create
+  read: StoreDocAccessFields_link_Read
+  update: StoreDocAccessFields_link_Update
+  delete: StoreDocAccessFields_link_Delete
+}
+
+type StoreDocAccessFields_link_Create {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_link_Read {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_link_Update {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_link_Delete {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_lat {
+  create: StoreDocAccessFields_lat_Create
+  read: StoreDocAccessFields_lat_Read
+  update: StoreDocAccessFields_lat_Update
+  delete: StoreDocAccessFields_lat_Delete
+}
+
+type StoreDocAccessFields_lat_Create {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_lat_Read {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_lat_Update {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_lat_Delete {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_long {
+  create: StoreDocAccessFields_long_Create
+  read: StoreDocAccessFields_long_Read
+  update: StoreDocAccessFields_long_Update
+  delete: StoreDocAccessFields_long_Delete
+}
+
+type StoreDocAccessFields_long_Create {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_long_Read {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_long_Update {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_long_Delete {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_updatedAt {
+  create: StoreDocAccessFields_updatedAt_Create
+  read: StoreDocAccessFields_updatedAt_Read
+  update: StoreDocAccessFields_updatedAt_Update
+  delete: StoreDocAccessFields_updatedAt_Delete
+}
+
+type StoreDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_createdAt {
+  create: StoreDocAccessFields_createdAt_Create
+  read: StoreDocAccessFields_createdAt_Read
+  update: StoreDocAccessFields_createdAt_Update
+  delete: StoreDocAccessFields_createdAt_Delete
+}
+
+type StoreDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type StoreDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type StoreCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type StoreReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type StoreUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type StoreDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type OnlineStore {
+  id: String!
+  name: String!
+  url: String!
+  logo(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media!
+  platform_color: String!
+  updatedAt: DateTime
+  createdAt: DateTime
+}
+
+type OnlineStores {
+  docs: [OnlineStore]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+input OnlineStore_where {
+  name: OnlineStore_name_operator
+  url: OnlineStore_url_operator
+  logo: OnlineStore_logo_operator
+  platform_color: OnlineStore_platform_color_operator
+  updatedAt: OnlineStore_updatedAt_operator
+  createdAt: OnlineStore_createdAt_operator
+  id: OnlineStore_id_operator
+  AND: [OnlineStore_where_and]
+  OR: [OnlineStore_where_or]
+}
+
+input OnlineStore_name_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input OnlineStore_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input OnlineStore_logo_operator {
+  equals: JSON
+  not_equals: JSON
+  in: [JSON]
+  not_in: [JSON]
+  all: [JSON]
+}
+
+input OnlineStore_platform_color_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input OnlineStore_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input OnlineStore_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input OnlineStore_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input OnlineStore_where_and {
+  name: OnlineStore_name_operator
+  url: OnlineStore_url_operator
+  logo: OnlineStore_logo_operator
+  platform_color: OnlineStore_platform_color_operator
+  updatedAt: OnlineStore_updatedAt_operator
+  createdAt: OnlineStore_createdAt_operator
+  id: OnlineStore_id_operator
+  AND: [OnlineStore_where_and]
+  OR: [OnlineStore_where_or]
+}
+
+input OnlineStore_where_or {
+  name: OnlineStore_name_operator
+  url: OnlineStore_url_operator
+  logo: OnlineStore_logo_operator
+  platform_color: OnlineStore_platform_color_operator
+  updatedAt: OnlineStore_updatedAt_operator
+  createdAt: OnlineStore_createdAt_operator
+  id: OnlineStore_id_operator
+  AND: [OnlineStore_where_and]
+  OR: [OnlineStore_where_or]
+}
+
+type countOnlineStores {
+  totalDocs: Int
+}
+
+type online_storeDocAccess {
+  fields: OnlineStoreDocAccessFields
+  create: OnlineStoreCreateDocAccess
+  read: OnlineStoreReadDocAccess
+  update: OnlineStoreUpdateDocAccess
+  delete: OnlineStoreDeleteDocAccess
+}
+
+type OnlineStoreDocAccessFields {
+  name: OnlineStoreDocAccessFields_name
+  url: OnlineStoreDocAccessFields_url
+  logo: OnlineStoreDocAccessFields_logo
+  platform_color: OnlineStoreDocAccessFields_platform_color
+  updatedAt: OnlineStoreDocAccessFields_updatedAt
+  createdAt: OnlineStoreDocAccessFields_createdAt
+}
+
+type OnlineStoreDocAccessFields_name {
+  create: OnlineStoreDocAccessFields_name_Create
+  read: OnlineStoreDocAccessFields_name_Read
+  update: OnlineStoreDocAccessFields_name_Update
+  delete: OnlineStoreDocAccessFields_name_Delete
+}
+
+type OnlineStoreDocAccessFields_name_Create {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_name_Read {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_name_Update {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_url {
+  create: OnlineStoreDocAccessFields_url_Create
+  read: OnlineStoreDocAccessFields_url_Read
+  update: OnlineStoreDocAccessFields_url_Update
+  delete: OnlineStoreDocAccessFields_url_Delete
+}
+
+type OnlineStoreDocAccessFields_url_Create {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_url_Read {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_url_Update {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_url_Delete {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_logo {
+  create: OnlineStoreDocAccessFields_logo_Create
+  read: OnlineStoreDocAccessFields_logo_Read
+  update: OnlineStoreDocAccessFields_logo_Update
+  delete: OnlineStoreDocAccessFields_logo_Delete
+}
+
+type OnlineStoreDocAccessFields_logo_Create {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_logo_Read {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_logo_Update {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_logo_Delete {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_platform_color {
+  create: OnlineStoreDocAccessFields_platform_color_Create
+  read: OnlineStoreDocAccessFields_platform_color_Read
+  update: OnlineStoreDocAccessFields_platform_color_Update
+  delete: OnlineStoreDocAccessFields_platform_color_Delete
+}
+
+type OnlineStoreDocAccessFields_platform_color_Create {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_platform_color_Read {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_platform_color_Update {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_platform_color_Delete {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_updatedAt {
+  create: OnlineStoreDocAccessFields_updatedAt_Create
+  read: OnlineStoreDocAccessFields_updatedAt_Read
+  update: OnlineStoreDocAccessFields_updatedAt_Update
+  delete: OnlineStoreDocAccessFields_updatedAt_Delete
+}
+
+type OnlineStoreDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_createdAt {
+  create: OnlineStoreDocAccessFields_createdAt_Create
+  read: OnlineStoreDocAccessFields_createdAt_Read
+  update: OnlineStoreDocAccessFields_createdAt_Update
+  delete: OnlineStoreDocAccessFields_createdAt_Delete
+}
+
+type OnlineStoreDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type OnlineStoreDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type OnlineStoreCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type OnlineStoreReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type OnlineStoreUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type OnlineStoreDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type PayloadLockedDocument {
   id: String!
   document(draft: Boolean, locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): PayloadLockedDocument_Document_Relationship
@@ -2767,11 +4029,14 @@ type PayloadLockedDocument_Document_Relationship {
 enum PayloadLockedDocument_Document_RelationTo {
   media
   users
+  product_type
   product
   product_tag
+  store
+  online_store
 }
 
-union PayloadLockedDocument_Document = Media | User | Product | ProductTag
+union PayloadLockedDocument_Document = Media | User | ProductType | Product | ProductTag | Store | OnlineStore
 
 type PayloadLockedDocument_User_Relationship {
   relationTo: PayloadLockedDocument_User_RelationTo
@@ -2817,8 +4082,11 @@ input PayloadLockedDocument_document_Relation {
 enum PayloadLockedDocument_document_Relation_RelationTo {
   media
   users
+  product_type
   product
   product_tag
+  store
+  online_store
 }
 
 input PayloadLockedDocument_globalSlug_operator {
@@ -3350,6 +4618,14 @@ type Home_Hero {
   header_text: String
   subheader_text: String
   cta_text: String
+  hero_slides: [Home_Hero_Hero_slides!]
+}
+
+type Home_Hero_Hero_slides {
+  slide_image(locale: LocaleInputType, fallbackLocale: FallbackLocaleInputType): Media
+  slide_title: String
+  slide_description: String
+  id: String
 }
 
 type Home_Principle {
@@ -3375,12 +4651,18 @@ type Home_Product_comparison {
 
 type Home_Faq {
   faq_list: [Home_Faq_Faq_list!]
+  ask_doctor: Home_Faq_Ask_doctor
 }
 
 type Home_Faq_Faq_list {
   question: String
   answer(depth: Int): JSON
   id: String
+}
+
+type Home_Faq_Ask_doctor {
+  ask_doctor_text: String
+  ask_doctor_link: String
 }
 
 type homeDocAccess {
@@ -3393,6 +4675,7 @@ type HomeDocAccessFields {
   header_text: HomeDocAccessFields_header_text
   subheader_text: HomeDocAccessFields_subheader_text
   cta_text: HomeDocAccessFields_cta_text
+  hero_slides: HomeDocAccessFields_hero_slides
   principle_header: HomeDocAccessFields_principle_header
   principle_subheader: HomeDocAccessFields_principle_subheader
   principles: HomeDocAccessFields_principles
@@ -3400,6 +4683,7 @@ type HomeDocAccessFields {
   slogan_description: HomeDocAccessFields_slogan_description
   header: HomeDocAccessFields_header
   faq_list: HomeDocAccessFields_faq_list
+  ask_doctor: HomeDocAccessFields_ask_doctor
   updatedAt: HomeDocAccessFields_updatedAt
   createdAt: HomeDocAccessFields_createdAt
 }
@@ -3470,6 +4754,129 @@ type HomeDocAccessFields_cta_text_Update {
 }
 
 type HomeDocAccessFields_cta_text_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides {
+  create: HomeDocAccessFields_hero_slides_Create
+  read: HomeDocAccessFields_hero_slides_Read
+  update: HomeDocAccessFields_hero_slides_Update
+  delete: HomeDocAccessFields_hero_slides_Delete
+  fields: HomeDocAccessFields_hero_slides_Fields
+}
+
+type HomeDocAccessFields_hero_slides_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_Fields {
+  slide_image: HomeDocAccessFields_hero_slides_slide_image
+  slide_title: HomeDocAccessFields_hero_slides_slide_title
+  slide_description: HomeDocAccessFields_hero_slides_slide_description
+  id: HomeDocAccessFields_hero_slides_id
+}
+
+type HomeDocAccessFields_hero_slides_slide_image {
+  create: HomeDocAccessFields_hero_slides_slide_image_Create
+  read: HomeDocAccessFields_hero_slides_slide_image_Read
+  update: HomeDocAccessFields_hero_slides_slide_image_Update
+  delete: HomeDocAccessFields_hero_slides_slide_image_Delete
+}
+
+type HomeDocAccessFields_hero_slides_slide_image_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_slide_image_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_slide_image_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_slide_image_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_slide_title {
+  create: HomeDocAccessFields_hero_slides_slide_title_Create
+  read: HomeDocAccessFields_hero_slides_slide_title_Read
+  update: HomeDocAccessFields_hero_slides_slide_title_Update
+  delete: HomeDocAccessFields_hero_slides_slide_title_Delete
+}
+
+type HomeDocAccessFields_hero_slides_slide_title_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_slide_title_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_slide_title_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_slide_title_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_slide_description {
+  create: HomeDocAccessFields_hero_slides_slide_description_Create
+  read: HomeDocAccessFields_hero_slides_slide_description_Read
+  update: HomeDocAccessFields_hero_slides_slide_description_Update
+  delete: HomeDocAccessFields_hero_slides_slide_description_Delete
+}
+
+type HomeDocAccessFields_hero_slides_slide_description_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_slide_description_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_slide_description_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_slide_description_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_id {
+  create: HomeDocAccessFields_hero_slides_id_Create
+  read: HomeDocAccessFields_hero_slides_id_Read
+  update: HomeDocAccessFields_hero_slides_id_Update
+  delete: HomeDocAccessFields_hero_slides_id_Delete
+}
+
+type HomeDocAccessFields_hero_slides_id_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_id_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_id_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_hero_slides_id_Delete {
   permission: Boolean!
 }
 
@@ -3786,6 +5193,81 @@ type HomeDocAccessFields_faq_list_id_Delete {
   permission: Boolean!
 }
 
+type HomeDocAccessFields_ask_doctor {
+  create: HomeDocAccessFields_ask_doctor_Create
+  read: HomeDocAccessFields_ask_doctor_Read
+  update: HomeDocAccessFields_ask_doctor_Update
+  delete: HomeDocAccessFields_ask_doctor_Delete
+  fields: HomeDocAccessFields_ask_doctor_Fields
+}
+
+type HomeDocAccessFields_ask_doctor_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_ask_doctor_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_ask_doctor_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_ask_doctor_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_ask_doctor_Fields {
+  ask_doctor_text: HomeDocAccessFields_ask_doctor_ask_doctor_text
+  ask_doctor_link: HomeDocAccessFields_ask_doctor_ask_doctor_link
+}
+
+type HomeDocAccessFields_ask_doctor_ask_doctor_text {
+  create: HomeDocAccessFields_ask_doctor_ask_doctor_text_Create
+  read: HomeDocAccessFields_ask_doctor_ask_doctor_text_Read
+  update: HomeDocAccessFields_ask_doctor_ask_doctor_text_Update
+  delete: HomeDocAccessFields_ask_doctor_ask_doctor_text_Delete
+}
+
+type HomeDocAccessFields_ask_doctor_ask_doctor_text_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_ask_doctor_ask_doctor_text_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_ask_doctor_ask_doctor_text_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_ask_doctor_ask_doctor_text_Delete {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_ask_doctor_ask_doctor_link {
+  create: HomeDocAccessFields_ask_doctor_ask_doctor_link_Create
+  read: HomeDocAccessFields_ask_doctor_ask_doctor_link_Read
+  update: HomeDocAccessFields_ask_doctor_ask_doctor_link_Update
+  delete: HomeDocAccessFields_ask_doctor_ask_doctor_link_Delete
+}
+
+type HomeDocAccessFields_ask_doctor_ask_doctor_link_Create {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_ask_doctor_ask_doctor_link_Read {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_ask_doctor_ask_doctor_link_Update {
+  permission: Boolean!
+}
+
+type HomeDocAccessFields_ask_doctor_ask_doctor_link_Delete {
+  permission: Boolean!
+}
+
 type HomeDocAccessFields_updatedAt {
   create: HomeDocAccessFields_updatedAt_Create
   read: HomeDocAccessFields_updatedAt_Read
@@ -3845,27 +5327,13 @@ type HomeUpdateDocAccess {
 type Common {
   button: Common_Button
   footer: Common_Footer
-  error: Common_Error
   updatedAt: DateTime
   createdAt: DateTime
 }
 
 type Common_Button {
-  meet_bite_care: String
-  tell_a_friend: String
   see_our_products: String
-  view_more: String
-  faq: String
-  get_our_product: String
-  more_info: String
-  search: String
-  find_me: String
-  view_on_google_map: String
   send_message: String
-  get_to_know_us: String
-  back_to_homepage: String
-  contact_us: String
-  retry: String
 }
 
 type Common_Footer {
@@ -3884,13 +5352,6 @@ type Common_Footer_Legal {
   terms_and_conditions: String
 }
 
-type Common_Error {
-  page_not_found: String
-  page_not_found_description: String
-  error: String
-  error_description: String
-}
-
 type commonDocAccess {
   fields: CommonDocAccessFields
   read: CommonReadDocAccess
@@ -3898,75 +5359,12 @@ type commonDocAccess {
 }
 
 type CommonDocAccessFields {
-  meet_bite_care: CommonDocAccessFields_meet_bite_care
-  tell_a_friend: CommonDocAccessFields_tell_a_friend
   see_our_products: CommonDocAccessFields_see_our_products
-  view_more: CommonDocAccessFields_view_more
-  faq: CommonDocAccessFields_faq
-  get_our_product: CommonDocAccessFields_get_our_product
-  more_info: CommonDocAccessFields_more_info
-  search: CommonDocAccessFields_search
-  find_me: CommonDocAccessFields_find_me
-  view_on_google_map: CommonDocAccessFields_view_on_google_map
   send_message: CommonDocAccessFields_send_message
-  get_to_know_us: CommonDocAccessFields_get_to_know_us
-  back_to_homepage: CommonDocAccessFields_back_to_homepage
-  contact_us: CommonDocAccessFields_contact_us
-  retry: CommonDocAccessFields_retry
   tagline: CommonDocAccessFields_tagline
   legal: CommonDocAccessFields_legal
-  page_not_found: CommonDocAccessFields_page_not_found
-  page_not_found_description: CommonDocAccessFields_page_not_found_description
-  error: CommonDocAccessFields_error
-  error_description: CommonDocAccessFields_error_description
   updatedAt: CommonDocAccessFields_updatedAt
   createdAt: CommonDocAccessFields_createdAt
-}
-
-type CommonDocAccessFields_meet_bite_care {
-  create: CommonDocAccessFields_meet_bite_care_Create
-  read: CommonDocAccessFields_meet_bite_care_Read
-  update: CommonDocAccessFields_meet_bite_care_Update
-  delete: CommonDocAccessFields_meet_bite_care_Delete
-}
-
-type CommonDocAccessFields_meet_bite_care_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_meet_bite_care_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_meet_bite_care_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_meet_bite_care_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_tell_a_friend {
-  create: CommonDocAccessFields_tell_a_friend_Create
-  read: CommonDocAccessFields_tell_a_friend_Read
-  update: CommonDocAccessFields_tell_a_friend_Update
-  delete: CommonDocAccessFields_tell_a_friend_Delete
-}
-
-type CommonDocAccessFields_tell_a_friend_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_tell_a_friend_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_tell_a_friend_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_tell_a_friend_Delete {
-  permission: Boolean!
 }
 
 type CommonDocAccessFields_see_our_products {
@@ -3992,167 +5390,6 @@ type CommonDocAccessFields_see_our_products_Delete {
   permission: Boolean!
 }
 
-type CommonDocAccessFields_view_more {
-  create: CommonDocAccessFields_view_more_Create
-  read: CommonDocAccessFields_view_more_Read
-  update: CommonDocAccessFields_view_more_Update
-  delete: CommonDocAccessFields_view_more_Delete
-}
-
-type CommonDocAccessFields_view_more_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_view_more_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_view_more_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_view_more_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_faq {
-  create: CommonDocAccessFields_faq_Create
-  read: CommonDocAccessFields_faq_Read
-  update: CommonDocAccessFields_faq_Update
-  delete: CommonDocAccessFields_faq_Delete
-}
-
-type CommonDocAccessFields_faq_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_faq_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_faq_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_faq_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_get_our_product {
-  create: CommonDocAccessFields_get_our_product_Create
-  read: CommonDocAccessFields_get_our_product_Read
-  update: CommonDocAccessFields_get_our_product_Update
-  delete: CommonDocAccessFields_get_our_product_Delete
-}
-
-type CommonDocAccessFields_get_our_product_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_get_our_product_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_get_our_product_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_get_our_product_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_more_info {
-  create: CommonDocAccessFields_more_info_Create
-  read: CommonDocAccessFields_more_info_Read
-  update: CommonDocAccessFields_more_info_Update
-  delete: CommonDocAccessFields_more_info_Delete
-}
-
-type CommonDocAccessFields_more_info_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_more_info_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_more_info_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_more_info_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_search {
-  create: CommonDocAccessFields_search_Create
-  read: CommonDocAccessFields_search_Read
-  update: CommonDocAccessFields_search_Update
-  delete: CommonDocAccessFields_search_Delete
-}
-
-type CommonDocAccessFields_search_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_search_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_search_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_search_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_find_me {
-  create: CommonDocAccessFields_find_me_Create
-  read: CommonDocAccessFields_find_me_Read
-  update: CommonDocAccessFields_find_me_Update
-  delete: CommonDocAccessFields_find_me_Delete
-}
-
-type CommonDocAccessFields_find_me_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_find_me_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_find_me_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_find_me_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_view_on_google_map {
-  create: CommonDocAccessFields_view_on_google_map_Create
-  read: CommonDocAccessFields_view_on_google_map_Read
-  update: CommonDocAccessFields_view_on_google_map_Update
-  delete: CommonDocAccessFields_view_on_google_map_Delete
-}
-
-type CommonDocAccessFields_view_on_google_map_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_view_on_google_map_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_view_on_google_map_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_view_on_google_map_Delete {
-  permission: Boolean!
-}
-
 type CommonDocAccessFields_send_message {
   create: CommonDocAccessFields_send_message_Create
   read: CommonDocAccessFields_send_message_Read
@@ -4173,98 +5410,6 @@ type CommonDocAccessFields_send_message_Update {
 }
 
 type CommonDocAccessFields_send_message_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_get_to_know_us {
-  create: CommonDocAccessFields_get_to_know_us_Create
-  read: CommonDocAccessFields_get_to_know_us_Read
-  update: CommonDocAccessFields_get_to_know_us_Update
-  delete: CommonDocAccessFields_get_to_know_us_Delete
-}
-
-type CommonDocAccessFields_get_to_know_us_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_get_to_know_us_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_get_to_know_us_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_get_to_know_us_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_back_to_homepage {
-  create: CommonDocAccessFields_back_to_homepage_Create
-  read: CommonDocAccessFields_back_to_homepage_Read
-  update: CommonDocAccessFields_back_to_homepage_Update
-  delete: CommonDocAccessFields_back_to_homepage_Delete
-}
-
-type CommonDocAccessFields_back_to_homepage_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_back_to_homepage_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_back_to_homepage_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_back_to_homepage_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_contact_us {
-  create: CommonDocAccessFields_contact_us_Create
-  read: CommonDocAccessFields_contact_us_Read
-  update: CommonDocAccessFields_contact_us_Update
-  delete: CommonDocAccessFields_contact_us_Delete
-}
-
-type CommonDocAccessFields_contact_us_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_contact_us_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_contact_us_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_contact_us_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_retry {
-  create: CommonDocAccessFields_retry_Create
-  read: CommonDocAccessFields_retry_Read
-  update: CommonDocAccessFields_retry_Update
-  delete: CommonDocAccessFields_retry_Delete
-}
-
-type CommonDocAccessFields_retry_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_retry_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_retry_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_retry_Delete {
   permission: Boolean!
 }
 
@@ -4439,98 +5584,6 @@ type CommonDocAccessFields_legal_terms_and_conditions_Update {
 }
 
 type CommonDocAccessFields_legal_terms_and_conditions_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_page_not_found {
-  create: CommonDocAccessFields_page_not_found_Create
-  read: CommonDocAccessFields_page_not_found_Read
-  update: CommonDocAccessFields_page_not_found_Update
-  delete: CommonDocAccessFields_page_not_found_Delete
-}
-
-type CommonDocAccessFields_page_not_found_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_page_not_found_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_page_not_found_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_page_not_found_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_page_not_found_description {
-  create: CommonDocAccessFields_page_not_found_description_Create
-  read: CommonDocAccessFields_page_not_found_description_Read
-  update: CommonDocAccessFields_page_not_found_description_Update
-  delete: CommonDocAccessFields_page_not_found_description_Delete
-}
-
-type CommonDocAccessFields_page_not_found_description_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_page_not_found_description_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_page_not_found_description_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_page_not_found_description_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_error {
-  create: CommonDocAccessFields_error_Create
-  read: CommonDocAccessFields_error_Read
-  update: CommonDocAccessFields_error_Update
-  delete: CommonDocAccessFields_error_Delete
-}
-
-type CommonDocAccessFields_error_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_error_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_error_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_error_Delete {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_error_description {
-  create: CommonDocAccessFields_error_description_Create
-  read: CommonDocAccessFields_error_description_Read
-  update: CommonDocAccessFields_error_description_Update
-  delete: CommonDocAccessFields_error_description_Delete
-}
-
-type CommonDocAccessFields_error_description_Create {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_error_description_Read {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_error_description_Update {
-  permission: Boolean!
-}
-
-type CommonDocAccessFields_error_description_Delete {
   permission: Boolean!
 }
 
@@ -5483,8 +6536,11 @@ type Access {
   canAccessAdmin: Boolean!
   media: mediaAccess
   users: usersAccess
+  product_type: product_typeAccess
   product: productAccess
   product_tag: product_tagAccess
+  store: storeAccess
+  online_store: online_storeAccess
   payload_locked_documents: payload_locked_documentsAccess
   payload_preferences: payload_preferencesAccess
   home: homeAccess
@@ -5502,6 +6558,7 @@ type mediaAccess {
 
 type MediaFields {
   alt: MediaFields_alt
+  prefix: MediaFields_prefix
   updatedAt: MediaFields_updatedAt
   createdAt: MediaFields_createdAt
   url: MediaFields_url
@@ -5535,6 +6592,29 @@ type MediaFields_alt_Update {
 }
 
 type MediaFields_alt_Delete {
+  permission: Boolean!
+}
+
+type MediaFields_prefix {
+  create: MediaFields_prefix_Create
+  read: MediaFields_prefix_Read
+  update: MediaFields_prefix_Update
+  delete: MediaFields_prefix_Delete
+}
+
+type MediaFields_prefix_Create {
+  permission: Boolean!
+}
+
+type MediaFields_prefix_Read {
+  permission: Boolean!
+}
+
+type MediaFields_prefix_Update {
+  permission: Boolean!
+}
+
+type MediaFields_prefix_Delete {
   permission: Boolean!
 }
 
@@ -5920,6 +7000,157 @@ type UsersUnlockAccess {
   where: JSONObject
 }
 
+type product_typeAccess {
+  fields: ProductTypeFields
+  create: ProductTypeCreateAccess
+  read: ProductTypeReadAccess
+  update: ProductTypeUpdateAccess
+  delete: ProductTypeDeleteAccess
+}
+
+type ProductTypeFields {
+  label: ProductTypeFields_label
+  description: ProductTypeFields_description
+  product_type: ProductTypeFields_product_type
+  updatedAt: ProductTypeFields_updatedAt
+  createdAt: ProductTypeFields_createdAt
+}
+
+type ProductTypeFields_label {
+  create: ProductTypeFields_label_Create
+  read: ProductTypeFields_label_Read
+  update: ProductTypeFields_label_Update
+  delete: ProductTypeFields_label_Delete
+}
+
+type ProductTypeFields_label_Create {
+  permission: Boolean!
+}
+
+type ProductTypeFields_label_Read {
+  permission: Boolean!
+}
+
+type ProductTypeFields_label_Update {
+  permission: Boolean!
+}
+
+type ProductTypeFields_label_Delete {
+  permission: Boolean!
+}
+
+type ProductTypeFields_description {
+  create: ProductTypeFields_description_Create
+  read: ProductTypeFields_description_Read
+  update: ProductTypeFields_description_Update
+  delete: ProductTypeFields_description_Delete
+}
+
+type ProductTypeFields_description_Create {
+  permission: Boolean!
+}
+
+type ProductTypeFields_description_Read {
+  permission: Boolean!
+}
+
+type ProductTypeFields_description_Update {
+  permission: Boolean!
+}
+
+type ProductTypeFields_description_Delete {
+  permission: Boolean!
+}
+
+type ProductTypeFields_product_type {
+  create: ProductTypeFields_product_type_Create
+  read: ProductTypeFields_product_type_Read
+  update: ProductTypeFields_product_type_Update
+  delete: ProductTypeFields_product_type_Delete
+}
+
+type ProductTypeFields_product_type_Create {
+  permission: Boolean!
+}
+
+type ProductTypeFields_product_type_Read {
+  permission: Boolean!
+}
+
+type ProductTypeFields_product_type_Update {
+  permission: Boolean!
+}
+
+type ProductTypeFields_product_type_Delete {
+  permission: Boolean!
+}
+
+type ProductTypeFields_updatedAt {
+  create: ProductTypeFields_updatedAt_Create
+  read: ProductTypeFields_updatedAt_Read
+  update: ProductTypeFields_updatedAt_Update
+  delete: ProductTypeFields_updatedAt_Delete
+}
+
+type ProductTypeFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type ProductTypeFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type ProductTypeFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type ProductTypeFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type ProductTypeFields_createdAt {
+  create: ProductTypeFields_createdAt_Create
+  read: ProductTypeFields_createdAt_Read
+  update: ProductTypeFields_createdAt_Update
+  delete: ProductTypeFields_createdAt_Delete
+}
+
+type ProductTypeFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type ProductTypeFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type ProductTypeFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type ProductTypeFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type ProductTypeCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductTypeReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductTypeUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ProductTypeDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type productAccess {
   fields: ProductFields
   create: ProductCreateAccess
@@ -5930,6 +7161,7 @@ type productAccess {
 }
 
 type ProductFields {
+  product_type: ProductFields_product_type
   label: ProductFields_label
   slug: ProductFields_slug
   short_description: ProductFields_short_description
@@ -5946,12 +7178,35 @@ type ProductFields {
   palatability_test_img: ProductFields_palatability_test_img
   registration_number_img: ProductFields_registration_number_img
   fact_sheet_img: ProductFields_fact_sheet_img
-  dog_image: ProductFields_dog_image
-  dog_image_cropped: ProductFields_dog_image_cropped
+  pet_image: ProductFields_pet_image
+  pet_image_cropped: ProductFields_pet_image_cropped
   meta: ProductFields_meta
   updatedAt: ProductFields_updatedAt
   createdAt: ProductFields_createdAt
   _status: ProductFields__status
+}
+
+type ProductFields_product_type {
+  create: ProductFields_product_type_Create
+  read: ProductFields_product_type_Read
+  update: ProductFields_product_type_Update
+  delete: ProductFields_product_type_Delete
+}
+
+type ProductFields_product_type_Create {
+  permission: Boolean!
+}
+
+type ProductFields_product_type_Read {
+  permission: Boolean!
+}
+
+type ProductFields_product_type_Update {
+  permission: Boolean!
+}
+
+type ProductFields_product_type_Delete {
+  permission: Boolean!
 }
 
 type ProductFields_label {
@@ -6398,49 +7653,49 @@ type ProductFields_fact_sheet_img_Delete {
   permission: Boolean!
 }
 
-type ProductFields_dog_image {
-  create: ProductFields_dog_image_Create
-  read: ProductFields_dog_image_Read
-  update: ProductFields_dog_image_Update
-  delete: ProductFields_dog_image_Delete
+type ProductFields_pet_image {
+  create: ProductFields_pet_image_Create
+  read: ProductFields_pet_image_Read
+  update: ProductFields_pet_image_Update
+  delete: ProductFields_pet_image_Delete
 }
 
-type ProductFields_dog_image_Create {
+type ProductFields_pet_image_Create {
   permission: Boolean!
 }
 
-type ProductFields_dog_image_Read {
+type ProductFields_pet_image_Read {
   permission: Boolean!
 }
 
-type ProductFields_dog_image_Update {
+type ProductFields_pet_image_Update {
   permission: Boolean!
 }
 
-type ProductFields_dog_image_Delete {
+type ProductFields_pet_image_Delete {
   permission: Boolean!
 }
 
-type ProductFields_dog_image_cropped {
-  create: ProductFields_dog_image_cropped_Create
-  read: ProductFields_dog_image_cropped_Read
-  update: ProductFields_dog_image_cropped_Update
-  delete: ProductFields_dog_image_cropped_Delete
+type ProductFields_pet_image_cropped {
+  create: ProductFields_pet_image_cropped_Create
+  read: ProductFields_pet_image_cropped_Read
+  update: ProductFields_pet_image_cropped_Update
+  delete: ProductFields_pet_image_cropped_Delete
 }
 
-type ProductFields_dog_image_cropped_Create {
+type ProductFields_pet_image_cropped_Create {
   permission: Boolean!
 }
 
-type ProductFields_dog_image_cropped_Read {
+type ProductFields_pet_image_cropped_Read {
   permission: Boolean!
 }
 
-type ProductFields_dog_image_cropped_Update {
+type ProductFields_pet_image_cropped_Update {
   permission: Boolean!
 }
 
-type ProductFields_dog_image_cropped_Delete {
+type ProductFields_pet_image_cropped_Delete {
   permission: Boolean!
 }
 
@@ -6812,6 +8067,524 @@ type ProductTagDeleteAccess {
   where: JSONObject
 }
 
+type storeAccess {
+  fields: StoreFields
+  create: StoreCreateAccess
+  read: StoreReadAccess
+  update: StoreUpdateAccess
+  delete: StoreDeleteAccess
+}
+
+type StoreFields {
+  name: StoreFields_name
+  customer_name: StoreFields_customer_name
+  address: StoreFields_address
+  province: StoreFields_province
+  district: StoreFields_district
+  subdistrict: StoreFields_subdistrict
+  phone: StoreFields_phone
+  postal_code: StoreFields_postal_code
+  link: StoreFields_link
+  lat: StoreFields_lat
+  long: StoreFields_long
+  updatedAt: StoreFields_updatedAt
+  createdAt: StoreFields_createdAt
+}
+
+type StoreFields_name {
+  create: StoreFields_name_Create
+  read: StoreFields_name_Read
+  update: StoreFields_name_Update
+  delete: StoreFields_name_Delete
+}
+
+type StoreFields_name_Create {
+  permission: Boolean!
+}
+
+type StoreFields_name_Read {
+  permission: Boolean!
+}
+
+type StoreFields_name_Update {
+  permission: Boolean!
+}
+
+type StoreFields_name_Delete {
+  permission: Boolean!
+}
+
+type StoreFields_customer_name {
+  create: StoreFields_customer_name_Create
+  read: StoreFields_customer_name_Read
+  update: StoreFields_customer_name_Update
+  delete: StoreFields_customer_name_Delete
+}
+
+type StoreFields_customer_name_Create {
+  permission: Boolean!
+}
+
+type StoreFields_customer_name_Read {
+  permission: Boolean!
+}
+
+type StoreFields_customer_name_Update {
+  permission: Boolean!
+}
+
+type StoreFields_customer_name_Delete {
+  permission: Boolean!
+}
+
+type StoreFields_address {
+  create: StoreFields_address_Create
+  read: StoreFields_address_Read
+  update: StoreFields_address_Update
+  delete: StoreFields_address_Delete
+}
+
+type StoreFields_address_Create {
+  permission: Boolean!
+}
+
+type StoreFields_address_Read {
+  permission: Boolean!
+}
+
+type StoreFields_address_Update {
+  permission: Boolean!
+}
+
+type StoreFields_address_Delete {
+  permission: Boolean!
+}
+
+type StoreFields_province {
+  create: StoreFields_province_Create
+  read: StoreFields_province_Read
+  update: StoreFields_province_Update
+  delete: StoreFields_province_Delete
+}
+
+type StoreFields_province_Create {
+  permission: Boolean!
+}
+
+type StoreFields_province_Read {
+  permission: Boolean!
+}
+
+type StoreFields_province_Update {
+  permission: Boolean!
+}
+
+type StoreFields_province_Delete {
+  permission: Boolean!
+}
+
+type StoreFields_district {
+  create: StoreFields_district_Create
+  read: StoreFields_district_Read
+  update: StoreFields_district_Update
+  delete: StoreFields_district_Delete
+}
+
+type StoreFields_district_Create {
+  permission: Boolean!
+}
+
+type StoreFields_district_Read {
+  permission: Boolean!
+}
+
+type StoreFields_district_Update {
+  permission: Boolean!
+}
+
+type StoreFields_district_Delete {
+  permission: Boolean!
+}
+
+type StoreFields_subdistrict {
+  create: StoreFields_subdistrict_Create
+  read: StoreFields_subdistrict_Read
+  update: StoreFields_subdistrict_Update
+  delete: StoreFields_subdistrict_Delete
+}
+
+type StoreFields_subdistrict_Create {
+  permission: Boolean!
+}
+
+type StoreFields_subdistrict_Read {
+  permission: Boolean!
+}
+
+type StoreFields_subdistrict_Update {
+  permission: Boolean!
+}
+
+type StoreFields_subdistrict_Delete {
+  permission: Boolean!
+}
+
+type StoreFields_phone {
+  create: StoreFields_phone_Create
+  read: StoreFields_phone_Read
+  update: StoreFields_phone_Update
+  delete: StoreFields_phone_Delete
+}
+
+type StoreFields_phone_Create {
+  permission: Boolean!
+}
+
+type StoreFields_phone_Read {
+  permission: Boolean!
+}
+
+type StoreFields_phone_Update {
+  permission: Boolean!
+}
+
+type StoreFields_phone_Delete {
+  permission: Boolean!
+}
+
+type StoreFields_postal_code {
+  create: StoreFields_postal_code_Create
+  read: StoreFields_postal_code_Read
+  update: StoreFields_postal_code_Update
+  delete: StoreFields_postal_code_Delete
+}
+
+type StoreFields_postal_code_Create {
+  permission: Boolean!
+}
+
+type StoreFields_postal_code_Read {
+  permission: Boolean!
+}
+
+type StoreFields_postal_code_Update {
+  permission: Boolean!
+}
+
+type StoreFields_postal_code_Delete {
+  permission: Boolean!
+}
+
+type StoreFields_link {
+  create: StoreFields_link_Create
+  read: StoreFields_link_Read
+  update: StoreFields_link_Update
+  delete: StoreFields_link_Delete
+}
+
+type StoreFields_link_Create {
+  permission: Boolean!
+}
+
+type StoreFields_link_Read {
+  permission: Boolean!
+}
+
+type StoreFields_link_Update {
+  permission: Boolean!
+}
+
+type StoreFields_link_Delete {
+  permission: Boolean!
+}
+
+type StoreFields_lat {
+  create: StoreFields_lat_Create
+  read: StoreFields_lat_Read
+  update: StoreFields_lat_Update
+  delete: StoreFields_lat_Delete
+}
+
+type StoreFields_lat_Create {
+  permission: Boolean!
+}
+
+type StoreFields_lat_Read {
+  permission: Boolean!
+}
+
+type StoreFields_lat_Update {
+  permission: Boolean!
+}
+
+type StoreFields_lat_Delete {
+  permission: Boolean!
+}
+
+type StoreFields_long {
+  create: StoreFields_long_Create
+  read: StoreFields_long_Read
+  update: StoreFields_long_Update
+  delete: StoreFields_long_Delete
+}
+
+type StoreFields_long_Create {
+  permission: Boolean!
+}
+
+type StoreFields_long_Read {
+  permission: Boolean!
+}
+
+type StoreFields_long_Update {
+  permission: Boolean!
+}
+
+type StoreFields_long_Delete {
+  permission: Boolean!
+}
+
+type StoreFields_updatedAt {
+  create: StoreFields_updatedAt_Create
+  read: StoreFields_updatedAt_Read
+  update: StoreFields_updatedAt_Update
+  delete: StoreFields_updatedAt_Delete
+}
+
+type StoreFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type StoreFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type StoreFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type StoreFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type StoreFields_createdAt {
+  create: StoreFields_createdAt_Create
+  read: StoreFields_createdAt_Read
+  update: StoreFields_createdAt_Update
+  delete: StoreFields_createdAt_Delete
+}
+
+type StoreFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type StoreFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type StoreFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type StoreFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type StoreCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type StoreReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type StoreUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type StoreDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type online_storeAccess {
+  fields: OnlineStoreFields
+  create: OnlineStoreCreateAccess
+  read: OnlineStoreReadAccess
+  update: OnlineStoreUpdateAccess
+  delete: OnlineStoreDeleteAccess
+}
+
+type OnlineStoreFields {
+  name: OnlineStoreFields_name
+  url: OnlineStoreFields_url
+  logo: OnlineStoreFields_logo
+  platform_color: OnlineStoreFields_platform_color
+  updatedAt: OnlineStoreFields_updatedAt
+  createdAt: OnlineStoreFields_createdAt
+}
+
+type OnlineStoreFields_name {
+  create: OnlineStoreFields_name_Create
+  read: OnlineStoreFields_name_Read
+  update: OnlineStoreFields_name_Update
+  delete: OnlineStoreFields_name_Delete
+}
+
+type OnlineStoreFields_name_Create {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_name_Read {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_name_Update {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_name_Delete {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_url {
+  create: OnlineStoreFields_url_Create
+  read: OnlineStoreFields_url_Read
+  update: OnlineStoreFields_url_Update
+  delete: OnlineStoreFields_url_Delete
+}
+
+type OnlineStoreFields_url_Create {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_url_Read {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_url_Update {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_url_Delete {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_logo {
+  create: OnlineStoreFields_logo_Create
+  read: OnlineStoreFields_logo_Read
+  update: OnlineStoreFields_logo_Update
+  delete: OnlineStoreFields_logo_Delete
+}
+
+type OnlineStoreFields_logo_Create {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_logo_Read {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_logo_Update {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_logo_Delete {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_platform_color {
+  create: OnlineStoreFields_platform_color_Create
+  read: OnlineStoreFields_platform_color_Read
+  update: OnlineStoreFields_platform_color_Update
+  delete: OnlineStoreFields_platform_color_Delete
+}
+
+type OnlineStoreFields_platform_color_Create {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_platform_color_Read {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_platform_color_Update {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_platform_color_Delete {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_updatedAt {
+  create: OnlineStoreFields_updatedAt_Create
+  read: OnlineStoreFields_updatedAt_Read
+  update: OnlineStoreFields_updatedAt_Update
+  delete: OnlineStoreFields_updatedAt_Delete
+}
+
+type OnlineStoreFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_createdAt {
+  create: OnlineStoreFields_createdAt_Create
+  read: OnlineStoreFields_createdAt_Read
+  update: OnlineStoreFields_createdAt_Update
+  delete: OnlineStoreFields_createdAt_Delete
+}
+
+type OnlineStoreFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type OnlineStoreFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type OnlineStoreCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type OnlineStoreReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type OnlineStoreUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type OnlineStoreDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
 type payload_locked_documentsAccess {
   fields: PayloadLockedDocumentsFields
   create: PayloadLockedDocumentsCreateAccess
@@ -7124,6 +8897,7 @@ type HomeFields {
   header_text: HomeFields_header_text
   subheader_text: HomeFields_subheader_text
   cta_text: HomeFields_cta_text
+  hero_slides: HomeFields_hero_slides
   principle_header: HomeFields_principle_header
   principle_subheader: HomeFields_principle_subheader
   principles: HomeFields_principles
@@ -7131,6 +8905,7 @@ type HomeFields {
   slogan_description: HomeFields_slogan_description
   header: HomeFields_header
   faq_list: HomeFields_faq_list
+  ask_doctor: HomeFields_ask_doctor
   updatedAt: HomeFields_updatedAt
   createdAt: HomeFields_createdAt
 }
@@ -7201,6 +8976,129 @@ type HomeFields_cta_text_Update {
 }
 
 type HomeFields_cta_text_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides {
+  create: HomeFields_hero_slides_Create
+  read: HomeFields_hero_slides_Read
+  update: HomeFields_hero_slides_Update
+  delete: HomeFields_hero_slides_Delete
+  fields: HomeFields_hero_slides_Fields
+}
+
+type HomeFields_hero_slides_Create {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_Read {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_Update {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_Fields {
+  slide_image: HomeFields_hero_slides_slide_image
+  slide_title: HomeFields_hero_slides_slide_title
+  slide_description: HomeFields_hero_slides_slide_description
+  id: HomeFields_hero_slides_id
+}
+
+type HomeFields_hero_slides_slide_image {
+  create: HomeFields_hero_slides_slide_image_Create
+  read: HomeFields_hero_slides_slide_image_Read
+  update: HomeFields_hero_slides_slide_image_Update
+  delete: HomeFields_hero_slides_slide_image_Delete
+}
+
+type HomeFields_hero_slides_slide_image_Create {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_slide_image_Read {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_slide_image_Update {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_slide_image_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_slide_title {
+  create: HomeFields_hero_slides_slide_title_Create
+  read: HomeFields_hero_slides_slide_title_Read
+  update: HomeFields_hero_slides_slide_title_Update
+  delete: HomeFields_hero_slides_slide_title_Delete
+}
+
+type HomeFields_hero_slides_slide_title_Create {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_slide_title_Read {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_slide_title_Update {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_slide_title_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_slide_description {
+  create: HomeFields_hero_slides_slide_description_Create
+  read: HomeFields_hero_slides_slide_description_Read
+  update: HomeFields_hero_slides_slide_description_Update
+  delete: HomeFields_hero_slides_slide_description_Delete
+}
+
+type HomeFields_hero_slides_slide_description_Create {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_slide_description_Read {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_slide_description_Update {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_slide_description_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_id {
+  create: HomeFields_hero_slides_id_Create
+  read: HomeFields_hero_slides_id_Read
+  update: HomeFields_hero_slides_id_Update
+  delete: HomeFields_hero_slides_id_Delete
+}
+
+type HomeFields_hero_slides_id_Create {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_id_Read {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_id_Update {
+  permission: Boolean!
+}
+
+type HomeFields_hero_slides_id_Delete {
   permission: Boolean!
 }
 
@@ -7517,6 +9415,81 @@ type HomeFields_faq_list_id_Delete {
   permission: Boolean!
 }
 
+type HomeFields_ask_doctor {
+  create: HomeFields_ask_doctor_Create
+  read: HomeFields_ask_doctor_Read
+  update: HomeFields_ask_doctor_Update
+  delete: HomeFields_ask_doctor_Delete
+  fields: HomeFields_ask_doctor_Fields
+}
+
+type HomeFields_ask_doctor_Create {
+  permission: Boolean!
+}
+
+type HomeFields_ask_doctor_Read {
+  permission: Boolean!
+}
+
+type HomeFields_ask_doctor_Update {
+  permission: Boolean!
+}
+
+type HomeFields_ask_doctor_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_ask_doctor_Fields {
+  ask_doctor_text: HomeFields_ask_doctor_ask_doctor_text
+  ask_doctor_link: HomeFields_ask_doctor_ask_doctor_link
+}
+
+type HomeFields_ask_doctor_ask_doctor_text {
+  create: HomeFields_ask_doctor_ask_doctor_text_Create
+  read: HomeFields_ask_doctor_ask_doctor_text_Read
+  update: HomeFields_ask_doctor_ask_doctor_text_Update
+  delete: HomeFields_ask_doctor_ask_doctor_text_Delete
+}
+
+type HomeFields_ask_doctor_ask_doctor_text_Create {
+  permission: Boolean!
+}
+
+type HomeFields_ask_doctor_ask_doctor_text_Read {
+  permission: Boolean!
+}
+
+type HomeFields_ask_doctor_ask_doctor_text_Update {
+  permission: Boolean!
+}
+
+type HomeFields_ask_doctor_ask_doctor_text_Delete {
+  permission: Boolean!
+}
+
+type HomeFields_ask_doctor_ask_doctor_link {
+  create: HomeFields_ask_doctor_ask_doctor_link_Create
+  read: HomeFields_ask_doctor_ask_doctor_link_Read
+  update: HomeFields_ask_doctor_ask_doctor_link_Update
+  delete: HomeFields_ask_doctor_ask_doctor_link_Delete
+}
+
+type HomeFields_ask_doctor_ask_doctor_link_Create {
+  permission: Boolean!
+}
+
+type HomeFields_ask_doctor_ask_doctor_link_Read {
+  permission: Boolean!
+}
+
+type HomeFields_ask_doctor_ask_doctor_link_Update {
+  permission: Boolean!
+}
+
+type HomeFields_ask_doctor_ask_doctor_link_Delete {
+  permission: Boolean!
+}
+
 type HomeFields_updatedAt {
   create: HomeFields_updatedAt_Create
   read: HomeFields_updatedAt_Read
@@ -7580,75 +9553,12 @@ type commonAccess {
 }
 
 type CommonFields {
-  meet_bite_care: CommonFields_meet_bite_care
-  tell_a_friend: CommonFields_tell_a_friend
   see_our_products: CommonFields_see_our_products
-  view_more: CommonFields_view_more
-  faq: CommonFields_faq
-  get_our_product: CommonFields_get_our_product
-  more_info: CommonFields_more_info
-  search: CommonFields_search
-  find_me: CommonFields_find_me
-  view_on_google_map: CommonFields_view_on_google_map
   send_message: CommonFields_send_message
-  get_to_know_us: CommonFields_get_to_know_us
-  back_to_homepage: CommonFields_back_to_homepage
-  contact_us: CommonFields_contact_us
-  retry: CommonFields_retry
   tagline: CommonFields_tagline
   legal: CommonFields_legal
-  page_not_found: CommonFields_page_not_found
-  page_not_found_description: CommonFields_page_not_found_description
-  error: CommonFields_error
-  error_description: CommonFields_error_description
   updatedAt: CommonFields_updatedAt
   createdAt: CommonFields_createdAt
-}
-
-type CommonFields_meet_bite_care {
-  create: CommonFields_meet_bite_care_Create
-  read: CommonFields_meet_bite_care_Read
-  update: CommonFields_meet_bite_care_Update
-  delete: CommonFields_meet_bite_care_Delete
-}
-
-type CommonFields_meet_bite_care_Create {
-  permission: Boolean!
-}
-
-type CommonFields_meet_bite_care_Read {
-  permission: Boolean!
-}
-
-type CommonFields_meet_bite_care_Update {
-  permission: Boolean!
-}
-
-type CommonFields_meet_bite_care_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_tell_a_friend {
-  create: CommonFields_tell_a_friend_Create
-  read: CommonFields_tell_a_friend_Read
-  update: CommonFields_tell_a_friend_Update
-  delete: CommonFields_tell_a_friend_Delete
-}
-
-type CommonFields_tell_a_friend_Create {
-  permission: Boolean!
-}
-
-type CommonFields_tell_a_friend_Read {
-  permission: Boolean!
-}
-
-type CommonFields_tell_a_friend_Update {
-  permission: Boolean!
-}
-
-type CommonFields_tell_a_friend_Delete {
-  permission: Boolean!
 }
 
 type CommonFields_see_our_products {
@@ -7674,167 +9584,6 @@ type CommonFields_see_our_products_Delete {
   permission: Boolean!
 }
 
-type CommonFields_view_more {
-  create: CommonFields_view_more_Create
-  read: CommonFields_view_more_Read
-  update: CommonFields_view_more_Update
-  delete: CommonFields_view_more_Delete
-}
-
-type CommonFields_view_more_Create {
-  permission: Boolean!
-}
-
-type CommonFields_view_more_Read {
-  permission: Boolean!
-}
-
-type CommonFields_view_more_Update {
-  permission: Boolean!
-}
-
-type CommonFields_view_more_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_faq {
-  create: CommonFields_faq_Create
-  read: CommonFields_faq_Read
-  update: CommonFields_faq_Update
-  delete: CommonFields_faq_Delete
-}
-
-type CommonFields_faq_Create {
-  permission: Boolean!
-}
-
-type CommonFields_faq_Read {
-  permission: Boolean!
-}
-
-type CommonFields_faq_Update {
-  permission: Boolean!
-}
-
-type CommonFields_faq_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_get_our_product {
-  create: CommonFields_get_our_product_Create
-  read: CommonFields_get_our_product_Read
-  update: CommonFields_get_our_product_Update
-  delete: CommonFields_get_our_product_Delete
-}
-
-type CommonFields_get_our_product_Create {
-  permission: Boolean!
-}
-
-type CommonFields_get_our_product_Read {
-  permission: Boolean!
-}
-
-type CommonFields_get_our_product_Update {
-  permission: Boolean!
-}
-
-type CommonFields_get_our_product_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_more_info {
-  create: CommonFields_more_info_Create
-  read: CommonFields_more_info_Read
-  update: CommonFields_more_info_Update
-  delete: CommonFields_more_info_Delete
-}
-
-type CommonFields_more_info_Create {
-  permission: Boolean!
-}
-
-type CommonFields_more_info_Read {
-  permission: Boolean!
-}
-
-type CommonFields_more_info_Update {
-  permission: Boolean!
-}
-
-type CommonFields_more_info_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_search {
-  create: CommonFields_search_Create
-  read: CommonFields_search_Read
-  update: CommonFields_search_Update
-  delete: CommonFields_search_Delete
-}
-
-type CommonFields_search_Create {
-  permission: Boolean!
-}
-
-type CommonFields_search_Read {
-  permission: Boolean!
-}
-
-type CommonFields_search_Update {
-  permission: Boolean!
-}
-
-type CommonFields_search_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_find_me {
-  create: CommonFields_find_me_Create
-  read: CommonFields_find_me_Read
-  update: CommonFields_find_me_Update
-  delete: CommonFields_find_me_Delete
-}
-
-type CommonFields_find_me_Create {
-  permission: Boolean!
-}
-
-type CommonFields_find_me_Read {
-  permission: Boolean!
-}
-
-type CommonFields_find_me_Update {
-  permission: Boolean!
-}
-
-type CommonFields_find_me_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_view_on_google_map {
-  create: CommonFields_view_on_google_map_Create
-  read: CommonFields_view_on_google_map_Read
-  update: CommonFields_view_on_google_map_Update
-  delete: CommonFields_view_on_google_map_Delete
-}
-
-type CommonFields_view_on_google_map_Create {
-  permission: Boolean!
-}
-
-type CommonFields_view_on_google_map_Read {
-  permission: Boolean!
-}
-
-type CommonFields_view_on_google_map_Update {
-  permission: Boolean!
-}
-
-type CommonFields_view_on_google_map_Delete {
-  permission: Boolean!
-}
-
 type CommonFields_send_message {
   create: CommonFields_send_message_Create
   read: CommonFields_send_message_Read
@@ -7855,98 +9604,6 @@ type CommonFields_send_message_Update {
 }
 
 type CommonFields_send_message_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_get_to_know_us {
-  create: CommonFields_get_to_know_us_Create
-  read: CommonFields_get_to_know_us_Read
-  update: CommonFields_get_to_know_us_Update
-  delete: CommonFields_get_to_know_us_Delete
-}
-
-type CommonFields_get_to_know_us_Create {
-  permission: Boolean!
-}
-
-type CommonFields_get_to_know_us_Read {
-  permission: Boolean!
-}
-
-type CommonFields_get_to_know_us_Update {
-  permission: Boolean!
-}
-
-type CommonFields_get_to_know_us_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_back_to_homepage {
-  create: CommonFields_back_to_homepage_Create
-  read: CommonFields_back_to_homepage_Read
-  update: CommonFields_back_to_homepage_Update
-  delete: CommonFields_back_to_homepage_Delete
-}
-
-type CommonFields_back_to_homepage_Create {
-  permission: Boolean!
-}
-
-type CommonFields_back_to_homepage_Read {
-  permission: Boolean!
-}
-
-type CommonFields_back_to_homepage_Update {
-  permission: Boolean!
-}
-
-type CommonFields_back_to_homepage_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_contact_us {
-  create: CommonFields_contact_us_Create
-  read: CommonFields_contact_us_Read
-  update: CommonFields_contact_us_Update
-  delete: CommonFields_contact_us_Delete
-}
-
-type CommonFields_contact_us_Create {
-  permission: Boolean!
-}
-
-type CommonFields_contact_us_Read {
-  permission: Boolean!
-}
-
-type CommonFields_contact_us_Update {
-  permission: Boolean!
-}
-
-type CommonFields_contact_us_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_retry {
-  create: CommonFields_retry_Create
-  read: CommonFields_retry_Read
-  update: CommonFields_retry_Update
-  delete: CommonFields_retry_Delete
-}
-
-type CommonFields_retry_Create {
-  permission: Boolean!
-}
-
-type CommonFields_retry_Read {
-  permission: Boolean!
-}
-
-type CommonFields_retry_Update {
-  permission: Boolean!
-}
-
-type CommonFields_retry_Delete {
   permission: Boolean!
 }
 
@@ -8121,98 +9778,6 @@ type CommonFields_legal_terms_and_conditions_Update {
 }
 
 type CommonFields_legal_terms_and_conditions_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_page_not_found {
-  create: CommonFields_page_not_found_Create
-  read: CommonFields_page_not_found_Read
-  update: CommonFields_page_not_found_Update
-  delete: CommonFields_page_not_found_Delete
-}
-
-type CommonFields_page_not_found_Create {
-  permission: Boolean!
-}
-
-type CommonFields_page_not_found_Read {
-  permission: Boolean!
-}
-
-type CommonFields_page_not_found_Update {
-  permission: Boolean!
-}
-
-type CommonFields_page_not_found_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_page_not_found_description {
-  create: CommonFields_page_not_found_description_Create
-  read: CommonFields_page_not_found_description_Read
-  update: CommonFields_page_not_found_description_Update
-  delete: CommonFields_page_not_found_description_Delete
-}
-
-type CommonFields_page_not_found_description_Create {
-  permission: Boolean!
-}
-
-type CommonFields_page_not_found_description_Read {
-  permission: Boolean!
-}
-
-type CommonFields_page_not_found_description_Update {
-  permission: Boolean!
-}
-
-type CommonFields_page_not_found_description_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_error {
-  create: CommonFields_error_Create
-  read: CommonFields_error_Read
-  update: CommonFields_error_Update
-  delete: CommonFields_error_Delete
-}
-
-type CommonFields_error_Create {
-  permission: Boolean!
-}
-
-type CommonFields_error_Read {
-  permission: Boolean!
-}
-
-type CommonFields_error_Update {
-  permission: Boolean!
-}
-
-type CommonFields_error_Delete {
-  permission: Boolean!
-}
-
-type CommonFields_error_description {
-  create: CommonFields_error_description_Create
-  read: CommonFields_error_description_Read
-  update: CommonFields_error_description_Update
-  delete: CommonFields_error_description_Delete
-}
-
-type CommonFields_error_description_Create {
-  permission: Boolean!
-}
-
-type CommonFields_error_description_Read {
-  permission: Boolean!
-}
-
-type CommonFields_error_description_Update {
-  permission: Boolean!
-}
-
-type CommonFields_error_description_Delete {
   permission: Boolean!
 }
 
@@ -9122,6 +10687,10 @@ type Mutation {
   forgotPasswordUser(disableEmail: Boolean, expiration: Int, email: String!): Boolean!
   resetPasswordUser(password: String, token: String): usersResetPassword
   verifyEmailUser(token: String): Boolean
+  createProductType(data: mutationProductTypeInput!, draft: Boolean, locale: LocaleInputType): ProductType
+  updateProductType(id: String!, autosave: Boolean, data: mutationProductTypeUpdateInput!, draft: Boolean, locale: LocaleInputType): ProductType
+  deleteProductType(id: String!): ProductType
+  duplicateProductType(id: String!, data: mutationProductTypeInput!): ProductType
   createProduct(data: mutationProductInput!, draft: Boolean, locale: LocaleInputType): Product
   updateProduct(id: String!, autosave: Boolean, data: mutationProductUpdateInput!, draft: Boolean, locale: LocaleInputType): Product
   deleteProduct(id: String!): Product
@@ -9131,6 +10700,14 @@ type Mutation {
   updateProductTag(id: String!, autosave: Boolean, data: mutationProductTagUpdateInput!, draft: Boolean, locale: LocaleInputType): ProductTag
   deleteProductTag(id: String!): ProductTag
   duplicateProductTag(id: String!, data: mutationProductTagInput!): ProductTag
+  createStore(data: mutationStoreInput!, draft: Boolean, locale: LocaleInputType): Store
+  updateStore(id: String!, autosave: Boolean, data: mutationStoreUpdateInput!, draft: Boolean, locale: LocaleInputType): Store
+  deleteStore(id: String!): Store
+  duplicateStore(id: String!, data: mutationStoreInput!): Store
+  createOnlineStore(data: mutationOnlineStoreInput!, draft: Boolean, locale: LocaleInputType): OnlineStore
+  updateOnlineStore(id: String!, autosave: Boolean, data: mutationOnlineStoreUpdateInput!, draft: Boolean, locale: LocaleInputType): OnlineStore
+  deleteOnlineStore(id: String!): OnlineStore
+  duplicateOnlineStore(id: String!, data: mutationOnlineStoreInput!): OnlineStore
   createPayloadLockedDocument(data: mutationPayloadLockedDocumentInput!, draft: Boolean, locale: LocaleInputType): PayloadLockedDocument
   updatePayloadLockedDocument(id: String!, autosave: Boolean, data: mutationPayloadLockedDocumentUpdateInput!, draft: Boolean, locale: LocaleInputType): PayloadLockedDocument
   deletePayloadLockedDocument(id: String!): PayloadLockedDocument
@@ -9146,6 +10723,7 @@ type Mutation {
 
 input mutationMediaInput {
   alt: String!
+  prefix: String
   updatedAt: String
   createdAt: String
   url: String
@@ -9161,6 +10739,7 @@ input mutationMediaInput {
 
 input mutationMediaUpdateInput {
   alt: String
+  prefix: String
   updatedAt: String
   createdAt: String
   url: String
@@ -9223,7 +10802,24 @@ type usersResetPassword {
   user: User
 }
 
+input mutationProductTypeInput {
+  label: String
+  description: String
+  product_type: String!
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationProductTypeUpdateInput {
+  label: String
+  description: String
+  product_type: String
+  updatedAt: String
+  createdAt: String
+}
+
 input mutationProductInput {
+  product_type: String
   label: String
   slug: String!
   short_description: String
@@ -9240,8 +10836,8 @@ input mutationProductInput {
   palatability_test_img: String
   registration_number_img: String
   fact_sheet_img: String
-  dog_image: String
-  dog_image_cropped: String
+  pet_image: String
+  pet_image_cropped: String
   meta: mutationProduct_MetaInput
   updatedAt: String
   createdAt: String
@@ -9266,6 +10862,7 @@ enum Product__status_MutationInput {
 }
 
 input mutationProductUpdateInput {
+  product_type: String
   label: String
   slug: String
   short_description: String
@@ -9282,8 +10879,8 @@ input mutationProductUpdateInput {
   palatability_test_img: String
   registration_number_img: String
   fact_sheet_img: String
-  dog_image: String
-  dog_image_cropped: String
+  pet_image: String
+  pet_image_cropped: String
   meta: mutationProductUpdate_MetaInput
   updatedAt: String
   createdAt: String
@@ -9325,6 +10922,56 @@ input mutationProductTagUpdateInput {
   createdAt: String
 }
 
+input mutationStoreInput {
+  name: String
+  customer_name: String
+  address: String
+  province: String!
+  district: String!
+  subdistrict: String!
+  phone: String
+  postal_code: String!
+  link: String!
+  lat: String!
+  long: String!
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationStoreUpdateInput {
+  name: String
+  customer_name: String
+  address: String
+  province: String
+  district: String
+  subdistrict: String
+  phone: String
+  postal_code: String
+  link: String
+  lat: String
+  long: String
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationOnlineStoreInput {
+  name: String!
+  url: String!
+  logo: String
+  platform_color: String!
+  updatedAt: String
+  createdAt: String
+}
+
+input mutationOnlineStoreUpdateInput {
+  name: String
+  url: String
+  logo: String
+  platform_color: String
+  updatedAt: String
+  createdAt: String
+}
+
 input mutationPayloadLockedDocumentInput {
   document: PayloadLockedDocument_DocumentRelationshipInput
   globalSlug: String
@@ -9341,8 +10988,11 @@ input PayloadLockedDocument_DocumentRelationshipInput {
 enum PayloadLockedDocument_DocumentRelationshipInputRelationTo {
   media
   users
+  product_type
   product
   product_tag
+  store
+  online_store
 }
 
 input PayloadLockedDocument_UserRelationshipInput {
@@ -9370,8 +11020,11 @@ input PayloadLockedDocumentUpdate_DocumentRelationshipInput {
 enum PayloadLockedDocumentUpdate_DocumentRelationshipInputRelationTo {
   media
   users
+  product_type
   product
   product_tag
+  store
+  online_store
 }
 
 input PayloadLockedDocumentUpdate_UserRelationshipInput {
@@ -9431,6 +11084,14 @@ input mutationHome_HeroInput {
   header_text: String
   subheader_text: String
   cta_text: String
+  hero_slides: [mutationHome_Hero_Hero_slidesInput]
+}
+
+input mutationHome_Hero_Hero_slidesInput {
+  slide_image: String
+  slide_title: String
+  slide_description: String
+  id: String
 }
 
 input mutationHome_PrincipleInput {
@@ -9456,6 +11117,7 @@ input mutationHome_Product_comparisonInput {
 
 input mutationHome_FaqInput {
   faq_list: [mutationHome_Faq_Faq_listInput]
+  ask_doctor: mutationHome_Faq_Ask_doctorInput!
 }
 
 input mutationHome_Faq_Faq_listInput {
@@ -9464,30 +11126,21 @@ input mutationHome_Faq_Faq_listInput {
   id: String
 }
 
+input mutationHome_Faq_Ask_doctorInput {
+  ask_doctor_text: String
+  ask_doctor_link: String!
+}
+
 input mutationCommonInput {
   button: mutationCommon_ButtonInput
   footer: mutationCommon_FooterInput
-  error: mutationCommon_ErrorInput
   updatedAt: String
   createdAt: String
 }
 
 input mutationCommon_ButtonInput {
-  meet_bite_care: String
-  tell_a_friend: String
   see_our_products: String
-  view_more: String
-  faq: String
-  get_our_product: String
-  more_info: String
-  search: String
-  find_me: String
-  view_on_google_map: String
   send_message: String
-  get_to_know_us: String
-  back_to_homepage: String
-  contact_us: String
-  retry: String
 }
 
 input mutationCommon_FooterInput {
@@ -9504,13 +11157,6 @@ input mutationCommon_Footer_LegalInput {
   copyright: String
   privacy_policy: String
   terms_and_conditions: String
-}
-
-input mutationCommon_ErrorInput {
-  page_not_found: String
-  page_not_found_description: String
-  error: String
-  error_description: String
 }
 
 input mutationAboutUsInput {

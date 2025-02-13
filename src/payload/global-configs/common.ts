@@ -18,6 +18,13 @@ export const CommonConfig: GlobalConfig = {
               required: true,
               localized: true,
             },
+            {
+              name: "send_message",
+              label: "Send Message",
+              type: "text",
+              required: true,
+              localized: true,
+            },
           ],
         },
         {

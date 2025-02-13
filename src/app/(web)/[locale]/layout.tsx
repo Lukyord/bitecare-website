@@ -69,11 +69,9 @@ export async function generateMetadata(props: {
       image: OpengraphImage,
     },
     //TODO: change Base URL
-    metadataBase: new URL(
-      process.env.BASE_URL || "https://bitecare-website.vercel.app"
-    ),
+    metadataBase: new URL(process.env.BASE_URL || "https://bitecarepet.com"),
     alternates: {
-      canonical: process.env.BASE_URL || "https://bitecare-website.vercel.app",
+      canonical: process.env.BASE_URL || "https://bitecarepet.com",
       languages: {
         en: `${process.env.BASE_URL}/en`,
         th: `${process.env.BASE_URL}`,

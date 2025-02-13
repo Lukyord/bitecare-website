@@ -166,7 +166,7 @@ export default function MobileMenuButton({
                   onClick={() => {
                     //TODO: change domain name
                     navigator.clipboard
-                      .writeText("https://bitecare-website.vercel.app/")
+                      .writeText("https://bitecarepet.com/")
                       .then(() =>
                         toast({
                           description: tMiscellaneous("copy-link-success"),

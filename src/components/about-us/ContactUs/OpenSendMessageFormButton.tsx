@@ -3,7 +3,6 @@
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useTranslations } from "next-intl"
 import { useFormStatus } from "react-dom"
 
 import { ContactUsFormSchema } from "@/types/about-us/contact-us-form"

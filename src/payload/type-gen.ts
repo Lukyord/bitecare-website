@@ -558,6 +558,7 @@ export interface Common {
   id: string;
   button: {
     see_our_products: string;
+    send_message: string;
   };
   footer: {
     tagline: {
@@ -697,6 +698,7 @@ export interface CommonSelect<T extends boolean = true> {
     | T
     | {
         see_our_products?: T;
+        send_message?: T;
       };
   footer?:
     | T
