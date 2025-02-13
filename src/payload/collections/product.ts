@@ -1,6 +1,7 @@
 import { CollectionConfig } from "payload"
 import { createRowLabel } from "../utils/create-row-label"
 import { generateSlugHook } from "../utils/generate-slug-hook"
+import { deployVercelHook } from "../utils/deploy-vercel-hook"
 
 export const Product: CollectionConfig = {
   slug: "product",
@@ -12,9 +13,9 @@ export const Product: CollectionConfig = {
     drafts: true,
     maxPerDoc: 10,
   },
-  // hooks: {
-  //   beforeChange: [generateSlugHook("label", "slug")],
-  // },
+  hooks: {
+    afterChange: [deployVercelHook],
+  },
   fields: [
     {
       type: "tabs",

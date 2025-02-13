@@ -1,9 +1,12 @@
 import { GlobalConfig } from "payload"
 import { createRowLabel } from "../utils/create-row-label"
-import { text } from "stream/consumers"
+import { deployVercelHook } from "../utils/deploy-vercel-hook"
 
 export const HomeConfig: GlobalConfig = {
   slug: "home",
+  hooks: {
+    afterChange: [deployVercelHook],
+  },
   fields: [
     {
       type: "tabs",

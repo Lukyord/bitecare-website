@@ -1,7 +1,11 @@
 import type { CollectionConfig } from "payload"
+import { deployVercelHook } from "../utils/deploy-vercel-hook"
 
 export const OnlineStore: CollectionConfig = {
   slug: "online-store",
+  hooks: {
+    afterChange: [deployVercelHook],
+  },
   admin: {
     useAsTitle: "name",
     defaultColumns: ["name", "updatedAt"],

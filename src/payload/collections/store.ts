@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload"
+import { deployVercelHook } from "../utils/deploy-vercel-hook"
 
 export type Location = {
   id: string
@@ -11,6 +12,9 @@ export const Store: CollectionConfig = {
   admin: {
     useAsTitle: "name",
     defaultColumns: ["name", "updatedAt"],
+  },
+  hooks: {
+    afterChange: [deployVercelHook],
   },
   fields: [
     {

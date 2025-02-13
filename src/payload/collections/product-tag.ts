@@ -1,9 +1,13 @@
 import { CollectionConfig } from "payload"
+import { deployVercelHook } from "../utils/deploy-vercel-hook"
 
 export const ProductTag: CollectionConfig = {
   slug: "product-tag",
   admin: {
     useAsTitle: "label",
+  },
+  hooks: {
+    afterChange: [deployVercelHook],
   },
   fields: [
     {

@@ -557,21 +557,7 @@ export interface Home {
 export interface Common {
   id: string;
   button: {
-    meet_bite_care: string;
-    tell_a_friend: string;
     see_our_products: string;
-    view_more: string;
-    faq: string;
-    get_our_product: string;
-    more_info: string;
-    search: string;
-    find_me: string;
-    view_on_google_map: string;
-    send_message: string;
-    get_to_know_us: string;
-    back_to_homepage: string;
-    contact_us: string;
-    retry: string;
   };
   footer: {
     tagline: {
@@ -583,12 +569,6 @@ export interface Common {
       privacy_policy: string;
       terms_and_conditions: string;
     };
-  };
-  error: {
-    page_not_found: string;
-    page_not_found_description: string;
-    error: string;
-    error_description: string;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -716,21 +696,7 @@ export interface CommonSelect<T extends boolean = true> {
   button?:
     | T
     | {
-        meet_bite_care?: T;
-        tell_a_friend?: T;
         see_our_products?: T;
-        view_more?: T;
-        faq?: T;
-        get_our_product?: T;
-        more_info?: T;
-        search?: T;
-        find_me?: T;
-        view_on_google_map?: T;
-        send_message?: T;
-        get_to_know_us?: T;
-        back_to_homepage?: T;
-        contact_us?: T;
-        retry?: T;
       };
   footer?:
     | T
@@ -748,14 +714,6 @@ export interface CommonSelect<T extends boolean = true> {
               privacy_policy?: T;
               terms_and_conditions?: T;
             };
-      };
-  error?:
-    | T
-    | {
-        page_not_found?: T;
-        page_not_found_description?: T;
-        error?: T;
-        error_description?: T;
       };
   updatedAt?: T;
   createdAt?: T;

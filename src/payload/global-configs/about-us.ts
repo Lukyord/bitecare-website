@@ -1,7 +1,11 @@
 import { GlobalConfig } from "payload"
+import { deployVercelHook } from "../utils/deploy-vercel-hook"
 
 export const AboutUsConfig: GlobalConfig = {
   slug: "about-us",
+  hooks: {
+    afterChange: [deployVercelHook],
+  },
   fields: [
     {
       type: "tabs",
