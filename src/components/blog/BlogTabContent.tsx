@@ -1,4 +1,3 @@
-import Image from "next/image"
 import {
   Pagination,
   PaginationContent,
@@ -7,6 +6,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 import BlogCard from "./BlogCard"
+import BlogHighlightSwiper from "./BlogHighlightSwiper"
 import { useEffect, useState, useRef } from "react"
 import { mockBlog } from "./BlogTabs"
 
@@ -42,8 +42,13 @@ export default function BlogTabContent({
   }
 
   return (
-    <div ref={contentRef} className="w-full py-20 sub-desktop:my-20">
-      <div className="relative mx-auto grid max-w-[1,244px] grid-cols-1 gap-7 px-4 md:grid-cols-2 lg:px-[60px]">
+    <div className="mx-auto max-w-[100vw] px-4 pt-10 lg:max-w-[1244px] lg:px-[60px] sub-desktop:my-20">
+      <BlogHighlightSwiper blogs={blogs} filterType={filterType} />
+
+      <div
+        ref={contentRef}
+        className="relative grid grid-cols-1 gap-7 pt-20 md:grid-cols-2"
+      >
         {filteredBlogs.slice(startIndex, endIndex).map((blog, index) => (
           <BlogCard key={index} blog={blog} index={index} />
         ))}

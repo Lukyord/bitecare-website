@@ -18,7 +18,6 @@ export default function ContactUsForm({ children }: ContactUsFormProps) {
             "translate-x-[100%]": !formOpen,
             "translate-x-[0%]": formOpen,
           })}
-          })}
         `}
     >
       <div className="relative flex h-full w-full flex-col justify-around px-10 py-7 xl:px-20 xl:py-14">

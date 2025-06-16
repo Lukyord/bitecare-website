@@ -1,6 +1,8 @@
 import React from "react"
 import Image from "next/image"
 import { mockBlog } from "./BlogTabs"
+import { cn } from "@/lib/utils"
+import Link from "next/link"
 type BlogCardProps = {
   blog: mockBlog
   index: number
@@ -8,7 +10,8 @@ type BlogCardProps = {
 
 export default function BlogCard({ blog, index }: BlogCardProps) {
   return (
-    <div
+    <Link
+      href={blog.link}
       key={index}
       className="hover:bg-material-secondary-container group flex flex-col-reverse gap-6 overflow-hidden rounded-2xl bg-bc-primary-container px-4 py-6 transition-all duration-300 ease-in-out lg:flex-row"
     >
@@ -42,7 +45,14 @@ export default function BlogCard({ blog, index }: BlogCardProps) {
           </div>
         </div>
       </div>
-      <div className="block-image relative aspect-square w-full flex-shrink-0 overflow-hidden rounded-xl transition-all duration-300 ease-in-out group-hover:rotate-[-1.5deg] lg:w-[38.09523809524%]">
+      <div
+        className={`block-image relative aspect-square w-full flex-shrink-0 overflow-hidden rounded-xl transition-all duration-300 ease-in-out lg:w-[38.09523809524%]
+       ${cn({
+         "group-hover:rotate-[-1.5deg]": index % 2 === 0,
+         "group-hover:rotate-[1.5deg]": index % 2 === 1,
+       })}
+      `}
+      >
         <Image
           src={`/mock/${blog.image}`}
           alt={blog.title}
@@ -51,6 +61,6 @@ export default function BlogCard({ blog, index }: BlogCardProps) {
           className="h-full w-full object-cover object-center"
         />
       </div>
-    </div>
+    </Link>
   )
 }

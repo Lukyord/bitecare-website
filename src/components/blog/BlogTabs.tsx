@@ -23,6 +23,7 @@ export type mockBlog = {
   image: string
   description: string
   author: string
+  link: string
 }
 
 type BlogTabContentProps = {
