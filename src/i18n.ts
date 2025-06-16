@@ -20,6 +20,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       ...(await import(`../public/locales/${locale}/where-to-buy.json`))
         .default,
       ...(await import(`../public/locales/${locale}/about-us.json`)).default,
+      ...(await import(`../public/locales/${locale}/blog.json`)).default,
     },
     locale,
   }

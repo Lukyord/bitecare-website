@@ -86,6 +86,12 @@ export default async function getNavigation() {
     //   ],
     // },
     {
+      label: tNavigationMenu("news"),
+      slug: "news",
+      href: "/news",
+      breadCrumbs: [],
+    },
+    {
       label: tNavigationSupport("faq"),
       slug: "faq",
       href: "/#faq",

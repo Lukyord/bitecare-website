@@ -35,6 +35,9 @@ module.exports = {
         "bc-surface-container": "#D2CFCC",
         "bc-surface": "#E6EBE8",
 
+        "material-primary": "#386A1F",
+        "material-secondary-container": "#D9E7CB",
+
         //Shadcn Colors
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
