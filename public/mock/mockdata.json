@@ -1,0 +1,274 @@
+{
+  "blogs": [
+    {
+      "highlight": true,
+      "type": "news",
+      "title": "Customized nutrition for senior dogs, renal health, low-fat diets, and skin care.",
+      "created_at": "2025-06-16T08:00:00Z",
+      "image": "news-1.webp",
+      "description": "Soft and tasty kibble offers both nourishment and enjoyment in every bite...",
+      "author": "John Doe",
+      "link": "blog/1"
+    },
+    {
+      "highlight": true,
+      "type": "event",
+      "title": "BiteCare thrives on Transparency and Trust, providing clear insights into palatability and clinic tests.",
+      "created_at": "2025-06-16T08:01:00Z",
+      "image": "event-1.webp",
+      "description": "Soft and tasty kibble offers both nourishment and enjoyment in every bite...",
+      "author": "John Doe",
+      "link": "blog/2"
+    },
+    {
+      "highlight": true,
+      "type": "news",
+      "title": "Healthy digestion support tailored for all dog breeds.",
+      "created_at": "2025-06-16T08:02:00Z",
+      "image": "blog-1.webp",
+      "description": "Probiotics and balanced fiber promote a healthy gut in every meal.",
+      "author": "John Doe",
+      "link": "blog/3"
+    },
+    {
+      "highlight": true,
+      "type": "event",
+      "title": "Join us for a live demo on senior pet nutrition trends.",
+      "created_at": "2025-06-16T08:03:00Z",
+      "image": "blog-1.webp",
+      "description": "Experience firsthand the transformation with our functional diets.",
+      "author": "John Doe",
+      "link": "blog/4"
+    },
+    {
+      "highlight": false,
+      "type": "news",
+      "title": "Omega-3 enriched diets improve coat and skin condition. Omega-3 enriched diets improve coat and skin condition.",
+      "created_at": "2025-06-16T08:04:00Z",
+      "image": "blog-1.webp",
+      "description": "Shinier coats and healthier skin backed by science and pet lovers.",
+      "author": "John Doe",
+      "link": "blog/5"
+    },
+    {
+      "highlight": false,
+      "type": "event",
+      "title": "Webinar: Low-fat nutrition solutions for sensitive dogs.",
+      "created_at": "2025-06-16T08:05:00Z",
+      "image": "blog-1.webp",
+      "description": "Explore dietary solutions for pancreatitis and weight management.",
+      "author": "John Doe",
+      "link": "blog/6"
+    },
+    {
+      "highlight": false,
+      "type": "news",
+      "title": "Custom diets based on renal health diagnostics.",
+      "created_at": "2025-06-16T08:06:00Z",
+      "image": "blog-1.webp",
+      "description": "Lower phosphorus and controlled protein to support kidney care.",
+      "author": "John Doe",
+      "link": "blog/7"
+    },
+    {
+      "highlight": false,
+      "type": "event",
+      "title": "Veterinary roundtable: Transparency in pet food labeling.",
+      "created_at": "2025-06-16T08:07:00Z",
+      "image": "blog-1.webp",
+      "description": "How clear labels lead to better owner choices and pet health.",
+      "author": "John Doe",
+      "link": "blog/8"
+    },
+    {
+      "highlight": false,
+      "type": "news",
+      "title": "Clinical trials show improved mobility in aging pets.",
+      "created_at": "2025-06-16T08:08:00Z",
+      "image": "blog-1.webp",
+      "description": "Glucosamine blends and weight management proven effective.",
+      "author": "John Doe",
+      "link": "blog/9"
+    },
+    {
+      "highlight": false,
+      "type": "event",
+      "title": "Expo 2025: Discover our functional range for wellness.",
+      "created_at": "2025-06-16T08:09:00Z",
+      "image": "blog-1.webp",
+      "description": "Visit us at booth D12 for exclusive samples and insights.",
+      "author": "John Doe",
+      "link": "blog/10"
+    },
+    {
+      "highlight": false,
+      "type": "news",
+      "title": "Protein sources for dogs with food sensitivities.",
+      "created_at": "2025-06-16T08:10:00Z",
+      "image": "blog-1.webp",
+      "description": "Novel proteins offer new hope for allergy-prone pups.",
+      "author": "John Doe",
+      "link": "blog/11"
+    },
+    {
+      "highlight": false,
+      "type": "event",
+      "title": "Interactive Q&A: Functional food myths debunked.",
+      "created_at": "2025-06-16T08:11:00Z",
+      "image": "blog-1.webp",
+      "description": "Our nutritionist answers your burning questions live.",
+      "author": "John Doe",
+      "link": "blog/12"
+    },
+    {
+      "highlight": false,
+      "type": "news",
+      "title": "Balanced fat ratios shown to support energy levels.",
+      "created_at": "2025-06-16T08:12:00Z",
+      "image": "blog-1.webp",
+      "description": "More energy, less risk — the science of dietary fat in pets.",
+      "author": "John Doe",
+      "link": "blog/13"
+    },
+    {
+      "highlight": false,
+      "type": "event",
+      "title": "Live cooking session: DIY functional treats at home.",
+      "created_at": "2025-06-16T08:13:00Z",
+      "image": "blog-1.webp",
+      "description": "Create custom snacks your pets will love using our base mix.",
+      "author": "John Doe",
+      "link": "blog/14"
+    },
+    {
+      "highlight": false,
+      "type": "news",
+      "title": "Trace minerals support joint health and immune function.",
+      "created_at": "2025-06-16T08:14:00Z",
+      "image": "blog-1.webp",
+      "description": "Zinc, copper, and selenium are essential for long-term wellness.",
+      "author": "John Doe",
+      "link": "blog/15"
+    },
+    {
+      "highlight": false,
+      "type": "event",
+      "title": "Training for vet clinics: Prescribing functional diets.",
+      "created_at": "2025-06-16T08:15:00Z",
+      "image": "blog-1.webp",
+      "description": "Enhance your consults with diet-based treatment plans.",
+      "author": "John Doe",
+      "link": "blog/16"
+    },
+    {
+      "highlight": false,
+      "type": "news",
+      "title": "Tailored feeding plans for dogs of different lifestyles.",
+      "created_at": "2025-06-16T08:16:00Z",
+      "image": "blog-1.webp",
+      "description": "From urban pups to countryside companions — nutrition that fits.",
+      "author": "John Doe",
+      "link": "blog/17"
+    },
+    {
+      "highlight": false,
+      "type": "event",
+      "title": "Conference: Innovations in pet microbiome research.",
+      "created_at": "2025-06-16T08:17:00Z",
+      "image": "blog-1.webp",
+      "description": "Leading researchers reveal insights on gut flora in pets.",
+      "author": "John Doe",
+      "link": "blog/18"
+    },
+    {
+      "highlight": false,
+      "type": "news",
+      "title": "New palatability trials indicate high acceptance rates.",
+      "created_at": "2025-06-16T08:18:00Z",
+      "image": "blog-1.webp",
+      "description": "Pets love it — and we've got the tests to prove it.",
+      "author": "John Doe",
+      "link": "blog/19"
+    },
+    {
+      "highlight": false,
+      "type": "event",
+      "title": "Veterinarian testimonials: How BiteCare changed practices.",
+      "created_at": "2025-06-16T08:19:00Z",
+      "image": "blog-1.webp",
+      "description": "See what trusted professionals say about our brand.",
+      "author": "John Doe",
+      "link": "blog/20"
+    },
+    {
+      "highlight": false,
+      "type": "news",
+      "title": "Anti-inflammatory blends for long-term canine wellness.",
+      "created_at": "2025-06-16T08:20:00Z",
+      "image": "blog-1.webp",
+      "description": "Plant-based antioxidants reduce chronic inflammation.",
+      "author": "John Doe",
+      "link": "blog/21"
+    },
+    {
+      "highlight": false,
+      "type": "event",
+      "title": "Veterinarian testimonials: How BiteCare changed practices.",
+      "created_at": "2025-06-16T08:20:00Z",
+      "image": "blog-1.webp",
+      "description": "See what trusted professionals say about our brand.",
+      "author": "John Doe",
+      "link": "blog/22"
+    },
+    {
+      "highlight": false,
+      "type": "news",
+      "title": "New palatability trials indicate high acceptance rates.",
+      "created_at": "2025-06-16T08:20:00Z",
+      "image": "blog-1.webp",
+      "description": "Pets love it — and we've got the tests to prove it.",
+      "author": "John Doe",
+      "link": "blog/23"
+    },
+    {
+      "highlight": false,
+      "type": "event",
+      "title": "Veterinarian testimonials: How BiteCare changed practices.",
+      "created_at": "2025-06-16T08:20:00Z",
+      "image": "blog-1.webp",
+      "description": "See what trusted professionals say about our brand.",
+      "author": "John Doe",
+      "link": "blog/24"
+    },
+    {
+      "highlight": false,
+      "type": "news",
+      "title": "New palatability trials indicate high acceptance rates.",
+      "created_at": "2025-06-16T08:20:00Z",
+      "image": "blog-1.webp",
+      "description": "Pets love it — and we've got the tests to prove it.",
+      "author": "John Doe",
+      "link": "blog/25"
+    },
+    {
+      "highlight": false,
+      "type": "event",
+      "title": "Veterinarian testimonials: How BiteCare changed practices.",
+      "created_at": "2025-06-16T08:20:00Z",
+      "image": "blog-1.webp",
+      "description": "See what trusted professionals say about our brand.",
+      "author": "John Doe",
+      "link": "blog/26"
+    },
+    {
+      "highlight": false,
+      "type": "news",
+      "title": "New palatability trials indicate high acceptance rates.",
+      "created_at": "2025-06-16T08:20:00Z",
+      "image": "blog-1.webp",
+      "description": "Pets love it — and we've got the tests to prove it.",
+      "author": "John Doe",
+      "link": "blog/27"
+    }
+  ]
+}

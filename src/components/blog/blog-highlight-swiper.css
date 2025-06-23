@@ -1,0 +1,23 @@
+.blog-highlight-swiper [class*="swiper-button-"] {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.blog-highlight-swiper [class*="swiper-button-"]::after {
+  color: #000;
+  font-size: 22px;
+}
+
+.blog-highlight-swiper .swiper-button-prev {
+  left: 0;
+}
+
+.blog-highlight-swiper .swiper-button-next {
+  right: 0;
+}

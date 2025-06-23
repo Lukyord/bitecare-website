@@ -20,7 +20,7 @@ export default async function HeroSection({}: HeroSectionProps) {
   })
 
   return (
-    <section className="over relative mt-[2.5vh] h-full w-screen">
+    <section className="relative mt-[2.5vh] h-full w-screen">
       {/* Main Hero Section and CTA */}
       <div className="mx-auto flex max-w-[80%] flex-col items-center gap-y-8 md:gap-0 lg:mb-[2.5vh] lg:flex-row lg:items-start">
         <div className="relative z-20 flex flex-col items-center gap-4 sm:max-w-[80%] md:max-w-[60%]  lg:max-w-[45%]">
