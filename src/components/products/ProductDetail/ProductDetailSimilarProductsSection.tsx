@@ -32,7 +32,7 @@ export default async function ProductDetailSimilarProductsSection({
           .filter((p) => p.id !== product.id)
           .map((product, index) => (
             <React.Fragment key={index}>
-              <ProductCard product={product} />
+              <ProductCard product={product} isSimilar />
             </React.Fragment>
           ))}
       </div>

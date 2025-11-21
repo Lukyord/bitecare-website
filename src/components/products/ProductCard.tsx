@@ -10,18 +10,30 @@ import {
   ProductTag as ProductTagType,
 } from "@/payload/type-gen"
 import { resolveMediaRef } from "@/payload/service"
+import { cn } from "@/lib/utils"
 
 type ProductCardProps = {
   product: Product
+  isSimilar?: boolean
 }
 
-export default async function ProductCard({ product }: ProductCardProps) {
+export default async function ProductCard({
+  product,
+  isSimilar,
+}: ProductCardProps) {
   const productFrontImg = await resolveMediaRef(product.front_img)
   return (
     <Link
       href={`/products/${product.slug}`}
       style={{ backgroundColor: product.primary_color }}
-      className={`group relative flex aspect-[1.2] w-[100%] flex-shrink-0 flex-col  justify-between overflow-hidden rounded-3xl p-5 transition-all duration-300 hover:shadow-xl xl:px-10 xl:py-14`}
+      className={`
+          group relative flex aspect-[1.2] w-[100%] flex-shrink-0 flex-col  
+          justify-between overflow-hidden rounded-3xl p-5 transition-all 
+          duration-300 hover:shadow-xl xl:px-10 xl:py-14
+          ${cn({
+            "max-w-[83.3333333333vw] lg:max-w-[600px]": isSimilar,
+          })}
+          `}
     >
       <h2 className="w-[52.5%] text-h3 text-white xl:text-h2">
         {product.label}
